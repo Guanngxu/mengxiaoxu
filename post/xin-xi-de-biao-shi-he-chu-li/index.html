@@ -1,112 +1,111 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>信息的表示和处理 | 刘小绪同学的博客</title>
-<meta name="description" content="正在学习写代码的码农" />
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1569413870741">
+<meta name="description" content="正在学习写代码的码农">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1569414368482">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-148716803-1');
-</script>
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://mengxiaoxu.github.io/">
-  <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1569413870741" alt="">
-  </a>
-  <h1 class="site-title">
-    刘小绪同学的博客
-  </h1>
-  <p class="site-description">
-    正在学习写代码的码农
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/mengxiaoxu" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://mengxiaoxu.github.io/">
+        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1569414368482" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://mengxiaoxu.github.io/">
+        <h1 class="site-title">刘小绪同学的博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
 
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
         <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              信息的表示和处理
-            </h2>
-            <div class="post-info">
-              <span>
-                2019-09-25
-              </span>
-              <span>
-                10 min read
-              </span>
-              
-                <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="post-tag">
-                  # 操作系统
-                </a>
-              
+          
+            <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/xin-xi-de-biao-shi-he-chu-li.jpeg')">
             </div>
+          
+          <h2 class="post-title">信息的表示和处理</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-09-25</span>
             
-              <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/xin-xi-de-biao-shi-he-chu-li.jpeg" alt="">
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw">
+                    操作系统
+                    
+                  </a>
+                
+              </span>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h4 id="字数据大小">字数据大小</h4>
+          </div>
+          <div class="post-content">
+            <h4 id="字数据大小">字数据大小</h4>
 <p>前面已经提到过<code>信息=位+上下文</code>，但是基本上的计算机都没有将位作为最小的可寻址单位，而是将字节作为了最小的可寻址单位，内存就是一个非常大的字节数组，它的的每个字节都由一个唯一的数字来标识（这个数字是不需要存的），所有可能的地址集合就是虚拟地址空间。</p>
 <p>我们常说的 32 位、64 位指的是一台计算机的<strong>字长</strong>，用于指明指针数据的的标称大小。有的面试官在面试的时候会问这样一个问题：在 C/C++ 中指针的大小是多少？如果你一下就回答出来时多少个字节了，那基本上不必再问了，因为一个指针的大小取决于计算机的字长，所以应该分 32 位机还是 64 位机的情况。</p>
 <p>字长还会决定一个极为重要的系统参数——<strong>虚拟地址空间</strong>。比如现在有一个 32 位机，每一位可以取值 1 或 总共 32 位，能组合的出局就有 2<sup>32</sup> 个，所以它能访问 2<sup>32</sup> 个地址，其大小也就是 4G，因此你如果给 32 位机装上 8G 的内存条，是起不了多大作用的。</p>
@@ -162,127 +161,86 @@ gcc -m64 prog.c
 <figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1569411804705.png" alt=""></figure>
 <p>这个优化不是一定的，大多数编译器只在需要少量移位、加减法就足够的时候才使用这种优化。</p>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E5%AD%97%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F">字数据大小</a></li>
-<li><a href="#%E5%AF%BB%E5%9D%80%E5%8F%8A%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F">寻址及字节顺序</a></li>
-<li><a href="#%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA">整数表示</a></li>
-<li><a href="#%E5%8A%A0%E6%B3%95-%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97">加法、乘法运算</a><br>
-*
-<ul>
-<li><a href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E5%8A%A0%E6%B3%95">无符号加法</a></li>
-<li><a href="#%E8%A1%A5%E7%A0%81%E5%8A%A0%E6%B3%95">补码加法</a></li>
-<li><a href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95">无符号乘法</a></li>
-<li><a href="#%E8%A1%A5%E7%A0%81%E4%B9%98%E6%B3%95">补码乘法</a></li>
-<li><a href="#%E4%B9%98%E4%BB%A5%E5%B8%B8%E6%95%B0">乘以常数</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-              </div>
-            </div>
-          </article>
+          </div>
         </div>
 
         
           <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://mengxiaoxu.github.io//post/ji-suan-ji-xi-tong-man-you">
+            <a class="purple-link" href="https://mengxiaoxu.github.io//post/ji-suan-ji-xi-tong-man-you">
               <h3 class="post-title">
-                计算机系统漫游
+                下一篇：计算机系统漫游
               </h3>
             </a>
           </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
         
 
         
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+      
 
-<div id="gitalk-container"></div>
-
-<script>
-
-  var gitalk = new Gitalk({
-    clientID: '70b5a748b63425a6adfc',
-    clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
-    repo: 'mengxiaoxu.github.io',
-    owner: 'mengxiaoxu',
-    admin: ['mengxiaoxu'],
-    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
-</script>
-
-          
-
-          
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+      <div class="site-footer">
+  <div class="slogan">正在学习写代码的码农</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
 
-  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+    </div>
+    <script type="application/javascript">
 
-  // This should probably be throttled.
-  // Especially because it triggers during smooth scrolling.
-  // https://lodash.com/docs/4.17.10#throttle
-  // You could do like...
-  // window.addEventListener("scroll", () => {
-  //    _.throttle(doThatStuff, 100);
-  // });
-  // Only not doing it here to keep this Pen dependency-free.
+hljs.initHighlightingOnLoad()
 
-  window.addEventListener("scroll", event => {
-    let fromTop = window.scrollY;
-
-    mainNavLinks.forEach((link, index) => {
-      let section = document.getElementById(decodeURI(link.hash).substring(1));
-      let nextSection = null
-      if (mainNavLinks[index + 1]) {
-        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-      }
-      if (section.offsetTop <= fromTop) {
-        if (nextSection) {
-          if (nextSection.offsetTop > fromTop) {
-            link.classList.add("current");
-          } else {
-            link.classList.remove("current");    
-          }
-        } else {
-          link.classList.add("current");
-        }
-      } else {
-        link.classList.remove("current");
-      }
-    });
-  });
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
 </script>
 
-      </div>
-    </div>
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '70b5a748b63425a6adfc',
+        clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
+        repo: 'mengxiaoxu.github.io',
+        owner: 'mengxiaoxu',
+        admin: ['mengxiaoxu'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
   </body>
 </html>

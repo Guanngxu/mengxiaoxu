@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://mengxiaoxu.github.io/</id>
+    <title>刘小绪同学的博客</title>
+    <updated>2019-09-25T11:06:46.956Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
+    <link rel="self" href="https://mengxiaoxu.github.io//atom.xml"/>
+    <subtitle>学习如何写代码的码农</subtitle>
+    <logo>https://mengxiaoxu.github.io//images/avatar.png</logo>
+    <icon>https://mengxiaoxu.github.io//favicon.ico</icon>
+    <rights>All rights reserved 2019, 刘小绪同学的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[信息的表示和处理]]></title>
+        <id>https://mengxiaoxu.github.io//post/xin-xi-de-biao-shi-he-chu-li</id>
+        <link href="https://mengxiaoxu.github.io//post/xin-xi-de-biao-shi-he-chu-li">
+        </link>
+        <updated>2019-09-24T17:02:11.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="字数据大小">字数据大小</h4>
+<p>前面已经提到过<code>信息=位+上下文</code>，但是基本上的计算机都没有将位作为最小的可寻址单位，而是将字节作为了最小的可寻址单位，内存就是一个非常大的字节数组，它的的每个字节都由一个唯一的数字来标识（这个数字是不需要存的），所有可能的地址集合就是虚拟地址空间。</p>
+<p>我们常说的 32 位、64 位指的是一台计算机的<strong>字长</strong>，用于指明指针数据的的标称大小。有的面试官在面试的时候会问这样一个问题：在 C/C++ 中指针的大小是多少？如果你一下就回答出来时多少个字节了，那基本上不必再问了，因为一个指针的大小取决于计算机的字长，所以应该分 32 位机还是 64 位机的情况。</p>
+<p>字长还会决定一个极为重要的系统参数——<strong>虚拟地址空间</strong>。比如现在有一个 32 位机，每一位可以取值 1 或 总共 32 位，能组合的出局就有 2<sup>32</sup> 个，所以它能访问 2<sup>32</sup> 个地址，其大小也就是 4G，因此你如果给 32 位机装上 8G 的内存条，是起不了多大作用的。</p>
+<p>我们平时所说的 32 位程序和 64 位程序并不是指机器的字长，它们的区别在于程序时如何编译的，而不是其运行的机器类型，高版本都应该做到向后兼容，所以 32 位程序一般都能运行在 64 位机器上，而 64 位程序时不能运行在 32 位机上面的。下面两种伪指令就分别用于编译 32 位程序和 64 位程序。</p>
+<pre><code class="language-shell">gcc -m32 prog.c
+gcc -m64 prog.c
+</code></pre>
+<p>C 语言在 32 位机和 64 位机上所表现的差别在于<code>long</code>数据类型，一般在 32 位机上是 4 个字节，而在 64 位机上是 8 个字节，而作为程序员要力图程序能在不同的机器上进行编译执行，要做到这一点就需要保证程序对不同数据类型的确切大小不敏感。</p>
+<blockquote>
+<p>曾经某运营商的一个基站版本因为数据范围的不同而造成了巨大的损失，在编程环境中使用的是 32 位机，而基站所使用的处理器没有 32 位，最后表现的效果就是大概每隔 40 天，基站就自动复位了。定位到这个问题都花费了巨大的财力和人力资源。</p>
+</blockquote>
+<h4 id="寻址及字节顺序">寻址及字节顺序</h4>
+<p>上文已经提到，有很多的对象实际上不止占用一个字节，而是占用了多个字节，此时就涉及到如何排列这些字节了，以及如何存储这些字节。以<code>11001100 11001100</code>为例，它占用了两个字节，我们可以选择将这两个字节放在连续的内存中，也可以将两个字节分开放在不连续的内存中；另外我们可以将左边的字节当做起始位置，也可以将右边的字节当做起始位置（更专业的称为<strong>大端法和小端法</strong>）。</p>
+<p>对于字节的排列，到底是用大端法还是小端法，没有技术上的争论，只有社会政治论题的争论，而且机器它对程序员是完全不可见的。几乎所有的机器都将多字节对象存储为连续的字节序列，所使用字节中最小的地址作为对象的地址。</p>
+<p>那么什么时候需要注意字节的顺序规则呢，那就是编写网络应用程序的时候，试想你传输的数据是用大端法表示的，而用户的计算机采用的是小端法，那还会有用户使用你的产品吗。所以编写网络程序时需要遵循已经建立的关于字节顺序的规则。</p>
+<h4 id="整数表示">整数表示</h4>
+<p>程序员对二进制不会不知道，比如 <code>11111111</code>表示的是 255（不考虑补码），很容易就能转换为我们所熟悉的 10 进制数据。这种方式我们默认它是无符号数，如果要加入有符号数就开始变得有趣了。</p>
+<p>几乎所有的计算机都是采用有<strong>补码</strong>来表示有符号整数的，它与无符号整数的区别在于最高位被解释为<strong>负权</strong>，举个例子：将<code>1111</code>看做补码的话，它的值就为：-2<sup>3</sup> + 2<sup>2</sup> + 2<sup>1</sup> + 2<sup>0</sup> = -1。</p>
+<p>在程序中不可避免的会使用强制类型转换，C 语言中强制类型转换并没有改变数据的位值，只是改变了解释这些位的方式。比如将无符号数（<code>unsigned</code>） 53191 转换为有符号数的结果为 -12345，它们的位值是完全没有相同的。</p>
+<p>最容易入坑的地方是，对两个不同类型的数据进行运算时，C 语言将会隐式的将有符号数转换为无符号数，所以就有下面这样一个神奇的结果。</p>
+<pre><code class="language-C">// u 代表无符号数
+-1 &lt; 0u
+// 结果为 0
+// 因为 -1 的补码表示为：11...11
+// 转换为无符号数后就是范围内最大的数
+</code></pre>
+<p>如果需要扩展一个数的位表示，那么放心的扩展就好了，小的数据类型都能安全的向大的数据类型转换，补码表示的数会在前面补上符号位，原码表示的直接在前面补上 0 即可，而需要注意的是从大往小转，这会不可避免的截断位，造成信息的丢失，所以千万不要这么干。</p>
+<h4 id="加法-乘法运算">加法、乘法运算</h4>
+<p>在编程入门的时候可能都知道两个正数相加的结果可能为负数，还有一个更奇怪的现象就是：<code>x &lt; y</code>和 <code>x - y &lt; 0</code>两个表达式可能会得出不一样的结果，这些神奇的结果都和计算机整数的底层表示和运算有着密切的关系。</p>
+<p>C 语言中有无符号数与有符号数之分，而在 Java 中只有有符号数，下面的内容还是基于 C 语言进行说明，毕竟更 C 比 Java 更接近底层嘛。</p>
+<h6 id="无符号加法">无符号加法</h6>
+<p>假设我们使用 w 位来表示无符号数，那么两个加数取值范围即为：0 ≤ x, y ＜2<sup>w</sup>，理论上它们的和的范围为：0 ≤ sum ＜ 2<sup>w+1</sup>，因为只有 w 位表示无符号数（要把和表示出来就需要 w+1 位），所以超过 z<sup>w</sup>的部分就会造成溢出，如下图所示。</p>
+<figure data-type="image" tabindex="1"><img src="https://github.com/mengxiaoxu/mengxiaoxu.github.io/raw/master/_posts/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E6%81%AF%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86/%E6%97%A0%E7%AC%A6%E5%8F%B7%E5%8A%A0%E6%B3%95.png" alt="image"></figure>
+<p>对于无符号数的溢出，计算机采用的处理方式是丢掉最高位，直观的结果就是，当发生溢出了，就将采用取模运算（或者说是减去 2<sup>w</sup>），举个例子。</p>
+<p>只用 4 为来表示无符号数，即 w = 4，现在有 x [1001] 和 y [1100] 相加，其结果应为：[10101] ，但是没有 5 位用来表示，所以丢掉最高位的1，剩下的值为 5 [0101]，也就是 21 mod 16 = 5。</p>
+<p>那么如何检测是否发生溢出呢？设求和结果为 s，对于加法有 x + y ≥ x 恒成立，即只要没有发生溢出，肯定有 s ≥ x。另一方面，如果确实发生溢出了，就有 s = x + y - 2<sup>w</sup>，又有 y - 2<sup>w</sup> ＜ 0，因此 s = x + y - 2<sup>w</sup> ＜ x。</p>
+<h6 id="补码加法">补码加法</h6>
+<p>和前面一样，对于两个给定范围的加数 - 2<sup>w-1</sup> ≤ x, y ≤ 2<sup>w-1</sup> - 1，它们的和的范围就在 - 2<sup>w</sup> ≤ sum ≤ 2<sup>w</sup> - 2。要想把整个和的范围表示出来，依旧需要 w+1 位才行，而现在只有 w 位，因此还是需要采用将溢出部分截断。</p>
+<figure data-type="image" tabindex="2"><img src="https://github.com/mengxiaoxu/mengxiaoxu.github.io/raw/master/_posts/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E6%81%AF%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86/%E8%A1%A5%E7%A0%81%E5%8A%A0%E6%B3%95.png" alt="image"></figure>
+<p>可以发现，当发生正溢出时，截断的结果是从和数中减去了 2<sup>w</sup>；而当发生负溢出时，截断结果是把和数加上 2<sup>w</sup>。</p>
+<p>那么对于补码加法如何检测溢出结果呢？通过分析可以发现，当且仅当 x ＞ 0, y ＞ 0，但和 s ≤ 0 时为正溢出；当且仅当 x ＜ 0, y ＜ 0，但 s ≥ 0 时发生负溢出。</p>
+<h6 id="无符号乘法">无符号乘法</h6>
+<p>有了前面的基础，乘法就变得简单一些了，对于溢出情况，计算机仍然采用的是求模，比如 0 ≤ x, y ≤ 2<sup>w</sup> - 1，它们乘积的范围为 0 到 2<sup>2w</sup> - 2<sup>w+1</sup> + 1 之间，这可能需要 2w 位来表示，溢出部分直接截掉，如下所示。</p>
+<figure data-type="image" tabindex="3"><img src="https://github.com/mengxiaoxu/mengxiaoxu.github.io/raw/master/_posts/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E6%81%AF%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86/%E6%97%A0%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95.png" alt="image"></figure>
+<h6 id="补码乘法">补码乘法</h6>
+<p>对于补码，两个乘数的范围为：- 2<sup>w-1</sup> ≤ x, y ≤ 2<sup>w-1</sup> + 1，那么其乘积表示范围就为 - 2<sup>2w-2</sup> + 2<sup>w-1</sup> 到 2<sup>2w-2</sup> 之间，补码乘法和无符号乘法基本是一样的，只是在无符号基础上多加了一步转换，即将无符号数转换为补码。</p>
+<figure data-type="image" tabindex="4"><img src="https://github.com/mengxiaoxu/mengxiaoxu.github.io/raw/master/_posts/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E6%81%AF%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86/%E8%A1%A5%E7%A0%81%E4%B9%98%E6%B3%95.png" alt="image"></figure>
+<h6 id="乘以常数">乘以常数</h6>
+<p>我们知道，计算机做加减法、位级运算的速度最快（1 个指令周期），而做乘除法很慢（10 个甚至更多指令周期），平时编写的程序中常常会乘以一个常数，为了使程序运行的更快，编译器可能会帮我们做一些处理。</p>
+<p>首先我们考虑常数是 2 的幂。x * 2<sup>1</sup> 可以表示为 <code>x &lt;&lt; 1</code>，x * 2<sup>2</sup> 可以表示为 <code>x &lt;&lt; 2</code>，依次类推即可。</p>
+<p>对于不是 2 的幂的常数，比如 x * 14 可以表示为：<code>(x&lt;&lt;3) + (x&lt;&lt;2) + (x&lt;&lt;1)</code>，因为 14 = 2<sup>3</sup> + 2<sup>2</sup> + 2<sup>1</sup>；聪明的你可能发现 14 还有另一种表示方法，即 14 = 2<sup>4</sup> - 2<sup>1</sup>，这种表示比前一种表示方法又少了运算量，所以 x * 14 还可以表示为：<code>(x&lt;&lt;4) - (x&lt;&lt;1)</code>。</p>
+<p>实际上，这里有一个通用的解决方案，对于任何一个常数 K，其二进制可以表示为一组 0 和 1 交替的序列：[(0...0)(1...1)(0...0)(1...1)]，14可以表示为：[(0...0)(111)(0)]，考虑一组从位位置 n 到位位置 m 的连续的 1 （n ≥ m），（对于 14 有 n = 3，m = 1）可以有两种形式来计算位对乘积的影响。</p>
+<figure data-type="image" tabindex="5"><img src="https://github.com/mengxiaoxu/mengxiaoxu.github.io/raw/master/_posts/images/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/%E4%BF%A1%E6%81%AF%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86/%E4%B9%98%E4%BB%A5%E5%B8%B8%E6%95%B0.png" alt="image"></figure>
+<p>这个优化不是一定的，大多数编译器只在需要少量移位、加减法就足够的时候才使用这种优化。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[计算机系统漫游]]></title>
+        <id>https://mengxiaoxu.github.io//post/ji-suan-ji-xi-tong-man-you</id>
+        <link href="https://mengxiaoxu.github.io//post/ji-suan-ji-xi-tong-man-you">
+        </link>
+        <updated>2019-09-24T16:34:35.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="计算机中的信息">计算机中的信息</h4>
+<p>对于程序员来说，HelloWorld 程序再熟悉不过了，下面是 C 语言写的 HelloWorld 程序。</p>
+<pre><code class="language-c">#include&lt;stdio.h&gt;
+
+int main()
+{
+	printf(&quot;hello, world\n&quot;);
+	return 0;
+}
+</code></pre>
+<p>这段程序很简单，仅仅是在屏幕上输出<code>hello world</code>，对于程序员很容易阅读，但是从计算机的角度来看，也是这么简单吗？</p>
+<p>我们都知道，计算机的世界只有 0 和 1组成的位（比特），这对于人类来说太不友好了，因此计算机科学家们设计了 ASCⅡ 码来表示现实世界的符号。每 8 个位构成一个组（称为一个字节），用一个组来表示一个符号，上面的 C 程序用 ASCⅡ 表示就是下面的样式。</p>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569342929650.jpg" alt=""></figure>
+<p>因此对于计算机来说，所有的数据都是由一串比特表示的，要区分这些数据对象的唯一方法就是读到它们时的<strong>上下文</strong>。</p>
+<pre><code>信息 = 位 + 上下文
+</code></pre>
+<p>那么什么是上下文呢？举个例子来讲。在磁盘中有一段二进制数据<code>1010010111010010</code>，如果有一段程序将其当做整数读出来（不考虑补码），那么它的值就是 42450，如果把它当做浮点数读出来将是另一个结果，而JVM 将其当做字节码读出来的话，那又是完全不同的结果。只有把位放在具体的程序、环境中（即上下文）才会有意义，单个位是没有意义的。</p>
+<h4 id="源程序编译">源程序编译</h4>
+<p>虽然我们把 C 语言程序编写完成了，但是它并不能运行，因为它目前还仅仅是由 ASCⅡ 字符构成的文本文件，计算机并不能运行文本文件。</p>
+<p>想要得到 HelloWorld 的可执行文件，需要经过预处理、编译、汇编、链接四个阶段。</p>
+<p>预处理阶段，预处理器会根据以字符<code>#</code>开头的命令去修改源程序，预处理器去读取系统头文件<code>stdio.h</code>中的内容，并将其直接插入程序文本中，结果就得到了另一个 C 程序—— hello.i。</p>
+<p>编译阶段，编译器会把 hello.i 程序翻译成汇编语言程序 hello.s，汇编语言本质上就是机器语言，此时的程序仍然是文本文件。</p>
+<p>汇编阶段，汇编器会将 hello.s 翻译成机器语言指令，保存在 hello.o 文件中，此时得到的就是二进制文件了。</p>
+<p>程序中使用了 printf 函数，这是由编译器提供的标准 C 库中的函数，它存储在 printf.o 文件中，链接器会将这个文件合并到 hello.o 中，结果就得到一个可执行的 hello 文件，存储于磁盘中。</p>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569342980915.jpg" alt=""></figure>
+<h4 id="系统组成及程序运行">系统组成及程序运行</h4>
+<p>在运行可执行文件 hello 文件之前，应该先了解一下系统的硬件组成，一个典型系统的硬件组织如下图所示。</p>
+<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569343008278.jpg" alt=""></figure>
+<p>为了运行 hello 程序，我们需要在 shell 中输入指令<code>./hello</code>，指令通过键盘经 I/O 总线 --&gt; I/O 桥 --&gt; 总线接口 --&gt; 寄存器 --&gt; I/O 桥存于主存中，当敲击回车键时，等于告诉 shell 程序，命令的属于已经结束， shell 将会执行一系列指令来加载 hello 文件。</p>
+<p>利用**直接存取（DMA）**技术，hello 文件不需要通过寄存器就能到达主存，当目标文件 hello 到达主存中，处理器就开始执行 hello 程序的机器指令。其指令即将 &quot;hello, world\n&quot; 字符串的字节从主存复制到寄存器，再从寄存器复制到显示设备中，最终显示在屏幕上面。</p>
+<p>我们发现这个简单的 HelloWorld 程序会让系统花费大量的时间把信息从一个地方挪到另一个地方，而我们都清楚，寄存器、主存、磁盘之间的访问速度是相互差了好几个数量级的，而这种复制的开销会严重减慢程序的运行，为了加快这些复制操作的速度，系统设计者就引入了<strong>高速缓存</strong>。</p>
+<h4 id="抽象的重要性">抽象的重要性</h4>
+<p>计算机科学中最为重要的概念之一就是<strong>抽象</strong>，指令集提供了对硬件处理器的抽象，操作系统同样通过进程、虚拟内存、文件（磁盘、键盘、网络都可以看成文件）这几个抽象概念为应用程序提供简单一致的机制来控制低级硬件设备，同时防止硬件被失控的应用程序滥用。</p>
+<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569343504770.jpg" alt=""></figure>
+<p>进程是对正在运行的程序的抽象，在一个系统上可以同时运行多个进程，但是每个进程看起来都好像在独占的使用硬件，CPU 看上去是在并发的执行多个进程，这就需要操作系统进行上下文切换。</p>
+<p>在我们还没有输入<code>./hello</code>之前，只有 shell 进程在运行，当我们让其运行 hello 程序时，shell 会通过系统调用来执行我们的请求。操作系统首先保存 shell 进程的上下文（PC、寄存器等信息），然后创建一个新的 hello 进程，并将控制权转交给 hello 进程。</p>
+<figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1569343051098.jpg" alt=""></figure>
+<h4 id="并发和并行">并发和并行</h4>
+<p><strong>并发</strong>是一个通用的概念，指同时具有多个活动的系统；<strong>并行</strong>是指用并发来使一个系统运行的更快，人类都是很懒的，不仅想要计算机能做的更多，还想它效率更高，这样的想法一致促进着技术的前进。</p>
+<p>编程的人都知道，为了使程序运行的更快，我们可以编写多线程程序（虽然多线程程序有些难调），在一个进程里面执行多个控制流，线程级的并发可以让计算机运行的更快。</p>
+<p>再向底层看看，在计算机体系结构的课堂上都会做<strong>流水线</strong>实验，通过将一条指令划分成不同的步骤，一条指令的执行时间能够从原来的 3~10 个时钟周期，缩短为接近于 1 个时钟周期，这是<strong>指令级的并行</strong>。条件判断和循环结构又会增加指令执行的时钟周期，如果能对这部分知识作深入了解，你编写的程序应该会高一个档次。</p>
+<p>除了上面两种并行，还可以使用特殊的硬件，这种硬件可以允许一条指令产生多个可以并行执行的操作，称为<strong>单指令、多数据并行</strong>。</p>
+]]></content>
+    </entry>
+</feed>

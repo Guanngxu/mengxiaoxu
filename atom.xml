@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2019-09-25T11:26:32.438Z</updated>
+    <updated>2019-09-25T11:27:52.069Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io//atom.xml"/>
-    <subtitle>学习如何写代码的码农</subtitle>
+    <subtitle>正在学习写代码的码农</subtitle>
     <logo>https://mengxiaoxu.github.io//images/avatar.png</logo>
     <icon>https://mengxiaoxu.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 刘小绪同学的博客</rights>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2019-09-25T12:05:29.990Z</updated>
+    <updated>2019-09-25T12:17:53.489Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io//atom.xml"/>
@@ -10,6 +10,121 @@
     <logo>https://mengxiaoxu.github.io//images/avatar.png</logo>
     <icon>https://mengxiaoxu.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 刘小绪同学的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[如何解决跨域请求问题]]></title>
+        <id>https://mengxiaoxu.github.io//post/MYYZrm7wn</id>
+        <link href="https://mengxiaoxu.github.io//post/MYYZrm7wn">
+        </link>
+        <updated>2019-09-25T12:09:30.000Z</updated>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569413513576.JPG" alt=""></figure>
+<p>刚毕业入职，大部分时间还在培训，中间有一段时间的空闲时间，就学习了下 Angular，在学校都是编写的单体应用，所有代码都放在同一个工程下面，到公司使用的是前后端分离了，虽然后端程序也是我自己写的，但是有一些数据是从公司现有接口去拿的，然后就遇到让我纠结了两小时的<strong>跨域请求问题</strong>，为了避免出现上图中的尴尬场面，在这里做一个简单的总结输出。</p>
+<h4 id="什么是跨域请求">什么是跨域请求</h4>
+<p>跨域请求问题是浏览器的<strong>同源策略</strong>造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：<strong>协议、域名、端口</strong>。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。</p>
+<pre><code>http://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 非跨域
+
+http://www.nealyang.cn/index.html 调用 http://www.neal.cn/server.php 跨域,主域不同
+
+http://abc.nealyang.cn/index.html 调用 http://def.neal.cn/server.php 跨域,子域名不同
+
+http://www.nealyang.cn:8080/index.html 调用 http://www.nealyang.cn/server.php 跨域,端口不同
+
+https://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 跨域,协议不同
+
+localhost 调用 127.0.0.1 跨域
+</code></pre>
+<p>同源政策的目的是为了保护用户信息的安全，防止恶意网站窃取数据，随着互联网的发展，同源政策更加严格了，下面三种行为都会受到限制。</p>
+<pre><code>（1） Cookie、LocalStorage 和 IndexDB 无法读取。
+（2） DOM 无法获得。
+（3） AJAX 请求不能发送。
+</code></pre>
+<p>所有的现代浏览器都对网络连接进行了安全限制，包括 XMLHttpRequest，如果你的 web 应用程序和其使用的数据在同一个服务器，你不会遇到跨域请求问题。但是当你的 web 应用程序和 web 服务数据不在同一个服务器时，就会被浏览器限制连接了。</p>
+<h4 id="常用解决方案">常用解决方案</h4>
+<p>对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面<strong>设置代理</strong>。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。</p>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569413461355.gif" alt=""></figure>
+<p>通俗易懂的说，你家的宠物狗不会吃别家的食物，因为它担心别人的食物会把自己给药死，所以你的狗狗只管找你要食物，你是它的主人，它绝对相信你，而你可以鉴别别人给的食物是不是安全的。类比，小狗就是浏览器，你就是代理。</p>
+<h4 id="angular-中的解决办法">Angular 中的解决办法</h4>
+<p>上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用<code>angular-cli</code>构建你的项目，我们可以创建一个代理配置文件<code>proxy.conf.json</code>（假设你的后端服务的访问地址为<code>10.121.163.10:8080</code>），代理配置文件如下：</p>
+<pre><code class="language-json">{
+  &quot;/api&quot;: {
+    &quot;target&quot;: &quot;http://10.121.163.10:8080&quot;,
+    &quot;secure&quot;: false
+  }
+}
+</code></pre>
+<p>然后修改<code>package.json</code>文件中的启动命令为<code>&quot;start&quot;: &quot;ng serve --proxy-config proxy.conf.json&quot;</code>，启动项目时使用<code>npm start</code>即可解决跨域请求问题。</p>
+<p>上述解决方案仅在开发时使用，你当然可以使用 tomcat、nginx 配置代理，但是这很麻烦，需要打包代码部署，为了保证效率，我们想写完了立刻测试，同时也不想麻烦做后端的同学，在项目发布时，应该把代理配置到服务器中去；修改启动命令也不是必须的，你也可以选择每次使用 <code>ng serve --proxy-config proxy.conf.json</code>命令启动项目；示例代理配置文件内容可以有更多的属性，可以通过网络查阅相关资料。</p>
+<h4 id="后端解决办法">后端解决办法</h4>
+<p>我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。</p>
+<p>这时需要了解一下<strong>简单请求</strong>和<strong>非简单请求</strong>了，简单请求就是只发送一次请求的请求；非简单请求会发送数据之前先发一次请求做<strong>预检</strong>，通过预检后才能再发送一次请求用于数据传输。</p>
+<p>更清晰区别，满足下列两大条件的属于简单请求，而非简单请求就是请求方法为<code>PUT</code>或<code>DELETE</code>，或者 <code>Content-Type</code>字段是<code>application/json</code>的请求。</p>
+<blockquote>
+<p>1.请求方法为 GET、POST、HEAD之一<br>
+2.HTTP头信息不超出字段：Accept、Accept-Language、Content-Language、Last-Event-ID、Content-Type，并且 Content-Type 的值仅限于 application/x-www-form-urlencoded、multipart/form-data、text/plain。</p>
+</blockquote>
+<p>对于简单请求，只需要设置一下响应头就可以了。</p>
+<pre><code class="language-python">class TestHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_header('Access-Control-Allow-Origin', &quot;*&quot;)
+        # 可以把 * 写成具体的域名
+        self.write('cors get success')
+</code></pre>
+<p>对于复杂请求，需要设置预检方法，如下所示：</p>
+<pre><code class="language-python">class CORSHandler(tornado.web.RequestHandler):
+    # 复杂请求方法put
+    def put(self):
+        self.set_header('Access-Control-Allow-Origin', &quot;*&quot;)
+        self.write('put success')
+    # 预检方法设置
+    def options(self, *args, **kwargs):
+        #设置预检方法接收源
+        self.set_header('Access-Control-Allow-Origin', &quot;*&quot;)
+        #设置预复杂方法自定义请求头h1和h2
+        self.set_header('Access-Control-Allow-Headers', &quot;h1,h2&quot;)
+        #设置允许哪些复杂请求方法
+        self.set_header('Access-Control-Allow-Methods', &quot;PUT,DELETE&quot;)
+        #设置预检缓存时间秒,缓存时间内发送请求无需再预检
+        self.set_header('Access-Control-Max-Age', 10)
+</code></pre>
+<p>本人不太懂前端知识，更多的前端跨域解决方案可以参考下面列出的文章，除第一篇外，其他都介绍了前端跨域解决方法。</p>
+<p>参考资料及推荐文章</p>
+<pre><code>标题：JavaScript: Use a Web Proxy for Cross-Domain XMLHttpRequest Calls
+链接：https://developer.yahoo.com/javascript/howto-proxy.html?guccounter=1
+
+标题：别慌，不就是跨域么!
+链接：https://mp.weixin.qq.com/s/A0Oi-fUrmboRPPeNEjG3aw
+
+标题：跨域资源共享 CORS 详解
+链接：http://www.ruanyifeng.com/blog/2016/04/cors.html
+
+标题：AJAX请求和跨域请求详解（原生JS、Jquery）
+链接：http://www.cnblogs.com/tkqasn/p/5869175.html
+
+标题：JavaScript跨域总结与解决办法
+链接：http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[阅读高于自己的作品，远离精神毒品]]></title>
+        <id>https://mengxiaoxu.github.io//post/FoEH1GV6f</id>
+        <link href="https://mengxiaoxu.github.io//post/FoEH1GV6f">
+        </link>
+        <updated>2019-09-25T12:06:54.000Z</updated>
+        <content type="html"><![CDATA[<p>关于阅读与写作的重要性，可能每个人都多少有一些概念。阅读打开世界的大门，写作提升语言组织能力。</p>
+<p>还在读大一大二的时候，我很崇拜那些随随便便就能做一个网站、写一个复杂算法的大神。那时候仅仅盯着技术，认为只要技术好，怎么样都行，因此在大二阶段，我没有读过一本技术之外的书籍，现在看来是眼界狭隘了。</p>
+<p>专业能力是生存之本，但是其他方面的能力也同样重要，大学能交给我们的只是一个在社会上赖以生存的本领（实际上一部分连赖以生存的本领都没有从大学学到），其他的技能需要靠自己的主动学习。</p>
+<p>阅读是一种了解知识的重要手段，但并不是所有的阅读都是有效的，甚至有的阅读是精神毒品。</p>
+<p>阅读需要挑选高于自己的作品，要能仰视它，才能攀登。现在的生活节奏很快，碎片化阅读成了很多人的阅读方式；有人抨击碎片化阅读，也有人提倡碎片化阅读，每个人由不同的观点，我个人是赞同碎片化阅读的。</p>
+<p>来自互联网的阅读内容和自己大多是平等的，每个人都在使用微信，但我相信很多人都有屏蔽一些人朋友圈的习惯，因为你会选择跟你脾气相同、你喜欢的、跟你水平接近内容去阅读；现在的 APP 也很多，而且很多首次注册都会让你选择自己感兴趣的内容，所以也就会失去挑战自我的机会。</p>
+<p>阅读是提升认知的重要手段，人与人之间的根本差距在于认知，如果读了一本书之后能让自己的认知得到提升，那么这就没白读；当然，如果读完一本书或是一篇文章之后能让有很大程度的转变，那这种认知的提升我相信是宝贵的财富，而且认识是伴随终身的。能达到这样效果的好文章、好书肯定少之又少，对我个人影响的最大的一本书是《把时间当作朋友》，我很推荐这本书，接触这本书算我认知上的一个转折点。</p>
+<p>也有一些阅读是日积月累对自己产生影响的。我曾经关注了近 150 个公众号，从里面精挑细选了一部分原创公众号留下，涉及技术、新闻、产品、理财等方面。我现在每天的阅读主要就是公众号阅读和付费加入的几个知识星球，以及得到上面的付费知识。</p>
+<p>日积月累，我筛选有效信息的能力也更强了，我认为筛选信息能力在这个信息爆炸的时代是很重要的。</p>
+<p>有一次听到朋友说：“文章太长了，我不想看”。我没说话，只给了一个无奈的眼神，因为他只想要一个结论，因为这可以很轻松的获得一种愉悦感，而且对大脑来说，也是最容易接受的，但是慢慢地，大脑就会失去独立思考的能力。</p>
+<p>从产品角度讲，不得不佩服头条对人性的洞察，为了“懂你”，在自己的产品上加入推荐算法，但实际上是让你把时间花在他们产品的身上，把产品做到这种程度，不得不说是很牛的。</p>
+<p>但是像抖音、快手、头条、微博这些产品我认为基本都是在浪费用户时间（我还没有用过快手和微博，评价它们有点冒昧了），他们无异于精神毒品，吞噬你的时间。我并不是讨厌这些产品，我自己也喜欢体验新的产品，我只是觉得把宝贵的时间放到更有价值的事情上去，那么就会比周边人更加优秀。</p>
+<p>需要选择的是高于自己内容阅读，而不是把时间都花在那种不需要思考就能得到的愉悦上去；如果把大部分时间都花在轻易就能获得的愉悦感上，那么你应该正在一步步颓废。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[记录在南京大学的半天]]></title>
         <id>https://mengxiaoxu.github.io//post/aSkANU6p0</id>

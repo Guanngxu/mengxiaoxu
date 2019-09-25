@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2019-09-25T13:04:22.148Z</updated>
+    <updated>2019-09-25T13:19:02.396Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io//atom.xml"/>
@@ -10,6 +10,239 @@
     <logo>https://mengxiaoxu.github.io//images/avatar.png</logo>
     <icon>https://mengxiaoxu.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 刘小绪同学的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[正则表达式语法]]></title>
+        <id>https://mengxiaoxu.github.io//post/CY4_BQLR4</id>
+        <link href="https://mengxiaoxu.github.io//post/CY4_BQLR4">
+        </link>
+        <updated>2019-09-25T13:11:25.000Z</updated>
+        <content type="html"><![CDATA[<p>这两天一直在时不时的和 Neo4j 图数据库打交道。它的查询语句可以使用正则表达式，有一段时间没有自己写过正则表达式了，现在处于能看懂别人写的正则表达式，但是自己写不出来，语法规则都忘了。为了方便接下来的工作，所以特地复习复习正则表达式的语法。</p>
+<h4 id="正则表达式简介">正则表达式简介</h4>
+<p>正则表达式是用来匹配字符串的一系列匹配符，具备简介高效的特点，在很多语言中都有支持（java、python、javascript、php 等等）。在 windows 的 cmd 命令中也同样支持，例如使用命令 <em>dir j*</em>，那么只会罗列出所有以j开头的文件和文件夹。</p>
+<h4 id="正则表达式基本语法">正则表达式基本语法</h4>
+<p>正则表达式在在不同语言的支持语法略有不同，本文采用js的进行说明。js 中使用正则表达式的方法为<em>str.match(/表达式/)</em>，即需要加两个斜杠。以下所有的代码段第一行为代码，第二行为返回结果，实验是在 chrome 控制台进行的。</p>
+<p>一直认为最好的学习方式就是实际操作，理论谁都能讲一大堆，但是实际做没做出来还真不知道。一个奇葩现象就是教软件工程的老师可能并没有在软件行业待过。</p>
+<h5 id="普通匹配符">普通匹配符</h5>
+<p>普通匹配符能匹配与之对应的字符，默认区分大小写。</p>
+<pre><code class="language-javascript">&quot;Hello Regx&quot;.match(/H/)
+[&quot;H&quot;, index: 0, input: &quot;Hello Regx&quot;, groups: undefined]
+</code></pre>
+<h5 id="正则标记符">正则标记符</h5>
+<ul>
+<li>i ：不区分大小写</li>
+<li>g ：全局匹配</li>
+<li>m ：多行匹配（暂不管它，我用的少）</li>
+</ul>
+<p>参数直接加在最后一个斜杠的后面，比如&quot;Hello Regx&quot;.match(/regx/<mark>i</mark>)，可以加多个参数。</p>
+<pre><code class="language-javascript">&quot;Hello Regx&quot;.match(/regx/i)
+[&quot;Regx&quot;, index: 6, input: &quot;Hello Regx&quot;, groups: undefined]
+</code></pre>
+<p>之前是表达式一旦匹配成功，就不再向字符串后面查找了，加上 g 后，表示进行全局查找。最后返回的是一个数组。</p>
+<pre><code class="language-javascript">&quot;Hello Regx&quot;.match(/e/g)
+(2) [&quot;e&quot;, &quot;e&quot;]
+</code></pre>
+<h5 id="多匹配符">多匹配符</h5>
+<ul>
+<li>\d ：匹配数字，即 0~9</li>
+<li>\w ：匹配数字、字母、下划线</li>
+<li>. ：匹配除换行的所有字符</li>
+</ul>
+<p>需要注意的是，上面所有的匹配符都只能匹配一个字符。</p>
+<pre><code class="language-javascript">&quot;Hello 2018&quot;.match(/\d/g)
+// 使用\d,匹配字符串中的所有数字
+(4) [&quot;2&quot;, &quot;0&quot;, &quot;1&quot;, &quot;8&quot;]
+
+
+&quot;Hello 2018&quot;.match(/\w/g)
+// 使用\w，匹配所有的数字和字母，需要注意没有匹配到空格
+(9) [&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;, &quot;2&quot;, &quot;0&quot;, &quot;1&quot;, &quot;8&quot;]
+
+
+&quot;Hello 2018&quot;.match(/./g)
+// 使用.，匹配所有字符，包括空格
+(10) [&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;, &quot; &quot;, &quot;2&quot;, &quot;0&quot;, &quot;1&quot;, &quot;8&quot;]
+
+
+&quot;Hello 2018&quot;.match(/\d\w./g)
+// 分析一下这个为什么匹配到的是201，
+// 首先\d找到第一个数字2，匹配成功，紧接着\w匹配到0，然后.匹配到1
+// 整个正则表达式匹配成功，返回201
+[&quot;201&quot;]
+
+
+&quot;Hello 20\n18&quot;.match(/\d\w./g)
+// 这里匹配不成功，因为.不能匹配换行符，所以返回null
+null
+
+
+&quot;Hello 2018&quot;.match(/\w.\d/g)
+// 首先看这个正则式，\w.\d，它要求最后一个字符是数字
+// \w.能一直匹配到空格，但是因为得满足\d，所以第一个匹配成功的是0 2
+// 因为是全局匹配，所以会接着匹配后面的018，也匹配成功
+(2) [&quot;o 2&quot;, &quot;018&quot;]
+</code></pre>
+<h5 id="自定义匹配符">自定义匹配符</h5>
+<p>比如中国的手机号都是以 1 开头，第二位只能是 3、4、5、7、8，第 3 位只要是数字就行。如何匹配这样的字符串？</p>
+<ul>
+<li>[] ：匹配[]中的任意一个字符</li>
+</ul>
+<pre><code class="language-javascript">&quot;152&quot;.match(/1[34578]\d/)
+// 第二个字符可以选择中括号中的任意一个
+[&quot;152&quot;, index: 0, input: &quot;152&quot;, groups: undefined]
+</code></pre>
+<p>如果在 [] 添加了 ^,代表取反。即 [^] 表示除了中括号中的字符都满足。</p>
+<pre><code class="language-javascript">&quot;152&quot;.match(/1[^34578]\d/)
+
+null
+
+
+&quot;1a2&quot;.match(/1[^34578]\d/)
+// 只要不是[]中的字符，都满足，包括回车符
+[&quot;1a2&quot;, index: 0, input: &quot;1a2&quot;, groups: undefined]
+</code></pre>
+<h5 id="修饰匹配次数">修饰匹配次数</h5>
+<p>我们的手机号有 11 位，除了前 2 位有要求，其他9位度没有要求，那么是不是正则表达式就应该这样写呢？</p>
+<pre><code>1[^34578]\d\d\d\d\d\d\d\d\d
+</code></pre>
+<p>很明显，这样写太麻烦，肯定有更好的方式，这里就可以修饰一下匹配次数啦。</p>
+<ul>
+<li>? ：最多出现 1 次</li>
+<li>+ ：至少出现 1 次</li>
+<li>* ：出现任意次数</li>
+<li>{} ：分下面四种情况
+<ul>
+<li>{n}代表前面的匹配符出现 n 次</li>
+<li>{n, m}出现次数在 n~m 之间</li>
+<li>{n, }至少出现 n 次</li>
+<li>{, m}最多出现 m 次</li>
+</ul>
+</li>
+</ul>
+<p>例子很简单，一看就懂，不浪费时间。</p>
+<pre><code class="language-javascript">&quot;15284750845&quot;.match(/1[34578]\d{9}/)
+[&quot;15284750845&quot;, index: 0, input: &quot;15284750845&quot;, groups: undefined]
+
+
+&quot;15&quot;.match(/1[34578]\d?/)
+[&quot;15&quot;, index: 0, input: &quot;15&quot;, groups: undefined]
+
+
+&quot;152&quot;.match(/1[34578]\d?/)
+[&quot;152&quot;, index: 0, input: &quot;152&quot;, groups: undefined]
+
+
+&quot;152&quot;.match(/1[34578]\d+/)
+[&quot;152&quot;, index: 0, input: &quot;152&quot;, groups: undefined]
+
+
+&quot;15&quot;.match(/1[34578]\d+/)
+null
+</code></pre>
+<h5 id="完整匹配">完整匹配</h5>
+<p>按照上面的写法会出现下面的问题。</p>
+<pre><code class="language-javascript">&quot;ya15284750845&quot;.match(/1[34578]\d{9}/)
+// 不是电话号码，也能匹配成功，需要进一步改进
+[&quot;15284750845&quot;, index: 2, input: &quot;ya15284750845&quot;, groups: undefined]
+</code></pre>
+<ul>
+<li>^ ：在 [] 中代表取反，但在外面代表从开始匹配</li>
+</ul>
+<pre><code class="language-javascript">&quot;ya15284750845&quot;.match(/^1[34578]\d{9}/)
+// 现在就能从一开始匹配而且还得符合正则式才算匹配成功
+null
+
+
+// 但是依旧会出现下面的问题
+&quot;1528475084523255&quot;.match(/^1[34578]\d{9}/)
+// 不是电话号码也能匹配成功，还要改进
+[&quot;15284750845&quot;, index: 0, input: &quot;1528475084523255&quot;, groups: undefined]
+</code></pre>
+<ul>
+<li>$ ：代表持续匹配到结束</li>
+</ul>
+<pre><code class="language-javascript">&quot;1528475084523255&quot;.match(/^1[34578]\d{9}$/)
+// 现在就能保证正确了，有^表示从开始匹配；
+// 有$表示持续匹配到结束，即完全匹配
+null
+
+/*
+需要注意的是，一个字符串从开始匹配和从结束匹配都没问题，
+不代表整个字符串就没问题，比如 15284750845-15284750845
+这个字符串从开始和从结束匹配都能成功，但实际上是错的
+*/
+</code></pre>
+<h5 id="特殊符号">特殊符号</h5>
+<p>到这里发现正则表达式确实很强大，仅仅几个简单的符号就能匹配字符串，但是如果我们要匹配的字符本身就是前面用到的符号怎么办呢？</p>
+<ul>
+<li>匹配像$、^等特殊符号时，需要加转义字符\</li>
+</ul>
+<pre><code class="language-javascript">&quot;1.&quot;.match(/./)
+//因为.能匹配除换行的所有字符，所以匹配到1
+//但实际上我们想匹配.这个字符
+[&quot;1&quot;, index: 0, input: &quot;1.&quot;, groups: undefined]
+
+
+&quot;1.&quot;.match(/\./)
+// 只需要加一个转义字符就可以了，其他类似
+[&quot;.&quot;, index: 1, input: &quot;1.&quot;, groups: undefined]
+</code></pre>
+<h5 id="条件分支">条件分支</h5>
+<p>比如现在想匹配图片的文件名，包括 jpg、png、jpeg、gif 等等，这是多个选项，所以需要像编程语言一样，应该具备条件分支结构。</p>
+<ul>
+<li>| ：条件分支</li>
+<li>() ：有两层含义
+<ul>
+<li>括号中的内容成为一个独立的整体</li>
+<li>括号的内容可以进行分组，单独匹配，若不需要此功能，则( ?: )</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-javascript">&quot;1.jpg&quot;.match(/.+\.jpe?g|gif|png/)
+// 这样就可以满足条件分支了,不过下面又出问题了
+[&quot;1.jpg&quot;, index: 0, input: &quot;1.jpg&quot;, groups: undefined]
+
+
+&quot;1.png&quot;.match(/.+\.jpe?g|gif|png/)
+// 这里没有匹配到.和前面的文件名
+[&quot;png&quot;, index: 2, input: &quot;1.png&quot;, groups: undefined]
+
+
+/*
+其实我们想告诉它的是，.和后面的每一个条件分支的值都是一个独立的整体
+但是它把.+\.jpe?g、gif、png当成了各自独立的整体
+我们并不想让它这样切分，所以我们来告诉它怎么分才是正确的
+*/
+
+
+&quot;1.png&quot;.match(/.+\.(jpe?g|gif|png)/)
+// 现在可以匹配成功了，但是它多匹配了一个
+// 因为括号的内容可以进行分组，单独匹配
+(2) [&quot;1.png&quot;, &quot;png&quot;, index: 0, input: &quot;1.png&quot;, groups: undefined]
+
+
+// 所以最终写法如下
+&quot;1.png&quot;.match(/.+\.(?:jpe?g|gif|png)/)
+[&quot;1.png&quot;, index: 0, input: &quot;1.png&quot;, groups: undefined]
+</code></pre>
+<h5 id="贪婪与懒惰">贪婪与懒惰</h5>
+<pre><code class="language-javascript">// 首先看一个例子
+&quot;aabab&quot;.match(/a.*b/)
+[&quot;aabab&quot;, index: 0, input: &quot;aabab&quot;, groups: undefined]
+
+
+/*
+上面的匹配没有什么问题，但实际上aab也是可以的
+也就是aab也是符合条件的，那又是为什么呢？
+*/
+</code></pre>
+<p>因为在正则表达式中，默认是贪婪模式，尽可能多的匹配，可以在修饰数量的匹配符后面添加 ?，则代表懒惰。</p>
+<pre><code class="language-javascript">// like this (^__^)
+&quot;aabab&quot;.match(/a.*?b/)
+[&quot;aab&quot;, index: 0, input: &quot;aabab&quot;, groups: undefined]
+</code></pre>
+<p>到这里应该就差不多了，再深入的，就自我查询知识了。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[如何让你的网页看起来更美观]]></title>
         <id>https://mengxiaoxu.github.io//post/WsHPYySZU</id>
@@ -564,179 +797,6 @@ row3_t A[5];
 <p>这段代码神奇的是在某种情况下会一直循环的输出<code>Hello world</code>，并不会结束，在<a href="https://mp.weixin.qq.com/s/BRRReU3akhqh8vgm59GNvA">计算机系统漫游（补充）</a>中也提到过。</p>
 <p>造成上面这种结果是因为函数体内的局部变量存在栈中，并且是连续压栈，而 Linux 中栈又是从高向低增长。数组<code>arr</code>中是 3 个元素，加上 i 是 4 个元素，刚好满足 8 字节对齐（编译器 64 位系统下默认会 8 字节对齐），变量<code>i</code>在数组<code>arr</code>之前，即<code>i</code>的地址与<code>arr</code>相邻且比它大。</p>
 <p>代码中很明显访问数组时越界了，当<code>i</code>为 3 时，实际上正好访问到变量<code>i</code>的地址，而循环体中又有一句<code>arr[i] = 0;</code>，即又把<code>i</code>的值设置为了 0，由此就导致了死循环。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[顺序、条件、循环语句的底层解释]]></title>
-        <id>https://mengxiaoxu.github.io//post/shun-xu-tiao-jian-xun-huan-yu-ju-de-di-ceng-jie-shi</id>
-        <link href="https://mengxiaoxu.github.io//post/shun-xu-tiao-jian-xun-huan-yu-ju-de-di-ceng-jie-shi">
-        </link>
-        <updated>2019-09-25T11:19:05.000Z</updated>
-        <content type="html"><![CDATA[<h4 id="顺序结构">顺序结构</h4>
-<h5 id="数据传送指令">数据传送指令</h5>
-<p>我们都清楚，绝大多数编译器都把汇编语言作为中间语言，把汇编语言程序变成可运行的二进制文件早就解决了，所以现在的高级语言基本上只需要把自己翻译成汇编语言就可以了。</p>
-<p>汇编指令总共只有那么多，大多数指令都是对数据进行操作，比如常见的数据传送指令<code>mov</code>。不难理解，被操作数据无非有三种形式，<strong>立即数</strong>，即用来表示常数值；<strong>寄存器</strong>，此时的数据即存放在指定寄存器中的内容；<strong>内存引用</strong>，它会根据计算出来的地址访问某个内存位置。</p>
-<p>需要注意的是，到了汇编层级，就不像高级语言那样随随便便<code>int</code>就能和<code>long</code>类型的数据相加减，他们在底层所占有的字节是不一样的，汇编指令是区分操作数据大小的，比如数据传送指令，就有下面这些品种（x86-64 对数据传送指令加了一条限制：两个操作数不能都指向内存位置）。</p>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569410442560.png" alt=""></figure>
-<h5 id="压栈与弹栈">压栈与弹栈</h5>
-<p>对于栈，我想不必多讲，IT 行业的同学都清楚，它是一种线性数据结构，其中的数据遵循“先进后出”原则，寄存器<code>%rsp</code>保存着栈顶元素的地址，即栈顶指针。一个程序要运行起来，离不开栈这种数据结构。</p>
-<p>栈使用最多的就是弹栈<code>popq</code>和压栈<code>pushq</code>操作。比如将一个四字值压入栈中，栈顶指针首先要减 8（栈向下增长），然后将值写到新的栈顶地址；而弹栈则需要先将栈顶数据读出，然后再将栈指针加 8。所以<code>pushq</code>和<code>popq</code>指令就可以表示为下面的形式。</p>
-<pre><code class="language-c">// 压栈
-subq $8, %rsp
-movq %rbp, (%rsp)
-
-// 弹栈
-movq (%rsp), %rax
-addq $8, %rsp
-</code></pre>
-<p>其他还有算术、逻辑、加载有效地址、移位等等指令，可以查阅相关文档了解，不作过多介绍，汇编看起来确实枯燥乏味。</p>
-<h4 id="条件结构">条件结构</h4>
-<p>前面讲的都是顺序结构，我们的程序中不可能只有顺序结构，条件结构是必不可缺的元素，那么汇编又是如何实现条件结构的呢？</p>
-<p>首先你需要知道，除了整数寄存器，CPU 还维护着一组<strong>条件码寄存器</strong>，我们主要是了解如何把高级语言的条件结构转换为汇编语言，不去关注这些条件码寄存器，只需要知道汇编可以通过检测这些寄存器来执行条件分支指令。</p>
-<h5 id="if-else-语句">if-else 语句</h5>
-<p>下面是 C 语言中的<code>if-else</code>语句的通用形式。</p>
-<pre><code class="language-c">if(test-expr){
-    then-statement
-}else{
-    else-statement
-}
-</code></pre>
-<p>汇编语言通常会将上面的 C 语言模板转换为下面的控制流形式，只要使用条件跳转和无条件跳转，这种形式的控制流就可以和汇编代码一一对应，我们以 C 语言形式给出。</p>
-<pre><code class="language-c">    t = test-expr;
-    if(!t){
-        goto false;
-    }
-    then-statement;
-    goto done;
-false:
-    else-statement;
-done:
-</code></pre>
-<p>但是这种条件控制转移形式的代码在现代处理器上可能会很低效。原因是它无法事先确定要跳转到哪个分支，我们的处理器通过<strong>流水线</strong>来获得高性能，流水线的要求就是事先明确要执行的指令顺序，而这种形式的代码只有当条件分支求值完成后，才能决定走哪一个分支。即使处理器采用了非常精密的分支预测逻辑，但是还是有错误预测的情况，一旦预测错误，那将会浪费 15 ~ 30 个时钟周期，导致性能下降。</p>
-<blockquote>
-<p>在流水线中，把一条指令分为多个阶段，每个阶段只执行所需操作的一小部分，比如取指令、确定指令类型、读数据、运算、写数据以及更新程序计数器。流水线通过重叠连续指令的步骤来获得高性能，比如在取一条指令的同时，执行它前面指令的算术运算。所以如果事先不知道指令执行顺序，那么事先所做的预备工作就白干了。</p>
-</blockquote>
-<p>为了提高性能，可以改写成使用条件数据传送的代码，比如下面的例子。</p>
-<pre><code class="language-c">v = test-expr ? then-expr : else-expr；
-
-// 使用条件数据传送方法
-v = then-expr;
-ve = else-expr;
-t = test-expr;
-if(!t){
-    v = ve;
-}
-</code></pre>
-<p>这样改写，就能提高程序的性能了，但是并不是所有的条件表达式都可以使用条件传送来编译，一般只有当两个表达式都很容易计算时，编译器才会采用条件数据传送的方式，大部分都还是使用条件控制转移方式编译。</p>
-<h5 id="switch-语句">switch 语句</h5>
-<p><code>switch</code>语句可以根据一个整数索引值进行多重分支，在处理具有多种可能结果的测试时，这种语句特别有用。为了让<code>switch</code>的实现更加高效，使用了一种叫做<strong>跳转表</strong>的数据结构（Radis 也是用的跳表）。跳转表是一个数组，表项 i 是一个代码段的地址，当开关情况数量比较多的时候，就会使用跳转表。</p>
-<p>我们举个例子，还是采用 C 语言的形式表是控制流，要理解的是执行<code>switch</code>语句的关键步骤就是通过跳转表来访问代码的位置。</p>
-<pre><code class="language-c">void switch_eg(long x, long n, long *dest){
-    long val = x;
-    switch(n){
-        case 100:
-            val *= 13;
-            break;
-        case 102:
-            val += 10;
-        case 103:
-            val += 11;
-            break;
-        case 104:
-        case 105:
-            val *= val;
-            break;
-        default:
-            val = 0;
-    }
-    *dest = val;
-}
-</code></pre>
-<p>要注意的是，上面的代码中有的分支没有<code>break</code>，这种问题在笔试中会经常遇到，没有<code>break</code>会继续执行下面的语句，即变成了顺序执行。上面的代码会被翻译为下面这种控制流。</p>
-<pre><code class="language-c">void switch_eg(long x, long n, long *dest){
-        static void *jt[7] = {
-            &amp;&amp;loc_A, &amp;&amp;loc_def, &amp;&amp;loc_B,
-            &amp;&amp;loc_C, &amp;&amp;loc_D, &amp;&amp;loc_def,
-            &amp;&amp;loc_D
-        };
-        unsigned long index = n - 100;
-        long val;
-        if(index &gt; 6){
-            goto loc_def;
-        }
-        goto *jt[index];
-    loc_A:
-        val = x * 13;
-        goto done;
-    loc_B:
-        x = x + 10;
-    loc_C:
-        val = x + 11;
-        goto done;
-    loc_D:
-        val = x * x;
-        goto done;
-    loc_def:
-        val = 0;
-    done:
-        *dest = val;
-}
-</code></pre>
-<h4 id="循环结构">循环结构</h4>
-<p>C 语言中有<code>do-while</code>、<code>while</code>和<code>for</code>三种循环结构，它们的通用形式一般都长下面那样。</p>
-<pre><code class="language-c">// do-while
-do
-    body-statement
-    while(test-expr);
-    
-// while
-while(test-expr)
-    body-statement
-    
-// for
-for(init-expr; test-expr; update-expr)
-    body-statement
-</code></pre>
-<p><code>do-while</code>的特点是<code>body-statement</code>一定会执行一次，所以我们可以将<code>do-while</code>翻译成下面的控制流形式，很容易就能联想到它的汇编形式。</p>
-<pre><code class="language-c">loop:
-    body-statement;
-    t = test-expr;
-    if(t){
-        goto loop;
-    }
-</code></pre>
-<p><code>while</code>循环我们给出两种形式的控制流，其中一种包含<code>do-while</code>形式，如下所示。</p>
-<pre><code class="language-c">// 第一种形式
-t = test-expr;
-if(!t){
-    goto done;
-}
-do
-    body-statement;
-    while(test-expr);
-done:
-
-
-// 第二种形式
-    goto test;
-loop:
-    body-statement;
-test:
-    t = test-expr;
-    if(t){
-        goto loop;
-    }
-</code></pre>
-<p>面试的时候，有的面试官会问你<code>for</code>循环的执行顺序，现在深入理解了三种循环的机制，再也不怕面试官啦。<code>for</code>循环可以转换成如下的<code>while</code>形式。</p>
-<pre><code class="language-c">init-expr;
-while(test-expr){
-    body-statement;
-    update-expr;
-}
-</code></pre>
-<p>有了这种形式的<code>for</code>循环，我们只需要将其中的<code>while</code>部分再翻译一下就好了，前文给出了两种<code>while</code>翻译的方式，而具体采用哪种方式，取决于编译器优化的等级。</p>
-<h4 id="总结">总结</h4>
-<p>计算机就是用那么几条简简单单的指令就完成了各种复杂的操作，不得不折服于计算机科学家们的魅力。现在人工智能被炒的很火热，然后人是事件、情感驱动的，而计算机是控制流驱动的，所以从架构上就决定了，冯诺依曼体系计算机实现的都是弱人工智能。</p>
 ]]></content>
     </entry>
 </feed>

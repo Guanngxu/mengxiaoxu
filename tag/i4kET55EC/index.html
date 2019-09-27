@@ -7,7 +7,7 @@
 <title>
     翻译 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1569597092954">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1569597530875">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -39,7 +39,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1569597092954" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1569597530875" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -124,12 +124,12 @@
                     <time class="post-time">2019-06-22</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-error">
             #翻译
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/vhSkGeYf1D" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-error">
             #设计
         </a>
                         
@@ -216,6 +216,75 @@ For everything else, there is always a designer.
             
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/github-shi-da-zui-jia-shi-jian">
+                        Github 十大最佳实践
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-11-28</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/git" class="post-tag i-tag
+                            i-tag-banana">
+            #Git
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="post-tag i-tag
+                            i-tag-error">
+            #翻译
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/github-shi-da-zui-jia-shi-jian" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/github-shi-da-zui-jia-shi-jian.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            1、保护主分支不受直接提交的影响
+主分支中的任何一次提交都应该是可以直接部署的，所以永远不要直接提交默认分支，同时也是 Gitflow workflow 成为标准的原因。使用分支保护可以帮你防止直接提交，当然，所有的事情都应该使用pull requests来管理。
+
+2、避免基础信息的混乱
+或许你在一个新的环境工作，或者你并没有注意到自己的 git 配置是不正确的，因此提交代码时伴随着错误的邮箱地址。如果提交没有关联到正确的用户信息，那将导致无法追溯到是谁写的代码。
+保证你的 git 客户端配置是正确的邮箱地址，并且关联到你的 github 账户。评审代码时注意检查你的pull requests是否存在无法识别的提交。
+
+3、为每个仓库定义 CODEOWNERS
+使用 CODEOWNERS 功能可以定义哪些团队和人员被自动选为仓库的审阅者。此功能会自动请求仓库所有者进行审核。如今。组织拥有很多的仓库，而 CODEOWNERS 可以选择定义组织中的维护者。
+
+4、从源代码中分离出秘密凭证
+在构建云原生程序时，我们保护了许多的机密信息，比如账户密码、API 秘钥、私人令牌、SSH 秘钥等。绝对不要将任何机密信息提交到你的代码中，而应该采用从安全存储外部注入的环境变量。
+你可以使用 Vault、AWS Secrets Manager 之类的工具来管理产品中的机密信息。
+有很多超棒的工具可以识别代码中的机密信息，例如 Git-secrets 可以帮助你识别代码中的密码；使用 Git Hooks 可以构建一个预提交钩子，并检查每个pull requests中的机密信息。
+
+5、不要提交项目的依赖
+将项目的依赖提交到仓库中会增加仓库的大小。应该将你项目的所有依赖都从仓库中移除，让你的包管理器负责去下载它们。如果你担心“依赖可用性”，可以考虑使用 Jfrog 或 Nexus Repository 这样的二进制存储库管理器。
+6、从源代码中分离配置文件
+建议不要将本地配置文件提交到版本控制器，通常这些都是你不想推送到远程的私有配置文件，因为它们包含机密信息。个人的偏好，历史信息等应该保存在本地环境中。
+7、为项目创建一个有意义的 .gitignore 文件
+每个仓库都必须使用.gitignore文件来忽略预定义的文件和目录，它可以帮助你保护代码中的机密信息、依赖项和其他可能的差异。你可以从 Gitignore.io 选择相关的模板。
+
+8、将死库归档
+随着时间的推移，由于各种原因，我们发现自已拥有不再维护的仓库。或许你为一个临时用例新建了仓库，或者有一些包含旧的和不相关代码的仓库。它们存在的问题是相同的，这些仓库在达到其目的之后不在被积极的维护开发，因此你不希望再维护它们或不希望其他人依赖/使用它们，最好的方式是将这些仓库归档，这样对每个人都是“只读”的。
+
+9、锁定依赖包的版本
+你的依赖配置文件中包含所有软件包版本的信息，以便在每次安装应用程序时，在不破坏代码的前提下保持一致的结果。最好的方式是使用配置锁定文件来避免差异，并确定每次都获得相同的软件包版本。
+
+10、对齐包的版本
+虽然你使用的是相同的软件包，但是不同的版本会使得在不同项目中重用代码和测试变得困难。
+如果你有一个在多个项目中使用的包，请至少尝试在不同的仓库中使用相同的主要版本。
+
+原文链接：https://datree.io/blog/top-10-github-best-practices/
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/github-shi-da-zui-jia-shi-jian">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io//post/WsHPYySZU">
                         如何让你的网页看起来更美观
                     </a>
@@ -224,17 +293,17 @@ For everything else, there is always a designer.
                     <time class="post-time">2018-09-09</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_3">
             #翻译
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/vhSkGeYf1D" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-primary">
             #设计
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-">
             #前端
         </a>
                         
@@ -323,75 +392,6 @@ For everything else, there is always a designer.
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/github-shi-da-zui-jia-shi-jian">
-                        Github 十大最佳实践
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2017-11-28</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/git" class="post-tag i-tag
-                            i-tag-success">
-            #Git
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="post-tag i-tag
-                            i-tag-success">
-            #翻译
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/github-shi-da-zui-jia-shi-jian" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/github-shi-da-zui-jia-shi-jian.jpg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            1、保护主分支不受直接提交的影响
-主分支中的任何一次提交都应该是可以直接部署的，所以永远不要直接提交默认分支，同时也是 Gitflow workflow 成为标准的原因。使用分支保护可以帮你防止直接提交，当然，所有的事情都应该使用pull requests来管理。
-
-2、避免基础信息的混乱
-或许你在一个新的环境工作，或者你并没有注意到自己的 git 配置是不正确的，因此提交代码时伴随着错误的邮箱地址。如果提交没有关联到正确的用户信息，那将导致无法追溯到是谁写的代码。
-保证你的 git 客户端配置是正确的邮箱地址，并且关联到你的 github 账户。评审代码时注意检查你的pull requests是否存在无法识别的提交。
-
-3、为每个仓库定义 CODEOWNERS
-使用 CODEOWNERS 功能可以定义哪些团队和人员被自动选为仓库的审阅者。此功能会自动请求仓库所有者进行审核。如今。组织拥有很多的仓库，而 CODEOWNERS 可以选择定义组织中的维护者。
-
-4、从源代码中分离出秘密凭证
-在构建云原生程序时，我们保护了许多的机密信息，比如账户密码、API 秘钥、私人令牌、SSH 秘钥等。绝对不要将任何机密信息提交到你的代码中，而应该采用从安全存储外部注入的环境变量。
-你可以使用 Vault、AWS Secrets Manager 之类的工具来管理产品中的机密信息。
-有很多超棒的工具可以识别代码中的机密信息，例如 Git-secrets 可以帮助你识别代码中的密码；使用 Git Hooks 可以构建一个预提交钩子，并检查每个pull requests中的机密信息。
-
-5、不要提交项目的依赖
-将项目的依赖提交到仓库中会增加仓库的大小。应该将你项目的所有依赖都从仓库中移除，让你的包管理器负责去下载它们。如果你担心“依赖可用性”，可以考虑使用 Jfrog 或 Nexus Repository 这样的二进制存储库管理器。
-6、从源代码中分离配置文件
-建议不要将本地配置文件提交到版本控制器，通常这些都是你不想推送到远程的私有配置文件，因为它们包含机密信息。个人的偏好，历史信息等应该保存在本地环境中。
-7、为项目创建一个有意义的 .gitignore 文件
-每个仓库都必须使用.gitignore文件来忽略预定义的文件和目录，它可以帮助你保护代码中的机密信息、依赖项和其他可能的差异。你可以从 Gitignore.io 选择相关的模板。
-
-8、将死库归档
-随着时间的推移，由于各种原因，我们发现自已拥有不再维护的仓库。或许你为一个临时用例新建了仓库，或者有一些包含旧的和不相关代码的仓库。它们存在的问题是相同的，这些仓库在达到其目的之后不在被积极的维护开发，因此你不希望再维护它们或不希望其他人依赖/使用它们，最好的方式是将这些仓库归档，这样对每个人都是“只读”的。
-
-9、锁定依赖包的版本
-你的依赖配置文件中包含所有软件包版本的信息，以便在每次安装应用程序时，在不破坏代码的前提下保持一致的结果。最好的方式是使用配置锁定文件来避免差异，并确定每次都获得相同的软件包版本。
-
-10、对齐包的版本
-虽然你使用的是相同的软件包，但是不同的版本会使得在不同项目中重用代码和测试变得困难。
-如果你有一个在多个项目中使用的包，请至少尝试在不同的仓库中使用相同的主要版本。
-
-原文链接：https://datree.io/blog/top-10-github-best-practices/
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/github-shi-da-zui-jia-shi-jian">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
                 </div>
@@ -403,7 +403,7 @@ For everything else, there is always a designer.
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1569597092954)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1569597530875)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2019-09-28T13:33:58.432Z</updated>
+    <updated>2019-09-28T13:54:08.082Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io//atom.xml"/>
@@ -681,6 +681,42 @@ Changes to be committed:
 ]]></content>
     </entry>
     <entry>
+        <title type="html"><![CDATA[什么是契约测试？]]></title>
+        <id>https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi</id>
+        <link href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">
+        </link>
+        <updated>2019-04-10T13:40:31.000Z</updated>
+        <content type="html"><![CDATA[<p>契约测试全称为：消费者驱动契约测试，最早由 Martin Fowler 提出。契约这个词从字面上很容易理解，就是双方（多方）达成的共同协议，那又为什么需要契约测试这个东西呢？</p>
+<p>在当前微服务大行其道的行业背景下，越来越多的团队采用了前后端分离和微服务架构，我们知道微服务是由单一程序构成的小服务，与其它服务使用 HTTP API 进行通讯，服务可以采用不同的编程语言与数据库，微服务解决了单体应用团队协作开发成本高、系统高可用性差等等问题。</p>
+<p>但是微服务也引入了新的问题，假设 A 团队开发某服务并提供对应的 API，B 团队也在开发另一个服务，但是他们需要调用 A 团队的 API，为了产品的尽快发布，两个团队都争分夺秒，已经进入联调阶段了，然而出现了下面这样的尴尬情况。</p>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569678515041.jpg" alt=""></figure>
+<p>随着越来越多的微服务加入，它们的调用关系开始变得越来越复杂，如果每次更改都需要和所有调用该 API 的团队协商，那沟通成本也未免太大了，试想下图的沟通成本。</p>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569678554581.png" alt=""></figure>
+<p>为了保证 API 调用的准确性，我们会对外部系统的 API 进行测试，如果外部系统稳定性很差，或者请求时间很长的时候，就会导致我们的测试效率很低，当调用 API 失败时，你甚至无法确定是因为 API 被更改而导致的失败还是运行环境不稳定导致的失败。</p>
+<p>A 团队提供的 API 不稳定，肯定会导致 B 团队效率低下，为了不影响 B 团队的进度，所以构建了<a href="https://martinfowler.com/bliki/TestDouble.html">测试替身</a>，通过模拟外部 API 的响应行为来增强测试的稳定性和反应速度。</p>
+<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569678587990.png" alt=""></figure>
+<p>但是这样做真的就解决问题了吗？当所有内部测试都通过时，能拍着胸脯说真正的外部 API 就一定没有变化？很简单的一个解决方案就是：部分测试使用测试替身，另一部分测试定期使用真实的外部 API，这样既保证了测试的运行效率、调用端的准确性，又能确保当真实外部系统API改变时能得到反馈。</p>
+<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569678615430.jpg" alt=""></figure>
+<p>感觉剧情到这里就差不多该结束了，实际上真正的高潮部分开刚刚开始。如果外部 API 的反馈周期很长，那增加真实 API 测试间隔时间就又回到了最初的起点。现在我们回顾一下上面的方案。</p>
+<p>在上面的场景中，我们都是已知外部 API 功能来编写相应的功能测试，并且使用直接调用外部 API 的方式来达到测试的目的，如此就不可避免的带来了两个问题：</p>
+<ul>
+<li>API 调用者（消费者）对服务提供方（生产者）的更改是通过对 API 的测试来感知的；</li>
+<li>直接依赖于真实 API 的测试效果受限于 API 的稳定性和反映速度。</li>
+</ul>
+<p>解决方案首先是依赖关系解耦，去掉直接对外部 API 的依赖，而是内部和外部系统都依赖于一个双方共同认可的约定—“契约”，并且约定内容的变化会被及时感知；其次，将系统之间的集成测试，转换为由契约生成的单元测试，例如通过契约描述的内容，构建测试替身。这样，同时契约替代外部 API 成为信息变更的载体。</p>
+<p>前后照应一下，我们现在再来看一下消费者驱动契约测试。它有两个不可或缺的角色：消费者是服务使用方；生产者（提供者）是服务提供方。采用需求驱动（消费者驱动）的思想。契约文件（比如 json 文件）由双方共同定义规范，一般由消费者生成，生产者根据这份<code>契约</code>去实现。</p>
+<p>契约测试其中一个的典型应用场景是内外部系统之间的测试，另一个典型的例子是前后端分离后的 API 测试。行业内比较成熟的解决方案是 <a href="https://swagger.io/specification/">Swagger Specification</a> 和 <a href="https://github.com/pact-foundation/pact-specification">Pact Specification</a>，这里不做展开讨论。</p>
+<p>我们同样可以把契约测试的思想用到代码的编写中，契约测试通过一个契约文件来解耦依赖，那么对于需要用户定义很多规则的场景，我们同样可以将这些规则像契约文件一样抽取出来，这样就降低了代码之间的耦合度。</p>
+<p>最后敲敲黑板，契约测试不是替代 E2E 测试的终结者，更不是单元测试的升级换代，它更偏向于服务和服务之间的 API 测试，通过解耦服务依赖关系和单元测试来加快测试的运行效率。</p>
+<blockquote>
+<p>参考文章：<br>
+<a href="https://insights.thoughtworks.cn/about-contract-test/">聊一聊契约测试</a> —— ThoughtWorks洞见<br>
+<a href="https://www.jianshu.com/p/e318fadf8553">契约测试</a> —— 米阳<br>
+<a href="http://icodeit.org/2015/06/whats-next-after-separate-frontend-and-backend/">前后端分离了，然后呢？</a> —— 邱俊涛</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[刘小绪同学随笔（2019-02-27）]]></title>
         <id>https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27</id>
         <link href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
@@ -843,34 +879,6 @@ onPostBody: function () {
 <p>之前在<a href="https://mp.weixin.qq.com/s/TnbKdM79pO_06oz1cfPtAQ">这是一篇不正经文章</a>中贴了一张网图，前几天看到很标准的现实版，照片是在我住的地方偷摸拍的。</p>
 <figure data-type="image" tabindex="7"><img src="https://mengxiaoxu.github.io//post-images/1569506722099.JPG" alt=""></figure>
 <figure data-type="image" tabindex="8"><img src="https://mengxiaoxu.github.io//post-images/1569506728053.JPG" alt=""></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[刘小绪同学随笔（2019-01-13）]]></title>
-        <id>https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13</id>
-        <link href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13">
-        </link>
-        <updated>2019-01-13T12:45:58.000Z</updated>
-        <content type="html"><![CDATA[<p>前一周在一席上面看了一场演讲叫「不正经历史研究所所长」，整场演讲都伴随着欢声笑语，讲的是民间文化与经典文化，经典文化实际上是统治阶级强行推动的精致文化，绝大部分老百姓是看不懂这些东西的，反正我自己参观博物馆，如果没有讲解，我是完全看不懂那些玩意的。</p>
-<p>能和生活联系在一起的文化最有活力，比如天天发杨超越祈求不挂科，拜拜马云希望有更多的钱等等。有一句老话叫「人活一口气」，民间文化都基于此，我在别人面前要抬得起头，要的是气派、要的是大气，上个世纪的「四大件」应该就是成功的一个标配，老百姓置办这些物件后，在邻居面前也更能昂首挺胸了。</p>
-<p>昨天了解到一个朋友家乡的有一个非常奇怪的习俗，那就是「坟头蹦迪」，我最开始的想法是，这是不是最近兴起来的习俗，但是一问才知道，他小时候就是这样的了。基于我们的体系是无法理解坟头蹦迪的，你能说它们对于亲人的去世就不伤心吗？他们要的还是能抬起头，来参加追悼会的人们看到这么豪华的场面，第一反应是故人后代是很有成就的，在某种程度上这算是对故人的颂扬。</p>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569675275620.GIF" alt=""></figure>
-<p>花了几个小时时间把微信清理了一下，只留下了 83 个公众号，这其中还包括一信用卡一类的服务号，也就是说只留下了 70 个左右的公众号。留下的都是小而美的公众号，这些大佬作者的更新频率也很低，比如子柳老师最近才更新了一篇文章，而上一篇文章的更新时间是 7 月 25 日。</p>
-<p>最近在自己身上认识的一个问题是，关注的公众号太多读不过来，虽然在此之前已经筛选掉了很多号，然而自己还是读不过来，所以索性就做了减法。现在像公众号这些，已经变成了获取信息的一个重要渠道，我也确实比周围小伙伴掌握信息更快，大部分时间也自认为比他们更了解真相。</p>
-<p>但是我最近突然有个疑问，我真的比他们更了解真相吗？大部分人是通过垃圾文章获取信息，我虽然没有跟着垃圾文章人云亦云，但是我还是通过网络获取信息的，那么我是不是看到的是另外一种看起来更接近真相的假象呢？</p>
-<p>这些信息其实我就算不知道好像也没有什么大碍，顶多是别人谈什么新闻时，我所了解的也就他们知道的那么点而已，更好的方式是让自己的大脑去思考，以时间的维度去追踪事件的发展。</p>
-<p>顺便推荐一个应用叫「刷屏」，我发现自己通过「刷屏」、「知识星球」、「微信公众号」、「朋友圈」四个地方，已经掌握大部分信息了，经常同事给我说某某新闻，而我在两三天前已经见过了。</p>
-<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569675275620.GIF" alt=""></figure>
-<p>我对国际计量大会修改「1 千克」的定义这件事印象很深，但是这件事我只看到在阮一峰老师的文章中有被提到过；人们更喜欢听自己了解的领域，跟自己同好的很容易产生好感，一些明星结婚、出轨竟然能把微博的服务给搞挂了，说明绝大部分人还是更喜欢撩自己 G 点的信息。</p>
-<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569674834045.jpg" alt=""></figure>
-<p>另外第二个问题是自己现在比在学校时更喜欢玩手机了，在学校时还能做到不带手机去自习，现在是隔一会儿就看看手机，把本来就碎片化的时间变得更加碎片化了，这种效率导致工作、学习效率低下，所以把微信和 TIM 的通知全部关掉了。</p>
-<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569675275620.GIF" alt=""></figure>
-<p>写到这里发现有点点像总结，索性就给自己简单总结总结吧。2018 我从校园走向了社会，完成了从学生到职场的转变。最大的改变是思维的提升，知道去投资自己，在学生时代，愿意花几百块钱去买课程，这对我来说是很大的突破，和现在愿意花几百的概念完全不一样，想想那时候一个月生活费总共也没有多少，而我去看了下自己在毕业前花在这方面的钱居然有一千多，如果加上毕业后的开销，那就是两千多了，真感谢那时候的自己。</p>
-<p>这其中的收获是巨大的，后面我偶尔会向朋友推荐一些好的付费课程，但是他们都和大部分人一样，吃一顿饭花几百块钱，而如果花点钱买一堂课提升一下自己，就好像要他命一样，所以后面就不和他们讲了。</p>
-<figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1569675275620.GIF" alt=""></figure>
-<p>2018 开始用文字记录技术、生活、感悟，这其中的收获也是不小的，认识了此前只能仰望的大佬，结交了志同道合的朋友，而且也让自己更愿意去思考了。收到电子工业出版社的约稿合同，但是现在书都没写完，明年还写不完的话，那就不写了，主要是懒。</p>
-<p>自负的缺点已经在渐渐改变了，更加懂得了谦虚。眼界不再局限于技术，很多东西我都会去了解，也结交了很多有趣的人，初入职场，好好学习与不同的人沟通。以后如果有能力，希望能给山区带去一点点教育资源。</p>
-<p>2019 依旧坚持每周和同事或者校友打一次羽毛球，常去爬爬山，和有趣的朋友一起疯一疯；多读书，用豆瓣等工具去筛选好书，加大阅读量；常输出，输出是更高层次的输入；尝试去了解金融的逻辑；学习新的技术领域。</p>
 ]]></content>
     </entry>
 </feed>

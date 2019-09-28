@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2019-09-28T13:01:24.858Z</updated>
+    <updated>2019-09-28T13:11:02.547Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io//atom.xml"/>
@@ -819,8 +819,8 @@ onPostBody: function () {
     </entry>
     <entry>
         <title type="html"><![CDATA[刘小绪同学随笔（2019-01-13）]]></title>
-        <id>https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-(2019-01-13)</id>
-        <link href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-(2019-01-13)">
+        <id>https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13</id>
+        <link href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13">
         </link>
         <updated>2019-01-13T12:45:58.000Z</updated>
         <content type="html"><![CDATA[<p>前一周在一席上面看了一场演讲叫「不正经历史研究所所长」，整场演讲都伴随着欢声笑语，讲的是民间文化与经典文化，经典文化实际上是统治阶级强行推动的精致文化，绝大部分老百姓是看不懂这些东西的，反正我自己参观博物馆，如果没有讲解，我是完全看不懂那些玩意的。</p>

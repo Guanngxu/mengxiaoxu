@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    TypeScript | 刘小绪同学的博客
+    生活感悟 | 刘小绪同学的博客
 </title>
 <link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1569767067990">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -110,140 +110,61 @@
                     
     <div class="i-card">
         <b>标签：#
-        TypeScript</b>
+        生活感悟</b>
     </div>
     
         
             <article class="post i-card">
                 <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/MqqlYHD78">
-                        Bootstrap-table 合并相同单元格
+                    <a href="https://mengxiaoxu.github.io//post/8-A2fl99e">
+                        告别囤干货，你才能真正进步
                     </a>
                 </h2>
                 <div class="post-info">
-                    <time class="post-time">2019-01-26</time>
+                    <time class="post-time">2018-04-15</time>
                     
-                        <a href="https://mengxiaoxu.github.io//tag/J_3GE6pBm" class="post-tag i-tag
-                            i-tag-other_1">
-            #TypeScript
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-other_2">
-            #前端
+                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
+                            i-tag-error">
+            #生活感悟
         </a>
                         
                 </div>
                 <div class="post-article">
                     
-                        <a href="https://mengxiaoxu.github.io//post/MqqlYHD78" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/MqqlYHD78.jpg) ">
+                        <a href="https://mengxiaoxu.github.io//post/8-A2fl99e" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/8-A2fl99e.jpg) ">
                         </a>
                         
                             <div class="post-content">
                                 
                                         <div class="post-content-content">
-                                            Bootstrap-table 官方提供了合并单元格方法 mergeCells，它根据四个参数可以合并任意个单元格，我们要做的只是告诉它怎么合并。
-要合并同一列相同的单元格，无非两种办法，一种是一边遍历一边合并，遍历完了再合并。这里采用第二种办法，这里不需要遍历所有数据，因为用户只能看到当前页的数据，所以只遍历当前页的数据更省时间。
-下面是我实现的获取合并信息算法，最终返回的是一个哈希表，比如下面的这个表格，如果要对「性别」这一列进行合并，很明显前面两个“男”需要合并成一个单元格，再去看下 Bootstrap-table 提供的 API，它需要的是从哪个单元格开始，合并多少个单元格，也就是它需要的是两个数值类型的参数。
+                                            这两天，没事整理了自己的微信收藏和 QQ 收藏文件夹下面的文章。发现了一个在大多数人身上都存在的问题，那就是囤干货。
+我使用微信的时间比较晚，从14年才开始，但是仅仅不到4年的时间，在微信收藏里面就有几百篇文章，有一些传授技能的文章，比如 word、ps 等简单教程；其他一些属于心灵鸡汤类文章（现在反倒不觉得这类文章值得看），还有一些搞笑的文章，当然里面也夹杂着些许的优秀视频。文章数量数 14 年和 15 年最多。
+现在回头看，我当时就陷入了囤文章的陷阱了，或者说自己是在“假装阅读”。仔细一想，其实生活中大多数人都有类似的举动。早成起床、饭后的一段时间、晚上睡觉前，这些时间大多数人都习惯性的去翻翻公众号、朋友圈，这里面不乏有好文章、干货文章。然而没多少人会静下心来把文章读完，而是在大概读到一半的时候，选择收藏这篇文章，然后在心里告诉自己，明天要好好读一下这篇文章。到了明天，其实又是重复了今天的这样一个过程。
+记得大概一年前也无意中看到大学认识的一位师弟发的说说，内容如下：
 
-
-
-姓名
-性别
-年龄
-
-
-
-
-张三
-男
-23
-
-
-李四
-男
-19
-
-
-王二
-女
-20
-
-
-麻子
-男
-21
-
-
-
-所以我把哈希表设置为，键存的是索引，值存的是从这个索引开始后面连续有多少个和它一样的单元格，那么上述表格性别这一列所得到的合并信息哈希表就为：
-{
-    0: 2,
-    2: 1,
-    3: 1
-}
-
-下面算法很简单，使用两个指针遍历指定的列，如果两个指针所指向的数据相同，那么就将键所对应的值进行加一操作，整个方法只会对该列数据遍历一边，所以时间复杂度为 O(n)。
-let getMergeMap = function (data, index: number) {
-    let preMergeMap = {};
-    // 第 0 项为表头，索引从 2 开始为了防止数组越界
-    for (let i = 2; i &amp;lt; data.length; i++) {
-        let preText = $(data[i-1]).find(&#39;td&#39;)[index].innerText;
-        let curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
-        let key = i - 2;
-        preMergeMap[key] = 1;
-        while ((preText == curText) &amp;amp;&amp;amp; (i &amp;lt; data.length-1)) {
-            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
-            i++;
-            preText = $(data[i - 1]).find(&#39;td&#39;)[index].innerText;
-            curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
-        }
-        // while循环跳出后，数组最后一项没有判断
-        if (preText == curText) {
-            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
-        }
-    }
-    return preMergeMap;
-}
-
-上述算法得到了单列数据的合并信息，下一步就是按照这个信息进行相同单元格的合并了，因此封装了下面的方法按照指定哈希表进行合并。
-let mergeCells = function (preMergeMap: Object, target, fieldName: string) {
-    for (let prop in preMergeMap) {
-        let count = preMergeMap[prop];
-        target.bootstrapTable(&#39;mergeCells&#39;, { index: parseInt(prop), field: fieldName, rowspan: count });
-    }
-}
-
-到目前为止，我们实现的都只是对单列数据进行合并，要实现对多列数据进行合并，那么只需要对所有列都进行相同的操作即可。
-export let mergeCellsByFields = function (data: Object[], target, fields) {
-    for (let i = 0; i &amp;lt; fields.length; i++) {
-        let field = fields[i];
-        // 保证 field 与 i 是相对应的
-        let preMergeMap = getMergeMap(data, i);
-        let table = target.bootstrapTable();
-        mergeCells(preMergeMap, table, field);
-    }
-}
-
-因为我在程序中做了一点处理，保证了fields中每个值得索引与对应表头的索引是一样的，因此不需要额外传入索引信息。简单来说就是我所实现的表格会根据fields的顺序，实现列之间的动态排序。你需要注意的是这一点很可能和你不一样。
-到现在已经能够合并所有的列了，查看 Bootstrap-table 的配置信息发现，它有个属性是 onPostBody 它会在 table body 加载完成是触发，所以把这个属性配置成我们的合并单元格方法即可。
-// groups 为要合并的哪些列
-onPostBody: function () {
-    mergeCellsByFields($(&#39;#table&#39; + &#39; tr&#39;), $(&#39;#table&#39;), groups);
-}
-
-再说一点不太相关的，我实现的是让用户可以自己选可以合并多少列，即用了一个可多选的下拉列表框供用户选择，根据用户选择的数量去合并，所以传入了一个groups参数。
-最后推荐一个排序插件 thenBy，你可以用它进行多字段排序，比如用在合并相同单元格的场景，在绘制表格前先对数据进行排序，那么最后合并的结果就是把所有相同的数据聚合到一起了，并且还将它们合并到一起了，起到了一个隐形的过滤查询功能。
+上面的图是我特地翻出来的，一年后这个师弟又发了一条说说，存满了两个云盘，应该是有 5000 G 左右的资源。
+我认为这都是在假装学习，而且假装学习的人不计其数。为什么上学的时候，那些每天都静静的待在教室学习的同学，成绩反倒不是很好呢？而且大多数这样的学生在班级都是排在中等，而成绩好的学生却不是学习投入最多的人。背后的原因显而易见。
+我囤课最严重的时间段是也是 14 年和 15 年，网上有不少干货资源，什么 Linux、各种项目实战、计算机网络等等培训视频不计其数。那时候干的第一件事就是，上百度云把这些资源下下来，而且一个资源往往要下一周甚至更久；然后告诉自己，下周开始每天看一段视频，但是最终的结果是过去了 N 个下周，依然没有去处理这些资源。
+现在博客、公众号也有一些不知道是为了获取更多人的关注，还是仅仅是做公益，文章末尾会标注：关注公众号，回复“XXXXX”，即可获得多少多少G的资源，这个多少一般是在 500 以上。我个人现在是对这类文章没有什么兴趣的，因为几百 G 甚至上千 G 的东西，我是不可能看完的，我清楚自己的能力，我也不否认可能有人有毅力能看完，那肯定是凤毛菱角了，我一个普通人不与凤毛菱角对比。
+当然，我现在的认识相比几年前，得到了一些提升，至少我现在不糊干囤课之类的事了，仅仅是把干货囤在那里，其时你还是昨天的自己，并没有进步。现在我都会把自己收藏的好文章在一周之内处理掉。
+所以要想真正取得进步，首先就需要告别囤课的习惯，不能假装学习，如果学习是为了给比别人看，那还不如不学。文章仅是我个人的一点感悟，没有文采逻辑和言，总之希望与你共勉。
 
                                         </div>
                                         
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/MqqlYHD78">Read More ~</a>
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/8-A2fl99e">Read More ~</a>
                             </div>
                 </div>
             </article>
             
                 <!-- 翻页 -->
                 
+    <div class="pagination-container">
+        
+            <a href="https://mengxiaoxu.github.io//tag/94PzxqinO/" class="page-btn btn">上一页</a>
+            
+                
+    </div>
+    
                 </div>
                 <!--  -->
                 <div class="main-container-middle"></div>

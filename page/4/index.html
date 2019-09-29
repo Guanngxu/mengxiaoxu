@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1569769194836">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1569769416770">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -39,7 +39,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1569769194836" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1569769416770" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -111,6 +111,135 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">
+                        用 Scrapy 爬取豆瓣250
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-07-27</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/pa-chong" class="post-tag i-tag
+                            i-tag-primary">
+            #爬虫
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/yong-scrapy-pa-qu-dou-ban-250.jpeg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            最好的学习方式就是输入之后再输出，分享一个自己学习scrapy框架的小案例，方便快速的掌握使用scrapy的基本方法。
+本想从零开始写一个用Scrapy爬取教程，但是官方已经有了样例，一想已经有了，还是不写了，尽量分享在网上不太容易找到的东西。自己近期在封闭培训，更文像蜗牛一样，抱歉。
+Scrapy简介
+Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
+其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。
+
+如果此前对scrapy没有了解，请先查看下面的官方教程链接。
+架构概览：https://docs.pythontab.com/scrapy/scrapy0.24/topics/architecture.html
+Scrapy入门教程：https://docs.pythontab.com/scrapy/scrapy0.24/intro/tutorial.html
+爬虫教程
+首先，我们看一下豆瓣TOP250页面，发现可以从中提取电影名称、排名、评分、评论人数、导演、年份、地区、类型、电影描述。
+
+Item对象是种简单的容器，保存了爬取到得数据。其提供了类似于词典的API以及用于声明可用字段的简单语法。所以可以声明Item为如下形式。
+class DoubanItem(scrapy.Item):
+    # 排名
+    ranking = scrapy.Field()
+    # 电影名称
+    title = scrapy.Field()
+    # 评分
+    score = scrapy.Field()
+    # 评论人数
+    pople_num = scrapy.Field()
+    # 导演
+    director = scrapy.Field()
+    # 年份
+    year = scrapy.Field()
+    # 地区
+    area = scrapy.Field()
+    # 类型
+    clazz = scrapy.Field()
+    # 电影描述
+    decsription = scrapy.Field()
+
+我们抓取到相应的网页后，需要从网页中提取自己需要的信息，可以使用xpath语法，我使用的是BeautifulSoup网页解析器，经过BeautifulSoup解析的网页，可以直接使用选择器筛选需要的信息。有一些说明写到代码注释里面去了，就不再赘述。
+Chrome 也可以直接复制选择器或者XPath，如下图所示。
+
+class douban_spider(Spider):
+
+    count = 1
+
+    # 爬虫启动命令
+    name = &#39;douban&#39;
+
+    # 头部信息，伪装自己不是爬虫程序
+    headers = {
+        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#39;,
+    }
+
+    # 爬虫启动链接
+    def start_requests(self):
+        url = &#39;https://movie.douban.com/top250&#39;
+        yield Request(url, headers=self.headers)
+
+    # 处理爬取的数据
+    def parse(self, response):
+
+        print(&#39;第&#39;, self.count, &#39;页&#39;)
+        self.count += 1
+
+        item = DoubanItem()
+        soup = BeautifulSoup(response.text, &#39;html.parser&#39;)
+
+        # 选出电影列表
+        movies = soup.select(&#39;#content div div.article ol li&#39;)
+
+        for movie in movies:
+            item[&#39;title&#39;] = movie.select(&#39;.title&#39;)[0].text
+            item[&#39;ranking&#39;] = movie.select(&#39;em&#39;)[0].text
+            item[&#39;score&#39;] = movie.select(&#39;.rating_num&#39;)[0].text
+            item[&#39;pople_num&#39;] = movie.select(&#39;.star span&#39;)[3].text
+
+            # 包含导演、年份、地区、类别
+            info = movie.select(&#39;.bd p&#39;)[0].text
+            director = info.strip().split(&#39;\n&#39;)[0].split(&#39;   &#39;)
+            yac = info.strip().split(&#39;\n&#39;)[1].strip().split(&#39; / &#39;)
+
+            item[&#39;director&#39;] = director[0].split(&#39;: &#39;)[1]
+            item[&#39;year&#39;] = yac[0]
+            item[&#39;area&#39;] = yac[1]
+            item[&#39;clazz&#39;] = yac[2]
+
+            # 电影描述有为空的，所以需要判断
+            if len(movie.select(&#39;.inq&#39;)) is not 0:
+                item[&#39;decsription&#39;] = movie.select(&#39;.inq&#39;)[0].text
+            else:
+                item[&#39;decsription&#39;] = &#39;None&#39;
+            yield item
+
+        # 下一页：
+        # 1，可以在页面中找到下一页的地址
+        # 2，自己根据url规律构造地址，这里使用的是第二种方法
+        next_url = soup.select(&#39;.paginator .next a&#39;)[0][&#39;href&#39;]
+        if next_url:
+            next_url = &#39;https://movie.douban.com/top250&#39; + next_url
+            yield Request(next_url, headers=self.headers)
+
+然后在项目文件夹内打开cmd命令，运行scrapy crawl douban -o movies.csv就会发现提取的信息就写入指定文件了，下面是爬取的结果，效果很理想。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian">
                         年轻不要给自己设限
                     </a>
@@ -119,12 +248,12 @@
                     <time class="post-time">2018-07-02</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-">
             #个人总结
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-success">
             #生活感悟
         </a>
                         
@@ -166,12 +295,12 @@
                     <time class="post-time">2018-06-20</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_4">
             #个人总结
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_2">
             #生活感悟
         </a>
                         
@@ -212,7 +341,7 @@
                     <time class="post-time">2018-05-07</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/zi-ran-yu-yan-chu-li" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_2">
             #自然语言处理
         </a>
                         
@@ -273,7 +402,7 @@
                     <time class="post-time">2018-04-26</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/zi-ran-yu-yan-chu-li" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-success">
             #自然语言处理
         </a>
                         
@@ -388,12 +517,12 @@ HanLP 自然语言处理
                     <time class="post-time">2018-04-24</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-primary">
             #数据库
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-other_1">
             #操作系统
         </a>
                         
@@ -510,7 +639,7 @@ R10
                     <time class="post-time">2018-04-19</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
             #生活感悟
         </a>
                         
@@ -554,7 +683,7 @@ R10
                     <time class="post-time">2018-04-15</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-primary">
             #生活感悟
         </a>
                         
@@ -596,12 +725,12 @@ R10
                     <time class="post-time">2018-03-29</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/JYJKwJM69" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-warning">
             #编译原理
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/QjCHA76i_r" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_3">
             #编程基础
         </a>
                         
@@ -865,7 +994,7 @@ null
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1569769194836)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1569769416770)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客

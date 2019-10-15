@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>编译原理 | 刘小绪同学的博客</title>
+<title>高质量中文独立博客 | 刘小绪同学的博客</title>
 <meta name="description" content="正在学习写代码的码农">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,6 +16,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -84,60 +90,71 @@
 
 
       <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">高质量中文独立博客</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-10-15</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://mengxiaoxu.github.io//tag/wang-luo-zi-yuan">
+                    网络资源
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>国内的 CSDN、博客园等平台文章基本都是抄过来抄过去，而且经常一篇文章中的内容还没有标题的字数多，体验是在不是一个「差」字可以形容。</p>
+<p>不管使用哪种方式来建立自己的独立博客，拥有这样能力的人已经不是菜鸟了，而且独立博客绝大部分都是作者经过长期沉淀之后的原创内容，读原创高质内容是一种享受。</p>
+<style>
+table th {
+	min-width: 80px;
+}
+</style>
+<table>
+<thead>
+<tr>
+<th>博客</th>
+<th>维护人</th>
+<th>简评</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://mindhacks.cn/">Mind Hacks</a></td>
+<td>刘未鹏</td>
+<td>刘未鹏老师就没有写的不好的文章，他几年前甚至十年前写的文章，今天看依旧受益无穷，建议反复阅读他的文章</td>
+</tr>
+<tr>
+<td><a href="http://www.ruanyifeng.com/blog/">阮一峰的网络日志</a></td>
+<td>阮一峰</td>
+<td>阮一峰老师的博客大部分人都知道，其科技爱好者周刊是我每周五必读文章。还会分享一些不同技术的入门资源。</td>
+</tr>
+<tr>
+<td><a href="https://coolshell.cn">酷 壳 – COOLSHELL</a></td>
+<td>陈皓</td>
+<td>耗子叔的人格是高尚的，其技术深度更是吾辈难以企及，除了技术文章还有耗子叔自己的思考，非常值得花时间学习一番</td>
+</tr>
+</tbody>
+</table>
 
-        <div class="current-tag-container">
-          <h2 class="title">
-            <i class="icon icon-pricetags-outline"></i> 编译原理
-          </h2> 
+          </div>
         </div>
 
         
-<section class="post-item">
-    <div class="content">
-      <a href="https://mengxiaoxu.github.io//post/CY4_BQLR4">
-        <h2 class="post-title">正则表达式语法</h2>
-      </a>
-      <div class="post-abstract">
-        
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2018-03-29</span>
+
+      
         
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://mengxiaoxu.github.io//tag/JYJKwJM69">
-                编译原理
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://mengxiaoxu.github.io//tag/QjCHA76i_r">
-                编程基础
-                
-              </a>
-            
-          </span>
+          <div id="gitalk-container"></div>
         
-      </div>
-    </div>
-    
-      <a href="https://mengxiaoxu.github.io//post/CY4_BQLR4">
-        <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/CY4_BQLR4.jpg')">
-        </div>
-      </a>
-    
-  </section>
 
-
-<div class="pagination-container">
-  
-  
-</div>
-
-
-      </div>
+        
+      
 
       <div class="site-footer">
   <div class="slogan">正在学习写代码的码农</div>
@@ -171,6 +188,29 @@ var app = new Vue({
 })
 
 </script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '70b5a748b63425a6adfc',
+        clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
+        repo: 'mengxiaoxu.github.io',
+        owner: 'mengxiaoxu',
+        admin: ['mengxiaoxu'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 

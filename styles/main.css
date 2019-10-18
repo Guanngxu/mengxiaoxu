@@ -784,102 +784,180 @@ body {
   background-position: center;
   background-size: cover;
 }
-.post-detail .post .post-content {
-  overflow: hidden;
-}
-.post-detail .post .post-content a {
-  transition: all 0.3s;
-}
-.post-detail .post .post-content img {
-  display: block;
-  margin: 24px auto;
-  max-width: 100%;
-  border-radius: 2px;
-  box-shadow: 0 0 30px #eee;
-}
-.post-detail .post .post-content p {
-  margin-bottom: 24px;
-  letter-spacing: 0.05em;
-  font-size: 16px;
-  line-height: 1.725;
-}
-.post-detail .post .post-content p code,
-.post-detail .post .post-content li code {
-  padding: 0 2px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 2px 2px;
-  background-color: rgba(0, 0, 0, 0.06);
-  text-indent: 0;
-  word-wrap: break-word;
-  font-size: inherit;
-  font-family: monospace;
-  line-height: initial;
-}
-.post-detail .post .post-content pre {
-  margin-bottom: 24px;
-}
-.post-detail .post .post-content pre code {
-  padding: 1em;
-  border-radius: 5px;
-  font-size: 16px;
-  font-family: 'Source Code Pro', Consolas, Menlo, Monaco, 'Courier New', monospace;
-  line-height: 1.375;
-}
-.post-detail .post .post-content blockquote {
-  margin-bottom: 16px;
-  padding: 16px;
-  border-left: 2px solid #006cff;
-  background: #f3f5f7;
-}
-.post-detail .post .post-content blockquote p {
-  margin-bottom: 0;
-}
-.post-detail .post .post-content table {
-  display: block;
-  overflow-x: auto;
-  margin: 1rem 0;
-  border-collapse: collapse;
-}
-.post-detail .post .post-content tr {
-  border-top: 1px solid #dfe2e5;
-}
-.post-detail .post .post-content td,
-.post-detail .post .post-content th {
-  padding: 0.6em 1em;
-  border: 1px solid #dfe2e5;
-}
-.post-detail .post .post-content ul,
-.post-detail .post .post-content ol {
-  margin-bottom: 16px;
-  padding-left: 24px;
-  line-height: 1.725;
-}
 .post-detail .post .post-content h1,
 .post-detail .post .post-content h2,
 .post-detail .post .post-content h3,
 .post-detail .post .post-content h4,
 .post-detail .post .post-content h5,
 .post-detail .post .post-content h6 {
-  margin: 16px 0;
+  padding: 16px 0;
+  color: #0C1E29;
+}
+.post-detail .post .post-content a {
+  font-weight: 600;
+  background: linear-gradient(180deg, transparent 70%, rgba(101, 125, 225, 0.4) 0);
+}
+.post-detail .post .post-content img {
+  display: block;
+  box-shadow: 0 0 30px #eee;
+  max-width: 100%;
+  border-radius: 2px;
+  margin: 16px auto;
+}
+.post-detail .post .post-content p {
+  line-height: 1.725;
+  margin-bottom: 16px;
+  color: var(--c-base-blacklight);
+}
+.post-detail .post .post-content p code {
+  padding: 0 3px;
+  margin: 0 2px;
+  background: rgba(195, 195, 195, 0.41);
+  font-size: 0.9em;
+  border-radius: 2px;
+  display: inline-block;
+}
+.post-detail .post .post-content code {
+  color: #476582;
+  padding: 0.25rem 0.5rem;
+  margin: 0;
+  font-size: 0.85em;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+  display: inline-block;
+}
+.post-detail .post .post-content blockquote {
+  background: #f3f5f7;
+  padding: 16px;
+  border-left: 2px solid var(--c-base-purple);
+  margin-bottom: 16px;
+}
+.post-detail .post .post-content blockquote p {
+  margin-bottom: 0;
+}
+.post-detail .post .post-content pre {
+  margin-bottom: 16px;
+}
+.post-detail .post .post-content pre code {
+  font-size: 14px;
+  font-family: 'Source Code Pro', Consolas, Menlo, Monaco, 'Courier New', monospace;
+  padding: 2em 1em 1em;
+  border-radius: 5px;
+  line-height: 1.375;
+  position: relative;
+  background: #fafafa;
+  display: block;
+}
+.post-detail .post .post-content pre code .hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+.post-detail .post .post-content pre code .hljs-comment,
+.post-detail .post .post-content pre code .hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+.post-detail .post .post-content pre code .hljs-keyword,
+.post-detail .post .post-content pre code .hljs-selector-tag,
+.post-detail .post .post-content pre code .hljs-subst {
+  color: #333;
   font-weight: bold;
 }
-.post-detail .post .post-content h1 {
-  font-size: 28px;
+.post-detail .post .post-content pre code .hljs-number,
+.post-detail .post .post-content pre code .hljs-literal,
+.post-detail .post .post-content pre code .hljs-variable,
+.post-detail .post .post-content pre code .hljs-template-variable,
+.post-detail .post .post-content pre code .hljs-tag .hljs-attr {
+  color: #008080;
 }
-.post-detail .post .post-content h2 {
-  font-size: 24px;
+.post-detail .post .post-content pre code .hljs-string,
+.post-detail .post .post-content pre code .hljs-doctag {
+  color: #d14;
 }
-.post-detail .post .post-content h3 {
-  font-size: 20px;
+.post-detail .post .post-content pre code .hljs-title,
+.post-detail .post .post-content pre code .hljs-section,
+.post-detail .post .post-content pre code .hljs-selector-id {
+  color: #900;
+  font-weight: bold;
 }
-.post-detail .post .post-content h4 {
-  font-size: 18px;
+.post-detail .post .post-content pre code .hljs-subst {
+  font-weight: normal;
 }
-.post-detail .post .post-content h5 {
-  font-size: 16px;
+.post-detail .post .post-content pre code .hljs-type,
+.post-detail .post .post-content pre code .hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
 }
-.post-detail .post .post-content h6 {
+.post-detail .post .post-content pre code .hljs-tag,
+.post-detail .post .post-content pre code .hljs-name,
+.post-detail .post .post-content pre code .hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+.post-detail .post .post-content pre code .hljs-regexp,
+.post-detail .post .post-content pre code .hljs-link {
+  color: #009926;
+}
+.post-detail .post .post-content pre code .hljs-symbol,
+.post-detail .post .post-content pre code .hljs-bullet {
+  color: #990073;
+}
+.post-detail .post .post-content pre code .hljs-built_in,
+.post-detail .post .post-content pre code .hljs-builtin-name {
+  color: #0086b3;
+}
+.post-detail .post .post-content pre code .hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+.post-detail .post .post-content pre code .hljs-deletion {
+  background: #fdd;
+}
+.post-detail .post .post-content pre code .hljs-addition {
+  background: #dfd;
+}
+.post-detail .post .post-content pre code .hljs-emphasis {
+  font-style: italic;
+}
+.post-detail .post .post-content pre code .hljs-strong {
+  font-weight: bold;
+}
+.post-detail .post .post-content pre code:after {
+  content: 'CODE';
+  display: block;
+  position: absolute;
+  left: 8px;
+  top: 4px;
   font-size: 14px;
+  font-weight: bold;
+  color: #ccc;
+}
+.post-detail .post .post-content table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  display: block;
+  overflow-x: auto;
+}
+.post-detail .post .post-content tr {
+  border-top: 1px solid #dfe2e5;
+}
+.post-detail .post .post-content td,
+.post-detail .post .post-content th {
+  border: 1px solid #dfe2e5;
+  padding: 0.6em 1em;
+}
+.post-detail .post .post-content ul,
+.post-detail .post .post-content ol {
+  color: var(--c-base-blacklight);
+  padding-left: 24px;
+  line-height: 1.725;
+  margin-bottom: 16px;
+}
+.post-detail .post .post-content strong {
+  font-weight: bolder;
 }
 .next-post {
   padding: 24px 32px;

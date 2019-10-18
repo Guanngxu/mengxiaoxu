@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost:4000</id>
+    <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2019-10-18T15:17:53.122Z</updated>
+    <updated>2019-10-18T16:22:03.249Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost:4000"/>
-    <link rel="self" href="http://localhost:4000/atom.xml"/>
+    <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
+    <link rel="self" href="https://mengxiaoxu.github.io//atom.xml"/>
     <subtitle>正在学习写代码的码农</subtitle>
-    <logo>http://localhost:4000/images/avatar.png</logo>
-    <icon>http://localhost:4000/favicon.ico</icon>
+    <logo>https://mengxiaoxu.github.io//images/avatar.png</logo>
+    <icon>https://mengxiaoxu.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 刘小绪同学的博客</rights>
     <entry>
         <title type="html"><![CDATA[JavaScript 高级知识技巧]]></title>
-        <id>http://localhost:4000/post/javascript-gao-ji-zhi-shi-ji-qiao</id>
-        <link href="http://localhost:4000/post/javascript-gao-ji-zhi-shi-ji-qiao">
+        <id>https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao</id>
+        <link href="https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao">
         </link>
         <updated>2019-10-13T15:02:39.000Z</updated>
         <content type="html"><![CDATA[<h2 id="对象">对象</h2>
@@ -49,7 +49,7 @@ colors[colors.length] = &quot;black&quot;;
 }
 </code></pre>
 <p>每个函数都包含两个非继承而来的方法，<code>apply()</code>和<code>call()</code>，这两个方法都是在特定作用域中调用函数，实际上等于设置函数体内<code>this</code>对象的值。首先，<code>apply()</code>方法接收两个参数，一个是在其中运行函数的作用域，另一个是参数数组，其中第二个参数可以是<code>Array</code>的实例，也可以是<code>arguments</code>对象。<code>call()</code>方法与<code>apply()</code>方法的作用相同，它们的区别仅仅在于接收参数的方式不同，在使用<code>call()</code>方法时必须逐个列举出来。</p>
-<pre><code class="language-javascript">indow.color = &quot;red&quot;;
+<pre><code class="language-javascript">window.color = &quot;red&quot;;
 var o = {color: &quot;blue&quot;};
 function sayColor() {
     console.info(this.color);
@@ -104,7 +104,7 @@ console.info(window.age); // 23
 </code></pre>
 <h2 id="消息队列与事件循环">消息队列与事件循环</h2>
 <p>如下图所示，左边的栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1570979103039.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1570979103039.png" alt=""></figure>
 <p>右边的堆用来存储声明的变量、对象。下面的队列就是消息队列，一旦某个异步任务有了响应就会被推入队列中。如用户的点击事件、浏览器收到服务的响应和setTimeout中待执行的事件，每个异步任务都和回调函数相关联。<br>
 JS引擎线程用来执行栈中的同步任务，当所有同步任务执行完毕后，栈被清空，然后读取消息队列中的一个待处理任务，并把相关回调函数压入栈中，单线程开始执行新的同步任务。</p>
 <p>来看个例子：执行下面这段代码，执行后，在 5s 内点击两下，过一段时间（&gt; 5s）后，再点击两下，整个过程的输出结果是什么？</p>
@@ -148,8 +148,8 @@ click
     </entry>
     <entry>
         <title type="html"><![CDATA[家里的狗]]></title>
-        <id>http://localhost:4000/post/jia-li-de-gou</id>
-        <link href="http://localhost:4000/post/jia-li-de-gou">
+        <id>https://mengxiaoxu.github.io//post/jia-li-de-gou</id>
+        <link href="https://mengxiaoxu.github.io//post/jia-li-de-gou">
         </link>
         <updated>2019-10-12T14:18:04.000Z</updated>
         <content type="html"><![CDATA[<p>为了防止晚上有人来家里偷东西，几乎家家户户都至少会养一只狗。在我的记忆中，我家一开始是没有狗的。</p>
@@ -175,33 +175,33 @@ click
     </entry>
     <entry>
         <title type="html"><![CDATA[怎样才能开开心心的呢？]]></title>
-        <id>http://localhost:4000/post/o9IjztOrR</id>
-        <link href="http://localhost:4000/post/o9IjztOrR">
+        <id>https://mengxiaoxu.github.io//post/o9IjztOrR</id>
+        <link href="https://mengxiaoxu.github.io//post/o9IjztOrR">
         </link>
         <updated>2019-09-08T13:53:11.000Z</updated>
         <content type="html"><![CDATA[<p>好几个月没有发文章了，主要是因为觉得自己太菜了，肚子里的东西太多浮于表面（实际上肚子也没有东西），也写不出来什么深度。不知道大家发现没有，现在很多公众号的味道都变了，一者是肚子里的货已经吐的差不多了，二者是在自媒体疯狂变现的年代，太多作者都开始为流量而写作，已经忘记了原来的初心。好友说长期不发文，突然发会掉粉的，我也想试试会掉下去多少。</p>
 <p>说到为流量写作，其实并不是自媒体作者天天在干的事，专业的记者也在做这些事情。从商业角度来看，一篇有深度而没有阅读量的文章肯定是比不上一篇适合大众口味但阅读量高的文章。</p>
 <p>媒体总是会挑那些吸引眼球的事件来报道，因为负面故事总比中性或正面故事更具有戏剧性，而且人在进化的过程中保留了对一些事物的恐惧感，这些恐惧感根植于我们大脑的深处，它们对我们祖先的生存是有帮助的。在现在的这个时代，你也很容易就把眼球放到那些能够激发我们本能的故事上。</p>
 <p>包含地震、恐怖袭击、战争、疾病、难民等等字眼的标题总是容易成为头版头条（现在朋友圈肯定都在传四川内江的地震），而像“在过去 100 年，死于自然灾害的人数几乎减少了四分之三”一类的标题总是不会收获多少阅读量，就更不具备什么商业价值了。大家都在说信息茧房，人类的本能也是造成信息茧房的原因之一。</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1569419637197.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569419637197.png" alt=""></figure>
 <p>周四和一个同事一起散步的时候，他问了我一句话：“小老虎，你为什么总是能保持这么开心呢？”（小老虎是在部门大家对我的称呼）我思考了几秒，不知道怎么回答同事的问题。对哦，我是怎么保持每天都这么开心的？是我给他们的错觉还是我确实就这么开心呢？于是给了同事一个简单的答案：“当你变得没心没肺的时候，你就会超开心；另外降低对事物的期望值，这样你就总能收到正反馈，会把你的开心加成。”</p>
 <p>像之前一样，我又成长为同事圈子里的小开心果了。其实我也不是一直开心的，可能就是我这个人比较逗比，我一直认为逗比是一种生活态度。但在公司我同样怼大叔、怼领导，不管我是不是真的开心，既然给大家的印象是开开心心的，那就假装我是一直都开心的吧。</p>
 <p>我常常开玩笑说的一句话：“你对它笑，它就会对你笑，如果它不对你笑，那就对它多笑几次”。你对它笑，你肯定希望对方也给你回一个笑，但是我和大多数人不同的是我降低了期望值，我从来不期望对方能给我一个笑容，于是当对方给了你一个笑容的时候，那就是意外地收获，如果是一个大大的甜甜的笑容，就会突然冒出来幸福来的太突然了感觉。降低期望值也是一个很适合长期学习某项技能的方法，过高的期望值总是会让你放弃。</p>
 <p>很多人说情商是为了别人高兴，话外音就是不想委屈自己迁就别人。但是你让别人高兴了就是与人方便，那对方自然会给你方便，自己方便了不就是高兴吗，所以对这个世界好一点，降低对它的期望值，你就总是能开开心心的过日子。</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1569419637197.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569419637197.png" alt=""></figure>
 <p>毕业这一年认识了很多人，现在我日常接触的圈子差不多有四个，同事这个圈子没啥特别的，团队氛围比较好，时常在晚上悄悄定个会议室，大家一起打王者；推特、微信等软件里面结交的互联网大佬圈我插不上话，不敢说；然后是我两任房东带我进的圈子，和高校毕业人群所建立的圈子完全不一样。</p>
 <p>这群人大部分对我都很好，我目前比较害怕见到现任房东，因为基本上见到他就是出去吃饭。我住在房东隔壁，刚搬过来的时候一出门见到他：“小光，走，去吃饭。”房东的吃饭一般是两场，一场到餐厅点菜吃到 11：00-12：00 的样子，然后再继续下半场烧烤，在房东的带领下，我一个月长了 10 多斤。</p>
 <p>于是我现在出房门的时候，先瞅瞅房东在不在，如果不在就直接坐电梯下楼，如果在就先下到 5 楼，再坐电梯。所以我们现在更多的是没事喝喝茶，偶尔吃吃饭，体重总算控制住了。</p>
 <p>当然这个圈子也有不太好的人，有借了我钱后人就跑的没了踪影的人。但是我很庆幸我能这么早遇到这样的人，因为现在我借出去的并不多，如果再等 10 年我才能遇到这样的人，那我的损失可能就是很多很多倍了。</p>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1569419637197.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569419637197.png" alt=""></figure>
 <p>另外一个对我很重要的圈子就是校友会，我不清楚学校其它地区校友会是什么情况，更不清楚其它学校校友会是怎么样的，深圳校友会确实给了我一个温馨的感觉。校友之间都很单纯，学长学姐们都愿意带年轻人，最大有 79 级的师姐，最小的 15 级也已经到来，老人都会给新人讲他们所经历的事情，给年轻人传授经验。</p>
 <p>当然由于学校带着军校的基因，校友里面没有什么非常非常出名的企业家，但是大家都是很尽心尽力的相互帮助。仅仅靠校友情能达到这样的效果，这一点确确实实是出乎我的意料了，校友会目前是对我开心的加成作用很大。</p>
 <p>举个例子，一个学长新开了烧烤店，现在还没有开始对外营业，处于内测阶段。这一周每天店内至少有一半都是校友，店内的设计、装修、监控等等校友都在出力，当然像我这种没资源的学弟只能试吃给出改进意见了，一个人在外地能成为这样大家庭中的一员是很幸福的。</p>
-<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1569419637197.png" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569419637197.png" alt=""></figure>
 <p>高校毕业生一年比一年多，媒体每年的标题都差不多一个意思：史上最难就业季。不得不承认独自一人到外地打工确实辛苦，大家都是独自承受着来自各方的压力，杭州闯红灯小伙的突然崩溃就是一个极端的例子。</p>
 <p>我之前的住的地方，仅仅我知道的就有三个年龄比我还小的女孩被包养，仅从外部观察来看，她们过的其实挺好的，嘴角也常常挂着 45 度的微笑，倒是包养她们的人过的不是多随性。其中一个还开了一家奶茶店，我有幸也喝了几杯免费奶茶。</p>
 <p>另外还有一些像我一样的打工者，我和前任房东也常常喝茶吃饭（现在也是），听他说住在那里的女孩子很多没有男朋友，但是她们晚上经常会带不同的男生回来，我想这对她们来说也是一种释压方式，当然住那里的男生可能只是没有带回来，房东不知道而已。</p>
-<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1569419637197.png" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1569419637197.png" alt=""></figure>
 <p>我不是太喜欢天天去研究某个业界名人所讲的话，也对各种各样的产品不是多感冒，不否认有些营销文案、产品功能、讲话内容是公司有意精心为之，但是有没有另外一种可能呢？是领导背错了台词、或者是说错了，而我们却非得去给它找出各种各样的原理。</p>
 <p>周末闲着去感受了一下农民工的圈子，我去的是潮州彩塘镇的抛光厂，才知道我们平时用的那些锅碗瓢盆那么亮不是因为镀上了一层，而是硬生生给磨掉了一层，给磨亮的。最后再说一个，不知道你有没有注意到马路边的人行道上，总是会有一列地砖是有凸起的，有的是条状凸起，有的是圆点凸起，有没有想过为什么是这样的呢？</p>
 <p>凸起是盲人走的道路，条状代表直走，圆点代表拐弯。是不是觉得这个世界对每个人都是美好的，既然这个世界对我们这么美好，那干嘛要不开心呢？</p>
@@ -209,8 +209,8 @@ click
     </entry>
     <entry>
         <title type="html"><![CDATA[变量提升与作用域]]></title>
-        <id>http://localhost:4000/post/bian-liang-ti-sheng-yu-zuo-yong-yu</id>
-        <link href="http://localhost:4000/post/bian-liang-ti-sheng-yu-zuo-yong-yu">
+        <id>https://mengxiaoxu.github.io//post/bian-liang-ti-sheng-yu-zuo-yong-yu</id>
+        <link href="https://mengxiaoxu.github.io//post/bian-liang-ti-sheng-yu-zuo-yong-yu">
         </link>
         <updated>2019-08-08T14:29:11.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -331,8 +331,8 @@ console.info(getColor()); // &quot;red&quot;
     </entry>
     <entry>
         <title type="html"><![CDATA[惰性载入函数]]></title>
-        <id>http://localhost:4000/post/duo-xing-zai-ru-han-shu</id>
-        <link href="http://localhost:4000/post/duo-xing-zai-ru-han-shu">
+        <id>https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu</id>
+        <link href="https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu">
         </link>
         <updated>2019-08-06T14:32:20.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -484,8 +484,8 @@ function createXHR() {
     </entry>
     <entry>
         <title type="html"><![CDATA[非设计师需要知道的四个设计原则]]></title>
-        <id>http://localhost:4000/post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze</id>
-        <link href="http://localhost:4000/post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze">
+        <id>https://mengxiaoxu.github.io//post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze</id>
+        <link href="https://mengxiaoxu.github.io//post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze">
         </link>
         <updated>2019-06-22T14:33:37.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -506,26 +506,26 @@ function createXHR() {
 <p>您可以从下面四个方面来突出对比：</p>
 <p><em><strong>1、颜色：浅色上使用暗色，反之亦然</strong></em></p>
 <p><strong>示例：</strong> 切勿在浅蓝色上使用浅灰色或浅粉红色等灰色组合，它们会造成阅读/互动上的极大困难。</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1569508466579.jpg" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569508466579.jpg" alt=""></figure>
 <p><em><strong>2、大小：相邻元素要么大小完全相同，要么大小区别很大</strong></em></p>
 <p><strong>示例：</strong> 不要将 32pt 和 36pt 的文本放在一起；18pt 和 36pt 放在一起会显得更加协调。</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1569508508617.jpg" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569508508617.jpg" alt=""></figure>
 <p><em><strong>3、粗细：与大小一样，相邻元素的粗细要么完全相同，要么有明显的区别</strong></em></p>
 <p><strong>示例：</strong> 不要将相同字体的粗体与黑体放在一起，因为它们看起来太相似了；将黑体与细体放在一起会显得很协调。</p>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1569508538231.jpg" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569508538231.jpg" alt=""></figure>
 <p><em><strong>4、风格：不要将一个斜体类型放在另一个斜体类型旁边，或者在一个衬线字体旁边放置另一个衬线字体。应该组合不同的东西。</strong></em></p>
 <p><strong>示例：</strong> 不要将 Times New Roman 与 Georgia 放在一起，它们看起来太相似了，应该组合完全不同的风格。</p>
-<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1569508569075.jpg" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569508569075.jpg" alt=""></figure>
 <h3 id="一致性">一致性</h3>
 <p>确保相似的元素以相似的方式出现。为什么呢？首先，通过确保确保事物一致性，您可以让用户将注意力集中在设计的重要方面，而不是被随时变化的元素分散注意力。</p>
 <p>其次，一致性也增加了用户对您的信任，使事物看起来实际上是设计的，而不是简单快速拼凑出来的。</p>
 <p>一旦你选择了具体的风格，就要毫不犹豫的坚持下去，这里所说的风格包括字体、颜色、阴影、栅格、对齐、装饰风格等等。</p>
-<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1569508599900.jpg" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1569508599900.jpg" alt=""></figure>
 <p>当您处理许多相邻的不同部分时（比如 YouTube 的视频缩略图或是中型文章的封面），您应该为所有部分选择一种整体风格，并坚持使用。</p>
 <h3 id="奥卡姆剃刀-减少视觉噪音">奥卡姆剃刀 减少视觉噪音</h3>
 <p>在您的设计中，使用的元素越少越好。为什么呢？因为人类的大脑很难在输入过载的情况下处理信息并作出决策。您应该使用尽可能少的装饰元素（字体、颜色、阴影、图标等等）。</p>
 <p>将奥卡姆剃刀应用于所有内容。如果只需要两个元素就能满足需求，那么就不要使用 3 个元素；如果 10 个元素实现所需的功能，那么就不要用 20 个元素。</p>
-<figure data-type="image" tabindex="6"><img src="http://localhost:4000/post-images/1569508627847.jpg" alt=""></figure>
+<figure data-type="image" tabindex="6"><img src="https://mengxiaoxu.github.io//post-images/1569508627847.jpg" alt=""></figure>
 <p>如果您不喜欢古老的英国哲学家风格，更喜欢您在 Netflix（一家美国流媒体提供商）上看到的东西。请将<a href="https://zh.wikipedia.org/wiki/%E6%80%A6%E7%84%B6%E5%BF%83%E5%8A%A8%E7%9A%84%E4%BA%BA%E7%94%9F%E6%95%B4%E7%90%86%E9%AD%94%E6%B3%95">怦然心动的人生整理魔法</a>应用到您的设计中。</p>
 <blockquote>
 <p>《怦然心动的人生整理魔法》是美国流媒体提供商Netflix于2019年1月1日首播的一档真人实境秀节目。节目由日本“整理咨询顾问” 近藤麻理惠主创。她在每集节目中拜访一个家庭，帮助他们整理自己的房间。<br>
@@ -537,15 +537,15 @@ function createXHR() {
 <p><em><strong>1、接近度 = 相关性</strong></em></p>
 <p>与其它元素相比，彼此更接近的事物被认为它们有更强的相关性。这是最重要的，因为我觉得它常常容易被忽视。</p>
 <p>它可以以很多不同的方式应用，比如行与行之间应该有一定的间距，而不是一行中每个单词之间的间距那么小；同样不同段落之间的空间也比段落内的行空间要大。</p>
-<p><img src="http://localhost:4000/post-images/1569508662741.jpg" alt=""><br>
+<p><img src="https://mengxiaoxu.github.io//post-images/1569508662741.jpg" alt=""><br>
 元素之间的间距应该小于元素与组合边缘之间的间距。</p>
-<figure data-type="image" tabindex="7"><img src="http://localhost:4000/post-images/1569508700468.jpg" alt=""></figure>
+<figure data-type="image" tabindex="7"><img src="https://mengxiaoxu.github.io//post-images/1569508700468.jpg" alt=""></figure>
 <p>标签和支撑信息应该位于其相关元素附近。</p>
-<figure data-type="image" tabindex="8"><img src="http://localhost:4000/post-images/1569508720176.jpg" alt=""></figure>
+<figure data-type="image" tabindex="8"><img src="https://mengxiaoxu.github.io//post-images/1569508720176.jpg" alt=""></figure>
 <p><em><strong>2、留白</strong></em></p>
 <p>结合奥卡姆剃刀，给您的设计尽可能留白，去整理它们，使它们的意义更加明显。</p>
 <p>如果把太多元素放在有限的空间里，就像同时听三首不同的哥，很难理解别人在说什么。</p>
-<figure data-type="image" tabindex="9"><img src="http://localhost:4000/post-images/1569508742018.jpg" alt=""></figure>
+<figure data-type="image" tabindex="9"><img src="https://mengxiaoxu.github.io//post-images/1569508742018.jpg" alt=""></figure>
 <p><em><strong>3、重要性与顺序</strong></em></p>
 <p>这是一个很普通的常识，但是我还是要在这里提到它。</p>
 <p>最重要的事情放在第一位，使它们占据最大的空间，用一系列的事物来传达秩序。</p>
@@ -556,43 +556,43 @@ function createXHR() {
     </entry>
     <entry>
         <title type="html"><![CDATA[刘小绪同学随笔（2019-05-12）]]></title>
-        <id>http://localhost:4000/post/liu-xiao-xu-tong-xue-sui-bi-2019-05-12</id>
-        <link href="http://localhost:4000/post/liu-xiao-xu-tong-xue-sui-bi-2019-05-12">
+        <id>https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-05-12</id>
+        <link href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-05-12">
         </link>
         <updated>2019-05-12T14:32:47.000Z</updated>
         <content type="html"><![CDATA[<p>最近机缘巧合和几个中年大叔聊天，从眼神里面能看出来他们是讲的真心话，平时也非常反感长辈们给自己讲的一些大而空的道理，但仔细想想这些话其实并不是完全没用。</p>
 <p>不管对方是世俗眼光中的成功人士还是失败人士，他们都会有自己没有实现的理想愿望，成功人士没有好好陪家人孩子，他们可能喜欢特地找个时间，不管接收方是否感动，但至少他自己已经得到心灵的慰藉了；失败人士没有给到家人足够富裕的生活，这时候他们都很喜欢看<code>努力</code>、<code>奋斗</code>、<code>自强不息</code>......一类词汇堆砌的文章。而老人的精神世界已经不是奋斗了，而是<code>人这一生......</code>，所以如果陪老人说话，你只需要把话题引入到佛身上，然后静静的听就可以了。</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1569767623293.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569767623293.png" alt=""></figure>
 <p>忘了啥时候无意中加了一个高中生，目前正在读高二，与大多数人不同的是，她属于双性恋人群，并且更偏爱小姐姐，出口成脏，上课偷偷玩手机，宛然一个大家脑中所构想的问题少年。</p>
 <p>但是几个月前突然变了，一下子变得有礼貌起来了，我问她是因为什么变了，她告诉我是因为我说的一句话：不说脏话是对人起码的尊重。这句话让她想明白了，我在这里偷偷说一句，我也不知道当时说的这句话对不对，其实就是随口一说，让一个小娃娃变好了，那也好。</p>
 <p>在我的循序诱惑下，小姑娘已经不藏手机了，每周日自觉的把手机交上去，每周五手机发下来再玩，所以我和她的聊天记录现在基本上变成了，周日我发一句“加油”，周五下午我会收到一句“突然出现”。</p>
 <p>小姑娘自己是同性恋的事情不敢给爸妈说，我想这是不是因为父母与孩子天然就有一种屏障，以至于无法与他们进行心灵上的沟通，要想能够得到孩子的信任，父母应该多站在孩子角度考虑考虑问题，尽量不要拿「我都是为你好」去搪塞孩子。</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1569767623293.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569767623293.png" alt=""></figure>
 <p>最近上饶杀熊孩子案很火，女生父亲杀人当然是不对对，但是对于这种校园霸凌这件事，校方与男生家长都摆出无所谓的态度，才导致悲剧的发生，其实校园霸凌的核心不在熊孩子身上，而是在熊家长身上。</p>
 <p>吴军在其《大学之路》上有写道：“在我的印象中，父母晚上从来不参加应酬，甚至不看什么电视剧，总是非常有规律的学习，我的母亲现在快 80 岁了，依然每天坚持学习，父母们并不知道，他们在对我们兄弟的教育上最成功之处，是以他们的行为潜移默化地影响了我们，让我们渐渐养成了终身学习的习惯”。借句公益广告词——父母是最好的老师。</p>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1569767623293.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569767623293.png" alt=""></figure>
 <p>最近一个很搞笑的新闻，法国一所小学为了拯救学校不被关闭，招了 15 只羊作为新生。简单来说就是，根据法国政策，当学生数量少于 261 时，学校将被迫停办，而法国人在抗议上也很有创意，反正规定上又没有写招生的物种必须是人，正好我们家有许多只适龄绵羊，都送去上学吧！</p>
 <p>牧民说到做到，这周二就和校长及家长达成一致，带领着自己家50只绵羊赶到学校招生办公室报道，招生办的老师热情的接待了羊以及送羊报道的牧羊犬们，在检查了所有绵羊的出生证后，最终有15只年龄在3-6岁之间的适龄绵羊顺利通过合法注册，成为小学的一年级新生，让这所小学不至于被停学。</p>
-<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1569767623293.png" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569767623293.png" alt=""></figure>
 <p>我们常常把体育锻炼与健身、减肥挂钩，前段时间杭州程序员小伙伴突然精神崩溃，引发了一大波人关注，在校大学生跳楼也是常有的事，但是去细细看一下，是不是很少会看到体育生跳楼。</p>
 <p>大学生跳楼无非是意志力脆弱、心理自我调节能力差等方面影响的，而体育锻炼恰恰会无意中去缩短了这些短板，我主要不是想说体育锻炼有多么多么好，因为这是大家都知道的，而是想说一件事的作用范围可能比你想象的要大的多。</p>
-<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1569767623293.png" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1569767623293.png" alt=""></figure>
 <p>今天是母亲节，无意中突然记起了初中的一篇阅读理解——《那支枯萎的康乃馨》，读者大人可以去搜搜读读，从另一个角度看看母亲节送礼这件事，不知道现在的朋友圈孝子还多不多。</p>
 <p>同样今天是 5.12 汶川地震纪念日，地震发生时我还在读 6 年级，记得整个床都摇的快要倒了，房子上面的瓦片蹭蹭的往下掉，但是学生中间没有一个害怕了，原因只是因为我们并不知道地震这个词。</p>
 <p>去年的 5.28 日，吉林松原发生了一次小的地震，哈尔滨有震感，作为也算经历过地震的人，自然异常的敏感，熟睡中的我一下就惊醒了，立刻意识到地震了，然后在那三四秒的时间里面，时间好像停住了一样，我都数不清那几秒时间脑海里滑过了多少记忆，我体会到了面对死亡的感觉，几秒过后，根据汶川地震的经验，本次只是小地震，所以我又躺下睡觉了，然后室友们都跑出去了。</p>
-<figure data-type="image" tabindex="6"><img src="http://localhost:4000/post-images/1569767623293.png" alt=""></figure>
+<figure data-type="image" tabindex="6"><img src="https://mengxiaoxu.github.io//post-images/1569767623293.png" alt=""></figure>
 <p>出来工作也有大半年了，之前以为第一份工作是学习技术的，现在才发现第一份工作首先应该学习的是做事态度，在学校如果某件事不想做或者太困难，那么完全可以选择不做，但是在企业不行，一些恶心的事情必须有人得去做，学生总是缺乏应有的责任感，但责任感是优秀员工的基本条件。</p>
 <p>我之前在公司怼过两次领导，怼完领导之后他反倒对我更好了，给我解决问题的速度超快，现在回想起来可能自己实际上做错了，为啥不能心平气和的去解释，而采取暴力沟通，今后我也要学习怎么做一个圆滑的俗人。</p>
 <p>保持一个虚心的学习态度是异常重要的，认清自己资质平平的现实。一些人在公司认为经理是个傻逼，总监是个马屁精，董事长屁股决定脑袋，那不过是因为你没到那个位置，没办法理解他们考虑问题的角度而已。</p>
-<figure data-type="image" tabindex="7"><img src="http://localhost:4000/post-images/1569767623293.png" alt=""></figure>
+<figure data-type="image" tabindex="7"><img src="https://mengxiaoxu.github.io//post-images/1569767623293.png" alt=""></figure>
 <p>最后，放个图，开心一下！！！</p>
 <figure data-type="image" tabindex="8"><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g2yp4ldad4g308c05ynp4.jpg" alt=""></figure>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[浅析浏览器缓存机制]]></title>
-        <id>http://localhost:4000/post/qCt13nLLT</id>
-        <link href="http://localhost:4000/post/qCt13nLLT">
+        <id>https://mengxiaoxu.github.io//post/qCt13nLLT</id>
+        <link href="https://mengxiaoxu.github.io//post/qCt13nLLT">
         </link>
         <updated>2019-04-26T12:29:29.000Z</updated>
         <content type="html"><![CDATA[<p>前端开发人员有大部分时间都在调整页面样式，如果页面没有按照自己预期的样式显示，可能想到的第一个解决方案就是清一下浏览器缓存，HTTP 缓存机制作为 Web 性能优化的重要手段，也应该是 Web 开发人员必备的基础知识。我们常说的浏览器缓存机制也就是 HTTP 缓存机制，它是根据 HTTP 报文的缓存标识运行的，所以首先要对 HTTP 报文有一个简单的了解。</p>
@@ -600,7 +600,7 @@ function createXHR() {
 <p>HTTP 报文是浏览器和服务器间进行通信时所发的响应数据，所以 HTTP 报文分为请求（Request）报文和响应（Response）报文两种，浏览器向服务器发送的是请求报文，而服务器向浏览器发送的是响应报文。HTTP 请求报文由请求行、请求头、请求体组成，响应报文则由状态行、响应头、响应正文组成，与缓存有关的规则信息则都包含在请求头和响应头中。</p>
 <h4 id="缓存概述">缓存概述</h4>
 <p>浏览器与服务器通过请求响应模式来通信，当浏览器第一次向服务器发送请求并拿到结果后，会根据响应报文中的缓存规则来决定是否缓存结果，其简单的流程如下图：</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1569414647062.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569414647062.png" alt=""></figure>
 <p>浏览器每次发起请求都会先在浏览器缓存中查找该请求的结果和缓存标识，而且每次拿到响应数据后都会将该结果和缓存标识存入缓存中。HTTP 缓存的规则有多种，我们可以根据是否需要重新向服务器发起请求这一维度来分类，即有<strong>强制缓存</strong>和<strong>协商缓存</strong>两类，也有人把协商缓存叫对比缓存。</p>
 <h4 id="强制缓存">强制缓存</h4>
 <p>我们先自己想一下，使用缓存是不是会有下面几种情况出现。</p>
@@ -652,28 +652,28 @@ function createXHR() {
 </tbody>
 </table>
 <p>我们可以看看下面这个例子，可以从截图中看到<code>Expires</code>是一个绝对值，而<code>Cache-Control</code>是一个相对值，此处为<code>max-age=3600</code>，即 1 小时后失效。在无法确定客户端的时间是否与服务端的时间同步的情况下，<code>Cache-Control</code>相比于<code>Expires</code>是更好的选择，所以同时存在时只有<code>Cache-Control</code>生效。</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1569414685538.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569414685538.png" alt=""></figure>
 <h4 id="协商缓存">协商缓存</h4>
 <p>协商缓存，顾名思义就是需要双方通过协商来判断是否可以使用缓存。强制缓存失效后，浏览器带着缓存标识向服务器发起请求，由服务器根据缓存标识决定是否可以使用缓存，那自然而然就有协商缓存生效和协商缓存不生效两种情况了。</p>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1569414775602.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569414775602.png" alt=""></figure>
 <p>上图是协商缓存生效的流程，如果协商缓存不生效则返回的状态码为 200。协商缓存的标识也是在响应报文的响应头中返回给浏览器的，控制协商缓存的字段有<code>Last-Modified / If-Modified-Since</code>和<code>Etag / If-None-Match</code>，其中<code>Etag / If-None-Match</code>的优先级比<code>Last-Modified / If-Modified-Since</code>高，所以同时存在时只有<code>Etag / If-None-Match</code>生效。</p>
 <h6 id="last-modified-if-modified-since">Last-Modified / If-Modified-Since</h6>
 <p>你可以往上翻一翻，看一下那张响应报文截图，其中有一个<code>Last-Modified</code>字段，它的值是该资源文件在服务器最后被修改的时间。</p>
 <p><code>If-Modified-Since</code>则是客户端再次发起该请求时，携带上次请求返回的<code>Last-Modified</code>值。服务器收到该请求后，发现该请求头有<code>If-Modified-Since</code>字段，则会将<code>If-Modified-Since</code>与该资源在服务器的最后被修改时间做对比，若服务器的资源最后被修改时间大于<code>If-Modified-Since</code>的字段值，则重新返回资源，状态码为 200；否则则返回 304，代表资源无更新，可继续使用缓存文件。</p>
-<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1569414811322.png" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569414811322.png" alt=""></figure>
 <h6 id="etag-if-none-match">Etag / If-None-Match</h6>
 <p><code>Etag</code>是服务器响应请求时，返回当前资源文件的一个由服务器生成的唯一标识。</p>
 <p><code>If-None-Match</code>则是客户端再次发起该请求时，携带上次请求返回的唯一标识<code>Etag</code>值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有<code>If-None-Match</code>，则会根据<code>If-None-Match</code>的字段值与该资源在服务器的<code>Etag</code>值做对比，如果一致则就返回 304，代表资源无更新，可以继续使用缓存文件；否则重新返回资源文件，状态码为200，</p>
-<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1569414845179.png" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1569414845179.png" alt=""></figure>
 <h4 id="disk-cache-与-memory-cache">disk cache 与 memory cache</h4>
 <p>我们可以通过浏览器调试工具查看强制缓存是否生效，如下图所示，状态码为灰色的请求就代表使用了强制缓存，请求对应的 size 显示了该缓存存放的位置，那么什么时候用 disk 什么时候用 memory 呢？</p>
-<figure data-type="image" tabindex="6"><img src="http://localhost:4000/post-images/1569414871028.png" alt=""></figure>
+<figure data-type="image" tabindex="6"><img src="https://mengxiaoxu.github.io//post-images/1569414871028.png" alt=""></figure>
 <p>猜都能猜出来，肯定是优先使用内存（memory）中的缓存，然后才用硬盘（disk）中的缓存。</p>
 <p>内存缓存具有快速读取的特点，它会将编译解析后的文件直接存入该进程的内存中，但是一旦进程关闭了，该进程的内存就会被清空，所以如果你将一个网页关闭后再打开，那么缓存都会走硬盘缓存，而如果你只是刷新网页，那有部分缓存走的就是内存缓存。</p>
 <p>浏览器一般会再 js 和图片等文件解析执行后直接存入内存缓存中，当刷新页面时，这部分文件只需要从内存缓存中读取即可，而 css 文件则会存入硬盘中，所以每次渲染页面都需要从硬盘中读取文件。</p>
 <h4 id="总结">总结</h4>
 <p>到这里偷懒一下子了，找到人家画的一张图，看图就行了。</p>
-<figure data-type="image" tabindex="7"><img src="http://localhost:4000/post-images/1569414915648.png" alt=""></figure>
+<figure data-type="image" tabindex="7"><img src="https://mengxiaoxu.github.io//post-images/1569414915648.png" alt=""></figure>
 <blockquote>
 <p>参考内容：<br>
 <a href="https://heyingye.github.io/2018/04/16/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">彻底理解浏览器的缓存机制</a><br>
@@ -683,8 +683,8 @@ function createXHR() {
     </entry>
     <entry>
         <title type="html"><![CDATA[Git 进阶及常用命令]]></title>
-        <id>http://localhost:4000/post/git-jin-jie-ji-chang-yong-ming-ling</id>
-        <link href="http://localhost:4000/post/git-jin-jie-ji-chang-yong-ming-ling">
+        <id>https://mengxiaoxu.github.io//post/git-jin-jie-ji-chang-yong-ming-ling</id>
+        <link href="https://mengxiaoxu.github.io//post/git-jin-jie-ji-chang-yong-ming-ling">
         </link>
         <updated>2019-04-18T14:43:54.000Z</updated>
         <content type="html"><![CDATA[<p>如果你只是想查看 Git 常用命令可以选择直接到文章底部「Git 常用命令」阅读，文章大部分内容是 Git 进阶知识，均是自己的读书笔记，如果还想在此基础上再上一层楼，那可以直接看 <a href="https://git-scm.com/book/zh/v2">Pro Git book</a>。</p>
@@ -880,21 +880,21 @@ Changes to be committed:
     </entry>
     <entry>
         <title type="html"><![CDATA[什么是契约测试？]]></title>
-        <id>http://localhost:4000/post/shi-me-shi-qi-yue-ce-shi</id>
-        <link href="http://localhost:4000/post/shi-me-shi-qi-yue-ce-shi">
+        <id>https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi</id>
+        <link href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">
         </link>
         <updated>2019-04-10T13:40:31.000Z</updated>
         <content type="html"><![CDATA[<p>契约测试全称为：消费者驱动契约测试，最早由 Martin Fowler 提出。契约这个词从字面上很容易理解，就是双方（多方）达成的共同协议，那又为什么需要契约测试这个东西呢？</p>
 <p>在当前微服务大行其道的行业背景下，越来越多的团队采用了前后端分离和微服务架构，我们知道微服务是由单一程序构成的小服务，与其它服务使用 HTTP API 进行通讯，服务可以采用不同的编程语言与数据库，微服务解决了单体应用团队协作开发成本高、系统高可用性差等等问题。</p>
 <p>但是微服务也引入了新的问题，假设 A 团队开发某服务并提供对应的 API，B 团队也在开发另一个服务，但是他们需要调用 A 团队的 API，为了产品的尽快发布，两个团队都争分夺秒，已经进入联调阶段了，然而出现了下面这样的尴尬情况。</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1569678515041.jpg" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569678515041.jpg" alt=""></figure>
 <p>随着越来越多的微服务加入，它们的调用关系开始变得越来越复杂，如果每次更改都需要和所有调用该 API 的团队协商，那沟通成本也未免太大了，试想下图的沟通成本。</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1569678554581.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569678554581.png" alt=""></figure>
 <p>为了保证 API 调用的准确性，我们会对外部系统的 API 进行测试，如果外部系统稳定性很差，或者请求时间很长的时候，就会导致我们的测试效率很低，当调用 API 失败时，你甚至无法确定是因为 API 被更改而导致的失败还是运行环境不稳定导致的失败。</p>
 <p>A 团队提供的 API 不稳定，肯定会导致 B 团队效率低下，为了不影响 B 团队的进度，所以构建了<a href="https://martinfowler.com/bliki/TestDouble.html">测试替身</a>，通过模拟外部 API 的响应行为来增强测试的稳定性和反应速度。</p>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1569678587990.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569678587990.png" alt=""></figure>
 <p>但是这样做真的就解决问题了吗？当所有内部测试都通过时，能拍着胸脯说真正的外部 API 就一定没有变化？很简单的一个解决方案就是：部分测试使用测试替身，另一部分测试定期使用真实的外部 API，这样既保证了测试的运行效率、调用端的准确性，又能确保当真实外部系统API改变时能得到反馈。</p>
-<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1569678615430.jpg" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569678615430.jpg" alt=""></figure>
 <p>感觉剧情到这里就差不多该结束了，实际上真正的高潮部分开刚刚开始。如果外部 API 的反馈周期很长，那增加真实 API 测试间隔时间就又回到了最初的起点。现在我们回顾一下上面的方案。</p>
 <p>在上面的场景中，我们都是已知外部 API 功能来编写相应的功能测试，并且使用直接调用外部 API 的方式来达到测试的目的，如此就不可避免的带来了两个问题：</p>
 <ul>

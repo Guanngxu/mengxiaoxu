@@ -7,15 +7,15 @@
 <title>
     计算机系统漫游 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1571411212640">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571415643984">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
 <!-- js -->
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="http://localhost:4000/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
@@ -47,8 +47,8 @@
         <div class="header">
     <div class="nav">
         <div class="logo">
-            <a href="http://localhost:4000">
-                <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1571411212640" alt="">
+            <a href="https://mengxiaoxu.github.io/">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -94,7 +94,7 @@
                                 
                     
                             <li>
-                                <a href="http://localhost:4000/post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
                                     友链
                                 </a>
                             </li>
@@ -132,14 +132,14 @@
                         <div class="post-info">
                             <time class="post-time">2018-10-10</time>
                             
-                                <a href="http://localhost:4000/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_4">
+                                <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="post-tag i-tag
+                            i-tag-error">
                             #操作系统
                         </a>
                                 
                         </div>
                         
-                            <div class="post-feature-image" style="background-image: url('http://localhost:4000/post-images/ji-suan-ji-xi-tong-man-you.jpeg')"></div>
+                            <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/ji-suan-ji-xi-tong-man-you.jpeg')"></div>
                             
                                 <div class="post-content">
                                     <h4 id="计算机中的信息">计算机中的信息</h4>
@@ -154,7 +154,7 @@ int main()
 </code></pre>
 <p>这段程序很简单，仅仅是在屏幕上输出<code>hello world</code>，对于程序员很容易阅读，但是从计算机的角度来看，也是这么简单吗？</p>
 <p>我们都知道，计算机的世界只有 0 和 1组成的位（比特），这对于人类来说太不友好了，因此计算机科学家们设计了 ASCⅡ 码来表示现实世界的符号。每 8 个位构成一个组（称为一个字节），用一个组来表示一个符号，上面的 C 程序用 ASCⅡ 表示就是下面的样式。</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1569342929650.jpg" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569342929650.jpg" alt=""></figure>
 <p>因此对于计算机来说，所有的数据都是由一串比特表示的，要区分这些数据对象的唯一方法就是读到它们时的<strong>上下文</strong>。</p>
 <pre><code>信息 = 位 + 上下文
 </code></pre>
@@ -166,19 +166,19 @@ int main()
 <p>编译阶段，编译器会把 hello.i 程序翻译成汇编语言程序 hello.s，汇编语言本质上就是机器语言，此时的程序仍然是文本文件。</p>
 <p>汇编阶段，汇编器会将 hello.s 翻译成机器语言指令，保存在 hello.o 文件中，此时得到的就是二进制文件了。</p>
 <p>程序中使用了 printf 函数，这是由编译器提供的标准 C 库中的函数，它存储在 printf.o 文件中，链接器会将这个文件合并到 hello.o 中，结果就得到一个可执行的 hello 文件，存储于磁盘中。</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1569342980915.jpg" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569342980915.jpg" alt=""></figure>
 <h4 id="系统组成及程序运行">系统组成及程序运行</h4>
 <p>在运行可执行文件 hello 文件之前，应该先了解一下系统的硬件组成，一个典型系统的硬件组织如下图所示。</p>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1569343008278.jpg" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569343008278.jpg" alt=""></figure>
 <p>为了运行 hello 程序，我们需要在 shell 中输入指令<code>./hello</code>，指令通过键盘经 I/O 总线 --&gt; I/O 桥 --&gt; 总线接口 --&gt; 寄存器 --&gt; I/O 桥存于主存中，当敲击回车键时，等于告诉 shell 程序，命令的属于已经结束， shell 将会执行一系列指令来加载 hello 文件。</p>
 <p>利用**直接存取（DMA）**技术，hello 文件不需要通过寄存器就能到达主存，当目标文件 hello 到达主存中，处理器就开始执行 hello 程序的机器指令。其指令即将 &quot;hello, world\n&quot; 字符串的字节从主存复制到寄存器，再从寄存器复制到显示设备中，最终显示在屏幕上面。</p>
 <p>我们发现这个简单的 HelloWorld 程序会让系统花费大量的时间把信息从一个地方挪到另一个地方，而我们都清楚，寄存器、主存、磁盘之间的访问速度是相互差了好几个数量级的，而这种复制的开销会严重减慢程序的运行，为了加快这些复制操作的速度，系统设计者就引入了<strong>高速缓存</strong>。</p>
 <h4 id="抽象的重要性">抽象的重要性</h4>
 <p>计算机科学中最为重要的概念之一就是<strong>抽象</strong>，指令集提供了对硬件处理器的抽象，操作系统同样通过进程、虚拟内存、文件（磁盘、键盘、网络都可以看成文件）这几个抽象概念为应用程序提供简单一致的机制来控制低级硬件设备，同时防止硬件被失控的应用程序滥用。</p>
-<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1569343504770.jpg" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569343504770.jpg" alt=""></figure>
 <p>进程是对正在运行的程序的抽象，在一个系统上可以同时运行多个进程，但是每个进程看起来都好像在独占的使用硬件，CPU 看上去是在并发的执行多个进程，这就需要操作系统进行上下文切换。</p>
 <p>在我们还没有输入<code>./hello</code>之前，只有 shell 进程在运行，当我们让其运行 hello 程序时，shell 会通过系统调用来执行我们的请求。操作系统首先保存 shell 进程的上下文（PC、寄存器等信息），然后创建一个新的 hello 进程，并将控制权转交给 hello 进程。</p>
-<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1569343051098.jpg" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1569343051098.jpg" alt=""></figure>
 <h4 id="并发和并行">并发和并行</h4>
 <p><strong>并发</strong>是一个通用的概念，指同时具有多个活动的系统；<strong>并行</strong>是指用并发来使一个系统运行的更快，人类都是很懒的，不仅想要计算机能做的更多，还想它效率更高，这样的想法一致促进着技术的前进。</p>
 <p>编程的人都知道，为了使程序运行的更快，我们可以编写多线程程序（虽然多线程程序有些难调），在一个进程里面执行多个控制流，线程级的并发可以让计算机运行的更快。</p>
@@ -191,7 +191,7 @@ int main()
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="http://localhost:4000/post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">
+                            <a href="https://mengxiaoxu.github.io//post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">
                                 <h3 class="post-title">
                                     使用订阅号实现微信公众号历史文章爬虫
                                 </h3>
@@ -269,7 +269,7 @@ int main()
 
             <div class="site-footer">
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
+  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
 </div>
 
 <script>

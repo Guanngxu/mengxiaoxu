@@ -7,15 +7,15 @@
 <title>
     简单理解磁盘结构 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1571411212640">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571415643984">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
 <!-- js -->
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="http://localhost:4000/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
@@ -47,8 +47,8 @@
         <div class="header">
     <div class="nav">
         <div class="logo">
-            <a href="http://localhost:4000">
-                <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1571411212640" alt="">
+            <a href="https://mengxiaoxu.github.io/">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -94,7 +94,7 @@
                                 
                     
                             <li>
-                                <a href="http://localhost:4000/post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
                                     友链
                                 </a>
                             </li>
@@ -132,35 +132,35 @@
                         <div class="post-info">
                             <time class="post-time">2018-04-24</time>
                             
-                                <a href="http://localhost:4000/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-other_3">
+                                <a href="https://mengxiaoxu.github.io//tag/shu-ju-ku" class="post-tag i-tag
+                            i-tag-primary">
                             #数据库
                         </a>
                                 
-                                <a href="http://localhost:4000/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_2">
+                                <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="post-tag i-tag
+                            i-tag-other_1">
                             #操作系统
                         </a>
                                 
                         </div>
                         
-                            <div class="post-feature-image" style="background-image: url('http://localhost:4000/post-images/jian-dan-li-jie-ci-pan-jie-gou.jpg')"></div>
+                            <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/jian-dan-li-jie-ci-pan-jie-gou.jpg')"></div>
                             
                                 <div class="post-content">
                                     <p>数据库系统总会涉及到辅助存储（大多都是磁盘），因为它们能够存储大量需要长期保存的数据，因此我们有必要先了解了解磁盘的相关知识。</p>
 <p>根据机械原理，存储器的容量越大其速度就越慢。但是速度越快的存储器，其单位字节的价格就越贵。现代计算机系统可以包含几个不同的可以存储数据的部件，就形成了存储器的层次结构，但是需要注意的是「虚拟内存」是操作系统与操作系统运用机器硬件的产物，它不是存储器的层次之一。</p>
 <h3 id="磁盘结构">磁盘结构</h3>
 <p>传统的硬盘盘结构是像下面这个样子的，它有一个或多个盘片，用于存储数据。盘片多采用铝合金材料；中间有一个主轴，所有的盘片都绕着这个主轴转动。一个组合臂上面有多个磁头臂，每个磁头臂上面都有一个磁头，负责读写数据。</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1569679266882.jpg" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569679266882.jpg" alt=""></figure>
 <p>磁盘一般有一个或多个盘片。每个盘片可以有两面，即第一个盘片的正面为0面，反面为 1 面；第二个盘片的正面为 2 面......依次类推。磁头的编号也和盘面的编号是一样的，因此有多少个盘面就有多少个磁头。盘面正视图如下图，磁头的传动臂只能在盘片的内外磁道之间移动。因此不管开机还是关机，磁头总是在盘片上面。关机时，磁头停在盘片上面，抖动容易划伤盘面造成数据损失，为了避免这样的情况，所以磁头都是停留在起停区的，起停区是没有数据的。</p>
-<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1569679294923.jpg" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569679294923.jpg" alt=""></figure>
 <p>每个盘片的盘面被划分成多个狭窄的同心圆环，数据就存储在这样的同心圆环上面，我们将这样的圆环称为<strong>磁道 (Track)</strong>。每个盘面可以划分多个磁道，最外圈的磁道是0号磁道，向圆心增长依次为1磁道、2磁道......磁盘的数据存放就是从最外圈开始的。</p>
-<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1569679321392.jpg" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569679321392.jpg" alt=""></figure>
 <p>根据硬盘的规格不同，磁道数可以从几百到成千上万不等。每个磁道可以存储数 Kb 的数据，但是计算机不必要每次都读写这么多数据。因此，再把每个磁道划分为若干个弧段，每个弧段就是一个<strong>扇区 (Sector)</strong>。扇区是硬盘上存储的物理单位，现在每个扇区可存储 512 字节数据已经成了业界的约定。也就是说，即使计算机只需要某一个字节的数据，但是也得把这个 512 个字节的数据全部读入内存，再选择所需要的那个字节。</p>
-<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1569679350392.jpg" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569679350392.jpg" alt=""></figure>
 <p><strong>柱面</strong>是我们抽象出来的一个逻辑概念，简单来说就是处于同一个垂直区域的磁道称为柱面 ，即各盘面上面相同位置磁道的集合。需要注意的是，磁盘读写数据是按柱面进行的，磁头读写数据时首先在同一柱面内从 0 磁头开始进行操作，依次向下在同一柱面的不同盘面(即磁头上)进行操作，只有在同一柱面所有的磁头全部读写完毕后磁头才转移到下一柱面。因为选取磁头只需通过电子切换即可，而选取柱面则必须通过机械切换。数据的读写是按柱面进行的，而不是按盘面进行，所以把数据存到同一个柱面是很有价值的。</p>
 <p>磁盘被<strong>磁盘控制器</strong>所控制（可控制一个或多个），它是一个小处理器，可以完成一些特定的工作。比如将磁头定位到一个特定的半径位置；从磁头所在的柱面选择一个扇区；读取数据等。</p>
-<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1569679375878.jpg" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1569679375878.jpg" alt=""></figure>
 <p>现代硬盘寻道都是采用CHS(Cylinder Head Sector)的方式，硬盘读取数据时，读写磁头沿径向移动，移到要读取的扇区所在磁道的上方，这段时间称为寻道时间(seek time)。因读写磁头的起始位置与目标位置之间的距离不同，寻道时间也不同。磁头到达指定磁道后，然后通过盘片的旋转，使得要读取的扇区转到读写磁头的下方，这段时间称为旋转延迟时间(rotational latencytime)。然后再读写数据，读写数据也需要时间，这段时间称为传输时间（transfer time）。</p>
 <p>根据上文的信息，我们可以得出磁盘容量的计算公式为：</p>
 <pre><code>硬盘容量 = 盘面数 × 柱面数 × 扇区数 × 512字节
@@ -240,7 +240,7 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="http://localhost:4000/post/FoEH1GV6f">
+                            <a href="https://mengxiaoxu.github.io//post/FoEH1GV6f">
                                 <h3 class="post-title">
                                     阅读高于自己的作品，远离精神毒品
                                 </h3>
@@ -315,7 +315,7 @@
 
             <div class="site-footer">
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
+  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
 </div>
 
 <script>

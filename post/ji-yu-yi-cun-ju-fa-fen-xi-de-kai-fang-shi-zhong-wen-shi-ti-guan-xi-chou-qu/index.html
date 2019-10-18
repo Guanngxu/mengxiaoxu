@@ -7,15 +7,15 @@
 <title>
     基于依存句法分析的开放式中文实体关系抽取 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1571411212640">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571415643984">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
 <!-- js -->
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="http://localhost:4000/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
@@ -47,8 +47,8 @@
         <div class="header">
     <div class="nav">
         <div class="logo">
-            <a href="http://localhost:4000">
-                <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1571411212640" alt="">
+            <a href="https://mengxiaoxu.github.io/">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -94,7 +94,7 @@
                                 
                     
                             <li>
-                                <a href="http://localhost:4000/post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
                                     友链
                                 </a>
                             </li>
@@ -132,14 +132,14 @@
                         <div class="post-info">
                             <time class="post-time">2018-04-26</time>
                             
-                                <a href="http://localhost:4000/tag/zi-ran-yu-yan-chu-li" class="post-tag i-tag
-                            i-tag-info">
+                                <a href="https://mengxiaoxu.github.io//tag/zi-ran-yu-yan-chu-li" class="post-tag i-tag
+                            i-tag-other_2">
                             #自然语言处理
                         </a>
                                 
                         </div>
                         
-                            <div class="post-feature-image" style="background-image: url('http://localhost:4000/post-images/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu.jpeg')"></div>
+                            <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu.jpeg')"></div>
                             
                                 <div class="post-content">
                                     <p>这一段时间一直在做知识图谱，卡在实体关系抽取这里几个月了，在 Github 上面看到有人使用卷积神经网络训练模型进行抽取，自己也尝试了一下，但是一直苦于没有像样数据去训练，而标注训练集又太费时间了，我不太愿意干体力活。所以采用了一个低档次的方法，<strong>基于依存句法分析的实体关系抽取</strong>，记录一下心得，方便日后忘记可以再找回来。</p>
@@ -220,7 +220,7 @@ if (dic.containsKey(&quot;主谓关系&quot;) &amp;&amp; dic.containsKey(&quot;�
 </code></pre>
 <p>对于分词后的每个词语都进行上面程序段的操作。“刘小绪”和“四川”，关系字典都为空。而对于“生于”，关系列表里面既有主谓也有动宾，而自己本身就是动词，主谓宾就出来了。直接从主谓关系中拿出来词语作为 entity1，再拿上自己作为关系，最后拿出动宾关系中的词语作为 entity2。很明确的三元组（刘小绪，生于，四川）就出来了。</p>
 <p>最后给出一个程序运行结果图吧。</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1569767901123.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569767901123.png" alt=""></figure>
 <p>我个人觉得效果还行，在简单句子上面表现的差强人意，在长句子上面表现的差劲。</p>
 <p>参考：</p>
 <p><a href="https://github.com/hankcs/HanLP">HanLP 自然语言处理</a></p>
@@ -233,7 +233,7 @@ if (dic.containsKey(&quot;主谓关系&quot;) &amp;&amp; dic.containsKey(&quot;�
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="http://localhost:4000/post/jian-dan-li-jie-ci-pan-jie-gou">
+                            <a href="https://mengxiaoxu.github.io//post/jian-dan-li-jie-ci-pan-jie-gou">
                                 <h3 class="post-title">
                                     简单理解磁盘结构
                                 </h3>
@@ -251,7 +251,7 @@ if (dic.containsKey(&quot;主谓关系&quot;) &amp;&amp; dic.containsKey(&quot;�
                                 <!-- id-card -->
                                 
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(http://localhost:4000/images/avatar.png?v=1571411212640)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -293,7 +293,7 @@ if (dic.containsKey(&quot;主谓关系&quot;) &amp;&amp; dic.containsKey(&quot;�
 
             <div class="site-footer">
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
+  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
 </div>
 
 <script>

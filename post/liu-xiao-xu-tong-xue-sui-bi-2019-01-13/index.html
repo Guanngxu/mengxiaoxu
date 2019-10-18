@@ -1,231 +1,280 @@
-
-<!DOCTYPE html>
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
-<title>刘小绪同学随笔（2019-01-13） | 刘小绪同学的博客</title>
-<meta name="description" content="正在学习写代码的码农">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571404263554">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    刘小绪同学随笔（2019-01-13） | 刘小绪同学的博客
+</title>
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1571411212640">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="http://localhost:4000/media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://mengxiaoxu.github.io/">
-        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571404263554" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://mengxiaoxu.github.io/">
-        <h1 class="site-title">刘小绪同学的博客</h1>
-      </a>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-148716803-1');
+    </script>
+    
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                
+
+                    
+                            
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="http://localhost:4000">
+                <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1571411212640" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    刘小绪同学的博客
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="http://localhost:4000/post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                    友链
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-        
-          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
-            友链
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-            <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/liu-xiao-xu-tong-xue-sui-bi-2019-01-13.jpeg')">
-            </div>
-          
-          <h2 class="post-title">刘小绪同学随笔（2019-01-13）</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-01-13</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy">
-                    随笔
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH">
-                    个人总结
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://mengxiaoxu.github.io//tag/94PzxqinO">
-                    生活感悟
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <p>前一周在一席上面看了一场演讲叫「不正经历史研究所所长」，整场演讲都伴随着欢声笑语，讲的是民间文化与经典文化，经典文化实际上是统治阶级强行推动的精致文化，绝大部分老百姓是看不懂这些东西的，反正我自己参观博物馆，如果没有讲解，我是完全看不懂那些玩意的。</p>
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            刘小绪同学随笔（2019-01-13）
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-01-13</time>
+                            
+                                <a href="http://localhost:4000/tag/Z_0XCM_Cy" class="post-tag i-tag
+                            i-tag-other_4">
+                            #随笔
+                        </a>
+                                
+                                <a href="http://localhost:4000/tag/EE1uiCHgH" class="post-tag i-tag
+                            i-tag-warning">
+                            #个人总结
+                        </a>
+                                
+                                <a href="http://localhost:4000/tag/94PzxqinO" class="post-tag i-tag
+                            i-tag-success">
+                            #生活感悟
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('http://localhost:4000/post-images/liu-xiao-xu-tong-xue-sui-bi-2019-01-13.jpeg')"></div>
+                            
+                                <div class="post-content">
+                                    <p>前一周在一席上面看了一场演讲叫「不正经历史研究所所长」，整场演讲都伴随着欢声笑语，讲的是民间文化与经典文化，经典文化实际上是统治阶级强行推动的精致文化，绝大部分老百姓是看不懂这些东西的，反正我自己参观博物馆，如果没有讲解，我是完全看不懂那些玩意的。</p>
 <p>能和生活联系在一起的文化最有活力，比如天天发杨超越祈求不挂科，拜拜马云希望有更多的钱等等。有一句老话叫「人活一口气」，民间文化都基于此，我在别人面前要抬得起头，要的是气派、要的是大气，上个世纪的「四大件」应该就是成功的一个标配，老百姓置办这些物件后，在邻居面前也更能昂首挺胸了。</p>
 <p>昨天了解到一个朋友家乡的有一个非常奇怪的习俗，那就是「坟头蹦迪」，我最开始的想法是，这是不是最近兴起来的习俗，但是一问才知道，他小时候就是这样的了。基于我们的体系是无法理解坟头蹦迪的，你能说它们对于亲人的去世就不伤心吗？他们要的还是能抬起头，来参加追悼会的人们看到这么豪华的场面，第一反应是故人后代是很有成就的，在某种程度上这算是对故人的颂扬。</p>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569675275620.GIF" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1569675275620.GIF" alt=""></figure>
 <p>花了几个小时时间把微信清理了一下，只留下了 83 个公众号，这其中还包括一信用卡一类的服务号，也就是说只留下了 70 个左右的公众号。留下的都是小而美的公众号，这些大佬作者的更新频率也很低，比如子柳老师最近才更新了一篇文章，而上一篇文章的更新时间是 7 月 25 日。</p>
 <p>最近在自己身上认识的一个问题是，关注的公众号太多读不过来，虽然在此之前已经筛选掉了很多号，然而自己还是读不过来，所以索性就做了减法。现在像公众号这些，已经变成了获取信息的一个重要渠道，我也确实比周围小伙伴掌握信息更快，大部分时间也自认为比他们更了解真相。</p>
 <p>但是我最近突然有个疑问，我真的比他们更了解真相吗？大部分人是通过垃圾文章获取信息，我虽然没有跟着垃圾文章人云亦云，但是我还是通过网络获取信息的，那么我是不是看到的是另外一种看起来更接近真相的假象呢？</p>
 <p>这些信息其实我就算不知道好像也没有什么大碍，顶多是别人谈什么新闻时，我所了解的也就他们知道的那么点而已，更好的方式是让自己的大脑去思考，以时间的维度去追踪事件的发展。</p>
 <p>顺便推荐一个应用叫「刷屏」，我发现自己通过「刷屏」、「知识星球」、「微信公众号」、「朋友圈」四个地方，已经掌握大部分信息了，经常同事给我说某某新闻，而我在两三天前已经见过了。</p>
-<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569675275620.GIF" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1569675275620.GIF" alt=""></figure>
 <p>我对国际计量大会修改「1 千克」的定义这件事印象很深，但是这件事我只看到在阮一峰老师的文章中有被提到过；人们更喜欢听自己了解的领域，跟自己同好的很容易产生好感，一些明星结婚、出轨竟然能把微博的服务给搞挂了，说明绝大部分人还是更喜欢撩自己 G 点的信息。</p>
-<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569674834045.jpg" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1569674834045.jpg" alt=""></figure>
 <p>另外第二个问题是自己现在比在学校时更喜欢玩手机了，在学校时还能做到不带手机去自习，现在是隔一会儿就看看手机，把本来就碎片化的时间变得更加碎片化了，这种效率导致工作、学习效率低下，所以把微信和 TIM 的通知全部关掉了。</p>
-<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569675275620.GIF" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1569675275620.GIF" alt=""></figure>
 <p>写到这里发现有点点像总结，索性就给自己简单总结总结吧。2018 我从校园走向了社会，完成了从学生到职场的转变。最大的改变是思维的提升，知道去投资自己，在学生时代，愿意花几百块钱去买课程，这对我来说是很大的突破，和现在愿意花几百的概念完全不一样，想想那时候一个月生活费总共也没有多少，而我去看了下自己在毕业前花在这方面的钱居然有一千多，如果加上毕业后的开销，那就是两千多了，真感谢那时候的自己。</p>
 <p>这其中的收获是巨大的，后面我偶尔会向朋友推荐一些好的付费课程，但是他们都和大部分人一样，吃一顿饭花几百块钱，而如果花点钱买一堂课提升一下自己，就好像要他命一样，所以后面就不和他们讲了。</p>
-<figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1569675275620.GIF" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="http://localhost:4000/post-images/1569675275620.GIF" alt=""></figure>
 <p>2018 开始用文字记录技术、生活、感悟，这其中的收获也是不小的，认识了此前只能仰望的大佬，结交了志同道合的朋友，而且也让自己更愿意去思考了。收到电子工业出版社的约稿合同，但是现在书都没写完，明年还写不完的话，那就不写了，主要是懒。</p>
 <p>自负的缺点已经在渐渐改变了，更加懂得了谦虚。眼界不再局限于技术，很多东西我都会去了解，也结交了很多有趣的人，初入职场，好好学习与不同的人沟通。以后如果有能力，希望能给山区带去一点点教育资源。</p>
 <p>2019 依旧坚持每周和同事或者校友打一次羽毛球，常去爬爬山，和有趣的朋友一起疯一疯；多读书，用豆瓣等工具去筛选好书，加大阅读量；常输出，输出是更高层次的输入；尝试去了解金融的逻辑；学习新的技术领域。</p>
 
-          </div>
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="http://localhost:4000/post/da-xue-sheng-shu-dan-tui-jian">
+                                <h3 class="post-title">
+                                    大学生书单推荐
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                                <!-- id-card -->
+                                
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(http://localhost:4000/images/avatar.png?v=1571411212640)">
         </div>
+        <h1 class="id_card-title">
+            刘小绪同学的博客
+        </h1>
+        <h2 class="id_card-description">
+            正在学习写代码的码农
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
 
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">
-              <h3 class="post-title">
-                下一篇：大学生书单推荐
-              </h3>
-            </a>
-          </div>
-          
-      </div>
+        </div>
+    </div>
+    
+                                    
 
-      
-        
-          <div id="gitalk-container"></div>
-        
+                </div>
 
-        
-      
 
-      <div class="site-footer">
-  <div class="slogan">正在学习写代码的码农</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
 </div>
 
-
-    </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
 
-
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    </div>
     <script>
-
-      var gitalk = new Gitalk({
-        clientID: '70b5a748b63425a6adfc',
-        clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
-        repo: 'mengxiaoxu.github.io',
-        owner: 'mengxiaoxu',
-        admin: ['mengxiaoxu'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
     </script>
-  
+    
+        
+            <script>
+    window.onload = function() {
+        var gitalk = new Gitalk({
+            clientID: '70b5a748b63425a6adfc',
+            clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
+            repo: 'mengxiaoxu.github.io',
+            owner: 'mengxiaoxu',
+            admin: ['mengxiaoxu'],
+            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+        })
 
-  
+        gitalk.render('gitalk-container')
+    }
+</script>
+                
 
+                    
+                                
+</body>
 
-
-
-  </body>
 </html>

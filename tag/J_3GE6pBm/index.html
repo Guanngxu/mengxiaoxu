@@ -1,179 +1,322 @@
-
-<!DOCTYPE html>
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
-<title>TypeScript | 刘小绪同学的博客</title>
-<meta name="description" content="正在学习写代码的码农">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571404263554">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    TypeScript | 刘小绪同学的博客
+</title>
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1571411212640">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="http://localhost:4000/media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://mengxiaoxu.github.io/">
-        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571404263554" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://mengxiaoxu.github.io/">
-        <h1 class="site-title">刘小绪同学的博客</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-        
-          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
-            友链
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
+        gtag('config', 'UA-148716803-1');
+    </script>
+    
+</head>
 
-
-      <div class="content-container">
-
-        <div class="current-tag-container">
-          <h2 class="title">
-            <i class="icon icon-pricetags-outline"></i> TypeScript
-          </h2> 
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="http://localhost:4000">
+                <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1571411212640" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    刘小绪同学的博客
+                </h1>
+            </div>
         </div>
-
-        
-<section class="post-item">
-    <div class="content">
-      <a href="https://mengxiaoxu.github.io//post/MqqlYHD78">
-        <h2 class="post-title">Bootstrap-table 合并相同单元格</h2>
-      </a>
-      <div class="post-abstract">
-        
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-01-26</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://mengxiaoxu.github.io//tag/J_3GE6pBm">
-                TypeScript
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
                 
-                  ，
-                
-              </a>
-            
-              <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz">
-                前端
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-      <a href="https://mengxiaoxu.github.io//post/MqqlYHD78">
-        <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/MqqlYHD78.jpg')">
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="http://localhost:4000/post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                    友链
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
         </div>
-      </a>
-    
-  </section>
-
-
-<div class="pagination-container">
-  
-  
-</div>
-
-
-      </div>
-
-      <div class="site-footer">
-  <div class="slogan">正在学习写代码的码农</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
-</div>
-
-
     </div>
-    <script type="application/javascript">
+</div>
 
-hljs.initHighlightingOnLoad()
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
+        });
+    });
 </script>
 
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        TypeScript</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="http://localhost:4000/post/MqqlYHD78">
+                        Bootstrap-table 合并相同单元格
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-01-26</time>
+                    
+                        <a href="http://localhost:4000/tag/J_3GE6pBm" class="post-tag i-tag
+                            i-tag-other_2">
+            #TypeScript
+        </a>
+                        
+                        <a href="http://localhost:4000/tag/Cp4eHBEcz" class="post-tag i-tag
+                            i-tag-error">
+            #前端
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="http://localhost:4000/post/MqqlYHD78" class="post-feature-image" style="background-image:url(http://localhost:4000/post-images/MqqlYHD78.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            Bootstrap-table 官方提供了合并单元格方法 mergeCells，它根据四个参数可以合并任意个单元格，我们要做的只是告诉它怎么合并。
+要合并同一列相同的单元格，无非两种办法，一种是一边遍历一边合并，遍历完了再合并。这里采用第二种办法，这里不需要遍历所有数据，因为用户只能看到当前页的数据，所以只遍历当前页的数据更省时间。
+下面是我实现的获取合并信息算法，最终返回的是一个哈希表，比如下面的这个表格，如果要对「性别」这一列进行合并，很明显前面两个“男”需要合并成一个单元格，再去看下 Bootstrap-table 提供的 API，它需要的是从哪个单元格开始，合并多少个单元格，也就是它需要的是两个数值类型的参数。
 
 
 
-  </body>
+姓名
+性别
+年龄
+
+
+
+
+张三
+男
+23
+
+
+李四
+男
+19
+
+
+王二
+女
+20
+
+
+麻子
+男
+21
+
+
+
+所以我把哈希表设置为，键存的是索引，值存的是从这个索引开始后面连续有多少个和它一样的单元格，那么上述表格性别这一列所得到的合并信息哈希表就为：
+{
+    0: 2,
+    2: 1,
+    3: 1
+}
+
+下面算法很简单，使用两个指针遍历指定的列，如果两个指针所指向的数据相同，那么就将键所对应的值进行加一操作，整个方法只会对该列数据遍历一边，所以时间复杂度为 O(n)。
+let getMergeMap = function (data, index: number) {
+    let preMergeMap = {};
+    // 第 0 项为表头，索引从 2 开始为了防止数组越界
+    for (let i = 2; i &amp;lt; data.length; i++) {
+        let preText = $(data[i-1]).find(&#39;td&#39;)[index].innerText;
+        let curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+        let key = i - 2;
+        preMergeMap[key] = 1;
+        while ((preText == curText) &amp;amp;&amp;amp; (i &amp;lt; data.length-1)) {
+            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
+            i++;
+            preText = $(data[i - 1]).find(&#39;td&#39;)[index].innerText;
+            curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+        }
+        // while循环跳出后，数组最后一项没有判断
+        if (preText == curText) {
+            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
+        }
+    }
+    return preMergeMap;
+}
+
+上述算法得到了单列数据的合并信息，下一步就是按照这个信息进行相同单元格的合并了，因此封装了下面的方法按照指定哈希表进行合并。
+let mergeCells = function (preMergeMap: Object, target, fieldName: string) {
+    for (let prop in preMergeMap) {
+        let count = preMergeMap[prop];
+        target.bootstrapTable(&#39;mergeCells&#39;, { index: parseInt(prop), field: fieldName, rowspan: count });
+    }
+}
+
+到目前为止，我们实现的都只是对单列数据进行合并，要实现对多列数据进行合并，那么只需要对所有列都进行相同的操作即可。
+export let mergeCellsByFields = function (data: Object[], target, fields) {
+    for (let i = 0; i &amp;lt; fields.length; i++) {
+        let field = fields[i];
+        // 保证 field 与 i 是相对应的
+        let preMergeMap = getMergeMap(data, i);
+        let table = target.bootstrapTable();
+        mergeCells(preMergeMap, table, field);
+    }
+}
+
+因为我在程序中做了一点处理，保证了fields中每个值得索引与对应表头的索引是一样的，因此不需要额外传入索引信息。简单来说就是我所实现的表格会根据fields的顺序，实现列之间的动态排序。你需要注意的是这一点很可能和你不一样。
+到现在已经能够合并所有的列了，查看 Bootstrap-table 的配置信息发现，它有个属性是 onPostBody 它会在 table body 加载完成是触发，所以把这个属性配置成我们的合并单元格方法即可。
+// groups 为要合并的哪些列
+onPostBody: function () {
+    mergeCellsByFields($(&#39;#table&#39; + &#39; tr&#39;), $(&#39;#table&#39;), groups);
+}
+
+再说一点不太相关的，我实现的是让用户可以自己选可以合并多少列，即用了一个可多选的下拉列表框供用户选择，根据用户选择的数量去合并，所以传入了一个groups参数。
+最后推荐一个排序插件 thenBy，你可以用它进行多字段排序，比如用在合并相同单元格的场景，在绘制表格前先对数据进行排序，那么最后合并的结果就是把所有相同的数据聚合到一起了，并且还将它们合并到一起了，起到了一个隐形的过滤查询功能。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="http://localhost:4000/post/MqqlYHD78">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(http://localhost:4000/images/avatar.png?v=1571411212640)">
+        </div>
+        <h1 class="id_card-title">
+            刘小绪同学的博客
+        </h1>
+        <h2 class="id_card-description">
+            正在学习写代码的码农
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
+
+        </div>
+    </div>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
 </html>

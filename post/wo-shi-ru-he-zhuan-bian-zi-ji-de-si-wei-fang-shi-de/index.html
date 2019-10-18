@@ -1,124 +1,153 @@
-
-<!DOCTYPE html>
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
-<title>我是如何转变自己的思维方式的 | 刘小绪同学的博客</title>
-<meta name="description" content="正在学习写代码的码农">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571404263554">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    我是如何转变自己的思维方式的 | 刘小绪同学的博客
+</title>
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1571411212640">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="http://localhost:4000/media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://mengxiaoxu.github.io/">
-        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571404263554" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://mengxiaoxu.github.io/">
-        <h1 class="site-title">刘小绪同学的博客</h1>
-      </a>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-148716803-1');
+    </script>
+    
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                
+
+                    
+                            
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="http://localhost:4000">
+                <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1571411212640" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    刘小绪同学的博客
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="http://localhost:4000/post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                    友链
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-        
-          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
-            友链
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-            <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/wo-shi-ru-he-zhuan-bian-zi-ji-de-si-wei-fang-shi-de.jpg')">
-            </div>
-          
-          <h2 class="post-title">我是如何转变自己的思维方式的</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2018-10-25</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://mengxiaoxu.github.io//tag/DytBq-ZFD">
-                    回忆
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://mengxiaoxu.github.io//tag/94PzxqinO">
-                    生活感悟
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <p>这仅仅是记录自己的一点经历和感悟，回顾一下自己思维的转变过程而已，如果对于还是学生或是初入职场的你有一点帮助，那也是没白写的。</p>
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            我是如何转变自己的思维方式的
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2018-10-25</time>
+                            
+                                <a href="http://localhost:4000/tag/DytBq-ZFD" class="post-tag i-tag
+                            i-tag-other_1">
+                            #回忆
+                        </a>
+                                
+                                <a href="http://localhost:4000/tag/94PzxqinO" class="post-tag i-tag
+                            i-tag-error">
+                            #生活感悟
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('http://localhost:4000/post-images/wo-shi-ru-he-zhuan-bian-zi-ji-de-si-wei-fang-shi-de.jpg')"></div>
+                            
+                                <div class="post-content">
+                                    <p>这仅仅是记录自己的一点经历和感悟，回顾一下自己思维的转变过程而已，如果对于还是学生或是初入职场的你有一点帮助，那也是没白写的。</p>
 <p>有一段时间因为华为 34 岁以上员工被裁、中兴程序员跳楼等事件的发生，各种蹭热点讨论“中年危机”的文章漫天飞，那时我正忙于找工作。</p>
 <p>当时一个微信群里面大家各种讨论中年危机，都在给自己制造焦虑，刚好群里有个大神可能看大家过于焦虑，就在群里发了几条消息，教大家如何避免中年危机，并且推荐了两本书。</p>
 <p>还是学生的我下意识的就发了一个添加好友请求，庆幸的是他同意了我的好友请求，当然我们没有什么交流，我的问题过于浅显，我明白自己这个水平问问题，会浪费人家时间，当时的想法是看看大神的朋友圈，他平时都接触什么，自己学习一段时间。</p>
@@ -137,86 +166,108 @@
 <p>最后想说，执行力与信息素养很重要，执行力强的人会与你拉开越来越大的距离，信息素养也是一个关键品质，现在网络上充斥着大量的虚假信息，如何去分别这些信息的真假，在相同条件下如何获得更多的有效信息，是必备的能力。</p>
 <p>上面提到的各路大神，他们的文章都很值得阅读，做一个终身学习的人，时刻保持学习的态度。</p>
 
-          </div>
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="http://localhost:4000/post/xin-xi-de-biao-shi-he-chu-li">
+                                <h3 class="post-title">
+                                    信息的表示和处理
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                                <!-- id-card -->
+                                
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(http://localhost:4000/images/avatar.png?v=1571411212640)">
         </div>
+        <h1 class="id_card-title">
+            刘小绪同学的博客
+        </h1>
+        <h2 class="id_card-description">
+            正在学习写代码的码农
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
 
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://mengxiaoxu.github.io//post/xin-xi-de-biao-shi-he-chu-li">
-              <h3 class="post-title">
-                下一篇：信息的表示和处理
-              </h3>
-            </a>
-          </div>
-          
-      </div>
+        </div>
+    </div>
+    
+                                    
 
-      
-        
-          <div id="gitalk-container"></div>
-        
+                </div>
 
-        
-      
 
-      <div class="site-footer">
-  <div class="slogan">正在学习写代码的码农</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
 </div>
 
-
-    </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
 
-
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    </div>
     <script>
-
-      var gitalk = new Gitalk({
-        clientID: '70b5a748b63425a6adfc',
-        clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
-        repo: 'mengxiaoxu.github.io',
-        owner: 'mengxiaoxu',
-        admin: ['mengxiaoxu'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
     </script>
-  
+    
+        
+            <script>
+    window.onload = function() {
+        var gitalk = new Gitalk({
+            clientID: '70b5a748b63425a6adfc',
+            clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
+            repo: 'mengxiaoxu.github.io',
+            owner: 'mengxiaoxu',
+            admin: ['mengxiaoxu'],
+            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+        })
 
-  
+        gitalk.render('gitalk-container')
+    }
+</script>
+                
 
+                    
+                                
+</body>
 
-
-
-  </body>
 </html>

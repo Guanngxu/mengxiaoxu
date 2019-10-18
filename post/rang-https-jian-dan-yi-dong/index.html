@@ -1,124 +1,153 @@
-
-<!DOCTYPE html>
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
-<title>让 HTTPS 简单易懂 | 刘小绪同学的博客</title>
-<meta name="description" content="正在学习写代码的码农">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571404263554">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    让 HTTPS 简单易懂 | 刘小绪同学的博客
+</title>
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1571411212640">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="http://localhost:4000/media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://mengxiaoxu.github.io/">
-        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571404263554" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://mengxiaoxu.github.io/">
-        <h1 class="site-title">刘小绪同学的博客</h1>
-      </a>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-148716803-1');
+    </script>
+    
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                
+
+                    
+                            
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="http://localhost:4000">
+                <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1571411212640" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    刘小绪同学的博客
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="http://localhost:4000/post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                    友链
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-        
-          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
-            友链
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-            <div class="feature-container" style="background-image: url('/post-images/rang-https-jian-dan-yi-dong.jpg')">
-            </div>
-          
-          <h2 class="post-title">让 HTTPS 简单易懂</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2018-08-26</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://mengxiaoxu.github.io//tag/i4kET55EC">
-                    翻译
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://mengxiaoxu.github.io//tag/S57Vp3Suu">
-                    计算机网络
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <p>充满各种数学证明的密码学是令人头疼的，一听到密码、黑客、攻击等词的时候，就给人一种神秘又高大上的感觉，但除非你真的从事密码学相关工作，否则你并不需要对密码学有多么深刻的理解。</p>
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            让 HTTPS 简单易懂
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2018-08-26</time>
+                            
+                                <a href="http://localhost:4000/tag/i4kET55EC" class="post-tag i-tag
+                            i-tag-success">
+                            #翻译
+                        </a>
+                                
+                                <a href="http://localhost:4000/tag/S57Vp3Suu" class="post-tag i-tag
+                            i-tag-other_3">
+                            #计算机网络
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('/post-images/rang-https-jian-dan-yi-dong.jpg')"></div>
+                            
+                                <div class="post-content">
+                                    <p>充满各种数学证明的密码学是令人头疼的，一听到密码、黑客、攻击等词的时候，就给人一种神秘又高大上的感觉，但除非你真的从事密码学相关工作，否则你并不需要对密码学有多么深刻的理解。</p>
 <p>这是一篇适合在饭后的品茶时光中阅读的文章，咱们虚构一个故事来讲解，虽然故事看起来很随性，但是 HTTPS 也是这么工作的。里面有一些术语你也应该听过，因为它们经常出现在技术文献里面。</p>
 <h4 id="故事背景">故事背景</h4>
 <p>一天，一个男子到河边抓鱼给母亲吃，而河岸的另一头是一大户人家的小姐和她的丫鬟在散步。突然，一个不小心，对面小姐不慎跌入水中，而丫鬟又不会游泳，这可把小丫鬟急的呀！！！正在抓鱼的男子见此状况，来不及脱掉身上的衣物，就像箭一样窜入水中.....想必看客已经猜到了，小姐被救起，男子抱着迷迷糊糊小姐走上岸的过程中，小姐感觉自己像触电了一样，觉得这个男人很安全，只要靠着他，就算天塌下来也不怕，而男子把小姐放下的那一刻，也很不舍，好像把她放下就失去了活下去的希望。</p>
@@ -164,89 +193,132 @@
 <blockquote>
 <p>具体细节你可以网上去查，笛卡尔每天给自己喜欢的公主写信，但是信都被国王拦截了，笛卡尔给公主写的第十三封信中只有一个数学方程，但是这个方程国王看不懂，所以就把这封信交给了公主，公主一看方程，立刻着手把方程的图形画了出来，发现这是一颗心的形状。</p>
 </blockquote>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569679006282.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1569679006282.png" alt=""></figure>
 <p>参考内容：<code>https://medium.freecodecamp.org/https-explained-with-carrier-pigeons-7029d2193351</code></p>
 
-          </div>
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="http://localhost:4000/post/yong-scrapy-pa-qu-dou-ban-250">
+                                <h3 class="post-title">
+                                    用 Scrapy 爬取豆瓣250
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E6%95%85%E4%BA%8B%E8%83%8C%E6%99%AF">故事背景</a></li>
+<li><a href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F">最简单的通信方式</a></li>
+<li><a href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86">对称加密</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E5%AF%86%E9%92%A5">如何确定密钥</a></li>
+<li><a href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86">非对称加密</a></li>
+<li><a href="#%E8%AE%A4%E8%AF%81%E6%9C%BA%E6%9E%84">认证机构</a></li>
+<li><a href="#%E7%AE%B1%E5%AD%90%E5%A4%AA%E9%87%8D%E4%BA%86">箱子太重了</a></li>
+<li><a href="#%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B">一个故事</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
         </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
 
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">
-              <h3 class="post-title">
-                下一篇：用 Scrapy 爬取豆瓣250
-              </h3>
-            </a>
-          </div>
-          
-      </div>
+                </div>
 
-      
-        
-          <div id="gitalk-container"></div>
-        
 
-        
-      
 
-      <div class="site-footer">
-  <div class="slogan">正在学习写代码的码农</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
 </div>
 
-
-    </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
 
-
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    </div>
     <script>
-
-      var gitalk = new Gitalk({
-        clientID: '70b5a748b63425a6adfc',
-        clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
-        repo: 'mengxiaoxu.github.io',
-        owner: 'mengxiaoxu',
-        admin: ['mengxiaoxu'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
     </script>
-  
+    
+        
+            <script>
+    window.onload = function() {
+        var gitalk = new Gitalk({
+            clientID: '70b5a748b63425a6adfc',
+            clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
+            repo: 'mengxiaoxu.github.io',
+            owner: 'mengxiaoxu',
+            admin: ['mengxiaoxu'],
+            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+        })
 
-  
+        gitalk.render('gitalk-container')
+    }
+</script>
+                
 
+                    
+                                
+</body>
 
-
-
-  </body>
 </html>

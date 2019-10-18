@@ -1,117 +1,148 @@
-
-<!DOCTYPE html>
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
-<title>为什么处理排序数组比未排序数组快 | 刘小绪同学的博客</title>
-<meta name="description" content="正在学习写代码的码农">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571404263554">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    为什么处理排序数组比未排序数组快 | 刘小绪同学的博客
+</title>
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1571411212640">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="http://localhost:4000/media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://mengxiaoxu.github.io/">
-        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571404263554" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://mengxiaoxu.github.io/">
-        <h1 class="site-title">刘小绪同学的博客</h1>
-      </a>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-148716803-1');
+    </script>
+    
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                
+
+                    
+                            
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="http://localhost:4000">
+                <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1571411212640" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    刘小绪同学的博客
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="http://localhost:4000/post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                    友链
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-        
-          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
-            友链
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-            <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/SpXxa8r-v.jpeg')">
-            </div>
-          
-          <h2 class="post-title">为什么处理排序数组比未排序数组快</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2018-11-28</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw">
-                    操作系统
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <p>今天在群里看到一个有意思的问题——为什么处理排序数组比处理没有排序的数组要快，这个问题来源于 <a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array">StackoverFlow</a>，虽然我看到代码略微知道原因，但是模模糊糊不够清晰，搜了很多博客也讲的不够明白，所以就自己来总结了。</p>
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            为什么处理排序数组比未排序数组快
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2018-11-28</time>
+                            
+                                <a href="http://localhost:4000/tag/kvSwja8aw" class="post-tag i-tag
+                            i-tag-other_2">
+                            #操作系统
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('http://localhost:4000/post-images/SpXxa8r-v.jpeg')"></div>
+                            
+                                <div class="post-content">
+                                    <p>今天在群里看到一个有意思的问题——为什么处理排序数组比处理没有排序的数组要快，这个问题来源于 <a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array">StackoverFlow</a>，虽然我看到代码略微知道原因，但是模模糊糊不够清晰，搜了很多博客也讲的不够明白，所以就自己来总结了。</p>
 <p>首先来看一下问题，下面是很简单的一段代码，随机生成一些数字，对其中大于 128 的元素求和，记录并打印求和所用时间。</p>
 <pre><code class="language-java">import java.util.Arrays;
 import java.util.Random;
@@ -155,14 +186,14 @@ public class Main
 <p>为了把这个问题搞明白，需要先对<code>流水线</code>有一定的了解。计算机是指令流驱动的，执行的是一个一个的指令，而执行一条指令，又要经过<code>取指、译码、执行、访存、写回、更新</code>六个阶段（不同的划分方式所包含的阶段不一样）。</p>
 <p>六个阶段使用的硬件基本是不一样的，如果一条指令执行完再去执行另一条指令，那么在这段时间里会有很多硬件处于空闲状态，要使计算机的速度变快，那么就不能让硬件停下来，所以有了流水线技术。</p>
 <p>流水线技术通过将指令重叠来实现几条指令并行处理，下图表示的是三阶段指令时序，即把一个指令分为三个阶段。在第一条指令的 B 阶段，A 阶段相关的硬件是空闲的，于是可以将第二条指令的 A 阶段提前操作。</p>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569412133980.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1569412133980.png" alt=""></figure>
 <p>很明显，这种设计大幅提高了指令运行的效率，聪明的你可能发现问题了，要是不知道下一条指令是什么怎么办，那提前的阶段也就白干了，那样流水线不就失效了？没错，这就是导致开篇问题的原因。</p>
 <p>让流水线出问题的情况有三种：1、<code>数据相关</code>，后一条指令需要用到前一条指令的运算结果；2、<code>控制相关</code>，比如无条件跳转，跳转的地址需要在译码阶段才能知道，所以跳转之后已经被取出的指令流水就需要清空；3、<code>结构相关</code>，由于一些指令需要的时钟周期长（比如浮点运算等），长时间占用硬件，导致之后的指令无法进入译码等阶段，即它们在争用同一套硬件。</p>
 <p>代码中的<code>if (data[c] &gt;= 128)</code>翻译成机器语言就是跳转指令，处理器事先并不知道要跳转到哪个分支，那难道就等知道了才开始下一条指令的取指工作吗？处理器选择了假装知道会跳转到哪个分支（不是谦虚，是真的假装知道），如果猜中了是运气好，而没有猜中那就浪费一点时间重新来干。</p>
 <p>没有排序的数组，元素是随机排列的，每次<code>data[c] &gt;= 128</code>的结果也是随机的，前面的经验就不可参考，所以下一次执行到这里理论上还是会有 50% 的可能会猜错，猜错了肯定就需要花时间来修改犯下的错误，自然就会浪费更多的时间。</p>
 <p>对于排好序的数组，开始几次也需要靠猜，但是猜着猜着发现有规律啊，每次都是往同一个分支跳转，所以以后基本上每次都能猜中，当遍历到与 128 分界的地方，才会出现猜不中的情况，但是猜几次之后，发现这又有规律啊，每次都是朝着另外一个相同分支走的。</p>
 <p>虽然都会猜错，但是在排好序的情况下猜错的几率远远小于未排序时的几率，最终呈现的结果就是处理排序数组比未排序数组快，其原因就是流水线发生了大量的控制相关现象，下面通俗一点，加深一下理解。</p>
-<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569412222054.jpg" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1569412222054.jpg" alt=""></figure>
 <p>远在他方心仪多年的姑娘突然告诉你，其实她也喜欢你，激动的你三天三夜睡不着觉，决定开车前往她的城市，要和她待在一起，但是要去的路上有很多很多岔路，你只能使用的某某地图导航，作为老司机并且怀着立马要见到爱人心情的你，开车超快，什么样罚单都不在乎了。</p>
 <p>地图定位已经跟不上你的速度了，为了尽快到达，遇到岔路你都是随机选一条路前进，遗憾的是，自己的选择不一定对（我们假设高速可以回退），走错路了就要重新回到分岔点，这就对应着未排序的情况。</p>
 <p>现在岔路是有规律的，告诉你开始一直朝着一边走，到某个地点后会一直朝着另一边走，你只需要花点时间去探索一下开始朝左边还是右边，到了中间哪个地点会改变方向就可以了，相比之下就能节省不少时间了，尽快见到自己的爱人，这对应着排好序的情况。</p>
@@ -170,86 +201,108 @@ public class Main
 <p>最后的故事改编自两个人的现实生活，一位是自己最好的朋友之一，谈恋爱开心的睡不着觉；另一位是微信上的一位好友，为了对方从北京裸辞飞到了深圳。</p>
 </blockquote>
 
-          </div>
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="http://localhost:4000/post/github-shi-da-zui-jia-shi-jian">
+                                <h3 class="post-title">
+                                    Github 十大最佳实践
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                                <!-- id-card -->
+                                
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(http://localhost:4000/images/avatar.png?v=1571411212640)">
         </div>
+        <h1 class="id_card-title">
+            刘小绪同学的博客
+        </h1>
+        <h2 class="id_card-description">
+            正在学习写代码的码农
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                        
 
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://mengxiaoxu.github.io//post/github-shi-da-zui-jia-shi-jian">
-              <h3 class="post-title">
-                下一篇：Github 十大最佳实践
-              </h3>
-            </a>
-          </div>
-          
-      </div>
+        </div>
+    </div>
+    
+                                    
 
-      
-        
-          <div id="gitalk-container"></div>
-        
+                </div>
 
-        
-      
 
-      <div class="site-footer">
-  <div class="slogan">正在学习写代码的码农</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
 </div>
 
-
-    </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
 
-
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    </div>
     <script>
-
-      var gitalk = new Gitalk({
-        clientID: '70b5a748b63425a6adfc',
-        clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
-        repo: 'mengxiaoxu.github.io',
-        owner: 'mengxiaoxu',
-        admin: ['mengxiaoxu'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
     </script>
-  
+    
+        
+            <script>
+    window.onload = function() {
+        var gitalk = new Gitalk({
+            clientID: '70b5a748b63425a6adfc',
+            clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
+            repo: 'mengxiaoxu.github.io',
+            owner: 'mengxiaoxu',
+            admin: ['mengxiaoxu'],
+            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+        })
 
-  
+        gitalk.render('gitalk-container')
+    }
+</script>
+                
 
+                    
+                                
+</body>
 
-
-
-  </body>
 </html>

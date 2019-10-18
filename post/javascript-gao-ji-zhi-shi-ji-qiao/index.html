@@ -1,124 +1,153 @@
-
-<!DOCTYPE html>
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
-<title>JavaScript 高级知识技巧 | 刘小绪同学的博客</title>
-<meta name="description" content="正在学习写代码的码农">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571404263554">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    JavaScript 高级知识技巧 | 刘小绪同学的博客
+</title>
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1571411212640">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="http://localhost:4000/media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://mengxiaoxu.github.io/">
-        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571404263554" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://mengxiaoxu.github.io/">
-        <h1 class="site-title">刘小绪同学的博客</h1>
-      </a>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-148716803-1');
+    </script>
+    
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                
+
+                    
+                            
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="http://localhost:4000">
+                <img class="avatar" src="http://localhost:4000/images/avatar.png?v=1571411212640" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    刘小绪同学的博客
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="http://localhost:4000/post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                    友链
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-        
-          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
-            友链
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-            <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/javascript-gao-ji-zhi-shi-ji-qiao.png')">
-            </div>
-          
-          <h2 class="post-title">JavaScript 高级知识技巧</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-10-13</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://mengxiaoxu.github.io//tag/javascript">
-                    JavaScript
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz">
-                    前端
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <h2 id="对象">对象</h2>
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            JavaScript 高级知识技巧
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-10-13</time>
+                            
+                                <a href="http://localhost:4000/tag/javascript" class="post-tag i-tag
+                            i-tag-other_3">
+                            #JavaScript
+                        </a>
+                                
+                                <a href="http://localhost:4000/tag/Cp4eHBEcz" class="post-tag i-tag
+                            i-tag-primary">
+                            #前端
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('http://localhost:4000/post-images/javascript-gao-ji-zhi-shi-ji-qiao.png')"></div>
+                            
+                                <div class="post-content">
+                                    <h2 id="对象">对象</h2>
 <p>Js 共有<code>number、string、boolean、null、undefined、object</code>六种主要类型，除了<code>object</code>的其它五中类型都属于基本类型，它们本身并不是对象。但是<code>null</code>有时会被当做对象处理，其原因在于不同的对象在底层都表示为二进制，在 js 中二进制前三位都为 0 的话就会被判定为<code>object</code>类型，而<code>null</code>的二进制表示全是 0， 所以使用<code>typeof</code>操作符会返回<code>object</code>，而后续的 Js 版本为了兼容前面埋下的坑，也就没有修复这个 bug。</p>
 <p><code>&quot;I'm a string&quot;</code>本身是一个字面量，并且是一个不可变的值，如果要在这个字面量上执行一些操作，比如获取长度、访问某个字符等，那就需要将其转换为<code>String</code>类型，在必要的时候 js 会自动帮我们完成这种转换，也就是说我们并不需要用<code>new String('I'm a string')</code>来显示的创建一个对象。类似的像使用<code>42.359.toFixed(2)</code>时，引擎也会自动把数字转换为<code>Number</code>对象。</p>
 <p><code>null</code>和<code>undefined</code>没有对应的构造形式，它们只有文字形式。相反，<code>Date</code>只有构造，没有文字形式。对于<code>Object、Array、Function</code>和<code>RegExp</code>（正则表达式）来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。</p>
@@ -206,7 +235,7 @@ console.info(window.age); // 23
 </code></pre>
 <h2 id="消息队列与事件循环">消息队列与事件循环</h2>
 <p>如下图所示，左边的栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。</p>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1570979103039.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1570979103039.png" alt=""></figure>
 <p>右边的堆用来存储声明的变量、对象。下面的队列就是消息队列，一旦某个异步任务有了响应就会被推入队列中。如用户的点击事件、浏览器收到服务的响应和setTimeout中待执行的事件，每个异步任务都和回调函数相关联。<br>
 JS引擎线程用来执行栈中的同步任务，当所有同步任务执行完毕后，栈被清空，然后读取消息队列中的一个待处理任务，并把相关回调函数压入栈中，单线程开始执行新的同步任务。</p>
 <p>来看个例子：执行下面这段代码，执行后，在 5s 内点击两下，过一段时间（&gt; 5s）后，再点击两下，整个过程的输出结果是什么？</p>
@@ -247,86 +276,120 @@ click
 click
 </code></pre>
 
-          </div>
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="http://localhost:4000/post/jia-li-de-gou">
+                                <h3 class="post-title">
+                                    家里的狗
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AF%B9%E8%B1%A1">对象</a></li>
+<li><a href="#array-%E7%B1%BB%E5%9E%8B">Array 类型</a></li>
+<li><a href="#function-%E7%B1%BB%E5%9E%8B">Function 类型</a></li>
+<li><a href="#%E5%AE%89%E5%85%A8%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5">安全的类型检查</a></li>
+<li><a href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%AE%89%E5%85%A8%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">作用域安全的构造函数</a></li>
+<li><a href="#%E9%AB%98%E7%BA%A7%E5%AE%9A%E6%97%B6%E5%99%A8">高级定时器</a></li>
+<li><a href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF">消息队列与事件循环</a></li>
+</ul>
+</li>
+</ul>
+
         </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
 
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://mengxiaoxu.github.io//post/jia-li-de-gou">
-              <h3 class="post-title">
-                下一篇：家里的狗
-              </h3>
-            </a>
-          </div>
-          
-      </div>
+                </div>
 
-      
-        
-          <div id="gitalk-container"></div>
-        
 
-        
-      
 
-      <div class="site-footer">
-  <div class="slogan">正在学习写代码的码农</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
 </div>
 
-
-    </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
 
-
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    </div>
     <script>
-
-      var gitalk = new Gitalk({
-        clientID: '70b5a748b63425a6adfc',
-        clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
-        repo: 'mengxiaoxu.github.io',
-        owner: 'mengxiaoxu',
-        admin: ['mengxiaoxu'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
     </script>
-  
+    
+        
+            <script>
+    window.onload = function() {
+        var gitalk = new Gitalk({
+            clientID: '70b5a748b63425a6adfc',
+            clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
+            repo: 'mengxiaoxu.github.io',
+            owner: 'mengxiaoxu',
+            admin: ['mengxiaoxu'],
+            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+        })
 
-  
+        gitalk.render('gitalk-container')
+    }
+</script>
+                
 
+                    
+                                
+</body>
 
-
-
-  </body>
 </html>

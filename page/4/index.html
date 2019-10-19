@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571463903397">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571484807237">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571463903397" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571484807237" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -120,6 +120,129 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/MYYZrm7wn">
+                        如何解决跨域请求问题
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-18</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/S57Vp3Suu" class="post-tag i-tag
+                            i-tag-">
+            #计算机网络
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
+                            i-tag-info">
+            #前端
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/MYYZrm7wn">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/MYYZrm7wn.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+刚毕业入职，大部分时间还在培训，中间有一段时间的空闲时间，就学习了下 Angular，在学校都是编写的单体应用，所有代码都放在同一个工程下面，到公司使用的是前后端分离了，虽然后端程序也是我自己写的，但是有一些数据是从公司现有接口去拿的，然后就遇到让我纠结了两小时的跨域请求问题，为了避免出现上图中的尴尬场面，在这里做一个简单的总结输出。
+什么是跨域请求
+跨域请求问题是浏览器的同源策略造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：协议、域名、端口。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。
+http://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 非跨域
+
+http://www.nealyang.cn/index.html 调用 http://www.neal.cn/server.php 跨域,主域不同
+
+http://abc.nealyang.cn/index.html 调用 http://def.neal.cn/server.php 跨域,子域名不同
+
+http://www.nealyang.cn:8080/index.html 调用 http://www.nealyang.cn/server.php 跨域,端口不同
+
+https://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 跨域,协议不同
+
+localhost 调用 127.0.0.1 跨域
+
+同源政策的目的是为了保护用户信息的安全，防止恶意网站窃取数据，随着互联网的发展，同源政策更加严格了，下面三种行为都会受到限制。
+（1） Cookie、LocalStorage 和 IndexDB 无法读取。
+（2） DOM 无法获得。
+（3） AJAX 请求不能发送。
+
+所有的现代浏览器都对网络连接进行了安全限制，包括 XMLHttpRequest，如果你的 web 应用程序和其使用的数据在同一个服务器，你不会遇到跨域请求问题。但是当你的 web 应用程序和 web 服务数据不在同一个服务器时，就会被浏览器限制连接了。
+常用解决方案
+对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面设置代理。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。
+
+通俗易懂的说，你家的宠物狗不会吃别家的食物，因为它担心别人的食物会把自己给药死，所以你的狗狗只管找你要食物，你是它的主人，它绝对相信你，而你可以鉴别别人给的食物是不是安全的。类比，小狗就是浏览器，你就是代理。
+Angular 中的解决办法
+上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用angular-cli构建你的项目，我们可以创建一个代理配置文件proxy.conf.json（假设你的后端服务的访问地址为10.121.163.10:8080），代理配置文件如下：
+{
+  &amp;quot;/api&amp;quot;: {
+    &amp;quot;target&amp;quot;: &amp;quot;http://10.121.163.10:8080&amp;quot;,
+    &amp;quot;secure&amp;quot;: false
+  }
+}
+
+然后修改package.json文件中的启动命令为&amp;quot;start&amp;quot;: &amp;quot;ng serve --proxy-config proxy.conf.json&amp;quot;，启动项目时使用npm start即可解决跨域请求问题。
+上述解决方案仅在开发时使用，你当然可以使用 tomcat、nginx 配置代理，但是这很麻烦，需要打包代码部署，为了保证效率，我们想写完了立刻测试，同时也不想麻烦做后端的同学，在项目发布时，应该把代理配置到服务器中去；修改启动命令也不是必须的，你也可以选择每次使用 ng serve --proxy-config proxy.conf.json命令启动项目；示例代理配置文件内容可以有更多的属性，可以通过网络查阅相关资料。
+后端解决办法
+我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。
+这时需要了解一下简单请求和非简单请求了，简单请求就是只发送一次请求的请求；非简单请求会发送数据之前先发一次请求做预检，通过预检后才能再发送一次请求用于数据传输。
+更清晰区别，满足下列两大条件的属于简单请求，而非简单请求就是请求方法为PUT或DELETE，或者 Content-Type字段是application/json的请求。
+
+1.请求方法为 GET、POST、HEAD之一
+2.HTTP头信息不超出字段：Accept、Accept-Language、Content-Language、Last-Event-ID、Content-Type，并且 Content-Type 的值仅限于 application/x-www-form-urlencoded、multipart/form-data、text/plain。
+
+对于简单请求，只需要设置一下响应头就可以了。
+class TestHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        # 可以把 * 写成具体的域名
+        self.write(&#39;cors get success&#39;)
+
+对于复杂请求，需要设置预检方法，如下所示：
+class CORSHandler(tornado.web.RequestHandler):
+    # 复杂请求方法put
+    def put(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        self.write(&#39;put success&#39;)
+    # 预检方法设置
+    def options(self, *args, **kwargs):
+        #设置预检方法接收源
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        #设置预复杂方法自定义请求头h1和h2
+        self.set_header(&#39;Access-Control-Allow-Headers&#39;, &amp;quot;h1,h2&amp;quot;)
+        #设置允许哪些复杂请求方法
+        self.set_header(&#39;Access-Control-Allow-Methods&#39;, &amp;quot;PUT,DELETE&amp;quot;)
+        #设置预检缓存时间秒,缓存时间内发送请求无需再预检
+        self.set_header(&#39;Access-Control-Max-Age&#39;, 10)
+
+本人不太懂前端知识，更多的前端跨域解决方案可以参考下面列出的文章，除第一篇外，其他都介绍了前端跨域解决方法。
+参考资料及推荐文章
+标题：JavaScript: Use a Web Proxy for Cross-Domain XMLHttpRequest Calls
+链接：https://developer.yahoo.com/javascript/howto-proxy.html?guccounter=1
+
+标题：别慌，不就是跨域么!
+链接：https://mp.weixin.qq.com/s/A0Oi-fUrmboRPPeNEjG3aw
+
+标题：跨域资源共享 CORS 详解
+链接：http://www.ruanyifeng.com/blog/2016/04/cors.html
+
+标题：AJAX请求和跨域请求详解（原生JS、Jquery）
+链接：http://www.cnblogs.com/tkqasn/p/5869175.html
+
+标题：JavaScript跨域总结与解决办法
+链接：http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/MYYZrm7wn">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io//post/WsHPYySZU">
                         如何让你的网页看起来更美观
                     </a>
@@ -128,17 +251,17 @@
                     <time class="post-time">2018-09-09</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-">
             #翻译
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/vhSkGeYf1D" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-success">
             #设计
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_3">
             #前端
         </a>
                         
@@ -238,12 +361,12 @@
                     <time class="post-time">2018-08-26</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-banana">
             #翻译
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/S57Vp3Suu" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-primary">
             #计算机网络
         </a>
                         
@@ -323,7 +446,7 @@ HTTP 就是这样的工作方式。
                     <time class="post-time">2018-07-27</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/pa-chong" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-primary">
             #爬虫
         </a>
                         
@@ -453,12 +576,12 @@ class douban_spider(Spider):
                     <time class="post-time">2018-07-02</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-">
             #个人总结
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_4">
             #生活感悟
         </a>
                         
@@ -501,12 +624,12 @@ class douban_spider(Spider):
                     <time class="post-time">2018-06-20</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_3">
             #个人总结
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-success">
             #生活感悟
         </a>
                         
@@ -548,7 +671,7 @@ class douban_spider(Spider):
                     <time class="post-time">2018-05-07</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/zi-ran-yu-yan-chu-li" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-banana">
             #自然语言处理
         </a>
                         
@@ -610,7 +733,7 @@ class douban_spider(Spider):
                     <time class="post-time">2018-04-26</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/zi-ran-yu-yan-chu-li" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-banana">
             #自然语言处理
         </a>
                         
@@ -726,12 +849,12 @@ HanLP 自然语言处理
                     <time class="post-time">2018-04-24</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-">
             #数据库
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_2">
             #操作系统
         </a>
                         
@@ -849,7 +972,7 @@ R10
                     <time class="post-time">2018-04-19</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-banana">
             #生活感悟
         </a>
                         
@@ -884,49 +1007,6 @@ R10
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/8-A2fl99e">
-                        告别囤干货，你才能真正进步
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-04-15</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-info">
-            #生活感悟
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/8-A2fl99e">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/8-A2fl99e.jpg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            这两天，没事整理了自己的微信收藏和 QQ 收藏文件夹下面的文章。发现了一个在大多数人身上都存在的问题，那就是囤干货。
-我使用微信的时间比较晚，从14年才开始，但是仅仅不到4年的时间，在微信收藏里面就有几百篇文章，有一些传授技能的文章，比如 word、ps 等简单教程；其他一些属于心灵鸡汤类文章（现在反倒不觉得这类文章值得看），还有一些搞笑的文章，当然里面也夹杂着些许的优秀视频。文章数量数 14 年和 15 年最多。
-现在回头看，我当时就陷入了囤文章的陷阱了，或者说自己是在“假装阅读”。仔细一想，其实生活中大多数人都有类似的举动。早成起床、饭后的一段时间、晚上睡觉前，这些时间大多数人都习惯性的去翻翻公众号、朋友圈，这里面不乏有好文章、干货文章。然而没多少人会静下心来把文章读完，而是在大概读到一半的时候，选择收藏这篇文章，然后在心里告诉自己，明天要好好读一下这篇文章。到了明天，其实又是重复了今天的这样一个过程。
-记得大概一年前也无意中看到大学认识的一位师弟发的说说，内容如下：
-
-上面的图是我特地翻出来的，一年后这个师弟又发了一条说说，存满了两个云盘，应该是有 5000 G 左右的资源。
-我认为这都是在假装学习，而且假装学习的人不计其数。为什么上学的时候，那些每天都静静的待在教室学习的同学，成绩反倒不是很好呢？而且大多数这样的学生在班级都是排在中等，而成绩好的学生却不是学习投入最多的人。背后的原因显而易见。
-我囤课最严重的时间段是也是 14 年和 15 年，网上有不少干货资源，什么 Linux、各种项目实战、计算机网络等等培训视频不计其数。那时候干的第一件事就是，上百度云把这些资源下下来，而且一个资源往往要下一周甚至更久；然后告诉自己，下周开始每天看一段视频，但是最终的结果是过去了 N 个下周，依然没有去处理这些资源。
-现在博客、公众号也有一些不知道是为了获取更多人的关注，还是仅仅是做公益，文章末尾会标注：关注公众号，回复“XXXXX”，即可获得多少多少G的资源，这个多少一般是在 500 以上。我个人现在是对这类文章没有什么兴趣的，因为几百 G 甚至上千 G 的东西，我是不可能看完的，我清楚自己的能力，我也不否认可能有人有毅力能看完，那肯定是凤毛菱角了，我一个普通人不与凤毛菱角对比。
-当然，我现在的认识相比几年前，得到了一些提升，至少我现在不糊干囤课之类的事了，仅仅是把干货囤在那里，其时你还是昨天的自己，并没有进步。现在我都会把自己收藏的好文章在一周之内处理掉。
-所以要想真正取得进步，首先就需要告别囤课的习惯，不能假装学习，如果学习是为了给比别人看，那还不如不学。文章仅是我个人的一点感悟，没有文采逻辑和言，总之希望与你共勉。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/8-A2fl99e">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -947,7 +1027,7 @@ R10
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571463903397)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571484807237)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -986,6 +1066,12 @@ R10
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io//post/nginx-wen-jian-cao-zuo-you-hua">Nginx 文件操作优化</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao">JavaScript 高级知识技巧</a>
                 </h3>
             
@@ -1008,10 +1094,6 @@ R10
                 </h3>
             
             
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu">惰性载入函数</a>
-                </h3>
             
             
             

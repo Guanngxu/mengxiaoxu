@@ -1,395 +1,568 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
 
-<title>编译原理 | 刘小绪同学的博客</title>
-<meta name="description" content="正在学习写代码的码农">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571463308454">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    编译原理 | 刘小绪同学的博客
+</title>
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571463903397">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-
-
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-  </head>
-  <body>
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://mengxiaoxu.github.io/">刘小绪同学的博客</a></h3>
-  </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
-        
-          <li>
-            
-              <a href="/" class="menu">
-                首页
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/archives" class="menu">
-                归档
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/tags" class="menu">
-                标签
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/post/about" class="menu">
-                关于
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
-                友链
-              </a>
-            
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+        gtag('config', 'UA-148716803-1');
+    </script>
+    
+</head>
 
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <h2 class="current-tag">标签: 编译原理</h2>
-          
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://mengxiaoxu.github.io//post/CY4_BQLR4">正则表达式语法</a>
-    </h2>
-    <p class="article-meta">
-      2018-03-29
-      
-        <a href="https://mengxiaoxu.github.io//tag/JYJKwJM69" class="badge secondary">
-          编译原理
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/QjCHA76i_r" class="badge ">
-          编程基础
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://mengxiaoxu.github.io//post/CY4_BQLR4" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://mengxiaoxu.github.io/">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571463903397" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    刘小绪同学的博客
+                </h1>
+            </div>
         </div>
-        <div class="row flex-edges">
-  
-  
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                    友链
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
 </div>
 
-      </div>
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://mengxiaoxu.github.io//images/avatar.png?v=1571463308454" class="no-responsive avatar">
-    <div class="text-muted">正在学习写代码的码农</div>
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      最新文章
-    </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao">JavaScript 高级知识技巧</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://mengxiaoxu.github.io//post/jia-li-de-gou">家里的狗</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://mengxiaoxu.github.io//post/o9IjztOrR">怎样才能开开心心的呢？</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://mengxiaoxu.github.io//post/bian-liang-ti-sheng-yu-zuo-yong-yu">变量提升与作用域</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu">惰性载入函数</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://mengxiaoxu.github.io//post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze">非设计师需要知道的四个设计原则</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-05-12">刘小绪同学随笔（2019-05-12）</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://mengxiaoxu.github.io//post/qCt13nLLT">浅析浏览器缓存机制</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://mengxiaoxu.github.io//post/git-jin-jie-ji-chang-yong-ming-ling">Git 进阶及常用命令</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">什么是契约测试？</a>
-            </li>
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      标签列表
-    </div>
-    <div class="row">
-      
-        <a href="https://mengxiaoxu.github.io//tag/javascript" class="badge warning">
-          JavaScript
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="badge success">
-          前端
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/san-wen" class="badge ">
-          散文
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="badge warning">
-          随笔
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="badge success">
-          生活感悟
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="badge ">
-          翻译
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/vhSkGeYf1D" class="badge ">
-          设计
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/S57Vp3Suu" class="badge warning">
-          计算机网络
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/git" class="badge warning">
-          Git
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/QjCHA76i_r" class="badge success">
-          编程基础
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/ce-shi" class="badge ">
-          测试
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/qian-hou-duan-fen-chi" class="badge secondary">
-          前后端分离
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="badge secondary">
-          个人总结
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/J_3GE6pBm" class="badge warning">
-          TypeScript
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/shu-ji-tui-jian" class="badge secondary">
-          书籍推荐
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/DytBq-ZFD" class="badge secondary">
-          回忆
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="badge ">
-          操作系统
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/gong-ju-ji-qiao" class="badge ">
-          工具技巧
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/pa-chong" class="badge secondary">
-          爬虫
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/zi-ran-yu-yan-chu-li" class="badge success">
-          自然语言处理
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/shu-ju-ku" class="badge warning">
-          数据库
-        </a>
-      
-        <a href="https://mengxiaoxu.github.io//tag/JYJKwJM69" class="badge secondary">
-          编译原理
-        </a>
-      
-    </div>
-  </div>
-  <div class="paper">
-    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-    </div>
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
-
-hljs.initHighlightingOnLoad()
-
+        });
+    });
 </script>
 
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        编译原理</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/CY4_BQLR4">
+                        正则表达式语法
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-03-29</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/JYJKwJM69" class="post-tag i-tag
+                            i-tag-primary">
+            #编译原理
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/QjCHA76i_r" class="post-tag i-tag
+                            i-tag-banana">
+            #编程基础
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/CY4_BQLR4">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/CY4_BQLR4.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            这两天一直在时不时的和 Neo4j 图数据库打交道。它的查询语句可以使用正则表达式，有一段时间没有自己写过正则表达式了，现在处于能看懂别人写的正则表达式，但是自己写不出来，语法规则都忘了。为了方便接下来的工作，所以特地复习复习正则表达式的语法。
+正则表达式简介
+正则表达式是用来匹配字符串的一系列匹配符，具备简介高效的特点，在很多语言中都有支持（java、python、javascript、php 等等）。在 windows 的 cmd 命令中也同样支持，例如使用命令 dir j*，那么只会罗列出所有以j开头的文件和文件夹。
+正则表达式基本语法
+正则表达式在在不同语言的支持语法略有不同，本文采用js的进行说明。js 中使用正则表达式的方法为str.match(/表达式/)，即需要加两个斜杠。以下所有的代码段第一行为代码，第二行为返回结果，实验是在 chrome 控制台进行的。
+一直认为最好的学习方式就是实际操作，理论谁都能讲一大堆，但是实际做没做出来还真不知道。一个奇葩现象就是教软件工程的老师可能并没有在软件行业待过。
+普通匹配符
+普通匹配符能匹配与之对应的字符，默认区分大小写。
+&amp;quot;Hello Regx&amp;quot;.match(/H/)
+[&amp;quot;H&amp;quot;, index: 0, input: &amp;quot;Hello Regx&amp;quot;, groups: undefined]
+
+正则标记符
+
+i ：不区分大小写
+g ：全局匹配
+m ：多行匹配（暂不管它，我用的少）
+
+参数直接加在最后一个斜杠的后面，比如&amp;quot;Hello Regx&amp;quot;.match(/regx/i)，可以加多个参数。
+&amp;quot;Hello Regx&amp;quot;.match(/regx/i)
+[&amp;quot;Regx&amp;quot;, index: 6, input: &amp;quot;Hello Regx&amp;quot;, groups: undefined]
+
+之前是表达式一旦匹配成功，就不再向字符串后面查找了，加上 g 后，表示进行全局查找。最后返回的是一个数组。
+&amp;quot;Hello Regx&amp;quot;.match(/e/g)
+(2) [&amp;quot;e&amp;quot;, &amp;quot;e&amp;quot;]
+
+多匹配符
+
+\d ：匹配数字，即 0~9
+\w ：匹配数字、字母、下划线
+. ：匹配除换行的所有字符
+
+需要注意的是，上面所有的匹配符都只能匹配一个字符。
+&amp;quot;Hello 2018&amp;quot;.match(/\d/g)
+// 使用\d,匹配字符串中的所有数字
+(4) [&amp;quot;2&amp;quot;, &amp;quot;0&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;8&amp;quot;]
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/\w/g)
+// 使用\w，匹配所有的数字和字母，需要注意没有匹配到空格
+(9) [&amp;quot;H&amp;quot;, &amp;quot;e&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;o&amp;quot;, &amp;quot;2&amp;quot;, &amp;quot;0&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;8&amp;quot;]
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/./g)
+// 使用.，匹配所有字符，包括空格
+(10) [&amp;quot;H&amp;quot;, &amp;quot;e&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;l&amp;quot;, &amp;quot;o&amp;quot;, &amp;quot; &amp;quot;, &amp;quot;2&amp;quot;, &amp;quot;0&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;8&amp;quot;]
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/\d\w./g)
+// 分析一下这个为什么匹配到的是201，
+// 首先\d找到第一个数字2，匹配成功，紧接着\w匹配到0，然后.匹配到1
+// 整个正则表达式匹配成功，返回201
+[&amp;quot;201&amp;quot;]
+
+
+&amp;quot;Hello 20\n18&amp;quot;.match(/\d\w./g)
+// 这里匹配不成功，因为.不能匹配换行符，所以返回null
+null
+
+
+&amp;quot;Hello 2018&amp;quot;.match(/\w.\d/g)
+// 首先看这个正则式，\w.\d，它要求最后一个字符是数字
+// \w.能一直匹配到空格，但是因为得满足\d，所以第一个匹配成功的是0 2
+// 因为是全局匹配，所以会接着匹配后面的018，也匹配成功
+(2) [&amp;quot;o 2&amp;quot;, &amp;quot;018&amp;quot;]
+
+自定义匹配符
+比如中国的手机号都是以 1 开头，第二位只能是 3、4、5、7、8，第 3 位只要是数字就行。如何匹配这样的字符串？
+
+[] ：匹配[]中的任意一个字符
+
+&amp;quot;152&amp;quot;.match(/1[34578]\d/)
+// 第二个字符可以选择中括号中的任意一个
+[&amp;quot;152&amp;quot;, index: 0, input: &amp;quot;152&amp;quot;, groups: undefined]
+
+如果在 [] 添加了 ^,代表取反。即 [^] 表示除了中括号中的字符都满足。
+&amp;quot;152&amp;quot;.match(/1[^34578]\d/)
+
+null
+
+
+&amp;quot;1a2&amp;quot;.match(/1[^34578]\d/)
+// 只要不是[]中的字符，都满足，包括回车符
+[&amp;quot;1a2&amp;quot;, index: 0, input: &amp;quot;1a2&amp;quot;, groups: undefined]
+
+修饰匹配次数
+我们的手机号有 11 位，除了前 2 位有要求，其他9位度没有要求，那么是不是正则表达式就应该这样写呢？
+1[^34578]\d\d\d\d\d\d\d\d\d
+
+很明显，这样写太麻烦，肯定有更好的方式，这里就可以修饰一下匹配次数啦。
+
+? ：最多出现 1 次
++ ：至少出现 1 次
+* ：出现任意次数
+{} ：分下面四种情况
+
+{n}代表前面的匹配符出现 n 次
+{n, m}出现次数在 n~m 之间
+{n, }至少出现 n 次
+{, m}最多出现 m 次
 
 
 
-  </body>
+例子很简单，一看就懂，不浪费时间。
+&amp;quot;15284750845&amp;quot;.match(/1[34578]\d{9}/)
+[&amp;quot;15284750845&amp;quot;, index: 0, input: &amp;quot;15284750845&amp;quot;, groups: undefined]
+
+
+&amp;quot;15&amp;quot;.match(/1[34578]\d?/)
+[&amp;quot;15&amp;quot;, index: 0, input: &amp;quot;15&amp;quot;, groups: undefined]
+
+
+&amp;quot;152&amp;quot;.match(/1[34578]\d?/)
+[&amp;quot;152&amp;quot;, index: 0, input: &amp;quot;152&amp;quot;, groups: undefined]
+
+
+&amp;quot;152&amp;quot;.match(/1[34578]\d+/)
+[&amp;quot;152&amp;quot;, index: 0, input: &amp;quot;152&amp;quot;, groups: undefined]
+
+
+&amp;quot;15&amp;quot;.match(/1[34578]\d+/)
+null
+
+完整匹配
+按照上面的写法会出现下面的问题。
+&amp;quot;ya15284750845&amp;quot;.match(/1[34578]\d{9}/)
+// 不是电话号码，也能匹配成功，需要进一步改进
+[&amp;quot;15284750845&amp;quot;, index: 2, input: &amp;quot;ya15284750845&amp;quot;, groups: undefined]
+
+
+^ ：在 [] 中代表取反，但在外面代表从开始匹配
+
+&amp;quot;ya15284750845&amp;quot;.match(/^1[34578]\d{9}/)
+// 现在就能从一开始匹配而且还得符合正则式才算匹配成功
+null
+
+
+// 但是依旧会出现下面的问题
+&amp;quot;1528475084523255&amp;quot;.match(/^1[34578]\d{9}/)
+// 不是电话号码也能匹配成功，还要改进
+[&amp;quot;15284750845&amp;quot;, index: 0, input: &amp;quot;1528475084523255&amp;quot;, groups: undefined]
+
+
+$ ：代表持续匹配到结束
+
+&amp;quot;1528475084523255&amp;quot;.match(/^1[34578]\d{9}$/)
+// 现在就能保证正确了，有^表示从开始匹配；
+// 有$表示持续匹配到结束，即完全匹配
+null
+
+/*
+需要注意的是，一个字符串从开始匹配和从结束匹配都没问题，
+不代表整个字符串就没问题，比如 15284750845-15284750845
+这个字符串从开始和从结束匹配都能成功，但实际上是错的
+*/
+
+特殊符号
+到这里发现正则表达式确实很强大，仅仅几个简单的符号就能匹配字符串，但是如果我们要匹配的字符本身就是前面用到的符号怎么办呢？
+
+匹配像$、^等特殊符号时，需要加转义字符\
+
+&amp;quot;1.&amp;quot;.match(/./)
+//因为.能匹配除换行的所有字符，所以匹配到1
+//但实际上我们想匹配.这个字符
+[&amp;quot;1&amp;quot;, index: 0, input: &amp;quot;1.&amp;quot;, groups: undefined]
+
+
+&amp;quot;1.&amp;quot;.match(/\./)
+// 只需要加一个转义字符就可以了，其他类似
+[&amp;quot;.&amp;quot;, index: 1, input: &amp;quot;1.&amp;quot;, groups: undefined]
+
+条件分支
+比如现在想匹配图片的文件名，包括 jpg、png、jpeg、gif 等等，这是多个选项，所以需要像编程语言一样，应该具备条件分支结构。
+
+| ：条件分支
+() ：有两层含义
+
+括号中的内容成为一个独立的整体
+括号的内容可以进行分组，单独匹配，若不需要此功能，则( ?: )
+
+
+
+&amp;quot;1.jpg&amp;quot;.match(/.+\.jpe?g|gif|png/)
+// 这样就可以满足条件分支了,不过下面又出问题了
+[&amp;quot;1.jpg&amp;quot;, index: 0, input: &amp;quot;1.jpg&amp;quot;, groups: undefined]
+
+
+&amp;quot;1.png&amp;quot;.match(/.+\.jpe?g|gif|png/)
+// 这里没有匹配到.和前面的文件名
+[&amp;quot;png&amp;quot;, index: 2, input: &amp;quot;1.png&amp;quot;, groups: undefined]
+
+
+/*
+其实我们想告诉它的是，.和后面的每一个条件分支的值都是一个独立的整体
+但是它把.+\.jpe?g、gif、png当成了各自独立的整体
+我们并不想让它这样切分，所以我们来告诉它怎么分才是正确的
+*/
+
+
+&amp;quot;1.png&amp;quot;.match(/.+\.(jpe?g|gif|png)/)
+// 现在可以匹配成功了，但是它多匹配了一个
+// 因为括号的内容可以进行分组，单独匹配
+(2) [&amp;quot;1.png&amp;quot;, &amp;quot;png&amp;quot;, index: 0, input: &amp;quot;1.png&amp;quot;, groups: undefined]
+
+
+// 所以最终写法如下
+&amp;quot;1.png&amp;quot;.match(/.+\.(?:jpe?g|gif|png)/)
+[&amp;quot;1.png&amp;quot;, index: 0, input: &amp;quot;1.png&amp;quot;, groups: undefined]
+
+贪婪与懒惰
+// 首先看一个例子
+&amp;quot;aabab&amp;quot;.match(/a.*b/)
+[&amp;quot;aabab&amp;quot;, index: 0, input: &amp;quot;aabab&amp;quot;, groups: undefined]
+
+
+/*
+上面的匹配没有什么问题，但实际上aab也是可以的
+也就是aab也是符合条件的，那又是为什么呢？
+*/
+
+因为在正则表达式中，默认是贪婪模式，尽可能多的匹配，可以在修饰数量的匹配符后面添加 ?，则代表懒惰。
+// like this (^__^)
+&amp;quot;aabab&amp;quot;.match(/a.*?b/)
+[&amp;quot;aab&amp;quot;, index: 0, input: &amp;quot;aabab&amp;quot;, groups: undefined]
+
+到这里应该就差不多了，再深入的，就自我查询知识了。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/CY4_BQLR4">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571463903397)">
+        </div>
+        <h1 class="id_card-title">
+            刘小绪同学的博客
+        </h1>
+        <h2 class="id_card-description">
+            正在学习写代码的码农
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                            <a href="https://www.douban.com/people/189583084" target="_blank" rel="noopener noreferrer"><i
+                    class="icon-douban"></i></a>
+
+        </div>
+    </div>
+
+    <div class="id_card i-card">
+        <h1 class="id_card-title">
+            最新文章
+        </h1>
+        <div class="new-aticles">
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao">JavaScript 高级知识技巧</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/jia-li-de-gou">家里的狗</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/o9IjztOrR">怎样才能开开心心的呢？</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/bian-liang-ti-sheng-yu-zuo-yong-yu">变量提升与作用域</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu">惰性载入函数</a>
+                </h3>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
+    </div>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
 </html>

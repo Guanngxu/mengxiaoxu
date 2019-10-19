@@ -7,7 +7,7 @@
 <title>
     Linux | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571485557233">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571503513581">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571485557233" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571503513581" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -133,17 +133,17 @@
                     <time class="post-time">2019-10-19</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/nginx" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-warning">
             #Nginx
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/linux" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-">
             #Linux
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-">
             #操作系统
         </a>
                         
@@ -163,6 +163,7 @@ Nginx AIO 机制与 sendfile 机制
 sendfile 适用场景
 扯淡 Nginx 的 sendfile 零拷贝的概念
 浅析 Linux 中的零拷贝技术
+Linux man-pages sendfile
 
 今天在看 Nginx 配置的时候，看到了一个sendfile配置项，它可以配置在http、server、location三个块中，出于好奇就去查了一下sendfile的作用。
 文件下载是服务器的基本功能，其基本流程就是循环的从磁盘读取文件内容到缓冲区，再将缓冲区内容发送到socket文件，程序员基本都会写出类似下面看起来比较高效的程序。
@@ -183,7 +184,8 @@ DMA 从 Socket 缓冲区把数据拷贝到协议栈。
 
 
 可以看到两行程序共发生了 4 次拷贝和 4 次上下文切换，很明显中间有些拷贝和上下文切换是不需要的，sendfile就是来解决这个问题的，它是从 2.1 版本内核开始引入的，这里放个 2.6 版本的源码。
-系统调用sendfile是将in_fd的内容发送到out_fd，描述符out_fd必须指向套接字文件，而in_fd只能是文件句柄。所以当 Nginx 是一个静态服务器时，开启sendfile配置项是可以大大提高 Nginx 性能的，但是当把 Nginx 作为一个反向代理服务器时，sendfile则没有什么用，因为当 Nginx 时反向代理服务器时，in_fd就是一个套接字，这不符合sendfile的参数要求。
+系统调用sendfile是将in_fd的内容发送到out_fd，描述符out_fd在 Linux 2.6.33 之前，必须指向套接字文件，自 2.6.33 开始，out_fd可以是任何文件；in_fd只能是支持mmap的文件（mmap是一种内存映射方法，在被调用进程的虚拟地址空间中创建一个新的指定文件的映射）。
+所以当 Nginx 是一个静态服务器时，开启sendfile配置项是可以大大提高 Nginx 性能的，但是当把 Nginx 作为一个反向代理服务器时，sendfile则没有什么用，因为当 Nginx 时反向代理服务器时，in_fd就是一个套接字，这不符合sendfile的参数要求。
 
 可以看到现在我们只需要一次拷贝就可以完成功能了，但是能否把这一次拷贝也省略掉呢？我们可以借助硬件来实现，仅仅需要把缓冲区描述符和文件长度传过去，这样 DMA 直接将缓冲区的数据打包发送到网络中就可以了。
 这样就实现了零拷贝技术，需要注意的是这里所说的零拷贝是相对操作系统而言的，即在内核空间不存在冗余数据。数据的实际走向是从硬盘到内存，再从内存到设备。
@@ -215,7 +217,7 @@ location /video/ {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571485557233)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571503513581)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客

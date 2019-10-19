@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2019-10-19T11:46:33.946Z</updated>
+    <updated>2019-10-19T16:45:27.240Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io//atom.xml"/>
@@ -21,7 +21,8 @@
 <a href="http://www.178linux.com/54790">Nginx AIO 机制与 sendfile 机制</a><br>
 <a href="https://segmentfault.com/q/1010000003055006/a-1020000003064578">sendfile 适用场景</a><br>
 <a href="http://xiaorui.cc/2015/06/24/%E6%89%AF%E6%B7%A1nginx%E7%9A%84sendfile%E9%9B%B6%E6%8B%B7%E8%B4%9D%E7%9A%84%E6%A6%82%E5%BF%B5/">扯淡 Nginx 的 sendfile 零拷贝的概念</a><br>
-<a href="https://www.jianshu.com/p/fad3339e3448">浅析 Linux 中的零拷贝技术</a></p>
+<a href="https://www.jianshu.com/p/fad3339e3448">浅析 Linux 中的零拷贝技术</a><br>
+<a href="http://man7.org/linux/man-pages/man2/sendfile.2.html">Linux man-pages sendfile</a></p>
 </blockquote>
 <p>今天在看 Nginx 配置的时候，看到了一个<code>sendfile</code>配置项，它可以配置在<code>http、server、location</code>三个块中，出于好奇就去查了一下<code>sendfile</code>的作用。</p>
 <p>文件下载是服务器的基本功能，其基本流程就是循环的从磁盘读取文件内容到缓冲区，再将缓冲区内容发送到<code>socket</code>文件，程序员基本都会写出类似下面看起来比较高效的程序。</p>
@@ -42,7 +43,8 @@
 </ol>
 <figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1571484140766.png" alt=""></figure>
 <p>可以看到两行程序共发生了 4 次拷贝和 4 次上下文切换，很明显中间有些拷贝和上下文切换是不需要的，<code>sendfile</code>就是来解决这个问题的，它是从 2.1 版本内核开始引入的，这里放个 2.6 版本的<a href="http://lxr.linux.no/linux+v2.6.36/fs/read_write.c#L809">源码</a>。</p>
-<p>系统调用<code>sendfile</code>是将<code>in_fd</code>的内容发送到<code>out_fd</code>，描述符<code>out_fd</code>必须指向套接字文件，而<code>in_fd</code>只能是文件句柄。所以当 Nginx 是一个静态服务器时，开启<code>sendfile</code>配置项是可以大大提高 Nginx 性能的，但是当把 Nginx 作为一个反向代理服务器时，<code>sendfile</code>则没有什么用，因为当 Nginx 时反向代理服务器时，<code>in_fd</code>就是一个套接字，这不符合<code>sendfile</code>的参数要求。</p>
+<p>系统调用<code>sendfile</code>是将<code>in_fd</code>的内容发送到<code>out_fd</code>，描述符<code>out_fd</code>在 Linux 2.6.33 之前，必须指向套接字文件，自 2.6.33 开始，<code>out_fd</code>可以是任何文件；<code>in_fd</code>只能是支持<code>mmap</code>的文件（<code>mmap</code>是一种内存映射方法，在被调用进程的虚拟地址空间中创建一个新的指定文件的映射）。</p>
+<p>所以当 Nginx 是一个静态服务器时，开启<code>sendfile</code>配置项是可以大大提高 Nginx 性能的，但是当把 Nginx 作为一个反向代理服务器时，<code>sendfile</code>则没有什么用，因为当 Nginx 时反向代理服务器时，<code>in_fd</code>就是一个套接字，这不符合<code>sendfile</code>的参数要求。</p>
 <figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1571484451529.png" alt=""></figure>
 <p>可以看到现在我们只需要一次拷贝就可以完成功能了，但是能否把这一次拷贝也省略掉呢？我们可以借助硬件来实现，仅仅需要把缓冲区描述符和文件长度传过去，这样 DMA 直接将缓冲区的数据打包发送到网络中就可以了。</p>
 <p>这样就实现了零拷贝技术，需要注意的是这里所说的零拷贝是相对操作系统而言的，即在内核空间不存在冗余数据。数据的实际走向是从硬盘到内存，再从内存到设备。</p>

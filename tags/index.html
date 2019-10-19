@@ -1,174 +1,245 @@
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
-<title>刘小绪同学的博客</title>
-<meta name="description" content="正在学习写代码的码农">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571462845924">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    刘小绪同学的博客
+</title>
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571462893947">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://mengxiaoxu.github.io/">
-        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571462845924" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://mengxiaoxu.github.io/">
-        <h1 class="site-title">刘小绪同学的博客</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-        
-          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
-            友链
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
+        gtag('config', 'UA-148716803-1');
+    </script>
+    
+</head>
 
-
-        <div class="content-container">
-          
-          <div class="tags-container">
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/javascript">JavaScript</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz">前端</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/san-wen">散文</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy">随笔</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/94PzxqinO">生活感悟</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/i4kET55EC">翻译</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/vhSkGeYf1D">设计</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/S57Vp3Suu">计算机网络</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/git">Git</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/QjCHA76i_r">编程基础</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/ce-shi">测试</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/qian-hou-duan-fen-chi">前后端分离</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/EE1uiCHgH">个人总结</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/J_3GE6pBm">TypeScript</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/shu-ji-tui-jian">书籍推荐</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/DytBq-ZFD">回忆</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/kvSwja8aw">操作系统</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/gong-ju-ji-qiao">工具技巧</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/pa-chong">爬虫</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/zi-ran-yu-yan-chu-li">自然语言处理</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/shu-ju-ku">数据库</a>
-            
-              <a class="tag" href="https://mengxiaoxu.github.io//tag/JYJKwJM69">编译原理</a>
-            
-          </div>
-
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://mengxiaoxu.github.io/">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571462893947" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    刘小绪同学的博客
+                </h1>
+            </div>
         </div>
-
-        <div class="site-footer">
-  <div class="slogan">正在学习写代码的码农</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                    友链
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-      </div>
-      <script type="application/javascript">
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+        });
+    });
 </script>
 
+            <div class="tags-container main-container">
+                <div class="tags-group">
+                    
+                        <a class="tags-tag i-tag
+                            i-tag-success" href="https://mengxiaoxu.github.io//tag/javascript">
+                            JavaScript
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_4" href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz">
+                            前端
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_2" href="https://mengxiaoxu.github.io//tag/san-wen">
+                            散文
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-" href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy">
+                            随笔
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_3" href="https://mengxiaoxu.github.io//tag/94PzxqinO">
+                            生活感悟
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_2" href="https://mengxiaoxu.github.io//tag/i4kET55EC">
+                            翻译
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-info" href="https://mengxiaoxu.github.io//tag/vhSkGeYf1D">
+                            设计
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-success" href="https://mengxiaoxu.github.io//tag/S57Vp3Suu">
+                            计算机网络
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-success" href="https://mengxiaoxu.github.io//tag/git">
+                            Git
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-info" href="https://mengxiaoxu.github.io//tag/QjCHA76i_r">
+                            编程基础
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-info" href="https://mengxiaoxu.github.io//tag/ce-shi">
+                            测试
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_2" href="https://mengxiaoxu.github.io//tag/qian-hou-duan-fen-chi">
+                            前后端分离
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-success" href="https://mengxiaoxu.github.io//tag/EE1uiCHgH">
+                            个人总结
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-" href="https://mengxiaoxu.github.io//tag/J_3GE6pBm">
+                            TypeScript
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-info" href="https://mengxiaoxu.github.io//tag/shu-ji-tui-jian">
+                            书籍推荐
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_1" href="https://mengxiaoxu.github.io//tag/DytBq-ZFD">
+                            回忆
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-warning" href="https://mengxiaoxu.github.io//tag/kvSwja8aw">
+                            操作系统
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-error" href="https://mengxiaoxu.github.io//tag/gong-ju-ji-qiao">
+                            工具技巧
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-success" href="https://mengxiaoxu.github.io//tag/pa-chong">
+                            爬虫
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-warning" href="https://mengxiaoxu.github.io//tag/zi-ran-yu-yan-chu-li">
+                            自然语言处理
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_2" href="https://mengxiaoxu.github.io//tag/shu-ju-ku">
+                            数据库
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_4" href="https://mengxiaoxu.github.io//tag/JYJKwJM69">
+                            编译原理
+                        </a>
+                        
+                </div>
+            </div>
 
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
 
     </div>
-  </body>
+</body>
+
 </html>

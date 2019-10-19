@@ -1,672 +1,610 @@
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
-<title>刘小绪同学的博客</title>
-<meta name="description" content="正在学习写代码的码农">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571462845924">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    刘小绪同学的博客
+</title>
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571462893947">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://mengxiaoxu.github.io/">
-        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571462845924" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://mengxiaoxu.github.io/">
-        <h1 class="site-title">刘小绪同学的博客</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-        
-          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
-            友链
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
+        gtag('config', 'UA-148716803-1');
+    </script>
+    
+</head>
 
-
-        <div class="content-container">
-          
-          
-
-<div class="archives-container">
-  
-    <h2 class="year">2019</h2>
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao">
-            <h2 class="post-title">
-              JavaScript 高级知识技巧
-              <small>2019-10-13</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/jia-li-de-gou">
-            <h2 class="post-title">
-              家里的狗
-              <small>2019-10-12</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/o9IjztOrR">
-            <h2 class="post-title">
-              怎样才能开开心心的呢？
-              <small>2019-09-08</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/bian-liang-ti-sheng-yu-zuo-yong-yu">
-            <h2 class="post-title">
-              变量提升与作用域
-              <small>2019-08-08</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu">
-            <h2 class="post-title">
-              惰性载入函数
-              <small>2019-08-06</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze">
-            <h2 class="post-title">
-              非设计师需要知道的四个设计原则
-              <small>2019-06-22</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-05-12">
-            <h2 class="post-title">
-              刘小绪同学随笔（2019-05-12）
-              <small>2019-05-12</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/qCt13nLLT">
-            <h2 class="post-title">
-              浅析浏览器缓存机制
-              <small>2019-04-26</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/git-jin-jie-ji-chang-yong-ming-ling">
-            <h2 class="post-title">
-              Git 进阶及常用命令
-              <small>2019-04-18</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">
-            <h2 class="post-title">
-              什么是契约测试？
-              <small>2019-04-10</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
-            <h2 class="post-title">
-              刘小绪同学随笔（2019-02-27）
-              <small>2019-02-27</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/MqqlYHD78">
-            <h2 class="post-title">
-              Bootstrap-table 合并相同单元格
-              <small>2019-01-26</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-23">
-            <h2 class="post-title">
-              刘小绪同学随笔（2019-01-23）
-              <small>2019-01-23</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13">
-            <h2 class="post-title">
-              刘小绪同学随笔（2019-01-13）
-              <small>2019-01-13</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-    <h2 class="year">2018</h2>
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">
-            <h2 class="post-title">
-              大学生书单推荐
-              <small>2018-12-30</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/5BDtFnlOc">
-            <h2 class="post-title">
-              回忆高中网校生活
-              <small>2018-12-15</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/aSkANU6p0">
-            <h2 class="post-title">
-              记录在南京大学的半天
-              <small>2018-12-12</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/SpXxa8r-v">
-            <h2 class="post-title">
-              为什么处理排序数组比未排序数组快
-              <small>2018-11-28</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/github-shi-da-zui-jia-shi-jian">
-            <h2 class="post-title">
-              Github 十大最佳实践
-              <small>2018-11-28</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/JFfO3d0iF">
-            <h2 class="post-title">
-              刘小绪同学的 2018
-              <small>2018-11-26</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2018-11-20">
-            <h2 class="post-title">
-              刘小绪同学随笔（2018-11-20）
-              <small>2018-11-20</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/cYbqHG1mh">
-            <h2 class="post-title">
-              函数调用与空间分配
-              <small>2018-11-18</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/shun-xu-tiao-jian-xun-huan-yu-ju-de-di-ceng-jie-shi">
-            <h2 class="post-title">
-              顺序、条件、循环语句的底层解释
-              <small>2018-11-11</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/wei-xin-shi-yong-ji-qiao">
-            <h2 class="post-title">
-              微信使用技巧
-              <small>2018-11-07</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/wo-shi-ru-he-zhuan-bian-zi-ji-de-si-wei-fang-shi-de">
-            <h2 class="post-title">
-              我是如何转变自己的思维方式的
-              <small>2018-10-25</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/xin-xi-de-biao-shi-he-chu-li">
-            <h2 class="post-title">
-              信息的表示和处理
-              <small>2018-10-19</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/ji-suan-ji-xi-tong-man-you">
-            <h2 class="post-title">
-              计算机系统漫游
-              <small>2018-10-10</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">
-            <h2 class="post-title">
-              使用订阅号实现微信公众号历史文章爬虫
-              <small>2018-10-04</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/du-da-xue-de-ji-dian-jian-yi">
-            <h2 class="post-title">
-              读大学的几点建议
-              <small>2018-09-19</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/MYYZrm7wn">
-            <h2 class="post-title">
-              如何解决跨域请求问题
-              <small>2018-09-18</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/WsHPYySZU">
-            <h2 class="post-title">
-              如何让你的网页看起来更美观
-              <small>2018-09-09</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/rang-https-jian-dan-yi-dong">
-            <h2 class="post-title">
-              让 HTTPS 简单易懂
-              <small>2018-08-26</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">
-            <h2 class="post-title">
-              用 Scrapy 爬取豆瓣250
-              <small>2018-07-27</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian">
-            <h2 class="post-title">
-              年轻不要给自己设限
-              <small>2018-07-02</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/tan-yi-xia-xie-zuo-de-chong-yao-xing">
-            <h2 class="post-title">
-              谈一下写作的重要性
-              <small>2018-06-20</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/jing-ji-ze-ren-shen-ji-zhi-shi-tu-pu-gou-jian-fang-fa-zong-jie">
-            <h2 class="post-title">
-              经济责任审计知识图谱构建方法总结
-              <small>2018-05-07</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu">
-            <h2 class="post-title">
-              基于依存句法分析的开放式中文实体关系抽取
-              <small>2018-04-26</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/jian-dan-li-jie-ci-pan-jie-gou">
-            <h2 class="post-title">
-              简单理解磁盘结构
-              <small>2018-04-24</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/FoEH1GV6f">
-            <h2 class="post-title">
-              阅读高于自己的作品，远离精神毒品
-              <small>2018-04-19</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/8-A2fl99e">
-            <h2 class="post-title">
-              告别囤干货，你才能真正进步
-              <small>2018-04-15</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mengxiaoxu.github.io//post/CY4_BQLR4">
-            <h2 class="post-title">
-              正则表达式语法
-              <small>2018-03-29</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-  
-</div>
-
-
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://mengxiaoxu.github.io/">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571462893947" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    刘小绪同学的博客
+                </h1>
+            </div>
         </div>
-
-        <div class="site-footer">
-  <div class="slogan">正在学习写代码的码农</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                    友链
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-      </div>
-      <script type="application/javascript">
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+        });
+    });
 </script>
 
+            
 
+    <div class="archives-container main-container">
+        <ul class="timeline">
+            
+                <li>
+                    <h3 class="year">
+                        2019
+                    </h3>
+                    <ul class="year-wrapper">
+                        
+                            
+                                <li>
+                                    <span class="date">2019-10-13</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao">
+                                        <span>JavaScript 高级知识技巧</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-10-12</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/jia-li-de-gou">
+                                        <span>家里的狗</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-09-08</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/o9IjztOrR">
+                                        <span>怎样才能开开心心的呢？</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-08-08</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/bian-liang-ti-sheng-yu-zuo-yong-yu">
+                                        <span>变量提升与作用域</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-08-06</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu">
+                                        <span>惰性载入函数</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-06-22</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze">
+                                        <span>非设计师需要知道的四个设计原则</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-12</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-05-12">
+                                        <span>刘小绪同学随笔（2019-05-12）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-04-26</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/qCt13nLLT">
+                                        <span>浅析浏览器缓存机制</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-04-18</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/git-jin-jie-ji-chang-yong-ming-ling">
+                                        <span>Git 进阶及常用命令</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-04-10</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">
+                                        <span>什么是契约测试？</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-02-27</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
+                                        <span>刘小绪同学随笔（2019-02-27）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-01-26</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/MqqlYHD78">
+                                        <span>Bootstrap-table 合并相同单元格</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-01-23</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-23">
+                                        <span>刘小绪同学随笔（2019-01-23）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-01-13</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13">
+                                        <span>刘小绪同学随笔（2019-01-13）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                    </ul>
 
+                </li>
+                
+                <li>
+                    <h3 class="year">
+                        2018
+                    </h3>
+                    <ul class="year-wrapper">
+                        
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-12-30</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">
+                                        <span>大学生书单推荐</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-12-15</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/5BDtFnlOc">
+                                        <span>回忆高中网校生活</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-12-12</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/aSkANU6p0">
+                                        <span>记录在南京大学的半天</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-11-28</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/SpXxa8r-v">
+                                        <span>为什么处理排序数组比未排序数组快</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-11-28</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/github-shi-da-zui-jia-shi-jian">
+                                        <span>Github 十大最佳实践</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-11-26</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/JFfO3d0iF">
+                                        <span>刘小绪同学的 2018</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-11-20</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2018-11-20">
+                                        <span>刘小绪同学随笔（2018-11-20）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-11-18</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/cYbqHG1mh">
+                                        <span>函数调用与空间分配</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-11-11</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/shun-xu-tiao-jian-xun-huan-yu-ju-de-di-ceng-jie-shi">
+                                        <span>顺序、条件、循环语句的底层解释</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-11-07</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/wei-xin-shi-yong-ji-qiao">
+                                        <span>微信使用技巧</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-10-25</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/wo-shi-ru-he-zhuan-bian-zi-ji-de-si-wei-fang-shi-de">
+                                        <span>我是如何转变自己的思维方式的</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-10-19</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/xin-xi-de-biao-shi-he-chu-li">
+                                        <span>信息的表示和处理</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-10-10</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/ji-suan-ji-xi-tong-man-you">
+                                        <span>计算机系统漫游</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-10-04</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">
+                                        <span>使用订阅号实现微信公众号历史文章爬虫</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-09-19</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/du-da-xue-de-ji-dian-jian-yi">
+                                        <span>读大学的几点建议</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-09-18</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/MYYZrm7wn">
+                                        <span>如何解决跨域请求问题</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-09-09</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/WsHPYySZU">
+                                        <span>如何让你的网页看起来更美观</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-08-26</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/rang-https-jian-dan-yi-dong">
+                                        <span>让 HTTPS 简单易懂</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-07-27</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">
+                                        <span>用 Scrapy 爬取豆瓣250</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-07-02</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian">
+                                        <span>年轻不要给自己设限</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-06-20</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/tan-yi-xia-xie-zuo-de-chong-yao-xing">
+                                        <span>谈一下写作的重要性</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-05-07</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/jing-ji-ze-ren-shen-ji-zhi-shi-tu-pu-gou-jian-fang-fa-zong-jie">
+                                        <span>经济责任审计知识图谱构建方法总结</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-04-26</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu">
+                                        <span>基于依存句法分析的开放式中文实体关系抽取</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-04-24</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/jian-dan-li-jie-ci-pan-jie-gou">
+                                        <span>简单理解磁盘结构</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-04-19</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/FoEH1GV6f">
+                                        <span>阅读高于自己的作品，远离精神毒品</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-04-15</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/8-A2fl99e">
+                                        <span>告别囤干货，你才能真正进步</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2018-03-29</span>
+                                    <a class="title" href="https://mengxiaoxu.github.io//post/CY4_BQLR4">
+                                        <span>正则表达式语法</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                    </ul>
+
+                </li>
+                
+        </ul>
+    </div>
+
+                
+
+                    <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
 
     </div>
-  </body>
+</body>
+
 </html>

@@ -1,466 +1,338 @@
-<html>
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    个人总结 | 刘小绪同学的博客
-</title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571415643984">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>个人总结 | 刘小绪同学的博客</title>
+<meta name="description" content="正在学习写代码的码农">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571462845924">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-148716803-1');
-    </script>
-    
-</head>
-
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    刘小绪同学的博客
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
-                                    友链
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://mengxiaoxu.github.io/">
+        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571462845924" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://mengxiaoxu.github.io/">
+        <h1 class="site-title">刘小绪同学的博客</h1>
+      </a>
     </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
-
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        个人总结</b>
-    </div>
-    
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
         
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
-                        刘小绪同学随笔（2019-02-27）
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-02-27</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-other_4">
-            #随笔
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-other_4">
-            #个人总结
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/liu-xiao-xu-tong-xue-sui-bi-2019-02-27.jpeg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            建议读者大人们，如果自己经常一上火牙就疼，或者自己感觉牙已经有点问题了，可以提早预约医院的口腔科查一下，如果有问题早点预防，总是没有坏处的。抽烟的半年洗一次牙，不抽烟的一年洗一次牙。
-因为智齿发炎被狠狠的折磨了近两周，我属于比较能忍得疼痛的人，这不周末才进行了一场春季骑行，唯有美景与美食不可辜负，什么病痛都是浮云，但回想起连续几晚上疼到睡不着觉的滋味，昨天毅然决然斩草除根，给拔掉了，今天就感觉好了很多。
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+        
+          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
 
-前几天考研成绩出来了，估计现在大部分同学都在准备复试，我没有体验过考研的这个过程，毕业这半年有时候还是会想，我也应该体验一下考研的那个过程，已经很久没有体验过把所有时间都投入到一件事情上的快乐了。
-但我还是不太建议读研，我这是无责任建议，毕竟自己没有读过研究生，在研究生实验室待了两年，算是有一半的硕士生经历吧。对于学历我一直以来的观点都是绝大部分人将它的作用放大了，总是认为名校成造就了强能力，而恰恰把因果关系给弄反了，是能力强的人都进了名校（本科）。当然，不否认像医学一类的专业是肯定要考研的，一棒子全打死肯定是不对的。
 
-刘大发起的读书活动告一段落了，跟着小伙伴们泛泛的读了一遍《深入理解计算机系统》，只能用“痛并快乐着”来形容这个过程，每周输出一篇读书笔记，没有按时输出就罚钱的规矩很好，人还是需要自己逼自己才行。
-这本书不适合初学者阅读，在豆瓣上的评分接近 10 分，不讲究速成，而是一本内功心法，如果是您是码农的话，读一读绝对会提高一个层级。现在已经开启了另一本书籍的阅读计划，刘大这个活动组织的超好。
+      <div class="content-container">
 
-春节回家发现了一个巨大的变化，我老家那种贫困县地区的村民们，也在开始讨论保险这一类产品了，我是觉得这个改变太大了，说明农民伯伯的经济水平也有很大的提升了。另外通过朋友圈还发现，我认识的大佬们貌似出身都并不是多好，反倒是大部分普通朋友家里的矿更多。
-我们家族每年会组织祭祖活动，在正月初三一大家 50 人左右一同祭拜曾祖曾母，通过这么一个活动把整个大家族的年轻人联系起来，能搭建这样一个平台很棒，我正也在着手将家族信息数字化。
-
-说到这里，想说一句家族群是个小江湖，亲戚之间也是暗暗较劲的，母亲不会抢群里几个特定的人发的红包，家里都是山路，车技不好的人很容易就寸步难行，一表叔就因为不到 10 米的距离，整个春节都在亲戚朋友面前抬不起头。
-堂弟现在是民航飞行员在读，而另一个表弟今年正值高考，说要去考炮兵学院，将来好把飞机打下来，这一下可好了，这些话全部伯父被截屏保留了，将来某一天要是这俩兄弟闹矛盾了，估计有的好看。保二爷写的家族群不是群，是江湖...看起来更有趣一点。
-在我身上更可悲的事情发生了，所有长辈一致认同应该由我来管理家族群，想想整个群里充斥的都是是那种要露不露、似露非露、就是不露的视频，或者是用粗糙都无法形容的大而泛的鸡汤文，整个头就大了，这可比解决技术问题难多了。
-
-最近愈发觉得“大佬”之间的抄袭严重了，真大佬基本都是原创内容，或者是引用了别人的文字就标注出来，然而总是看到一些“大佬”原封不动发出来，还不表明出处，下面粉丝跟着继续做同样的事，我看到最多的一次是朋友圈连续 10 多条是一样的段子。
-
-最后想无责任乱说一点科技相关的东西，5G 是当下的风口浪尖，各大厂商都希望在 5G 上有一席之地，搞芯片的搞芯片、做基站的做基站、整手机的整手机，5G + IPV6 肯定会带来无法想象的未来，5G 会大幅推动智能硬件的应用，但是手机这个应用场景是不是被夸大了呢？
-现在的 4G 手机在线看一部高清电影不会有多卡顿的现象，广大吃瓜群众和各大媒体，一直都拿着 5G 手机来吹嘘，吃瓜群众跟随媒体引导的大流，我总觉得当拿到 5G 手机的那一刻，心里肯定会从喜悦急转失望的，就像目前的苹果产品一样。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13">
-                        刘小绪同学随笔（2019-01-13）
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-01-13</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-other_4">
-            #随笔
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-other_4">
-            #个人总结
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-warning">
-            #生活感悟
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/liu-xiao-xu-tong-xue-sui-bi-2019-01-13.jpeg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            前一周在一席上面看了一场演讲叫「不正经历史研究所所长」，整场演讲都伴随着欢声笑语，讲的是民间文化与经典文化，经典文化实际上是统治阶级强行推动的精致文化，绝大部分老百姓是看不懂这些东西的，反正我自己参观博物馆，如果没有讲解，我是完全看不懂那些玩意的。
-能和生活联系在一起的文化最有活力，比如天天发杨超越祈求不挂科，拜拜马云希望有更多的钱等等。有一句老话叫「人活一口气」，民间文化都基于此，我在别人面前要抬得起头，要的是气派、要的是大气，上个世纪的「四大件」应该就是成功的一个标配，老百姓置办这些物件后，在邻居面前也更能昂首挺胸了。
-昨天了解到一个朋友家乡的有一个非常奇怪的习俗，那就是「坟头蹦迪」，我最开始的想法是，这是不是最近兴起来的习俗，但是一问才知道，他小时候就是这样的了。基于我们的体系是无法理解坟头蹦迪的，你能说它们对于亲人的去世就不伤心吗？他们要的还是能抬起头，来参加追悼会的人们看到这么豪华的场面，第一反应是故人后代是很有成就的，在某种程度上这算是对故人的颂扬。
-
-花了几个小时时间把微信清理了一下，只留下了 83 个公众号，这其中还包括一信用卡一类的服务号，也就是说只留下了 70 个左右的公众号。留下的都是小而美的公众号，这些大佬作者的更新频率也很低，比如子柳老师最近才更新了一篇文章，而上一篇文章的更新时间是 7 月 25 日。
-最近在自己身上认识的一个问题是，关注的公众号太多读不过来，虽然在此之前已经筛选掉了很多号，然而自己还是读不过来，所以索性就做了减法。现在像公众号这些，已经变成了获取信息的一个重要渠道，我也确实比周围小伙伴掌握信息更快，大部分时间也自认为比他们更了解真相。
-但是我最近突然有个疑问，我真的比他们更了解真相吗？大部分人是通过垃圾文章获取信息，我虽然没有跟着垃圾文章人云亦云，但是我还是通过网络获取信息的，那么我是不是看到的是另外一种看起来更接近真相的假象呢？
-这些信息其实我就算不知道好像也没有什么大碍，顶多是别人谈什么新闻时，我所了解的也就他们知道的那么点而已，更好的方式是让自己的大脑去思考，以时间的维度去追踪事件的发展。
-顺便推荐一个应用叫「刷屏」，我发现自己通过「刷屏」、「知识星球」、「微信公众号」、「朋友圈」四个地方，已经掌握大部分信息了，经常同事给我说某某新闻，而我在两三天前已经见过了。
-
-我对国际计量大会修改「1 千克」的定义这件事印象很深，但是这件事我只看到在阮一峰老师的文章中有被提到过；人们更喜欢听自己了解的领域，跟自己同好的很容易产生好感，一些明星结婚、出轨竟然能把微博的服务给搞挂了，说明绝大部分人还是更喜欢撩自己 G 点的信息。
-
-另外第二个问题是自己现在比在学校时更喜欢玩手机了，在学校时还能做到不带手机去自习，现在是隔一会儿就看看手机，把本来就碎片化的时间变得更加碎片化了，这种效率导致工作、学习效率低下，所以把微信和 TIM 的通知全部关掉了。
-
-写到这里发现有点点像总结，索性就给自己简单总结总结吧。2018 我从校园走向了社会，完成了从学生到职场的转变。最大的改变是思维的提升，知道去投资自己，在学生时代，愿意花几百块钱去买课程，这对我来说是很大的突破，和现在愿意花几百的概念完全不一样，想想那时候一个月生活费总共也没有多少，而我去看了下自己在毕业前花在这方面的钱居然有一千多，如果加上毕业后的开销，那就是两千多了，真感谢那时候的自己。
-这其中的收获是巨大的，后面我偶尔会向朋友推荐一些好的付费课程，但是他们都和大部分人一样，吃一顿饭花几百块钱，而如果花点钱买一堂课提升一下自己，就好像要他命一样，所以后面就不和他们讲了。
-
-2018 开始用文字记录技术、生活、感悟，这其中的收获也是不小的，认识了此前只能仰望的大佬，结交了志同道合的朋友，而且也让自己更愿意去思考了。收到电子工业出版社的约稿合同，但是现在书都没写完，明年还写不完的话，那就不写了，主要是懒。
-自负的缺点已经在渐渐改变了，更加懂得了谦虚。眼界不再局限于技术，很多东西我都会去了解，也结交了很多有趣的人，初入职场，好好学习与不同的人沟通。以后如果有能力，希望能给山区带去一点点教育资源。
-2019 依旧坚持每周和同事或者校友打一次羽毛球，常去爬爬山，和有趣的朋友一起疯一疯；多读书，用豆瓣等工具去筛选好书，加大阅读量；常输出，输出是更高层次的输入；尝试去了解金融的逻辑；学习新的技术领域。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/JFfO3d0iF">
-                        刘小绪同学的 2018
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-11-26</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-">
-            #个人总结
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-primary">
-            #生活感悟
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/JFfO3d0iF" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/JFfO3d0iF.jpg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            这个总结写的还算认真，回头看，我真的运气很好，遇到了很多大佬，在我还未毕业时并没有嫌弃我傻，教我的不仅仅是技术，还有理财、为人处世，下面是我这一年的成长经历。
-有一段时间因为华为 34 岁以上员工被裁、中兴程序员跳楼等事件的发生，各种蹭热点讨论“中年危机”的文章漫天飞，那时我正忙于找工作。
-当时一个微信群里面大家各种讨论中年危机，都在给自己制造焦虑，刚好群里有个大神可能看大家过于焦虑，就在群里发了几条消息，教大家如何避免中年危机，并且推荐了两本书。
-还是学生的我下意识的就发了一个添加好友请求，庆幸的是他同意了我的好友请求，当然我们没有什么交流，我的问题过于浅显，我明白自己这个水平问问题，会浪费人家时间，当时的想法是看看大神的朋友圈，他平时都接触什么，自己学习一段时间。
-大神推荐的书是李笑来写的《把时间当做朋友》、《财富自由之路》，两本书在学校图书馆都没有，我就给学校图书馆荐购系统提交了这两本书，图书馆效率也挺高，不到一周就把书给买回来了，我立马就借回来阅读。
-书中的内容刷新了我以前狭隘的认知，自己从来没有像书中那样考虑问题，除了对作者的佩服之外，更多的是思考自己这种学生思维局限性太大了，要慢慢的将它摒弃。
-有个定律是你关心什么就会来什么，后面陆续碰到几位像大神一样的人士，并加了他们的微信，但是都仅仅是通过他们朋友圈的蛛丝马迹去找知识，通过他们朋友圈的分享内容，我知道了“简七理财”、“码农翻身”公众号，然后知道了《富爸爸穷爸爸》、《小狗钱钱》，于是我通过微信读书，读完了这两本书，逐渐培养了理财理念。
-后来没隔多久，简七出书了，我第一时间就买了她写的《好好赚钱》（同期还有刘大也出了《码农翻身》一书，我也第一时间买了），简七写的内容通俗易懂，很容易理解。
-刘大在群里开了几次公开课，作为计算机专业的我，被刘大对技术的理解之深给折服了，正是业界浮躁的时候，成千上万人想着人工智能、大数据、区块链，而刘大一直能沉下心来去了解技术的原理，这给了我一个很好的榜样，我也逐渐沉下心来，开始去补最基础的知识，像《深入理解计算机系统》一类书也能尽下心来慢慢去啃（当时没啃完，最近又在啃），这种不浮躁的特质对我的技术成长是很有帮助的。
-此后有一天，另一个大神在朋友圈分享了曹大写的《从校园到职场系列文章》，喜欢深入挖掘信息的我，以曹大公众号为源头，又找到了冯大、池大、二爷等人的公众号。
-作为自由的大四学生，因为不用担心第二天起不来，我那段时间经常熬夜阅读他们的文章，再阅读的过程中我也开始思考自己此前哪些想法狭隘，哪些品质又是值得继续保持的。
-也是那时开始接受知识付费的，那时候已经有小密圈（现在叫知识星球）了，出于对几位大佬的信任，我第一次大胆的花了几百块钱加入了刘大、曹大、冯大、程序员小灰的小密圈，其中的内容比网上蹭热点的文章好不知多少倍，一贯爱捕捉蛛丝马迹的我，又通过评论信息发现了 angela zhu、子柳老师、陈利人老师等，然后去找他们的文章，他们输出的内容要比水军写的文章好太多。
-自己也是从那时候开始坚持写文章记录自己的心得的，通过写文章，我认识了很多优秀的人，比如吴小龙同学、了不起的杰克、java 小咖秀等公众号的作者，和他们交流的很少，但是却很受用，他们的积极向上也影响着我一直保持着乐观豁达的心态。
-自己写的文章也被几个资深程序员赞同，同时还收到了两个出版社发来的出书邀请，让我体会到了无心插柳柳成荫的收获。
-让我坚持一直写文章的动力不是赚钱，而是我切切实实体会到了它给我个人带来的成长，为了自己日后再看时能立刻就找到清晰的逻辑，我把都尽可能把文章写得有理有据，掌握自己的节奏，尽量提高文章质量。此前写的谈一下写作的重要性一文有说写作可以带来的好处。
-现在已经不把自己当新人了，而且有同龄人甚至比我年龄还大的人向我咨询问题时，我也能给出合理建议，都得到了他们的肯定。最近发现和周围伙伴最明显的一个区别就是，对于同一个新闻，我经常早于他们半天甚至一两天知道，而且掌握的信息比他们还准确，我认为这就是整体认知水平的提升。
-想说的是，执行力与信息素养很重要，执行力强的人会与你拉开越来越大的距离，信息素养也是一个关键品质，现在网络上充斥着大量的虚假信息，如何去分别这些信息的真假，在相同条件下如何获得更多的有效信息，是必备的能力。
-当前年龄 23，刚大学毕业几个月，没读研。按十年为期给自己定了几个小小的目标：
-父母是地地道道的农民，智能手机都不会用，十年之类给自己和父母把重疾险、意外险之类的保险配置齐全，虽然父辈一直反对买保险。
-提高获取信息的能力，虽然现在对信息的掌握都比周边伙伴要早半天至几天，但是都不是自己的分析结果，学习以时间的纬度跟踪事件的发展。
-学习理财知识，现在只对信用卡、基金有一点点的了解，不管炒不炒股，金融知识都还是要学的，这方面通过看书、阅读、小额实操学习。
-提升自己的技术实力，职业是程序员，前后端都做，但是自己对技术的热情不是多么高涨（至少比身边一半人要高涨），以我对自己的了解，我在技术的道路上成长为小公司一个的架构师应该不成问题，再高层级怕是不行。
-慢慢做到不止一份收入来源，这方面不是多清晰，现在每个月平均会有 200 左右的非工资收入（帮助别人时发的红包等），十年后做到其它收入基本和工资持平。不至于因为钱的问题而忍受心中的不快，至少得有能指着老板的鼻子说“老子不干了”的底气。
-世界那么大，应该去看看，国内除了西北地区，中国很多地方已经留下了我的足迹，旅游不仅仅是玩耍，更是提升见识、获得灵感的有效途径，十年至少得把自己的脚印印到 5 个国家的土地上吧。
-十年之后应该已经结婚了，房子是现在最遥不可及的目标，但是心里莫名有一股自信，这个后面会实现的，虽然不知道哪里来的这股自信。
-最后一个，趁年轻，多学习，做一个终身学习的人，时刻保持学习的态度，多做有利于他人的事，现在水平不高，我能帮助到的大部分都是硕士及以下。努力提高自己，帮助更多的人。更大的目标是能给山区学校带去一些更好的教育资源。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/JFfO3d0iF">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian">
-                        年轻不要给自己设限
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-07-02</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-info">
-            #个人总结
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-success">
-            #生活感悟
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/nian-qing-bu-yao-gei-zi-ji-she-xian.jpeg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            大学毕业时，选择了火车这一交通工具回家，再看一次从东北到西南的沿途风景，无奈火车居然能晚点两小时，这篇文章是为打发时间写的，希望对您有所帮助。
-记得大一入学前，买了一本覃彪喜写的《读大学，究竟读什么》，那时候对于里面有一些观点不赞同，觉得大学这么神圣的地方，怎么被作者写成那样，读完一遍只是抱有一种怀疑的态度，四年之后的今天，我觉得这本书值得一看，大部分内容还是有用的，不过有一些内容还是很偏激的，自己过滤掉就好了。
-现在回头看，大学最需要的应该是经历，我也是大三才算明白这个道理吧（这个道理应该不止学生能实用）。我认为本科阶段是容错率最高的阶段，这个时候你干什么都不怕，犯了错也没有什么大碍，最重要的是犯错（不犯错更好）的那个过程。
-年轻人做什么都是学习，不要给自己设限，在一无所有的年龄就应该多经历，因为这时候的容错率很高，试错成本低就要勇于试错。（这句话可能之前的文章说过，大同小异的话你也能在别的好文章里面见到）
-现在的家长，也包括孩子，大多数喜欢拿一些证书、奖杯出来炫耀，而现在大学里面的个性化保研政策看的就是各种奖项。我更看重的是比赛的过程，但是在学校有一个怪现象：我不想办事，只想你给我挂一个名，到出去比赛的时候，看到所报的项目自己不是第一作者，都不愿意去比赛，觉得是在浪费时间。
-我个人在这里面算一股清流了，我很喜欢跟着出去比赛，因为比赛的过程能教会你很多在学校学不到的东西，给不给我奖状无所谓，只要给我报销差旅费就行了，这一点对我这种穷学生来说跟重要，想出去看看世界长长见识，自己又没有钱，学生群体中随随便便就拿出几千块钱的人还是不多，所以这是我找到的最好的长见识的方法了，上大学前连小县城都没出过的我，通过比赛到过佛山、深圳、重庆、日照等地，这对我算是一生的财富。
-写到这里，脑子里面满满的全是回忆，发现想说的太多，全写出来可能会上万字，先不写了，以后分开写个系列的也行，下面说几句干货道理吧，过来人的总结。
-第一，少拿学校的光环往自己身上套，和你没关系，对于我的学校动不动就拿哈军工说事（中国人都喜欢把自己和名家扯上关系，看起来显得有一些历史文化底蕴），完全是不自信的表现。作为唯一一个首批进入211缺不是985的学校，我觉得学校一直在啃老底。类似的文章还有之前写的谈一点关于名校的话题和刘大写的除去大公司的光环，你还剩点啥？
-第二，学校教不了你多少东西，大学阶段和高中阶段最大的区别是，高中有人赶着你学，而且还有人给你指明学习的方向，但是大学没有人告诉你学什么，也没有人赶着你学习，所以培养自学能力和判断选择能力很重要，我个人认为这是大学阶段最应该学习到的东西。
-第三，如果大学只学习了课本中的内容，那还不如不上大学，不得不承认，大学课本内容都属于经典中的经典，但是学校的要求太低，所以要自己去练习，而且很多老师所教授的东西属于过时的知识，有的课就应该逃掉，利用这个时间去做更有用的事情。
-第四，真诚待人，学生阶段所交的朋友没多少功利性，能交几个铁哥们最好。我个人觉得比较实用的一个看人标准，你只需要看某个人对待其他人是什么样，就大概知道他对你会是什么样了；好比谈恋爱，你不要妄想渣男渣女到你这里就不渣了（小概率事件）。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/tan-yi-xia-xie-zuo-de-chong-yao-xing">
-                        谈一下写作的重要性
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-06-20</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-other_4">
-            #个人总结
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-warning">
-            #生活感悟
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/tan-yi-xia-xie-zuo-de-chong-yao-xing" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/tan-yi-xia-xie-zuo-de-chong-yao-xing.jpeg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            关于写作的重要性，你可能在其他地方也见过一些描述，大致的说法都差不多，如果本文某些字句与你已经见过的文章有雷同，那纯属巧合，我仅从个人这几个月的感受出发来说。
-我从三月份开始，在公众号上面发一些文章，其实从这几个月的表现来看，是把公众号当作博客来用了，我的初衷没有想着靠公众号赚钱，所以我的分享很随意，主要是技术、认知、阅读方面的东西。如果不喜欢，主动权在你手里，大可取关；如果喜欢，我的文章能让你少走一些弯路，那么我自己的目的达到了，给不给赞赏无所谓，其实心里还是希望你给的，咱没必要把自己放的太清高。
-今天微信订阅号改版了，新版的订阅号基本形态变成了信息流，关于产品我还不太懂，但是我觉得这次改版对于作者的个人品牌形成不利，没内容的公众号应该会被取关很多粉丝，但是忠实粉丝也更难找到自己喜欢的“博主”了，所以以后，请认准作者。
-很多人也有撰写博客的习惯，我很赞同这个做法，关于写作的好处我觉得有以下几点，只有认真去做了，才能体会到它带给自己的成长。
-第一，写作是整理自己思维的过程，写作能力是一种重要的能力，不一定要多好的文采，但是不是每个人都能把语言组织的有条有理。现在的时代，没有铁饭碗，你需要不停的学习才能立于不败之地，很多人觉得写作是浪费时间，其实不然，写作是对已学知识的整理过程，输出其实是更高层次的输入。拿我之前写的朴素贝叶斯实现拼写检查器来说，其中那个贝叶斯公式推导是我花了很多分钟才想出来的，就好像老师教给学生一碗水，那么老师就必须具备一桶水才行。
-第二，写作是个人品牌的建立过程，可以说微信已经成为了中国互联网的小小代名词，农村大叔大妈手机上面最可能出现的软件就是微信，微信打通中国互联网的最后一环，在这么大的平台上，你分享的内容对别人来说是有帮助的，那么你的个人品牌就已经逐渐在形成了，这是个人影响力的提升。个人品牌在以后一定会很重要，个人品牌在日常生活其实有体现，我相信每个人的微信都会屏蔽几个人的朋友圈信息吧，经常在朋友圈发一些无用信息、垃圾信息，这其实就是个人品牌的损失。
-第三，通过写作你能交到很多朋友，而且通过这种方式所交到的朋友都是优秀的，他们会对你的成长起到促进作用，而你也会因为和他们交流而在不知不觉中得到提升，真正的朋友是相互促进的。我这几个月交到的朋友，刷新了我的认知，偏见来源于无知，在这个过程，我的认知得到了很大的提升，认知这玩意也不太好描述。举个例子，大概在大二的时候，我看到一篇文章说高中物理中所学的电子、质子等概念是错的，将要被新的知识体系取代，那时二话不说就转发朋友圈了，但没过几天就发现这其实是一个虚假信息；前段时间，中兴被美国制裁了，然后就有一些自媒体作者为了吸引流量，乱写一通什么华为宣布将要退出美国市场的消息，我的第一直觉就是这是虚假信息，然后我去验证了自己猜测的正确性，而周围很多人竟无脑式的选择了相信这条消息，还给我分析为什么华为要退出美国市场。这在我看来就是认知水平的一个体现，或者贴切一点叫信息素养（这个词不是我发明的），我现在对于信息的掌握已经明显快于周围的同学了，而且掌握的也比周围同学更加全面。
-最后说一点，没必要为了写作而写作，经常在知识星球看到有人问问题，说自己的写不出东西来，怎么办？这就是自己的输入不够，自己体内没有实质的东西，如何能达到输出呢？更别说高质量的输出了。
-我以后的文章主要是机器学习和提升认知方面的，最近更文有点慢，其一是自己也刚开始接触机器学习不久，要写出一篇比较好的文章，需要几天的输入；其二马上要毕业了，繁忙于各种琐碎的事情无法自拔。
-总的来说，写作利大于弊，如果你有闲心，看一下我几个月前发的文章，再和我现在的文章做个对比，你能看到我的变化，在文章逻辑、排版等等方面都或多或少的有一些提升，所以我建议你如果空闲时间比较多，也可以尝试尝试写作，自己的成长过程会在字里行间被记录下来。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/tan-yi-xia-xie-zuo-de-chong-yao-xing">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984)">
+        <div class="current-tag-container">
+          <h2 class="title">
+            <i class="icon icon-pricetags-outline"></i> 个人总结
+          </h2> 
         </div>
-        <h1 class="id_card-title">
-            刘小绪同学的博客
-        </h1>
-        <h2 class="id_card-description">
-            正在学习写代码的码农
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-twitter"></i></a>
-                        
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
-                                        <!-- douban -->
-                                        
 
-        </div>
+        
+<section class="post-item">
+    <div class="content">
+      <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
+        <h2 class="post-title">刘小绪同学随笔（2019-02-27）</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-02-27</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy">
+                随笔
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH">
+                个人总结
+                
+              </a>
+            
+          </span>
+        
+      </div>
     </div>
     
+      <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
+        <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/liu-xiao-xu-tong-xue-sui-bi-2019-02-27.jpeg')">
+        </div>
+      </a>
+    
+  </section>
 
-                        <!-- 公告栏 -->
-                        
+<section class="post-item">
+    <div class="content">
+      <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13">
+        <h2 class="post-title">刘小绪同学随笔（2019-01-13）</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-01-13</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy">
+                随笔
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH">
+                个人总结
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://mengxiaoxu.github.io//tag/94PzxqinO">
+                生活感悟
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13">
+        <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/liu-xiao-xu-tong-xue-sui-bi-2019-01-13.jpeg')">
+        </div>
+      </a>
+    
+  </section>
 
-                </div>
-            </div>
+<section class="post-item">
+    <div class="content">
+      <a href="https://mengxiaoxu.github.io//post/JFfO3d0iF">
+        <h2 class="post-title">刘小绪同学的 2018</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2018-11-26</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH">
+                个人总结
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://mengxiaoxu.github.io//tag/94PzxqinO">
+                生活感悟
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://mengxiaoxu.github.io//post/JFfO3d0iF">
+        <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/JFfO3d0iF.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian">
+        <h2 class="post-title">年轻不要给自己设限</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2018-07-02</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH">
+                个人总结
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://mengxiaoxu.github.io//tag/94PzxqinO">
+                生活感悟
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian">
+        <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/nian-qing-bu-yao-gei-zi-ji-she-xian.jpeg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://mengxiaoxu.github.io//post/tan-yi-xia-xie-zuo-de-chong-yao-xing">
+        <h2 class="post-title">谈一下写作的重要性</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2018-06-20</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH">
+                个人总结
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://mengxiaoxu.github.io//tag/94PzxqinO">
+                生活感悟
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://mengxiaoxu.github.io//post/tan-yi-xia-xie-zuo-de-chong-yao-xing">
+        <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/tan-yi-xia-xie-zuo-de-chong-yao-xing.jpeg')">
+        </div>
+      </a>
+    
+  </section>
 
 
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+<div class="pagination-container">
+  
+  
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
+
+      </div>
+
+      <div class="site-footer">
+  <div class="slogan">正在学习写代码的码农</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
 
     </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
+    <script type="application/javascript">
 
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
 </html>

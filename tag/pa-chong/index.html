@@ -1,438 +1,203 @@
-<html>
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    爬虫 | 刘小绪同学的博客
-</title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571415643984">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>爬虫 | 刘小绪同学的博客</title>
+<meta name="description" content="正在学习写代码的码农">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571462845924">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-148716803-1');
-    </script>
-    
-</head>
-
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    刘小绪同学的博客
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
-                                    友链
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://mengxiaoxu.github.io/">
+        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571462845924" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://mengxiaoxu.github.io/">
+        <h1 class="site-title">刘小绪同学的博客</h1>
+      </a>
     </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
-
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        爬虫</b>
-    </div>
-    
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
         
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">
-                        使用订阅号实现微信公众号历史文章爬虫
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-10-04</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/pa-chong" class="post-tag i-tag
-                            i-tag-warning">
-            #爬虫
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong.jpeg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            微信公众号已经成为生活的一部分了，虽然里面有很多作者只是为了蹭热点，撩读者的 G 点，自己从中获得一些收益；但是不乏好的订阅号，像刘大的码农翻身、曹大的caoz的梦呓等订阅号非常值得阅读。
-平时有时候看到一些好的公众号，也会不自觉去查看该公众号的历史文章，然而每次都看不完，下一次再从微信里面打开历史文章，又需要从头翻起。而且对于写了很多年的大号，每次还翻不到底。有一些平台提供了相关的服务，但是得收几十块钱的费用，倒不是缺几十块钱，主要是觉得这种没必要花的钱不值得去浪费。
-网上搜如何爬微信公众号历史文章，大致给了三种思路，第一是使用搜狗微信搜索文章，但是好像每次能搜到的不多；第二是使用抓包工具；第三种是使用个人订阅号进行抓取。
-简单来说就是使用程序来模拟人的操作，抓取公众号历史文章。首先登录微信公众号个人平台，期间需要管理员扫码才能登录成功。
-def __open_gzh(self):
-    self.driver.get(BASE_URL)
-    self.driver.maximize_window()
-    username_element = self.driver.find_element_by_name(&amp;quot;account&amp;quot;)
-    password_element = self.driver.find_element_by_name(&amp;quot;password&amp;quot;)
-    login_btn = self.driver.find_element_by_class_name(&amp;quot;btn_login&amp;quot;)
-    username_element.send_keys(USERNAME)
-    password_element.send_keys(PASSWORD)
-    login_btn.click()
-    WebDriverWait(driver=self.driver, timeout=200).until(
-        ec.url_contains(&amp;quot;cgi-bin/home?t=home/index&amp;quot;)
-    )
-    # 一定要设置这一步，不然公众平台菜单栏不会自动展开
-    self.driver.maximize_window()
-
-进入微信公众平台首页后，点击素材管理，然后点击新建图文素材，就会进入到文章写作页面，此时前面打开的微信公众平台首页就不需要了，可以将其关闭。
-
-def __open_write_page(self):
-    management = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-menu_management&amp;quot;)
-    material_manage = management.find_element_by_css_selector(&amp;quot;a[title=&#39;素材管理&#39;]&amp;quot;)
-    material_manage.click()
-    new_material = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-btn_main&amp;quot;)
-    new_material.click()
-    # 关闭公众平台首页
-    handles = self.driver.window_handles
-    self.driver.close()
-    self.driver.switch_to_window(handles[1])
-
-在文章写作页面的工具栏上面有一个超链接按钮，点击超链接即会弹出超链接编辑框，选择查找文章，输入自己喜欢的公众号进行查找，一般第一个就是自己想要的结果，点击对应的公众号，该公众号所有的文章就会通过列表的形式展现出来。
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+        
+          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
 
 
+      <div class="content-container">
 
-def __open_official_list(self):
-    # 超链接
-    link_click = self.driver.find_element_by_class_name(&amp;quot;edui-for-link&amp;quot;)
-    link_click.click()
-    time.sleep(3)
-    # 查找文章
-    radio = self.driver.find_element_by_class_name(&amp;quot;frm_vertical_lh&amp;quot;).find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1]
-    radio.click()
-    # 输入查找关键字
-    search_input = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_input&amp;quot;)
-    search_input.send_keys(OFFICIAL_ACCOUNT)
-    search_btn = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_btn&amp;quot;)
-    search_btn.click()
-    # 等待5秒，待公众号列表加载完毕
-    time.sleep(5)
-    result_list = self.driver.find_element_by_class_name(&amp;quot;js_acc_list&amp;quot;).find_elements_by_tag_name(&amp;quot;div&amp;quot;)
-    result_list[0].click()
-
-文章列表已经展现出来了，直接抓取每条文章超链接的信息即可，每抓取完一页就进入下一页，继续抓取文章列表信息，直到所有文章信息都抓取完毕。
-
-def __get_article_list(self):
-    # 等待文章列表加载
-    time.sleep(5)
-    total_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
-        .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;)\
-        .find_element_by_class_name(&amp;quot;page_num&amp;quot;)\
-        .find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1].text
-    total_page = int(total_page)
-    articles = []
-    for i in range(0, total_page-1):
-        time.sleep(5)
-        next_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
-            .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;pagination&amp;quot;)\
-            .find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;).find_element_by_class_name(&amp;quot;page_next&amp;quot;)
-        article_list = self.driver.find_element_by_class_name(&amp;quot;js_article_list&amp;quot;)\
-            .find_element_by_class_name(&amp;quot; my_link_list&amp;quot;).find_elements_by_tag_name(&amp;quot;li&amp;quot;)
-        for article in article_list:
-            article_info = {
-                &amp;quot;date&amp;quot;: article.find_element_by_class_name(&amp;quot;date&amp;quot;).text,
-                &amp;quot;title&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).text,
-                &amp;quot;link&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).get_attribute(&amp;quot;href&amp;quot;)
-                }
-            articles.append(article_info)
-        next_page.click()
-    return articles
-
-至此，微信公众号历史文章的爬虫已经实现，其实整个过程只不过是用程序来模拟的了人类的操作。需要注意的是，程序不能设置太快，因为微信做了相关限制，所以设太快会在一段时间内无法使用文章查找功能；另外一点是使用选择器选择页面元素的时候，会有一些坑，而且我发现不同账号登录，有很少部分的页面元素虽然直观上是一样的，但是它的 html 代码有细微的差别。
-这个小程序会用到selenium库，和chromedriver，前者直接pip install即可，后者自行下载；另外你还需要一个订阅号才行，本文只实现了关键的文章信息抓取，并没有进行文章信息的持久化存储，完整代码在这里。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">
-                        用 Scrapy 爬取豆瓣250
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-07-27</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/pa-chong" class="post-tag i-tag
-                            i-tag-other_4">
-            #爬虫
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/yong-scrapy-pa-qu-dou-ban-250.jpeg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            最好的学习方式就是输入之后再输出，分享一个自己学习scrapy框架的小案例，方便快速的掌握使用scrapy的基本方法。
-本想从零开始写一个用Scrapy爬取教程，但是官方已经有了样例，一想已经有了，还是不写了，尽量分享在网上不太容易找到的东西。自己近期在封闭培训，更文像蜗牛一样，抱歉。
-Scrapy简介
-Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
-其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。
-
-如果此前对scrapy没有了解，请先查看下面的官方教程链接。
-架构概览：https://docs.pythontab.com/scrapy/scrapy0.24/topics/architecture.html
-Scrapy入门教程：https://docs.pythontab.com/scrapy/scrapy0.24/intro/tutorial.html
-爬虫教程
-首先，我们看一下豆瓣TOP250页面，发现可以从中提取电影名称、排名、评分、评论人数、导演、年份、地区、类型、电影描述。
-
-Item对象是种简单的容器，保存了爬取到得数据。其提供了类似于词典的API以及用于声明可用字段的简单语法。所以可以声明Item为如下形式。
-class DoubanItem(scrapy.Item):
-    # 排名
-    ranking = scrapy.Field()
-    # 电影名称
-    title = scrapy.Field()
-    # 评分
-    score = scrapy.Field()
-    # 评论人数
-    pople_num = scrapy.Field()
-    # 导演
-    director = scrapy.Field()
-    # 年份
-    year = scrapy.Field()
-    # 地区
-    area = scrapy.Field()
-    # 类型
-    clazz = scrapy.Field()
-    # 电影描述
-    decsription = scrapy.Field()
-
-我们抓取到相应的网页后，需要从网页中提取自己需要的信息，可以使用xpath语法，我使用的是BeautifulSoup网页解析器，经过BeautifulSoup解析的网页，可以直接使用选择器筛选需要的信息。有一些说明写到代码注释里面去了，就不再赘述。
-Chrome 也可以直接复制选择器或者XPath，如下图所示。
-
-class douban_spider(Spider):
-
-    count = 1
-
-    # 爬虫启动命令
-    name = &#39;douban&#39;
-
-    # 头部信息，伪装自己不是爬虫程序
-    headers = {
-        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#39;,
-    }
-
-    # 爬虫启动链接
-    def start_requests(self):
-        url = &#39;https://movie.douban.com/top250&#39;
-        yield Request(url, headers=self.headers)
-
-    # 处理爬取的数据
-    def parse(self, response):
-
-        print(&#39;第&#39;, self.count, &#39;页&#39;)
-        self.count += 1
-
-        item = DoubanItem()
-        soup = BeautifulSoup(response.text, &#39;html.parser&#39;)
-
-        # 选出电影列表
-        movies = soup.select(&#39;#content div div.article ol li&#39;)
-
-        for movie in movies:
-            item[&#39;title&#39;] = movie.select(&#39;.title&#39;)[0].text
-            item[&#39;ranking&#39;] = movie.select(&#39;em&#39;)[0].text
-            item[&#39;score&#39;] = movie.select(&#39;.rating_num&#39;)[0].text
-            item[&#39;pople_num&#39;] = movie.select(&#39;.star span&#39;)[3].text
-
-            # 包含导演、年份、地区、类别
-            info = movie.select(&#39;.bd p&#39;)[0].text
-            director = info.strip().split(&#39;\n&#39;)[0].split(&#39;   &#39;)
-            yac = info.strip().split(&#39;\n&#39;)[1].strip().split(&#39; / &#39;)
-
-            item[&#39;director&#39;] = director[0].split(&#39;: &#39;)[1]
-            item[&#39;year&#39;] = yac[0]
-            item[&#39;area&#39;] = yac[1]
-            item[&#39;clazz&#39;] = yac[2]
-
-            # 电影描述有为空的，所以需要判断
-            if len(movie.select(&#39;.inq&#39;)) is not 0:
-                item[&#39;decsription&#39;] = movie.select(&#39;.inq&#39;)[0].text
-            else:
-                item[&#39;decsription&#39;] = &#39;None&#39;
-            yield item
-
-        # 下一页：
-        # 1，可以在页面中找到下一页的地址
-        # 2，自己根据url规律构造地址，这里使用的是第二种方法
-        next_url = soup.select(&#39;.paginator .next a&#39;)[0][&#39;href&#39;]
-        if next_url:
-            next_url = &#39;https://movie.douban.com/top250&#39; + next_url
-            yield Request(next_url, headers=self.headers)
-
-然后在项目文件夹内打开cmd命令，运行scrapy crawl douban -o movies.csv就会发现提取的信息就写入指定文件了，下面是爬取的结果，效果很理想。
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984)">
+        <div class="current-tag-container">
+          <h2 class="title">
+            <i class="icon icon-pricetags-outline"></i> 爬虫
+          </h2> 
         </div>
-        <h1 class="id_card-title">
-            刘小绪同学的博客
-        </h1>
-        <h2 class="id_card-description">
-            正在学习写代码的码农
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-twitter"></i></a>
-                        
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
-                                        <!-- douban -->
-                                        
 
-        </div>
+        
+<section class="post-item">
+    <div class="content">
+      <a href="https://mengxiaoxu.github.io//post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">
+        <h2 class="post-title">使用订阅号实现微信公众号历史文章爬虫</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2018-10-04</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://mengxiaoxu.github.io//tag/pa-chong">
+                爬虫
+                
+              </a>
+            
+          </span>
+        
+      </div>
     </div>
     
+      <a href="https://mengxiaoxu.github.io//post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">
+        <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong.jpeg')">
+        </div>
+      </a>
+    
+  </section>
 
-                        <!-- 公告栏 -->
-                        
+<section class="post-item">
+    <div class="content">
+      <a href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">
+        <h2 class="post-title">用 Scrapy 爬取豆瓣250</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2018-07-27</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://mengxiaoxu.github.io//tag/pa-chong">
+                爬虫
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">
+        <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/yong-scrapy-pa-qu-dou-ban-250.jpeg')">
+        </div>
+      </a>
+    
+  </section>
 
-                </div>
-            </div>
 
-
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+<div class="pagination-container">
+  
+  
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
+
+      </div>
+
+      <div class="site-footer">
+  <div class="slogan">正在学习写代码的码农</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
 
     </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
+    <script type="application/javascript">
 
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
 </html>

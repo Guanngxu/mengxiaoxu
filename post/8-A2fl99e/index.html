@@ -1,148 +1,117 @@
-<html>
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    告别囤干货，你才能真正进步 | 刘小绪同学的博客
-</title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571415643984">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>告别囤干货，你才能真正进步 | 刘小绪同学的博客</title>
+<meta name="description" content="正在学习写代码的码农">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571462845924">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-148716803-1');
-    </script>
-    
-        
-            
-                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-                
-
-                    
-                            
-</head>
-
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    刘小绪同学的博客
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
-                                    友链
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://mengxiaoxu.github.io/">
+        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571462845924" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://mengxiaoxu.github.io/">
+        <h1 class="site-title">刘小绪同学的博客</h1>
+      </a>
     </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+        
+          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
 
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-detail main-container">
-                <!-- left -->
-                <div id="content" class="main-container-left">
-                    <article class="post i-card">
-                        <h2 class="post-title">
-                            告别囤干货，你才能真正进步
-                        </h2>
-                        <div class="post-info">
-                            <time class="post-time">2018-04-15</time>
-                            
-                                <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-success">
-                            #生活感悟
-                        </a>
-                                
-                        </div>
-                        
-                            <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/8-A2fl99e.jpg')"></div>
-                            
-                                <div class="post-content">
-                                    <p>这两天，没事整理了自己的微信收藏和 QQ 收藏文件夹下面的文章。发现了一个在大多数人身上都存在的问题，那就是<strong>囤干货</strong>。</p>
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/8-A2fl99e.jpg')">
+            </div>
+          
+          <h2 class="post-title">告别囤干货，你才能真正进步</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2018-04-15</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://mengxiaoxu.github.io//tag/94PzxqinO">
+                    生活感悟
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>这两天，没事整理了自己的微信收藏和 QQ 收藏文件夹下面的文章。发现了一个在大多数人身上都存在的问题，那就是<strong>囤干货</strong>。</p>
 <p>我使用微信的时间比较晚，从14年才开始，但是仅仅不到4年的时间，在微信收藏里面就有几百篇文章，有一些传授技能的文章，比如 word、ps 等简单教程；其他一些属于心灵鸡汤类文章（现在反倒不觉得这类文章值得看），还有一些搞笑的文章，当然里面也夹杂着些许的优秀视频。文章数量数 14 年和 15 年最多。</p>
 <p>现在回头看，我当时就陷入了囤文章的陷阱了，或者说自己是在“假装阅读”。仔细一想，其实生活中大多数人都有类似的举动。早成起床、饭后的一段时间、晚上睡觉前，这些时间大多数人都习惯性的去翻翻公众号、朋友圈，这里面不乏有好文章、干货文章。然而没多少人会静下心来把文章读完，而是在大概读到一半的时候，选择收藏这篇文章，然后在心里告诉自己，明天要好好读一下这篇文章。到了明天，其实又是重复了今天的这样一个过程。</p>
 <p>记得大概一年前也无意中看到大学认识的一位师弟发的说说，内容如下：</p>
@@ -154,108 +123,86 @@
 <p>当然，我现在的认识相比几年前，得到了一些提升，至少我现在不糊干囤课之类的事了，仅仅是把干货囤在那里，其时你还是昨天的自己，并没有进步。现在我都会把自己收藏的好文章在一周之内处理掉。</p>
 <p>所以要想真正取得进步，首先就需要告别囤课的习惯，不能假装学习，如果学习是为了给比别人看，那还不如不学。文章仅是我个人的一点感悟，没有文采逻辑和言，总之希望与你共勉。</p>
 
-                                </div>
-                    </article>
-                    <!--  -->
-                    
-                        <div class="next-post">
-                            <div class="next">下一篇</div>
-                            <a href="https://mengxiaoxu.github.io//post/CY4_BQLR4">
-                                <h3 class="post-title">
-                                    正则表达式语法
-                                </h3>
-                            </a>
-                        </div>
-                        
-                            <div id="disqus_thread"></div>
-                            <div id="gitalk-container"></div>
-                </div>
-                <!-- middle -->
-                <div class="main-container-middle"></div>
-                <!-- right -->
-                <div id="sidebar" class="main-container-right">
-                    
-                                <!-- id-card -->
-                                
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984)">
+          </div>
         </div>
-        <h1 class="id_card-title">
-            刘小绪同学的博客
-        </h1>
-        <h2 class="id_card-description">
-            正在学习写代码的码农
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-twitter"></i></a>
-                        
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
-                                        <!-- douban -->
-                                        
 
-        </div>
-    </div>
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://mengxiaoxu.github.io//post/CY4_BQLR4">
+              <h3 class="post-title">
+                下一篇：正则表达式语法
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">正在学习写代码的码农</div>
+  <div class="social-container">
     
-                                    
-
-                </div>
-
-
-
-
-            </div>
-
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
 
     </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-    
-        
-            <script>
-    window.onload = function() {
-        var gitalk = new Gitalk({
-            clientID: '70b5a748b63425a6adfc',
-            clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
-            repo: 'mengxiaoxu.github.io',
-            owner: 'mengxiaoxu',
-            admin: ['mengxiaoxu'],
-            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
-            distractionFreeMode: false // Facebook-like distraction free mode
-        })
+    <script type="application/javascript">
 
-        gitalk.render('gitalk-container')
-    }
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
-                
 
-                    
-                                
-</body>
 
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '70b5a748b63425a6adfc',
+        clientSecret: '35ad2482815fc609bacd858a7ff28cfd80a4e465',
+        repo: 'mengxiaoxu.github.io',
+        owner: 'mengxiaoxu',
+        admin: ['mengxiaoxu'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
 </html>

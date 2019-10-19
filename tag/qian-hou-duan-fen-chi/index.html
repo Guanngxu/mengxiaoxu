@@ -1,258 +1,179 @@
-<html>
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    前后端分离 | 刘小绪同学的博客
-</title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571415643984">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>前后端分离 | 刘小绪同学的博客</title>
+<meta name="description" content="正在学习写代码的码农">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571462845924">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-148716803-1');
-    </script>
-    
-</head>
-
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    刘小绪同学的博客
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
-                                    友链
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://mengxiaoxu.github.io/">
+        <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571462845924" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://mengxiaoxu.github.io/">
+        <h1 class="site-title">刘小绪同学的博客</h1>
+      </a>
     </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
-
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        前后端分离</b>
-    </div>
-    
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
         
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">
-                        什么是契约测试？
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-04-10</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/ce-shi" class="post-tag i-tag
-                            i-tag-info">
-            #测试
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/qian-hou-duan-fen-chi" class="post-tag i-tag
-                            i-tag-other_4">
-            #前后端分离
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi" class="post-feature-image" style="background-image:url(https://mengxiaoxu.github.io//post-images/shi-me-shi-qi-yue-ce-shi.jpg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            契约测试全称为：消费者驱动契约测试，最早由 Martin Fowler 提出。契约这个词从字面上很容易理解，就是双方（多方）达成的共同协议，那又为什么需要契约测试这个东西呢？
-在当前微服务大行其道的行业背景下，越来越多的团队采用了前后端分离和微服务架构，我们知道微服务是由单一程序构成的小服务，与其它服务使用 HTTP API 进行通讯，服务可以采用不同的编程语言与数据库，微服务解决了单体应用团队协作开发成本高、系统高可用性差等等问题。
-但是微服务也引入了新的问题，假设 A 团队开发某服务并提供对应的 API，B 团队也在开发另一个服务，但是他们需要调用 A 团队的 API，为了产品的尽快发布，两个团队都争分夺秒，已经进入联调阶段了，然而出现了下面这样的尴尬情况。
-
-随着越来越多的微服务加入，它们的调用关系开始变得越来越复杂，如果每次更改都需要和所有调用该 API 的团队协商，那沟通成本也未免太大了，试想下图的沟通成本。
-
-为了保证 API 调用的准确性，我们会对外部系统的 API 进行测试，如果外部系统稳定性很差，或者请求时间很长的时候，就会导致我们的测试效率很低，当调用 API 失败时，你甚至无法确定是因为 API 被更改而导致的失败还是运行环境不稳定导致的失败。
-A 团队提供的 API 不稳定，肯定会导致 B 团队效率低下，为了不影响 B 团队的进度，所以构建了测试替身，通过模拟外部 API 的响应行为来增强测试的稳定性和反应速度。
-
-但是这样做真的就解决问题了吗？当所有内部测试都通过时，能拍着胸脯说真正的外部 API 就一定没有变化？很简单的一个解决方案就是：部分测试使用测试替身，另一部分测试定期使用真实的外部 API，这样既保证了测试的运行效率、调用端的准确性，又能确保当真实外部系统API改变时能得到反馈。
-
-感觉剧情到这里就差不多该结束了，实际上真正的高潮部分开刚刚开始。如果外部 API 的反馈周期很长，那增加真实 API 测试间隔时间就又回到了最初的起点。现在我们回顾一下上面的方案。
-在上面的场景中，我们都是已知外部 API 功能来编写相应的功能测试，并且使用直接调用外部 API 的方式来达到测试的目的，如此就不可避免的带来了两个问题：
-
-API 调用者（消费者）对服务提供方（生产者）的更改是通过对 API 的测试来感知的；
-直接依赖于真实 API 的测试效果受限于 API 的稳定性和反映速度。
-
-解决方案首先是依赖关系解耦，去掉直接对外部 API 的依赖，而是内部和外部系统都依赖于一个双方共同认可的约定—“契约”，并且约定内容的变化会被及时感知；其次，将系统之间的集成测试，转换为由契约生成的单元测试，例如通过契约描述的内容，构建测试替身。这样，同时契约替代外部 API 成为信息变更的载体。
-前后照应一下，我们现在再来看一下消费者驱动契约测试。它有两个不可或缺的角色：消费者是服务使用方；生产者（提供者）是服务提供方。采用需求驱动（消费者驱动）的思想。契约文件（比如 json 文件）由双方共同定义规范，一般由消费者生成，生产者根据这份契约去实现。
-契约测试其中一个的典型应用场景是内外部系统之间的测试，另一个典型的例子是前后端分离后的 API 测试。行业内比较成熟的解决方案是 Swagger Specification 和 Pact Specification，这里不做展开讨论。
-我们同样可以把契约测试的思想用到代码的编写中，契约测试通过一个契约文件来解耦依赖，那么对于需要用户定义很多规则的场景，我们同样可以将这些规则像契约文件一样抽取出来，这样就降低了代码之间的耦合度。
-最后敲敲黑板，契约测试不是替代 E2E 测试的终结者，更不是单元测试的升级换代，它更偏向于服务和服务之间的 API 测试，通过解耦服务依赖关系和单元测试来加快测试的运行效率。
-
-参考文章：
-聊一聊契约测试 —— ThoughtWorks洞见
-契约测试 —— 米阳
-前后端分离了，然后呢？ —— 邱俊涛
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+        
+          <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu purple-link">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
 
 
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
+      <div class="content-container">
 
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571415643984)">
+        <div class="current-tag-container">
+          <h2 class="title">
+            <i class="icon icon-pricetags-outline"></i> 前后端分离
+          </h2> 
         </div>
-        <h1 class="id_card-title">
-            刘小绪同学的博客
-        </h1>
-        <h2 class="id_card-description">
-            正在学习写代码的码农
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-twitter"></i></a>
-                        
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
-                                        <!-- douban -->
-                                        
 
-        </div>
+        
+<section class="post-item">
+    <div class="content">
+      <a href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">
+        <h2 class="post-title">什么是契约测试？</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-04-10</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://mengxiaoxu.github.io//tag/ce-shi">
+                测试
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://mengxiaoxu.github.io//tag/qian-hou-duan-fen-chi">
+                前后端分离
+                
+              </a>
+            
+          </span>
+        
+      </div>
     </div>
     
+      <a href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">
+        <div class="feature-container" style="background-image: url('https://mengxiaoxu.github.io//post-images/shi-me-shi-qi-yue-ce-shi.jpg')">
+        </div>
+      </a>
+    
+  </section>
 
-                        <!-- 公告栏 -->
-                        
 
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+<div class="pagination-container">
+  
+  
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
+
+      </div>
+
+      <div class="site-footer">
+  <div class="slogan">正在学习写代码的码农</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
 
     </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
+    <script type="application/javascript">
 
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
 </html>

@@ -1,352 +1,391 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    书籍推荐 | 刘小绪同学的博客
-</title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571462893947">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
+<title>书籍推荐 | 刘小绪同学的博客</title>
+<meta name="description" content="正在学习写代码的码农">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571463308454">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+
+
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
 
-        gtag('config', 'UA-148716803-1');
-    </script>
-    
-</head>
-
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571462893947" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    刘小绪同学的博客
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
-                                    友链
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
-    </div>
-</div>
-
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
-
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        书籍推荐</b>
-    </div>
-    
+  </head>
+  <body>
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://mengxiaoxu.github.io/">刘小绪同学的博客</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">
-                        大学生书单推荐
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-12-30</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/shu-ji-tui-jian" class="post-tag i-tag
-                            i-tag-warning">
-            #书籍推荐
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                友链
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <h2 class="current-tag">标签: 书籍推荐</h2>
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">大学生书单推荐</a>
+    </h2>
+    <p class="article-meta">
+      2018-12-30
+      
+        <a href="https://mengxiaoxu.github.io//tag/shu-ji-tui-jian" class="badge secondary">
+          书籍推荐
         </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/da-xue-sheng-shu-dan-tui-jian.jpg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-此篇文章由刘小绪同学首发于知识星球
-
-首先推荐李笑来的《把时间当作朋友》和《财富自由之路》，这两本书写的真不错，虽然李笑来的人设倒下了，但是不影响这两本书的质量，也不要因为一次人设倒下就全盘否定一个人。
-季羡林的书值得一读，读几本季老先生的文集就可以了，从文字里面去感受季老求真务实的态度，什么才是做学术的态度，大家之所以为大家，不仅仅是因为天资聪慧，还有为人处世。
-《小狗钱钱》、《24 堂财富课————与女儿谈创业》、《穷爸爸富爸爸》、《好好赚钱》中可以选一本阅读，大学只交了我们生存的技能，并没有教我们如何理财，而这又是每个人不得不面对的问题，这几本入门书籍，可以帮助您建立财富理念。
-《浪潮之巅》、《数学之美》、《大学之路》等等，吴军博士的书籍都值得一看，晦涩难懂的道理在吴军博士的文字中变的简单了，感受一下心态、格局等的提升会给人生带来多么重要的改变，我个人目前还没有读完。
-《编码：隐藏在计算机软硬件背后的语言》，看下微软大师是如何用故事来给您造出一台计算机的，计算机基础不再是简单的机械背诵，而是在故事中理解记忆。
-《深入理解计算机系统》也应该看一看，现在的技术日新月异，但是纵观这么多年的技术发展，最基本的原理是不变的，在这个瞬息万变的时代，只有掌握了最核心根本的原理，才能从容应对不同的变化，高级程序员必读经典。
-像《长乐路》、《明朝那些事儿》一类的书籍是可以读读的，应该去了解一下历史的细节，你所看到的不一定是真实的，光芒的背后是另一片黑暗，历史是有规律的，我们的生活可以在历史中找到影子。
-《人类简史》、《人性的弱点》、《心灵七游戏》等心理、哲学类书籍选几本读读，哲学是所有学科的抽象，到一个新的高度看看世界，提高自己的情商，让整个世界都为您张开拥抱的双臂。
-读不动名著小说，可以读《偷影子的人》，每个人都有相似的童年，只是大部分人都不敢说出来而已，主人公就好像在经历自己曾经经历过的生活一样，从没有想过普普通通的童年居然能被描写的如此动情。《月亮与六便士》也是不错的选择。
-多阅读高于自己的作品，远离精神毒品，互联网时代的阅读不再限于书籍了，良心大佬的博客也是一个不错的选择，只有阅读高于自己的作品才能获得成长，少刷抖音、微博、知乎一类的产品，里面是有一些有趣的人生，但是一刷就是几个小时，太浪费时间。
-「一席」上的大部分演讲是值得听的，让您对中国社会有一个更好的了解；「TED」、「网易公开课」上国外高校的视频可以多看看，讲的真心不错；国内出观众、大部分二流学校的演讲能不去就不去，还不如把这种时间拿去睡睡觉，补充补充精力。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571462893947)">
-        </div>
-        <h1 class="id_card-title">
-            刘小绪同学的博客
-        </h1>
-        <h2 class="id_card-description">
-            正在学习写代码的码农
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
-            
-                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-twitter"></i></a>
-                        
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
-                                        <!-- douban -->
-                                            <a href="https://www.douban.com/people/189583084" target="_blank" rel="noopener noreferrer"><i
-                    class="icon-douban"></i></a>
-
-        </div>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
     </div>
+  </article>
 
-    <div class="id_card i-card">
-        <h1 class="id_card-title">
-            最新文章
-        </h1>
-        <div class="new-aticles">
-            
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao">JavaScript 高级知识技巧</a>
-                </h3>
-            
-            
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io//post/jia-li-de-gou">家里的狗</a>
-                </h3>
-            
-            
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io//post/o9IjztOrR">怎样才能开开心心的呢？</a>
-                </h3>
-            
-            
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io//post/bian-liang-ti-sheng-yu-zuo-yong-yu">变量提升与作用域</a>
-                </h3>
-            
-            
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu">惰性载入函数</a>
-                </h3>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
         </div>
-    </div>
-    
-
-                        <!-- 公告栏 -->
-                        
-
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+        <div class="row flex-edges">
+  
+  
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
+      </div>
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://mengxiaoxu.github.io//images/avatar.png?v=1571463308454" class="no-responsive avatar">
+    <div class="text-muted">正在学习写代码的码农</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao">JavaScript 高级知识技巧</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://mengxiaoxu.github.io//post/jia-li-de-gou">家里的狗</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://mengxiaoxu.github.io//post/o9IjztOrR">怎样才能开开心心的呢？</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://mengxiaoxu.github.io//post/bian-liang-ti-sheng-yu-zuo-yong-yu">变量提升与作用域</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu">惰性载入函数</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://mengxiaoxu.github.io//post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze">非设计师需要知道的四个设计原则</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-05-12">刘小绪同学随笔（2019-05-12）</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://mengxiaoxu.github.io//post/qCt13nLLT">浅析浏览器缓存机制</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://mengxiaoxu.github.io//post/git-jin-jie-ji-chang-yong-ming-ling">Git 进阶及常用命令</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">什么是契约测试？</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://mengxiaoxu.github.io//tag/javascript" class="badge warning">
+          JavaScript
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="badge warning">
+          前端
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/san-wen" class="badge secondary">
+          散文
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="badge ">
+          随笔
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="badge ">
+          生活感悟
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="badge secondary">
+          翻译
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/vhSkGeYf1D" class="badge success">
+          设计
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/S57Vp3Suu" class="badge secondary">
+          计算机网络
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/git" class="badge secondary">
+          Git
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/QjCHA76i_r" class="badge ">
+          编程基础
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/ce-shi" class="badge ">
+          测试
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/qian-hou-duan-fen-chi" class="badge success">
+          前后端分离
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="badge success">
+          个人总结
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/J_3GE6pBm" class="badge warning">
+          TypeScript
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/shu-ji-tui-jian" class="badge ">
+          书籍推荐
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/DytBq-ZFD" class="badge ">
+          回忆
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="badge success">
+          操作系统
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/gong-ju-ji-qiao" class="badge secondary">
+          工具技巧
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/pa-chong" class="badge warning">
+          爬虫
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/zi-ran-yu-yan-chu-li" class="badge ">
+          自然语言处理
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/shu-ju-ku" class="badge secondary">
+          数据库
+        </a>
+      
+        <a href="https://mengxiaoxu.github.io//tag/JYJKwJM69" class="badge warning">
+          编译原理
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
 
     </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
 </html>

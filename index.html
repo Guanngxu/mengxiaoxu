@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571580860603">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1571581673760">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571580860603" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1571581673760" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -128,17 +128,17 @@
                     <time class="post-time">2019-10-19</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/nginx" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_1">
             #Nginx
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/linux" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_3">
             #Linux
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_1">
             #操作系统
         </a>
                         
@@ -178,7 +178,7 @@ read调用返回，从内核态切换为用户态；
 DMA 从 Socket 缓冲区把数据拷贝到协议栈。
 
 
-可以看到两行程序共发生了 4 次拷贝和 4 次上下文切换，很明显中间有些拷贝和上下文切换是不需要的，sendfile就是来解决这个问题的，它是从 2.1 版本内核开始引入的，这里放个 2.6 版本的源码。
+可以看到两行程序共发生了 4 次拷贝和 4 次上下文切换，其中 DMA 进行的数据拷贝不需要 CPU 访问数据，所以整个过程需要 CPU 访问两次数据。很明显中间有些拷贝和上下文切换是不需要的，sendfile就是来解决这个问题的，它是从 2.1 版本内核开始引入的，这里放个 2.6 版本的源码。
 系统调用sendfile是将in_fd的内容发送到out_fd，描述符out_fd在 Linux 2.6.33 之前，必须指向套接字文件，自 2.6.33 开始，out_fd可以是任何文件；in_fd只能是支持mmap的文件（mmap是一种内存映射方法，在被调用进程的虚拟地址空间中创建一个新的指定文件的映射）。
 所以当 Nginx 是一个静态服务器时，开启sendfile配置项是可以大大提高 Nginx 性能的，但是当把 Nginx 作为一个反向代理服务器时，sendfile则没有什么用，因为当 Nginx 时反向代理服务器时，in_fd就是一个套接字，这不符合sendfile的参数要求。
 
@@ -211,12 +211,12 @@ location /video/ {
                     <time class="post-time">2019-10-13</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/javascript" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-">
             #JavaScript
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-banana">
             #前端
         </a>
                         
@@ -376,12 +376,12 @@ click
                     <time class="post-time">2019-10-12</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/san-wen" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_3">
             #散文
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_2">
             #随笔
         </a>
                         
@@ -437,7 +437,7 @@ click
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-banana">
             #生活感悟
         </a>
                         
@@ -495,12 +495,12 @@ click
                     <time class="post-time">2019-08-08</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/javascript" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-other_4">
             #JavaScript
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-banana">
             #前端
         </a>
                         
@@ -646,12 +646,12 @@ console.info(getColor()); // &amp;quot;red&amp;quot;
                     <time class="post-time">2019-08-06</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/javascript" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_1">
             #JavaScript
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_1">
             #前端
         </a>
                         
@@ -828,12 +828,12 @@ function createXHR() {
                     <time class="post-time">2019-06-22</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_2">
             #翻译
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/vhSkGeYf1D" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-success">
             #设计
         </a>
                         
@@ -988,12 +988,12 @@ For everything else, there is always a designer.
                     <time class="post-time">2019-04-26</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/S57Vp3Suu" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-info">
             #计算机网络
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_2">
             #前端
         </a>
                         
@@ -1109,12 +1109,12 @@ disk cache 与 memory cache
                     <time class="post-time">2019-04-18</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/git" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-">
             #Git
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/QjCHA76i_r" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_1">
             #编程基础
         </a>
                         
@@ -1343,7 +1343,7 @@ git checkout --track [remote-name]/[branch]
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571580860603)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1571581673760)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客

@@ -1,0 +1,1203 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    刘小绪同学的博客
+</title>
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1572746948854">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-148716803-1');
+    </script>
+    
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://mengxiaoxu.github.io/">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1572746948854" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    刘小绪同学的博客
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                    友链
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">
+                        使用订阅号实现微信公众号历史文章爬虫
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-10-04</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/pa-chong" class="post-tag i-tag
+                            i-tag-warning">
+            #爬虫
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong.jpeg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            微信公众号已经成为生活的一部分了，虽然里面有很多作者只是为了蹭热点，撩读者的 G 点，自己从中获得一些收益；但是不乏好的订阅号，像刘大的码农翻身、曹大的caoz的梦呓等订阅号非常值得阅读。
+平时有时候看到一些好的公众号，也会不自觉去查看该公众号的历史文章，然而每次都看不完，下一次再从微信里面打开历史文章，又需要从头翻起。而且对于写了很多年的大号，每次还翻不到底。有一些平台提供了相关的服务，但是得收几十块钱的费用，倒不是缺几十块钱，主要是觉得这种没必要花的钱不值得去浪费。
+网上搜如何爬微信公众号历史文章，大致给了三种思路，第一是使用搜狗微信搜索文章，但是好像每次能搜到的不多；第二是使用抓包工具；第三种是使用个人订阅号进行抓取。
+简单来说就是使用程序来模拟人的操作，抓取公众号历史文章。首先登录微信公众号个人平台，期间需要管理员扫码才能登录成功。
+def __open_gzh(self):
+    self.driver.get(BASE_URL)
+    self.driver.maximize_window()
+    username_element = self.driver.find_element_by_name(&amp;quot;account&amp;quot;)
+    password_element = self.driver.find_element_by_name(&amp;quot;password&amp;quot;)
+    login_btn = self.driver.find_element_by_class_name(&amp;quot;btn_login&amp;quot;)
+    username_element.send_keys(USERNAME)
+    password_element.send_keys(PASSWORD)
+    login_btn.click()
+    WebDriverWait(driver=self.driver, timeout=200).until(
+        ec.url_contains(&amp;quot;cgi-bin/home?t=home/index&amp;quot;)
+    )
+    # 一定要设置这一步，不然公众平台菜单栏不会自动展开
+    self.driver.maximize_window()
+
+进入微信公众平台首页后，点击素材管理，然后点击新建图文素材，就会进入到文章写作页面，此时前面打开的微信公众平台首页就不需要了，可以将其关闭。
+
+def __open_write_page(self):
+    management = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-menu_management&amp;quot;)
+    material_manage = management.find_element_by_css_selector(&amp;quot;a[title=&#39;素材管理&#39;]&amp;quot;)
+    material_manage.click()
+    new_material = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-btn_main&amp;quot;)
+    new_material.click()
+    # 关闭公众平台首页
+    handles = self.driver.window_handles
+    self.driver.close()
+    self.driver.switch_to_window(handles[1])
+
+在文章写作页面的工具栏上面有一个超链接按钮，点击超链接即会弹出超链接编辑框，选择查找文章，输入自己喜欢的公众号进行查找，一般第一个就是自己想要的结果，点击对应的公众号，该公众号所有的文章就会通过列表的形式展现出来。
+
+
+
+def __open_official_list(self):
+    # 超链接
+    link_click = self.driver.find_element_by_class_name(&amp;quot;edui-for-link&amp;quot;)
+    link_click.click()
+    time.sleep(3)
+    # 查找文章
+    radio = self.driver.find_element_by_class_name(&amp;quot;frm_vertical_lh&amp;quot;).find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1]
+    radio.click()
+    # 输入查找关键字
+    search_input = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_input&amp;quot;)
+    search_input.send_keys(OFFICIAL_ACCOUNT)
+    search_btn = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_btn&amp;quot;)
+    search_btn.click()
+    # 等待5秒，待公众号列表加载完毕
+    time.sleep(5)
+    result_list = self.driver.find_element_by_class_name(&amp;quot;js_acc_list&amp;quot;).find_elements_by_tag_name(&amp;quot;div&amp;quot;)
+    result_list[0].click()
+
+文章列表已经展现出来了，直接抓取每条文章超链接的信息即可，每抓取完一页就进入下一页，继续抓取文章列表信息，直到所有文章信息都抓取完毕。
+
+def __get_article_list(self):
+    # 等待文章列表加载
+    time.sleep(5)
+    total_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
+        .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;)\
+        .find_element_by_class_name(&amp;quot;page_num&amp;quot;)\
+        .find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1].text
+    total_page = int(total_page)
+    articles = []
+    for i in range(0, total_page-1):
+        time.sleep(5)
+        next_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
+            .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;pagination&amp;quot;)\
+            .find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;).find_element_by_class_name(&amp;quot;page_next&amp;quot;)
+        article_list = self.driver.find_element_by_class_name(&amp;quot;js_article_list&amp;quot;)\
+            .find_element_by_class_name(&amp;quot; my_link_list&amp;quot;).find_elements_by_tag_name(&amp;quot;li&amp;quot;)
+        for article in article_list:
+            article_info = {
+                &amp;quot;date&amp;quot;: article.find_element_by_class_name(&amp;quot;date&amp;quot;).text,
+                &amp;quot;title&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).text,
+                &amp;quot;link&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).get_attribute(&amp;quot;href&amp;quot;)
+                }
+            articles.append(article_info)
+        next_page.click()
+    return articles
+
+至此，微信公众号历史文章的爬虫已经实现，其实整个过程只不过是用程序来模拟的了人类的操作。需要注意的是，程序不能设置太快，因为微信做了相关限制，所以设太快会在一段时间内无法使用文章查找功能；另外一点是使用选择器选择页面元素的时候，会有一些坑，而且我发现不同账号登录，有很少部分的页面元素虽然直观上是一样的，但是它的 html 代码有细微的差别。
+这个小程序会用到selenium库，和chromedriver，前者直接pip install即可，后者自行下载；另外你还需要一个订阅号才行，本文只实现了关键的文章信息抓取，并没有进行文章信息的持久化存储，完整代码在这里。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/du-da-xue-de-ji-dian-jian-yi">
+                        读大学的几点建议
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-19</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="post-tag i-tag
+                            i-tag-primary">
+            #随笔
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
+                            i-tag-error">
+            #生活感悟
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/du-da-xue-de-ji-dian-jian-yi">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/du-da-xue-de-ji-dian-jian-yi.jpeg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            前天在朋友圈看到一句话：“学生就是无知、狂妄、垃圾的代名词”，让我思考了很多东西。毕业出来也有快两月了，圈子里还有很多学弟学妹，很多同级的同学也都读研了，这里谈谈自己的感受，应该怎么把大学过好，期望不要太高，我自己很普通，大学没有什么出彩的经历。
+很多父母都把孩子的成就与大学挂钩，认为好的大学就是成功的代名词，盲目追求高学历，孩子从小也一直受这些思维的影响，应试能力强的惊人。大家都知道清华北大好，但是你问他哪里好，就回答不上来了，尤其家长，在他们眼里 985 一定比 211 好，211 一定比普通一本好。
+现在大学都会给你传达自己乃名门之后的观念，进校首先讲历史，当然都是挑好的讲，然后讲学校的历史成绩单。不得不说，效果非常好，你一和大学生谈论他的学校时，他会给你说出来学校是某某名人所建，学校在哪方面做的非常好，比如导弹是全国第几，造船位居全国前列等等。但是你一问他本人是哪个专业，回答是学数学的、学计算机的......
+每个学校都有恶心的事，我自己的一个经历，学院一拍脑袋，搞个什么本科生导师制，然后就没有然后了，四年总共见了导师一面。期间最可笑的是，也不知道是教育部还是什么部来检查，学生需要交一个导师沟通表上去，导师在哪个办公室都不知道，那大家怎么办，就模仿导师的口吻给自己下评语，第二天全院的导师沟通表都被打回来了，因为大家模仿的口吻不像导师，要求重新造假。
+上面的类似情况在大部分学校应该都存在，只不过看谁更可笑，某个学生出事了，学校第一想法不是怎么帮自己的学生解决问题，而是想如何把事情压下去，封锁消息。你会发现很多效率像蜗牛一样的机构，其公关效率却像火箭一样。
+现在各个大学的就业率都高的惊人，都不会低于 90%，为啥这么高呢？我也不知道学校是如何统计就业率的，唯一清楚的是，你毕业了，没有签工作，那么辅导员会给你打电话让你随便找个公司把三方协议签了交上去；这算轻的，很多学校是你不交三方协议，就不给你学位证、毕业证，我身边就有好几个随便刻个假章，盖在三方上面，只要交了三方协议的都算就业了的。
+我个人认为大学有的课就应该逃，也看到过文章说学生上课不应该带有批判性思维，什么课有用不应该是学生说了算，大学的课程设置都是专家们讨论的结果，现在最不缺的就是专家，什么人生导师一大把，出来之后，你仍然会发现有的课纯属浪费时间。强调一下，逃课不是去打游戏，是为了把时间利用的比在课堂上更有价值，我大学微积分老师也鼓励我们逃课，现在看来那时还是胆子太小，人家鼓励你逃课，还不敢逃，怂。重要的事再说一遍，逃课是去做比上课更有价值的事情。
+养成自学的习惯，提高自学能力，自学能力太重要了，而且这个时代自学是很容易的，网上有很多视频教程，比学校老师教的还好，而且也更接近于实战，大学教不了你太多东西，仅仅提供了一个平台，只是平台大小的区别而已。经常会听到学生说某个知识点老师没教，潜台词就是这个知识点我就不应该会，而且理直气壮，让人无语。
+迷茫的时候就去旅行吧，感受一下不同的文化，见识见识世界的缤纷多彩，你的视野会开阔许多，很多事情必须亲身体验才能感受到它的好处，旅途中你可以结识各种各样的朋友，与他们的思想碰撞，看看其他地方的生活，你可能就不会迷茫了，会找到自己乐趣。
+多结识比自己优秀的人，认识正能量的朋友，大学提供了很多机会，优秀的朋友会在不知不觉中改变你，你也会不知不觉变得更优秀。我在出于兴趣和打发时间，没事写写文章，让我意外的是，对我的改变太大了，通过写作让我认识了一些社会上的优秀人士，通过与他们交谈，我的思维方式有很大的改变，学生思维逐渐摒弃。
+尽量不要透支，学生没有收入来源，基本都是依靠父母每个月给的生活费，很多学生都使用花呗、白条等产品，而且借贷金额还不少，从理财角度来看，每个月的还款额超过自己收入的三分之一，生活就会有压力，何况学生还是没有收入的群体。没必要为了追求时髦而疯狂购买各种新产品，真高品质生活不应该是科技产品堆砌而成，而应该是由惬意、舒心、成长所构建的。
+还是要注重和学院领导、辅导员的关系，这点我是做的最差的，因为我不会拍马屁，看不惯就要说出来，容易得罪人。相信这背后的好处都还是明白一二，什么评奖评优暂且不谈，在保研的时候，这种关系会帮你一个大忙，往大了说就是改变人生的机会。
+写完读了一遍，有的观点还是显得偏激，请自行选择吸收，也欢迎批评指正。总得来说，最重要的就是提升自己的认知水平，思维方式很重要，保持终身学习的态度。有的事要敢想，不要给自己的思维设限制，也不要觉得博士硕士有多么了不起，研究生能做的事，本科生照样能做。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/du-da-xue-de-ji-dian-jian-yi">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/MYYZrm7wn">
+                        如何解决跨域请求问题
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-18</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/S57Vp3Suu" class="post-tag i-tag
+                            i-tag-info">
+            #计算机网络
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
+                            i-tag-other_4">
+            #前端
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/MYYZrm7wn">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/MYYZrm7wn.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+刚毕业入职，大部分时间还在培训，中间有一段时间的空闲时间，就学习了下 Angular，在学校都是编写的单体应用，所有代码都放在同一个工程下面，到公司使用的是前后端分离了，虽然后端程序也是我自己写的，但是有一些数据是从公司现有接口去拿的，然后就遇到让我纠结了两小时的跨域请求问题，为了避免出现上图中的尴尬场面，在这里做一个简单的总结输出。
+什么是跨域请求
+跨域请求问题是浏览器的同源策略造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：协议、域名、端口。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。
+http://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 非跨域
+
+http://www.nealyang.cn/index.html 调用 http://www.neal.cn/server.php 跨域,主域不同
+
+http://abc.nealyang.cn/index.html 调用 http://def.neal.cn/server.php 跨域,子域名不同
+
+http://www.nealyang.cn:8080/index.html 调用 http://www.nealyang.cn/server.php 跨域,端口不同
+
+https://www.nealyang.cn/index.html 调用 http://www.nealyang.cn/server.php 跨域,协议不同
+
+localhost 调用 127.0.0.1 跨域
+
+同源政策的目的是为了保护用户信息的安全，防止恶意网站窃取数据，随着互联网的发展，同源政策更加严格了，下面三种行为都会受到限制。
+（1） Cookie、LocalStorage 和 IndexDB 无法读取。
+（2） DOM 无法获得。
+（3） AJAX 请求不能发送。
+
+所有的现代浏览器都对网络连接进行了安全限制，包括 XMLHttpRequest，如果你的 web 应用程序和其使用的数据在同一个服务器，你不会遇到跨域请求问题。但是当你的 web 应用程序和 web 服务数据不在同一个服务器时，就会被浏览器限制连接了。
+常用解决方案
+对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面设置代理。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。
+
+通俗易懂的说，你家的宠物狗不会吃别家的食物，因为它担心别人的食物会把自己给药死，所以你的狗狗只管找你要食物，你是它的主人，它绝对相信你，而你可以鉴别别人给的食物是不是安全的。类比，小狗就是浏览器，你就是代理。
+Angular 中的解决办法
+上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用angular-cli构建你的项目，我们可以创建一个代理配置文件proxy.conf.json（假设你的后端服务的访问地址为10.121.163.10:8080），代理配置文件如下：
+{
+  &amp;quot;/api&amp;quot;: {
+    &amp;quot;target&amp;quot;: &amp;quot;http://10.121.163.10:8080&amp;quot;,
+    &amp;quot;secure&amp;quot;: false
+  }
+}
+
+然后修改package.json文件中的启动命令为&amp;quot;start&amp;quot;: &amp;quot;ng serve --proxy-config proxy.conf.json&amp;quot;，启动项目时使用npm start即可解决跨域请求问题。
+上述解决方案仅在开发时使用，你当然可以使用 tomcat、nginx 配置代理，但是这很麻烦，需要打包代码部署，为了保证效率，我们想写完了立刻测试，同时也不想麻烦做后端的同学，在项目发布时，应该把代理配置到服务器中去；修改启动命令也不是必须的，你也可以选择每次使用 ng serve --proxy-config proxy.conf.json命令启动项目；示例代理配置文件内容可以有更多的属性，可以通过网络查阅相关资料。
+后端解决办法
+我的后端是是用 tornado 实现的，然后我又写了一个单独的页面用于在大屏幕上展示相关数据，没有用 Angular 了，要通过 AJAX请求数据，又怎么解决跨域请求问题呢？这时就需要设置请求头了，让后端允许跨域请求。
+这时需要了解一下简单请求和非简单请求了，简单请求就是只发送一次请求的请求；非简单请求会发送数据之前先发一次请求做预检，通过预检后才能再发送一次请求用于数据传输。
+更清晰区别，满足下列两大条件的属于简单请求，而非简单请求就是请求方法为PUT或DELETE，或者 Content-Type字段是application/json的请求。
+
+1.请求方法为 GET、POST、HEAD之一
+2.HTTP头信息不超出字段：Accept、Accept-Language、Content-Language、Last-Event-ID、Content-Type，并且 Content-Type 的值仅限于 application/x-www-form-urlencoded、multipart/form-data、text/plain。
+
+对于简单请求，只需要设置一下响应头就可以了。
+class TestHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        # 可以把 * 写成具体的域名
+        self.write(&#39;cors get success&#39;)
+
+对于复杂请求，需要设置预检方法，如下所示：
+class CORSHandler(tornado.web.RequestHandler):
+    # 复杂请求方法put
+    def put(self):
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        self.write(&#39;put success&#39;)
+    # 预检方法设置
+    def options(self, *args, **kwargs):
+        #设置预检方法接收源
+        self.set_header(&#39;Access-Control-Allow-Origin&#39;, &amp;quot;*&amp;quot;)
+        #设置预复杂方法自定义请求头h1和h2
+        self.set_header(&#39;Access-Control-Allow-Headers&#39;, &amp;quot;h1,h2&amp;quot;)
+        #设置允许哪些复杂请求方法
+        self.set_header(&#39;Access-Control-Allow-Methods&#39;, &amp;quot;PUT,DELETE&amp;quot;)
+        #设置预检缓存时间秒,缓存时间内发送请求无需再预检
+        self.set_header(&#39;Access-Control-Max-Age&#39;, 10)
+
+本人不太懂前端知识，更多的前端跨域解决方案可以参考下面列出的文章，除第一篇外，其他都介绍了前端跨域解决方法。
+参考资料及推荐文章
+标题：JavaScript: Use a Web Proxy for Cross-Domain XMLHttpRequest Calls
+链接：https://developer.yahoo.com/javascript/howto-proxy.html?guccounter=1
+
+标题：别慌，不就是跨域么!
+链接：https://mp.weixin.qq.com/s/A0Oi-fUrmboRPPeNEjG3aw
+
+标题：跨域资源共享 CORS 详解
+链接：http://www.ruanyifeng.com/blog/2016/04/cors.html
+
+标题：AJAX请求和跨域请求详解（原生JS、Jquery）
+链接：http://www.cnblogs.com/tkqasn/p/5869175.html
+
+标题：JavaScript跨域总结与解决办法
+链接：http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/MYYZrm7wn">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/WsHPYySZU">
+                        如何让你的网页看起来更美观
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-09-09</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="post-tag i-tag
+                            i-tag-success">
+            #翻译
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/vhSkGeYf1D" class="post-tag i-tag
+                            i-tag-other_2">
+            #设计
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
+                            i-tag-other_1">
+            #前端
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/WsHPYySZU">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/WsHPYySZU.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            现在基本都离不开做网页，但是不同网页给人的感觉完全不一样，如何让你的网页看起来更加清爽，怎样让用户更愿意停留在你的网页中，就需要很好的设计了，偶然发现一篇《网页设计中常见的错误》，将其中的内容作了简单的整理。
+把内容分解成逻辑块
+把信息分组到逻辑块中，用户会更容易消化他们，设置内边距为 120px~180px ，并且使用彩色背景分割文本。
+字体合适，并且块之间用颜色分开，使得每一部分内容都很清楚。
+
+
+各部分内容间隔均匀
+围绕逻辑块设置相同大小的间隔，这样可以避免页面混乱的情况，让用户给给予每个部分同等的考虑。
+不同宽度的空间看起来不均匀，让人感觉到下面的内容是和上面的内容是从属关系，但实际上它们是同等重要的并列关系。
+
+
+足够的内边距
+太小的内边距会让用户无法梳理内容的逻辑，为了避免逻辑块的混乱，应该使用一个大的空间将它们分开。
+过于狭窄的内容填充让页面显得混乱，容易让用户认为这是一个纯文本，而不是具有不同含义的逻辑块，使用足够的大的空间填充，就可以立即看到这两个块之间的差异。
+
+
+增大背景与文字的对比度
+有时候会使用图片作为文字内容的背景，为了突出文字内容，可以在图片上放一个遮罩层，然后再放上文字，推荐使用黑色遮罩层。当然，你也可以一开始就使用对比度比较高的图片作为背景。
+背景图片亮度太高，阅读图片上的文字时就显得困难，加上一个黑色遮罩层，会让阅读变得轻松。
+
+
+避免在同一页面有太多样式
+在同一页面上使用过多的样式风格会显得不专业，同时也让阅读体验大打折扣，可以把你的字体限制在一种，字体的饱和度选项限制在两种，比如正常和黑体。
+过多的样式让页面的重点不清晰，而经过修改后的页面看起来更加干净整洁。
+
+
+避免强调窄页元素
+使用颜色来强调窄页元素只是看起来不太好，例如标题本身的字体大小、字体样式已经给了它们很好的标记，如果想强调页面上某个特定的点，可以给整个区块使用颜色背景。
+图中有颜色背景的标题打破了页面的连续性，看起来标题更像是独立的元素，把标题和文本都使用同一个颜色块作为背景，表示它们属于同一个逻辑块。
+
+
+在狭窄的列中放太多的文本
+当在一个狭窄的列中放置太多的文本时，用户必须从一行跳到下一行，而且很难看；最好是减少行数和缩短文本长度，否则没人愿意读它。
+
+
+居中的文字不要太多
+当页面上的文本很少时，将文本内容居中是个不错的选择，用户很容易就能注意到它，同时文字大小从 24px 开始，如果文本比较多时，使用可折叠的文本块比较好。
+
+
+文字遮挡图像有意义的部分
+避免使用文字遮挡图像中有意义的部分或小细节，这样你既能使图像变得模糊，又能使文本难以辨认。
+
+
+避免滥用视觉层次结构
+为了使信息层次结构清晰可见，封面上的标题应该比其他标题大，至少不能比其他标题小，尤其是标题很长的时候。
+上面的大标题比下面的小标题还要小，看起来会很奇怪，也会让用户很困惑，清晰的层次结构能让用户区分重要和不重要的信息。
+
+
+避免把同一个逻辑块一分为二
+把一个全屏的图像放在文本之后，会类似于一个独立的模块，可以在图片周围添加填充，由于共享背景，文本和图像看起来才是一个逻辑整体。
+
+
+别让标题又大又长
+非常大的句子适合短句子，如果是很长的标题，使用较小的字体，这样会更加容易阅读，并且为页面上其他空间留下足够的空间。
+一个太大的标题占据整个封面，会与其它元素争夺空间，选择更小的标题能让页面元素相互平衡，易于阅读。
+
+
+错误的使用按钮边框样式
+当按钮的样式是透明时，边框是必要的，而为有颜色的按钮添加样式就显得没有任何意义了，这会让页面显得超负荷了，不利于阅读。
+
+使用过多的颜色
+在页面上使用过多的颜色会让用户感到困惑，无法弄清楚哪个部分更重要，一到两种颜色就足以突出真正重要的东西。
+
+
+过载的菜单栏
+用户在访问网站寻找解决他们问题的办法时，菜单栏可以快速方便的让用户定位他们想要的内容，不要在菜单栏放置过多的信息，有 5-7 个菜单项就足够了。
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/WsHPYySZU">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/rang-https-jian-dan-yi-dong">
+                        让 HTTPS 简单易懂
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-08-26</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="post-tag i-tag
+                            i-tag-warning">
+            #翻译
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/S57Vp3Suu" class="post-tag i-tag
+                            i-tag-success">
+            #计算机网络
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/rang-https-jian-dan-yi-dong">
+                            <img class="post-feature-image" src="/post-images/rang-https-jian-dan-yi-dong.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            充满各种数学证明的密码学是令人头疼的，一听到密码、黑客、攻击等词的时候，就给人一种神秘又高大上的感觉，但除非你真的从事密码学相关工作，否则你并不需要对密码学有多么深刻的理解。
+这是一篇适合在饭后的品茶时光中阅读的文章，咱们虚构一个故事来讲解，虽然故事看起来很随性，但是 HTTPS 也是这么工作的。里面有一些术语你也应该听过，因为它们经常出现在技术文献里面。
+故事背景
+一天，一个男子到河边抓鱼给母亲吃，而河岸的另一头是一大户人家的小姐和她的丫鬟在散步。突然，一个不小心，对面小姐不慎跌入水中，而丫鬟又不会游泳，这可把小丫鬟急的呀！！！正在抓鱼的男子见此状况，来不及脱掉身上的衣物，就像箭一样窜入水中.....想必看客已经猜到了，小姐被救起，男子抱着迷迷糊糊小姐走上岸的过程中，小姐感觉自己像触电了一样，觉得这个男人很安全，只要靠着他，就算天塌下来也不怕，而男子把小姐放下的那一刻，也很不舍，好像把她放下就失去了活下去的希望。
+小姐回到家中，给父亲大人说了这件事，父亲很高兴，就叫下人去把这位男子请到家中表示感谢，结果一问，这小伙幼年丧父，现在家中还有病弱的老母亲，连一间屋子都没有，一直和母亲寄住在城外的破庙里面，不过他毕竟救了自己的女儿，父亲让下人拿出了五十两黄金以表谢意，但不允许他和小姐再有任何来往。
+.....此处省略五千字。
+我们姑且称小姐为小花，称男子为小明，他们不能相见了，但是又备受相思之苦，因此只能通过写信的方式来传达彼此的思念了。
+最简单的通信方式
+如果小花想给小明写信，那么她可以把写好的信让信鸽给小明送去，小明也可以通过信鸽给小花回信，这样他们就能知道彼此的感情了。
+但是很快这种方式出问题了，因为他们都隐约感觉到收到的来信不是对方写的，因为从信件上看，双方都表示不再喜欢彼此。凭借着对彼此的信任，他们才知道是小花的父亲从中阻挠他们。每次他们写的信都被父亲的下人拦下了，然后换上他们事先准备好的信件，目的就是为了让小花和小明断了感情。
+HTTP 就是这样的工作方式。
+对称加密
+小花是博冠古今的人，这怎么能难倒她呢。他们彼此约定，每次写信都加上密码，让信鸽传送的信件是用密文书写的。他们约定的密码是把每个字母的位置向后移动三位，比如 A → D 、 B → E ，如果他们要给对方写一句 &amp;quot;I love you&amp;quot; ，那么实际上信件上面写的就是 &amp;quot;L oryh brx&amp;quot; 。现在就算父亲把信件拦截了，他也不知道里面的内容是什么，而且也没办法修改为有效的内容，因为他不知道密码，现在小花和小明又能给对方写情书了。
+这就是对称加密，因为如果你知道如何加密信息，那也能知道如何解密信息。上面所说的加密常称为凯撒密码，在现实生活中，我们使用的密码肯定会更复杂，但是主要思想是一样的。
+如何确定密钥
+显然对称加密是比较安全的（只有两个人知道密码的情况下）。在凯撒密码中，密码通常是偏移指定位数的字母，我们使用的是偏移三位。
+可能你已经发现问题了，在小花和小明开始写信之前，他们就已经没办法相见了，那他们怎么确定密钥呢，如果一开始通过信鸽告诉对方密钥，那父亲就能把信鸽拦下，也能知道他们的密钥，那么父亲也就可以查看他们信件的内容，同时也能修改信件了。
+这就是典型的中间人攻击，唯一能解决这个问题的办法就是改变现有的加密方式。
+非对称加密
+小花想出了更好的办法，当小花想给小明写情书的时候，她将会按照下面的步骤来进行：
+
+小花给小明送一只没有携带任何信件的鸽子；
+小明让信鸽带一个没有上锁的空箱子回去，钥匙由小明保管；
+小花把写好的情书放到箱子里面，并锁上箱子
+小明收到箱子后，用钥匙打开箱子就可以了。
+
+使用这种方式，父亲大人就没办法拦截信鸽了，因为他没有箱子的钥匙。同样如果小明想给小花写情书，也采用这种方式。
+这就是非对称加密，之所以称之为非对称加密，是因为即使你能加密信息（锁箱子），但是你却无法解密信息（开箱子），因为箱子的钥匙在对方那里。在技术领域，把这里的箱子称作公钥，把钥匙称作私钥。
+认证机构
+细心的你可能发现问题了，当小明收到箱子后，他如何确定这个箱子的主人是谁呢，因为父亲也可以让信鸽带箱子给小明啊，所以父亲如果想知道他们的信件内容，那只需要把箱子偷换掉就好了。
+小花决定在箱子上面签上自己的名字，因为笔迹是不能模仿的，这样父亲就没办法伪造箱子了。但是依旧有问题，小花和小明在不能相见之前并没有见过彼此写的字，那么小明又如何识别出小花的字迹呢？所以他们的解决办法是，找张三丰替小花签名。
+众所周知，张三丰是当世的得道高人，他的品德是世人都认可的，大家都把他奉为圣人，而且天下肯定不止一对有情人遇到小花和小红这样的问题。张三丰只会为合法居民签名。
+张三丰会在小花的盒子上签名，前提是他确定了要签名的是小花。所以父亲大人是无法得到张三丰代表小花签名的盒子，否则小明就会知道这是一个骗局，因为张三丰只在验证了人们的身份后才会代表他们给盒子签名。
+张三丰在技术领域的角色就是认证机构，你现在阅读这篇文章所使用的浏览器是附带了各种认证机构的签名的。所以当你第一次访问某个网站时，你相信这不是一个钓鱼网站，是因为你相信第三方认证机构，因为他们告诉你这个箱子是合法的。
+箱子太重了
+虽然现在小花和小明有了一个可靠的通信系统，但是信鸽带个箱子飞的慢啊，热恋中的人是“一日不见如隔三秋”，信鸽飞慢了怎么行呢。
+所以他们决定还是采用对称加密的方式来写情书，但是对称加密的密钥要用箱子来传递，也就是用非对称加密方式来传递对称加密密钥，这样就可以同时获得对称加密和非对称加密的优点了，还能避免彼此的缺点。
+需要注意的是，在网络世界中，信息不会像鸽子传送的那么慢，只不过只用非对称加密技术加密信息要比对称加密慢，所以只用它来交换密钥。
+以上就是 HTTPS 的工作过程。
+一个故事
+
+这个故事你可能早就知道了，我只是在写文章的过程中突然想起了它，就是笛卡尔的爱情故事。
+
+
+具体细节你可以网上去查，笛卡尔每天给自己喜欢的公主写信，但是信都被国王拦截了，笛卡尔给公主写的第十三封信中只有一个数学方程，但是这个方程国王看不懂，所以就把这封信交给了公主，公主一看方程，立刻着手把方程的图形画了出来，发现这是一颗心的形状。
+
+
+参考内容：https://medium.freecodecamp.org/https-explained-with-carrier-pigeons-7029d2193351
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/rang-https-jian-dan-yi-dong">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">
+                        用 Scrapy 爬取豆瓣250
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-07-27</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/pa-chong" class="post-tag i-tag
+                            i-tag-warning">
+            #爬虫
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/yong-scrapy-pa-qu-dou-ban-250.jpeg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            最好的学习方式就是输入之后再输出，分享一个自己学习scrapy框架的小案例，方便快速的掌握使用scrapy的基本方法。
+本想从零开始写一个用Scrapy爬取教程，但是官方已经有了样例，一想已经有了，还是不写了，尽量分享在网上不太容易找到的东西。自己近期在封闭培训，更文像蜗牛一样，抱歉。
+Scrapy简介
+Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。
+其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。
+
+如果此前对scrapy没有了解，请先查看下面的官方教程链接。
+架构概览：https://docs.pythontab.com/scrapy/scrapy0.24/topics/architecture.html
+Scrapy入门教程：https://docs.pythontab.com/scrapy/scrapy0.24/intro/tutorial.html
+爬虫教程
+首先，我们看一下豆瓣TOP250页面，发现可以从中提取电影名称、排名、评分、评论人数、导演、年份、地区、类型、电影描述。
+
+Item对象是种简单的容器，保存了爬取到得数据。其提供了类似于词典的API以及用于声明可用字段的简单语法。所以可以声明Item为如下形式。
+class DoubanItem(scrapy.Item):
+    # 排名
+    ranking = scrapy.Field()
+    # 电影名称
+    title = scrapy.Field()
+    # 评分
+    score = scrapy.Field()
+    # 评论人数
+    pople_num = scrapy.Field()
+    # 导演
+    director = scrapy.Field()
+    # 年份
+    year = scrapy.Field()
+    # 地区
+    area = scrapy.Field()
+    # 类型
+    clazz = scrapy.Field()
+    # 电影描述
+    decsription = scrapy.Field()
+
+我们抓取到相应的网页后，需要从网页中提取自己需要的信息，可以使用xpath语法，我使用的是BeautifulSoup网页解析器，经过BeautifulSoup解析的网页，可以直接使用选择器筛选需要的信息。有一些说明写到代码注释里面去了，就不再赘述。
+Chrome 也可以直接复制选择器或者XPath，如下图所示。
+
+class douban_spider(Spider):
+
+    count = 1
+
+    # 爬虫启动命令
+    name = &#39;douban&#39;
+
+    # 头部信息，伪装自己不是爬虫程序
+    headers = {
+        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#39;,
+    }
+
+    # 爬虫启动链接
+    def start_requests(self):
+        url = &#39;https://movie.douban.com/top250&#39;
+        yield Request(url, headers=self.headers)
+
+    # 处理爬取的数据
+    def parse(self, response):
+
+        print(&#39;第&#39;, self.count, &#39;页&#39;)
+        self.count += 1
+
+        item = DoubanItem()
+        soup = BeautifulSoup(response.text, &#39;html.parser&#39;)
+
+        # 选出电影列表
+        movies = soup.select(&#39;#content div div.article ol li&#39;)
+
+        for movie in movies:
+            item[&#39;title&#39;] = movie.select(&#39;.title&#39;)[0].text
+            item[&#39;ranking&#39;] = movie.select(&#39;em&#39;)[0].text
+            item[&#39;score&#39;] = movie.select(&#39;.rating_num&#39;)[0].text
+            item[&#39;pople_num&#39;] = movie.select(&#39;.star span&#39;)[3].text
+
+            # 包含导演、年份、地区、类别
+            info = movie.select(&#39;.bd p&#39;)[0].text
+            director = info.strip().split(&#39;\n&#39;)[0].split(&#39;   &#39;)
+            yac = info.strip().split(&#39;\n&#39;)[1].strip().split(&#39; / &#39;)
+
+            item[&#39;director&#39;] = director[0].split(&#39;: &#39;)[1]
+            item[&#39;year&#39;] = yac[0]
+            item[&#39;area&#39;] = yac[1]
+            item[&#39;clazz&#39;] = yac[2]
+
+            # 电影描述有为空的，所以需要判断
+            if len(movie.select(&#39;.inq&#39;)) is not 0:
+                item[&#39;decsription&#39;] = movie.select(&#39;.inq&#39;)[0].text
+            else:
+                item[&#39;decsription&#39;] = &#39;None&#39;
+            yield item
+
+        # 下一页：
+        # 1，可以在页面中找到下一页的地址
+        # 2，自己根据url规律构造地址，这里使用的是第二种方法
+        next_url = soup.select(&#39;.paginator .next a&#39;)[0][&#39;href&#39;]
+        if next_url:
+            next_url = &#39;https://movie.douban.com/top250&#39; + next_url
+            yield Request(next_url, headers=self.headers)
+
+然后在项目文件夹内打开cmd命令，运行scrapy crawl douban -o movies.csv就会发现提取的信息就写入指定文件了，下面是爬取的结果，效果很理想。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/yong-scrapy-pa-qu-dou-ban-250">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian">
+                        年轻不要给自己设限
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-07-02</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
+                            i-tag-other_4">
+            #个人总结
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
+                            i-tag-">
+            #生活感悟
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/nian-qing-bu-yao-gei-zi-ji-she-xian.jpeg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            大学毕业时，选择了火车这一交通工具回家，再看一次从东北到西南的沿途风景，无奈火车居然能晚点两小时，这篇文章是为打发时间写的，希望对您有所帮助。
+记得大一入学前，买了一本覃彪喜写的《读大学，究竟读什么》，那时候对于里面有一些观点不赞同，觉得大学这么神圣的地方，怎么被作者写成那样，读完一遍只是抱有一种怀疑的态度，四年之后的今天，我觉得这本书值得一看，大部分内容还是有用的，不过有一些内容还是很偏激的，自己过滤掉就好了。
+现在回头看，大学最需要的应该是经历，我也是大三才算明白这个道理吧（这个道理应该不止学生能实用）。我认为本科阶段是容错率最高的阶段，这个时候你干什么都不怕，犯了错也没有什么大碍，最重要的是犯错（不犯错更好）的那个过程。
+年轻人做什么都是学习，不要给自己设限，在一无所有的年龄就应该多经历，因为这时候的容错率很高，试错成本低就要勇于试错。（这句话可能之前的文章说过，大同小异的话你也能在别的好文章里面见到）
+现在的家长，也包括孩子，大多数喜欢拿一些证书、奖杯出来炫耀，而现在大学里面的个性化保研政策看的就是各种奖项。我更看重的是比赛的过程，但是在学校有一个怪现象：我不想办事，只想你给我挂一个名，到出去比赛的时候，看到所报的项目自己不是第一作者，都不愿意去比赛，觉得是在浪费时间。
+我个人在这里面算一股清流了，我很喜欢跟着出去比赛，因为比赛的过程能教会你很多在学校学不到的东西，给不给我奖状无所谓，只要给我报销差旅费就行了，这一点对我这种穷学生来说跟重要，想出去看看世界长长见识，自己又没有钱，学生群体中随随便便就拿出几千块钱的人还是不多，所以这是我找到的最好的长见识的方法了，上大学前连小县城都没出过的我，通过比赛到过佛山、深圳、重庆、日照等地，这对我算是一生的财富。
+写到这里，脑子里面满满的全是回忆，发现想说的太多，全写出来可能会上万字，先不写了，以后分开写个系列的也行，下面说几句干货道理吧，过来人的总结。
+第一，少拿学校的光环往自己身上套，和你没关系，对于我的学校动不动就拿哈军工说事（中国人都喜欢把自己和名家扯上关系，看起来显得有一些历史文化底蕴），完全是不自信的表现。作为唯一一个首批进入211缺不是985的学校，我觉得学校一直在啃老底。类似的文章还有之前写的谈一点关于名校的话题和刘大写的除去大公司的光环，你还剩点啥？
+第二，学校教不了你多少东西，大学阶段和高中阶段最大的区别是，高中有人赶着你学，而且还有人给你指明学习的方向，但是大学没有人告诉你学什么，也没有人赶着你学习，所以培养自学能力和判断选择能力很重要，我个人认为这是大学阶段最应该学习到的东西。
+第三，如果大学只学习了课本中的内容，那还不如不上大学，不得不承认，大学课本内容都属于经典中的经典，但是学校的要求太低，所以要自己去练习，而且很多老师所教授的东西属于过时的知识，有的课就应该逃掉，利用这个时间去做更有用的事情。
+第四，真诚待人，学生阶段所交的朋友没多少功利性，能交几个铁哥们最好。我个人觉得比较实用的一个看人标准，你只需要看某个人对待其他人是什么样，就大概知道他对你会是什么样了；好比谈恋爱，你不要妄想渣男渣女到你这里就不渣了（小概率事件）。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/tan-yi-xia-xie-zuo-de-chong-yao-xing">
+                        谈一下写作的重要性
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-06-20</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
+                            i-tag-success">
+            #个人总结
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
+                            i-tag-other_3">
+            #生活感悟
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/tan-yi-xia-xie-zuo-de-chong-yao-xing">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/tan-yi-xia-xie-zuo-de-chong-yao-xing.jpeg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            关于写作的重要性，你可能在其他地方也见过一些描述，大致的说法都差不多，如果本文某些字句与你已经见过的文章有雷同，那纯属巧合，我仅从个人这几个月的感受出发来说。
+我从三月份开始，在公众号上面发一些文章，其实从这几个月的表现来看，是把公众号当作博客来用了，我的初衷没有想着靠公众号赚钱，所以我的分享很随意，主要是技术、认知、阅读方面的东西。如果不喜欢，主动权在你手里，大可取关；如果喜欢，我的文章能让你少走一些弯路，那么我自己的目的达到了，给不给赞赏无所谓，其实心里还是希望你给的，咱没必要把自己放的太清高。
+今天微信订阅号改版了，新版的订阅号基本形态变成了信息流，关于产品我还不太懂，但是我觉得这次改版对于作者的个人品牌形成不利，没内容的公众号应该会被取关很多粉丝，但是忠实粉丝也更难找到自己喜欢的“博主”了，所以以后，请认准作者。
+很多人也有撰写博客的习惯，我很赞同这个做法，关于写作的好处我觉得有以下几点，只有认真去做了，才能体会到它带给自己的成长。
+第一，写作是整理自己思维的过程，写作能力是一种重要的能力，不一定要多好的文采，但是不是每个人都能把语言组织的有条有理。现在的时代，没有铁饭碗，你需要不停的学习才能立于不败之地，很多人觉得写作是浪费时间，其实不然，写作是对已学知识的整理过程，输出其实是更高层次的输入。拿我之前写的朴素贝叶斯实现拼写检查器来说，其中那个贝叶斯公式推导是我花了很多分钟才想出来的，就好像老师教给学生一碗水，那么老师就必须具备一桶水才行。
+第二，写作是个人品牌的建立过程，可以说微信已经成为了中国互联网的小小代名词，农村大叔大妈手机上面最可能出现的软件就是微信，微信打通中国互联网的最后一环，在这么大的平台上，你分享的内容对别人来说是有帮助的，那么你的个人品牌就已经逐渐在形成了，这是个人影响力的提升。个人品牌在以后一定会很重要，个人品牌在日常生活其实有体现，我相信每个人的微信都会屏蔽几个人的朋友圈信息吧，经常在朋友圈发一些无用信息、垃圾信息，这其实就是个人品牌的损失。
+第三，通过写作你能交到很多朋友，而且通过这种方式所交到的朋友都是优秀的，他们会对你的成长起到促进作用，而你也会因为和他们交流而在不知不觉中得到提升，真正的朋友是相互促进的。我这几个月交到的朋友，刷新了我的认知，偏见来源于无知，在这个过程，我的认知得到了很大的提升，认知这玩意也不太好描述。举个例子，大概在大二的时候，我看到一篇文章说高中物理中所学的电子、质子等概念是错的，将要被新的知识体系取代，那时二话不说就转发朋友圈了，但没过几天就发现这其实是一个虚假信息；前段时间，中兴被美国制裁了，然后就有一些自媒体作者为了吸引流量，乱写一通什么华为宣布将要退出美国市场的消息，我的第一直觉就是这是虚假信息，然后我去验证了自己猜测的正确性，而周围很多人竟无脑式的选择了相信这条消息，还给我分析为什么华为要退出美国市场。这在我看来就是认知水平的一个体现，或者贴切一点叫信息素养（这个词不是我发明的），我现在对于信息的掌握已经明显快于周围的同学了，而且掌握的也比周围同学更加全面。
+最后说一点，没必要为了写作而写作，经常在知识星球看到有人问问题，说自己的写不出东西来，怎么办？这就是自己的输入不够，自己体内没有实质的东西，如何能达到输出呢？更别说高质量的输出了。
+我以后的文章主要是机器学习和提升认知方面的，最近更文有点慢，其一是自己也刚开始接触机器学习不久，要写出一篇比较好的文章，需要几天的输入；其二马上要毕业了，繁忙于各种琐碎的事情无法自拔。
+总的来说，写作利大于弊，如果你有闲心，看一下我几个月前发的文章，再和我现在的文章做个对比，你能看到我的变化，在文章逻辑、排版等等方面都或多或少的有一些提升，所以我建议你如果空闲时间比较多，也可以尝试尝试写作，自己的成长过程会在字里行间被记录下来。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/tan-yi-xia-xie-zuo-de-chong-yao-xing">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/jing-ji-ze-ren-shen-ji-zhi-shi-tu-pu-gou-jian-fang-fa-zong-jie">
+                        经济责任审计知识图谱构建方法总结
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-05-07</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/zi-ran-yu-yan-chu-li" class="post-tag i-tag
+                            i-tag-success">
+            #自然语言处理
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/jing-ji-ze-ren-shen-ji-zhi-shi-tu-pu-gou-jian-fang-fa-zong-jie">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/jing-ji-ze-ren-shen-ji-zhi-shi-tu-pu-gou-jian-fang-fa-zong-jie.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            自 2012 年 Google 提出“知识图谱”的概念以来，知识图谱就一直是学术研究的重要方向，现在有很多高校、企业都致力于将这项技术应用到医疗、教育、商业等领域，并且已经取得了些许成果。Google 也宣布将以知识图谱为基础，构建下一代智能搜索引擎。
+现在已经可以在谷歌、百度、搜狗等搜索引擎上面看到知识图谱的应用了。比如在 Google 搜索某个关键词时，会在其结果页面的右边显示该关键字的详细信息。在几个常用的搜索引擎中搜索知识时，返回的答案也变得更加精确，比如搜索“汪涵的妻子”，搜索引擎会直接给出答案“杨乐乐”，方便了用户快速精准的获取想要的信息。不过目前的搜索引擎只有少部分搜索问题能达到这种效果。
+关于知识图谱是什么，我想就不用介绍了，这种通过搜索引擎就能轻松得到的结果写在这里有点浪费篇章，并且我对知识图谱的理解也不深，不敢夸夸其谈，只是把自己这一段时间以来的工作做一个总结。
+本文只相当于以经济责任审计这一特定领域构建了一个知识图谱，仅仅是走了一遍流程，当作入门项目，构建过程中参考甚至抄袭了别人的很多方法与代码，末尾都会给出参考的项目等等。
+
+上图是我构建经济责任审计知识图谱的流程，看起来很繁琐，但只要静下心看，个人觉得相对还算清晰，箭头都有指向。下面就一步一步进行说明。
+数据获取
+数据获取主要分为两部分数据，一部分是新闻类数据，我把它用作文本分类模型的训练集；另一部分是实体数据，为了方便，我直接把互动百科抓取的词条文件作为实体，省了属性抽取这一环节。
+因为本文构建的是一个经济责任审计领域的知识图谱，所以作为文本分类模型训练集的数据也应该是经济责任审计领域的。这里主要抓取了审计署、纪检委、新浪网的部分新闻。
+
+像上面的图一样，新闻类网站一般都有搜索框，为了简单，所以我直接用搜索框搜索“经济责任审计”，然后从搜索结果中抓取新闻数据，即认为是经济责任审计相关的文本。抓取新闻类网站使用了 chrome 模拟用户进行访问。最终获得了 3500 多条新闻文本。
+领域词汇判定
+领域词汇判定，本文构建的不是开放领域的知识图谱，所以需要采用一种方法来判定所抓取的内容是否属于经济责任审计领域。领域词汇本文的方法实际上是领域句子判定，直接使用了大神的项目。CNN-RNN中文文本分类，基于tensorflow。也看到有人通过改进逻辑回归算法，在进行领域词汇的判定。
+实体关系抽取
+知识图谱的基本单位为（实体1，关系，实体2）这样的三元组，实体是直接从互动百科获取的词条，关系由两部分组成，一部分来自 wikidata 所提供的关系，这一部分直接从 wikidata 爬取即可得到，另一部分使用的是基于依存句法分析的开放式中文实体关系抽取，已经在前面的文章发过了。
+知识存储
+有了实体和实体关系，那么把这些数据进行筛选，然后入库，通过直观的页面展示，就可以了。这里使用的数据库是 neo4j，它作为图形数据库，用于知识图谱的存储非常方便。知识的展示使用了别人的项目，仅仅是把里面的数据换掉了而已，感谢大神的无私。
+最后放几张效果图
+
+下面是以“职业”为关系查询条件所得出的结果。
+
+总结一下
+只是对几个月工作的梳理，大多数核心代码都改自现有的代码，所有的数据都来自于网络，与知识图谱相关的公开技术较少，我也只是尝试着做了一下，虽然很菜，也可以对大致的技术路线、流程有一个简单的了解，主要工作都是自然语言处理的内容。后期可以利用现在的知识图谱构建智能问答系统，实现从 what 到 why 的转换。
+感谢
+汉语言处理包 HanLP：https://github.com/hankcs/HanLP
+中文文本分类：https://github.com/gaussic/text-classification-cnn-rnn
+农业知识图谱：https://github.com/qq547276542/Agriculture_KnowledgeGraph
+事实三元组抽取：https://github.com/twjiang/fact_triple_extraction
+中文自然语言处理相关资料：https://github.com/mengxiaoxu/Awesome-Chinese-NLP
+开放中文实体关系抽取：http://www.docin.com/p-1715877509.html
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/jing-ji-ze-ren-shen-ji-zhi-shi-tu-pu-gou-jian-fang-fa-zong-jie">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu">
+                        基于依存句法分析的开放式中文实体关系抽取
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-04-26</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/zi-ran-yu-yan-chu-li" class="post-tag i-tag
+                            i-tag-other_4">
+            #自然语言处理
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu.jpeg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            这一段时间一直在做知识图谱，卡在实体关系抽取这里几个月了，在 Github 上面看到有人使用卷积神经网络训练模型进行抽取，自己也尝试了一下，但是一直苦于没有像样数据去训练，而标注训练集又太费时间了，我不太愿意干体力活。所以采用了一个低档次的方法，基于依存句法分析的实体关系抽取，记录一下心得，方便日后忘记可以再找回来。
+本方法参考了 Github 上面的项目和一篇论文，在文章末尾给出，使用的分词工具是 HanLP，感谢相关作者。
+论文给出了 8 种中文关系的表达方式，并且最后给出了一个采用正则表达式语法指出表达，核心就是谓语动词表示关系，即关系表述中一定得有动词。
+状语*动词+补语?宾语?
+
+我不太赞同把宾语也当作关系表述的一部分，论文指出“p4生于山西”应该抽出（p4，山西，生于山西），我认为关系不应该表述为“生于山西”，所以我把关系表述改为下面的样子了。
+状语*动词+补语?
+
+这篇文章只是作为一个方法介绍，我自己先看了一遍，能够保证我下次看到这篇文章，可以立马回忆起自己的实现方法，希望你看了也能了解方法，看不懂的话，我表示抱歉，浪费您的时间了，我已经尽可能写到简单了。
+先来看几个简单句子吧：
+主谓宾关系：刘小绪 生于 四川
+// 这个三元组很明显：（刘小绪，生于，四川）
+
+
+动补结构：刘小绪 洗 干净 了 衣服
+// 如果套用主谓宾关系就是：（刘小绪，洗，衣服）
+// 但是这里描述的是一个状态，是刘小绪把衣服洗干净了
+// “干净”是动词“洗”的补语，所以还应该提取出一个如下三元组
+// （刘小绪，洗干净了，衣服）
+
+状动结构：父亲 非常 喜欢 跑步
+// 这句和上面很像，主谓宾关系是：父亲喜欢跑步
+// “非常”用于修饰“喜欢”
+// （父亲，非常喜欢，跑步）
+
+介宾关系：刘小绪 就职 于 学校
+// 如果直接把这个三元组抽取为（刘小绪，就职，学校），很别扭
+// “于”和“学校”是介宾关系，它们的关系应该是：就职于
+// （刘小绪，就职于，学校）
+
+宾语前置：海洋 由 水 组成
+// “海洋”是“组成”的前置宾语
+// “由”是“组成”的状语
+// “水”和“由”是介宾关系
+// 所以上面的句子没有明确的主谓关系，需要我们判断
+// 抽出的三元组应该为：（水，组成，海洋）
+
+HanLP 提供了两种依存句法分析的器，默认采用的是基于神经网络的依存句法分析器。依存句法分析就是将句子分析成一棵依存句法树，描述各个词语之间的依存关系，即指出词语之间在句法上的搭配关系。
+有了上面所说的依存句法树，其实我们只需要进行各种判断就可以了。先做出下面的一点说明，就拿第一个例子来说。
+原文：刘小绪生于四川
+
+# 这是分词结果
+[刘小绪/nr, 生于/v, 四川/ns]
+
+#这是句法分析结果
+刘小绪 --(主谓关系)--&amp;gt; 生于
+生于 --(核心关系)--&amp;gt; ##核心##
+四川 --(动宾关系)--&amp;gt; 生于
+
+为了方便理解，也为了方便程序的编写，我把他们组织成了下面的形式，为每一个词语都建一个依存句法字典。
+刘小绪：{}
+生于：{主谓关系=[刘小绪], 动宾关系=[四川]}
+四川：{}
+
+然后只需要写出类似于下面的程序段就可以抽出关系了。
+// 主谓宾关系：刘小绪生于四川
+// dic是这个词语的依存句法字典
+if (dic.containsKey(&amp;quot;主谓关系&amp;quot;) &amp;amp;&amp;amp; dic.containsKey(&amp;quot;动宾关系&amp;quot;)){
+    
+    // 当前的词语，用上面的例子来说，relation=“生于”
+    String relation = curWord.LEMMA;
+
+
+    // 用循环遍历，是因为关系列表里面不一定只有一个词语
+    for (CoNLLWord entity1:
+            dic.get(&amp;quot;主谓关系&amp;quot;)) {
+
+        for (CoNLLWord entity2:
+                dic.get(&amp;quot;动宾关系&amp;quot;)) {
+
+            System.out.println(entity1.LEMMA + &amp;quot;,&amp;quot; + relation + &amp;quot;,&amp;quot; + entity2.LEMMA);
+        }
+
+    }
+}
+
+对于分词后的每个词语都进行上面程序段的操作。“刘小绪”和“四川”，关系字典都为空。而对于“生于”，关系列表里面既有主谓也有动宾，而自己本身就是动词，主谓宾就出来了。直接从主谓关系中拿出来词语作为 entity1，再拿上自己作为关系，最后拿出动宾关系中的词语作为 entity2。很明确的三元组（刘小绪，生于，四川）就出来了。
+最后给出一个程序运行结果图吧。
+
+我个人觉得效果还行，在简单句子上面表现的差强人意，在长句子上面表现的差劲。
+参考：
+HanLP 自然语言处理
+基于依存分析的开放式中文实体关系抽取方法
+命名实体三元组抽取参考自fact_triple_extraction
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+    <div class="pagination-container">
+        
+            <a href="https://mengxiaoxu.github.io//page/3/" class="page-btn btn">上一页</a>
+            
+                
+                    <a href="https://mengxiaoxu.github.io//page/5/" class="page-btn btn">下一页</a>
+                    
+    </div>
+    
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1572746948854)">
+        </div>
+        <h1 class="id_card-title">
+            刘小绪同学的博客
+        </h1>
+        <h2 class="id_card-description">
+            正在学习写代码的码农
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                            <a href="https://www.douban.com/people/189583084" target="_blank" rel="noopener noreferrer"><i
+                    class="icon-douban"></i></a>
+
+        </div>
+    </div>
+
+    <div class="id_card i-card">
+        <h1 class="id_card-title">
+            最新文章
+        </h1>
+        <div class="new-aticles">
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/vim-chang-yong-ming-ling-kuai-su-cha-xun">Vim 常用命令快速查询</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-10-28">刘小绪同学随笔（2019-10-28）</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/nginx-wen-jian-cao-zuo-you-hua">Nginx 文件操作优化</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao">JavaScript 高级知识技巧</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/jia-li-de-gou">家里的狗</a>
+                </h3>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
+    </div>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1196 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    刘小绪同学的博客
+</title>
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1572746948854">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://mengxiaoxu.github.io//styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://mengxiaoxu.github.io//media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148716803-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-148716803-1');
+    </script>
+    
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://mengxiaoxu.github.io/">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1572746948854" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    刘小绪同学的博客
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://mengxiaoxu.github.io//post/gao-zhi-liang-zhong-wen-du-li-bo-ke/" class="menu">
+                                    友链
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/qCt13nLLT">
+                        浅析浏览器缓存机制
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-04-26</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/S57Vp3Suu" class="post-tag i-tag
+                            i-tag-banana">
+            #计算机网络
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
+                            i-tag-other_1">
+            #前端
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/qCt13nLLT">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/qCt13nLLT.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            前端开发人员有大部分时间都在调整页面样式，如果页面没有按照自己预期的样式显示，可能想到的第一个解决方案就是清一下浏览器缓存，HTTP 缓存机制作为 Web 性能优化的重要手段，也应该是 Web 开发人员必备的基础知识。我们常说的浏览器缓存机制也就是 HTTP 缓存机制，它是根据 HTTP 报文的缓存标识运行的，所以首先要对 HTTP 报文有一个简单的了解。
+HTTP 报文
+HTTP 报文是浏览器和服务器间进行通信时所发的响应数据，所以 HTTP 报文分为请求（Request）报文和响应（Response）报文两种，浏览器向服务器发送的是请求报文，而服务器向浏览器发送的是响应报文。HTTP 请求报文由请求行、请求头、请求体组成，响应报文则由状态行、响应头、响应正文组成，与缓存有关的规则信息则都包含在请求头和响应头中。
+缓存概述
+浏览器与服务器通过请求响应模式来通信，当浏览器第一次向服务器发送请求并拿到结果后，会根据响应报文中的缓存规则来决定是否缓存结果，其简单的流程如下图：
+
+浏览器每次发起请求都会先在浏览器缓存中查找该请求的结果和缓存标识，而且每次拿到响应数据后都会将该结果和缓存标识存入缓存中。HTTP 缓存的规则有多种，我们可以根据是否需要重新向服务器发起请求这一维度来分类，即有强制缓存和协商缓存两类，也有人把协商缓存叫对比缓存。
+强制缓存
+我们先自己想一下，使用缓存是不是会有下面几种情况出现。
+
+
+存在所需缓存并且未失效：直接走本地缓存即可；强制缓存生效；
+
+
+存在所需缓存但已失效：本地缓存失效，携带着缓存标识发起 HTTP 请求；强制缓存失效，使用协商缓存；
+
+
+不存在所需缓存：直接向服务器发起 HTTP 请求；强制缓存失效。
+
+
+控制强制缓存的字段分别是Expires和Cache-Control，并且Cache-Control的优先级高于Expires。
+Expires
+Expires是 HTTP/1.0 控制网页缓存的字段，其值为服务器返回的该缓存到期时间，即下一次请求时，请求时间小于Expires值，就直接使用缓存数据。到了 HTTP/1.1，Expires已经被Cache-Control替代了。
+Expires被替代的原因是因为服务端和客户端的时间可能有误差（比如时区不同或者客户端与服务端有一方时间不准确），这就会导致缓存命中误差，强制缓存就变得毫无意义。
+Cache-Control
+Cache-Control是 HTTP/1.1 中最重要的规则，主要取值为：
+
+
+
+取值
+规则
+
+
+
+
+public
+所有内容都可以被缓存，包括客户端和代理服务器，纯前端可认为与private一样。
+
+
+private
+所有内容只有客户端可以缓存，Cache-Control的默认值。
+
+
+no-cache
+客户端可以缓存，但是是否缓存需要与服务器协商决定（协商缓存）
+
+
+no-store
+所有内容都不会被缓存，既不是用强制缓存，也不使用协商缓存，为了速度快，实际上缓存越多越好，所以这个慎用
+
+
+max-age=xxx
+缓存内容将在 xxx 秒后失效
+
+
+
+我们可以看看下面这个例子，可以从截图中看到Expires是一个绝对值，而Cache-Control是一个相对值，此处为max-age=3600，即 1 小时后失效。在无法确定客户端的时间是否与服务端的时间同步的情况下，Cache-Control相比于Expires是更好的选择，所以同时存在时只有Cache-Control生效。
+
+协商缓存
+协商缓存，顾名思义就是需要双方通过协商来判断是否可以使用缓存。强制缓存失效后，浏览器带着缓存标识向服务器发起请求，由服务器根据缓存标识决定是否可以使用缓存，那自然而然就有协商缓存生效和协商缓存不生效两种情况了。
+
+上图是协商缓存生效的流程，如果协商缓存不生效则返回的状态码为 200。协商缓存的标识也是在响应报文的响应头中返回给浏览器的，控制协商缓存的字段有Last-Modified / If-Modified-Since和Etag / If-None-Match，其中Etag / If-None-Match的优先级比Last-Modified / If-Modified-Since高，所以同时存在时只有Etag / If-None-Match生效。
+Last-Modified / If-Modified-Since
+你可以往上翻一翻，看一下那张响应报文截图，其中有一个Last-Modified字段，它的值是该资源文件在服务器最后被修改的时间。
+If-Modified-Since则是客户端再次发起该请求时，携带上次请求返回的Last-Modified值。服务器收到该请求后，发现该请求头有If-Modified-Since字段，则会将If-Modified-Since与该资源在服务器的最后被修改时间做对比，若服务器的资源最后被修改时间大于If-Modified-Since的字段值，则重新返回资源，状态码为 200；否则则返回 304，代表资源无更新，可继续使用缓存文件。
+
+Etag / If-None-Match
+Etag是服务器响应请求时，返回当前资源文件的一个由服务器生成的唯一标识。
+If-None-Match则是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有If-None-Match，则会根据If-None-Match的字段值与该资源在服务器的Etag值做对比，如果一致则就返回 304，代表资源无更新，可以继续使用缓存文件；否则重新返回资源文件，状态码为200，
+
+disk cache 与 memory cache
+我们可以通过浏览器调试工具查看强制缓存是否生效，如下图所示，状态码为灰色的请求就代表使用了强制缓存，请求对应的 size 显示了该缓存存放的位置，那么什么时候用 disk 什么时候用 memory 呢？
+
+猜都能猜出来，肯定是优先使用内存（memory）中的缓存，然后才用硬盘（disk）中的缓存。
+内存缓存具有快速读取的特点，它会将编译解析后的文件直接存入该进程的内存中，但是一旦进程关闭了，该进程的内存就会被清空，所以如果你将一个网页关闭后再打开，那么缓存都会走硬盘缓存，而如果你只是刷新网页，那有部分缓存走的就是内存缓存。
+浏览器一般会再 js 和图片等文件解析执行后直接存入内存缓存中，当刷新页面时，这部分文件只需要从内存缓存中读取即可，而 css 文件则会存入硬盘中，所以每次渲染页面都需要从硬盘中读取文件。
+总结
+到这里偷懒一下子了，找到人家画的一张图，看图就行了。
+
+
+参考内容：
+彻底理解浏览器的缓存机制
+彻底弄懂HTTP缓存机制及原理
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/qCt13nLLT">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/git-jin-jie-ji-chang-yong-ming-ling">
+                        Git 进阶及常用命令
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-04-18</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/git" class="post-tag i-tag
+                            i-tag-other_1">
+            #Git
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/QjCHA76i_r" class="post-tag i-tag
+                            i-tag-warning">
+            #编程基础
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/git-jin-jie-ji-chang-yong-ming-ling">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/git-jin-jie-ji-chang-yong-ming-ling.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            如果你只是想查看 Git 常用命令可以选择直接到文章底部「Git 常用命令」阅读，文章大部分内容是 Git 进阶知识，均是自己的读书笔记，如果还想在此基础上再上一层楼，那可以直接看 Pro Git book。
+Git 历史
+版本控制器是一种记录一个或若干文件内容变化，以便将来查阅特定版本的修订情况。也就是说，版本控制器记录了一个可供考证的历史数据，通过该数据可以知道文件是怎么一步一步发展到今天这个样子的。
+最初 Linux 项目使用 BitKeeper 来管理和维护代码，但是到了 2005 年，开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了免费使用 BitKeeper 的权力。那 Linux 开源社区的解决方案就是自己搞一个版本控制器，所以就有了 Git。
+简单说就是 Linus 被逼的去开发了这一款叫做 Git 的版本控制器，因为 Linus 本身就是内核专家与文件专家，所以 Git 也就自然而然具备了非凡的存储能力与性能。
+安装
+关于如何安装 git 可以查看 Pro Git book，安装完成后需要进行一些必要的配置，比如用户信息、文本编辑器、差异分析工具等等，我们可以通过git config --list来查看配置信息。比如我们要配置用户和邮箱，就可以像下面这样输入命令。
+$ git config --global user.name &amp;quot;John Doe&amp;quot;
+$ git config --global user.email johndoe@example.com
+
+Git 原理
+Git 和大多数版本控制器有一个重要的区别，就是它直接记录快照，而非差异比较，其它大部分系统以文件变更列表的方式存储信息，而 Git 则存储每个文件与初始版本的差异。换句话说，只要你的文件有改动，那么 Git 就会将该文件复制一份，正因为 Git 的这个特性，所以 Git 仓库很容易就变得非常大；为了高效，如果文件没有修改，那么 Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件。Git 对待数据更像是一个快照流。
+Git 有三个区，分别为：仓库、工作目录、暂存区。基本的 Git 流程为：1）在工作目录中修改文件；2）暂存文件，将文件的快照放入暂存区域；3）提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。那么相应的 Git 就有三种状态：已提交（committed）、已修改（modified）和已暂存（staged），你的文件可能处于其中之一。
+
+Git 基础
+工作目录中的文件不外乎处于两种状态：已跟踪或未跟踪。已跟踪是指那些纳入了版本控制的文件，在上一次快照中有它们的记录；工作目录中除了已跟踪文件以外的所有文件都属于未跟踪文件，们既不存在于上次快照的记录中，也没有放入暂存区。
+
+查看文件状态
+如果需要查看哪些文件处于什么状态，可以使用git status命令，这个命令显示的信息十分详细，如果你喜欢简洁一点的信息，那么可以在其后添加一个-s，其报告格式类似于下面这样。
+$ git status -s
+ M README
+MM Rakefile
+A  lib/git.rb
+M  lib/simplegit.rb
+?? LICENSE.txt
+
+??表示新添加的未跟踪文件；修改过的文件前面有M标记，右边的表示还没有放入暂存区，左边的表示已经放入暂存区了。当然你可能不希望每个文件都出现在未跟踪列表中，比如编译过程临时创建的文件、日志文件等等，所以可以通过创建一个名为.gitignore的文件，列出要忽略的文件模式，它支持标准的glob模式匹配（shell 所使用的简化了的正则表达式），在 gitignore 中有一个十分详细的针对数十种项目及语言的.gitignore文件列表。
+git status对于具体修改显示的过于模糊，如果想查看具体修改了什么地方，可以使用git diff命令，比如git diff README.md。需要注意的是git diff本身只显示尚未暂存的改动，而不是自上次提交以来所做的所有改动，如果需要查看已经暂存起来的变化，则要加上--staged或者--cached，比如git diff --cached README.md。
+删除文件
+当然我们不可避免的需要删除某个文件，如果你仅仅是简单的从工作目录中手工删除文件，那它并没有真正的从 Git 中删除，Git 会将这次删除识别为一次改动。更好的方式是使用git rm命令来完成删除文件的工作，比如git rm README.md就会从已跟踪文件中删除，并且连带从工作目录中删除指定文件。
+如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项-f（译注：即 force 的首字母）。 这是一种安全特性，用于防止误删还没有添加到快照的数据，这样的数据不能被 Git 恢复。
+另外一种情况是，我们想把文件从 Git 仓库中删除（亦即从暂存区域移除），但仍然希望保留在当前工作目录中。 换句话说，你想让文件保留在磁盘，但是并不想让 Git 继续跟踪。 当你忘记添加 .gitignore 文件，不小心把一个很大的日志文件或一堆 .a 这样的编译生成文件添加到暂存区时，这一做法尤其有用。这时就需要使用--cached选项了，比如git rm --cached README。
+查看历史
+我们或许因为某种原因需要回顾一下提交历史，这时git log就派上用场了，默认不用任何参数的话，git log会按提交时间列出所有的更新，最近的更新排在最上面，这个命令会列出每个提交的 SHA-1 校验和、作者的名字和电子邮件地址、提交时间以及提交说明。
+git log提供的选项很多，更详细的内容可以查看 Git 基础 - 查看提交历史。除了不带选项的命令，我个人更常用的命令还有另外两个，分别为：git log --pretty=oneline它将每个提交放在一行显示，在查看的提交数很大时非常有用；git log --graph或者git log --pretty=oneline --graph用于显示 ASCII 图形表示的分支合并历史。
+撤销操作
+在任何一个阶段我们都可能有想要撤销的操作，我们只需要掌握几个基本的撤销操作就能够应对日常的工作了。
+第一种情况：取消上一次提交。有时候当我们提交完之后才发现漏掉了几个文件没有添加，或者是提交信息写错了，此时可以使用带--amend选项的提交命令尝试重新提交，即git commit --amend。这个命令会将暂存区的文件全部提交，如果自上次提交以来你还没一做任何修改（比如，在上次提交后马上执行了此命令），那么快照将会保持不变，而所修改的只是提交信息。
+第二种情况：取消暂存的文件。假设你修改了两个文件并且想要将它们作为两次独立提交，但是却不小心输入了git add *暂存了它们两个，如何取消其中一个暂存呢？其实在运行git status时已经给出提示了。
+$ git status
+On branch master
+Changes to be committed:
+  (use &amp;quot;git reset HEAD &amp;lt;file&amp;gt;...&amp;quot; to unstage)
+
+	renamed:    README.md -&amp;gt; README
+    modified:   CONTRIBUTING.md
+
+所以如果我们想要取消CONTRIBUTING.md的暂存，那么就可以用git reset HEAD CONTRIBUTING.md命令来完成。
+第三种情况：撤销对文件的修改。有时候我们可能并不想保留对某个（若干）文件的修改，git status也给出了详细的提示，告诉我们如何将文件还原成上次提交时的样子，即git checkout -- &amp;lt;file&amp;gt;，比如输入命令git checkout -- CONTRIBUTING.md，就会将CONTRIBUTING.md重置到上一次提交时的样子。
+需要注意的是git checkout -- &amp;lt;file&amp;gt;是一个比较危险的命令，因为它仅仅是拷贝了另一个文件来覆盖当前文件，所以你对那个文件的所有修改都会消失，而且不可恢复。
+远程仓库
+前面我们都是在讲本地操作，远程仓库的使用是必不可少的技能。可以使用git remote命令查看每一个远程服务器的简写，对于已经克隆的仓库，它至少会包含一个origin，这是 Git 给克隆仓库服务器取的默认名字，它和其它服务器并没有什么区别，只是很少人会去修改这个默认名字而已。
+如果想要给一个远程仓库重新取一个简写名，那么可以运行git remote rename来完成，比如git remote rename pb paul就是将pb重命名为paul。值得注意的是这样同样也会修改你的远程分支名字，那些过去引用pb/master的现在全引用paul/master。
+当想要将自己的成果分享给他人时，就需要将其推送到上游，使用git push [remote-name] [branch-name]即可，比如你想要将master分支推送到origin服务器时，就可以运行git push origin master。
+除了分享自己的成果，我们也需要获取他人的成果，即从仓库拉取自己没有的信息，比如git fetch origin，需要注意的是git fetch命令会将数据拉取到你的本地仓库，但它并不会自动合并或修改你当前的工作，所以你还需要git merge来合并分支，实际上有一个git pull命令可以帮我们把这两个步骤都做了，你可以简单的将git pull理解为git fetch后面紧接着一个git merge。
+分支管理
+Git 的分支模型是它的必杀技特性，它处理分支的方式是难以置信的轻量，创建分支几乎是在一瞬间完成，而且在不同分支间的切换也非常的便捷，要理解 Git 的分支，我们必须要再次回顾 Git 是如何保存数据的。
+下图是我们的一个工作流，可以看到所谓的分支实际上就是一个可以移动的指针而已，master、v1.0都仅仅是一个指针，而创建分支、切换分支等操作也都只是对指针的操作，因此就不奇怪为什么 Git 这么快了。
+
+那么 Git 又是如何知道当前在哪一个分支上呢？它仅仅是用了一个名为HEAD的特殊指针，你可以将HEAD想象为当前分支的别名，HEAD指向哪个分支，就表示当前处于哪个分支。
+分支创建与切换
+我们可以使用git branch [branch-name]来创建一个新的分支，比如git branch testing；如果使用不带选项的git branch，那么它会列出当前所有的分支，这里需要注意的是master分支也不是特殊分支，它是运行git init时自动创建的默认分支，因为大家都懒得去改它，所以它就好像变得特殊了一样。
+git branch [branch-name]只是创建了一个新分支，并不会切换到这个分支上面去，分支的切换说白了就是移动HEAD指针，我们只需要使用git checkout testing就可以切换到testing分支上去了。
+当然我们可以使用git checkout -b [branch-name]来创建一个分支并同时切换到这个分支，把这个命令与git commit -a -m来对比，你就会发现它们的类似之处。
+分支的合并与删除
+当我们零时在一个新分支上解决了问题后，需要将其合并到master分支，只需要切换到master再运行git merge命令即可，Git 会自动找到这两个分支的共同祖先，然后做一个简单的三方合并。
+当然理想情况下是直接合并成功，但是不免会遇到合并冲突的情况，一旦遇到冲突了，Git 会像下面这样来标记冲突内容，你需要做的是选择由=======分割的令部分的其中一个或者自行合并，当&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;，=======，和&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;这些行被完全删除了，你需要对每个文件使用git add将其标记为冲突已解决。
+&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD:index.html
+&amp;lt;div id=&amp;quot;footer&amp;quot;&amp;gt;contact : email.support@github.com&amp;lt;/div&amp;gt;
+=======
+&amp;lt;div id=&amp;quot;footer&amp;quot;&amp;gt;
+ please contact us at support@github.com
+&amp;lt;/div&amp;gt;
+&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; testing:index.html
+
+当合并完分支后，之前的分支一般就不会再要了，这时你可以运行git branch -d [branch-name]来删除指定分支，比如使用git branch -d testing来删除testing分支。
+远程分支
+远程分支以(remote)/(branch)的形式来命名。如下图所示，如果你克隆一个仓库下来，那么这个仓库除了会有一个本地的分支指针，还会有一个远程分支指针。如果你在本地的master分支做了一些工作，但是你并没有与origin服务器连接，那么你的origin/master指针就不会移动。
+
+在这之前我们已经讲过通过推送分享自己的成果，在运行git push origin master命令时，Git 会自动的将master分支名字展开为refs/heads/master:refs/heads/master，即意味着推送本地的master分支来更新远程仓库上的master分支，所以你也可以运行git push origin master:testing来做类似的事，如果远程仓库没有testing分支，那它会自己创建一个新的testing分支。
+我们肯定需要创建一个跟踪远程仓库的其它分支，最简单的就是运行git checkout -b [new-branch] [remote-name]/[branch]，该命令会以远端[branch]分支的内容来创建本地的[new-branch]分支，Git 也对该命令做了一个简化，git checkout --track [remote-name]/[branch]，该命令就会在本地创建一个[branch]分支用于跟踪远端的[branch]分支。
+当然，我们还需要了解一个删除远程分支的命令git push origin --delete [branch]，需要注意的是这个命令基本上只是从服务器上移除这个指针。 Git 服务器通常会保留数据一段时间直到垃圾回收运行，所以如果不小心删除掉了，通常是很容易恢复的。
+Git 常用命令
+挑了一些比较重要 Git 命令，我把个人常用的命令使用代码块标记出来了。
+
+
+
+命令
+作用
+
+
+
+
+git init
+将一个目录转变成一个 Git 仓库
+
+
+git clone
+从远程克隆一个仓库到本地，它是多个命令的组合，
+
+
+git add
+将内容从工作目录添加到暂存区
+
+
+git commit
+将暂存区文件在数据库中创建一个快照，然后将分支指针移到其上
+
+
+git commit -a -m [msg]
+git add``和git commit```的组合
+
+
+git status
+展示工作区及暂存区域中不同状态的文件
+
+
+git status -s
+比git status展示的内容更加简洁
+
+
+git diff
+对比工作目录文件和暂存区快照之间的差异
+
+
+git diff --cached
+对比已暂存的差异
+
+
+git reset
+根据你传递给动作的参数来执行撤销操作
+
+
+git rm
+从工作区，或者暂存区移除文件
+
+
+git clean
+从工作区中移除不想要的文件的命令
+
+
+git checkout
+切换分支，或者检出内容到工作目录
+
+
+git branch
+列出你所有的分支、创建新分支、删除分支及重命名分支
+
+
+git checkout -b [branch]
+创建新分支并切换到该分支
+
+
+git log
+展示历史记录
+
+
+git log --pretty=oneline
+简洁版历史记录
+
+
+git merge
+合并一个或者多个分支到已检出的分支中
+
+
+git stash
+临时地保存一些还没有提交的工作
+
+
+git pull
+git fetch 和 git merge 命令的组合体
+
+
+git push
+将本地工作内容推送到远程仓库
+
+
+git push origin local_branch:remote_branch
+比git push更加详细的推送
+
+
+git checkout --track [remote-name]/[branch]
+在本地创建一个分支用于跟踪远程同名分支
+
+
+
+
+参考内容：Pro Git book
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/git-jin-jie-ji-chang-yong-ming-ling">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">
+                        什么是契约测试？
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-04-10</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/ce-shi" class="post-tag i-tag
+                            i-tag-warning">
+            #测试
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/qian-hou-duan-fen-chi" class="post-tag i-tag
+                            i-tag-other_3">
+            #前后端分离
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/shi-me-shi-qi-yue-ce-shi.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            契约测试全称为：消费者驱动契约测试，最早由 Martin Fowler 提出。契约这个词从字面上很容易理解，就是双方（多方）达成的共同协议，那又为什么需要契约测试这个东西呢？
+在当前微服务大行其道的行业背景下，越来越多的团队采用了前后端分离和微服务架构，我们知道微服务是由单一程序构成的小服务，与其它服务使用 HTTP API 进行通讯，服务可以采用不同的编程语言与数据库，微服务解决了单体应用团队协作开发成本高、系统高可用性差等等问题。
+但是微服务也引入了新的问题，假设 A 团队开发某服务并提供对应的 API，B 团队也在开发另一个服务，但是他们需要调用 A 团队的 API，为了产品的尽快发布，两个团队都争分夺秒，已经进入联调阶段了，然而出现了下面这样的尴尬情况。
+
+随着越来越多的微服务加入，它们的调用关系开始变得越来越复杂，如果每次更改都需要和所有调用该 API 的团队协商，那沟通成本也未免太大了，试想下图的沟通成本。
+
+为了保证 API 调用的准确性，我们会对外部系统的 API 进行测试，如果外部系统稳定性很差，或者请求时间很长的时候，就会导致我们的测试效率很低，当调用 API 失败时，你甚至无法确定是因为 API 被更改而导致的失败还是运行环境不稳定导致的失败。
+A 团队提供的 API 不稳定，肯定会导致 B 团队效率低下，为了不影响 B 团队的进度，所以构建了测试替身，通过模拟外部 API 的响应行为来增强测试的稳定性和反应速度。
+
+但是这样做真的就解决问题了吗？当所有内部测试都通过时，能拍着胸脯说真正的外部 API 就一定没有变化？很简单的一个解决方案就是：部分测试使用测试替身，另一部分测试定期使用真实的外部 API，这样既保证了测试的运行效率、调用端的准确性，又能确保当真实外部系统API改变时能得到反馈。
+
+感觉剧情到这里就差不多该结束了，实际上真正的高潮部分开刚刚开始。如果外部 API 的反馈周期很长，那增加真实 API 测试间隔时间就又回到了最初的起点。现在我们回顾一下上面的方案。
+在上面的场景中，我们都是已知外部 API 功能来编写相应的功能测试，并且使用直接调用外部 API 的方式来达到测试的目的，如此就不可避免的带来了两个问题：
+
+API 调用者（消费者）对服务提供方（生产者）的更改是通过对 API 的测试来感知的；
+直接依赖于真实 API 的测试效果受限于 API 的稳定性和反映速度。
+
+解决方案首先是依赖关系解耦，去掉直接对外部 API 的依赖，而是内部和外部系统都依赖于一个双方共同认可的约定—“契约”，并且约定内容的变化会被及时感知；其次，将系统之间的集成测试，转换为由契约生成的单元测试，例如通过契约描述的内容，构建测试替身。这样，同时契约替代外部 API 成为信息变更的载体。
+前后照应一下，我们现在再来看一下消费者驱动契约测试。它有两个不可或缺的角色：消费者是服务使用方；生产者（提供者）是服务提供方。采用需求驱动（消费者驱动）的思想。契约文件（比如 json 文件）由双方共同定义规范，一般由消费者生成，生产者根据这份契约去实现。
+契约测试其中一个的典型应用场景是内外部系统之间的测试，另一个典型的例子是前后端分离后的 API 测试。行业内比较成熟的解决方案是 Swagger Specification 和 Pact Specification，这里不做展开讨论。
+我们同样可以把契约测试的思想用到代码的编写中，契约测试通过一个契约文件来解耦依赖，那么对于需要用户定义很多规则的场景，我们同样可以将这些规则像契约文件一样抽取出来，这样就降低了代码之间的耦合度。
+最后敲敲黑板，契约测试不是替代 E2E 测试的终结者，更不是单元测试的升级换代，它更偏向于服务和服务之间的 API 测试，通过解耦服务依赖关系和单元测试来加快测试的运行效率。
+
+参考文章：
+聊一聊契约测试 —— ThoughtWorks洞见
+契约测试 —— 米阳
+前后端分离了，然后呢？ —— 邱俊涛
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
+                        刘小绪同学随笔（2019-02-27）
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-02-27</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="post-tag i-tag
+                            i-tag-other_3">
+            #随笔
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
+                            i-tag-warning">
+            #个人总结
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/liu-xiao-xu-tong-xue-sui-bi-2019-02-27.jpeg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            建议读者大人们，如果自己经常一上火牙就疼，或者自己感觉牙已经有点问题了，可以提早预约医院的口腔科查一下，如果有问题早点预防，总是没有坏处的。抽烟的半年洗一次牙，不抽烟的一年洗一次牙。
+因为智齿发炎被狠狠的折磨了近两周，我属于比较能忍得疼痛的人，这不周末才进行了一场春季骑行，唯有美景与美食不可辜负，什么病痛都是浮云，但回想起连续几晚上疼到睡不着觉的滋味，昨天毅然决然斩草除根，给拔掉了，今天就感觉好了很多。
+
+前几天考研成绩出来了，估计现在大部分同学都在准备复试，我没有体验过考研的这个过程，毕业这半年有时候还是会想，我也应该体验一下考研的那个过程，已经很久没有体验过把所有时间都投入到一件事情上的快乐了。
+但我还是不太建议读研，我这是无责任建议，毕竟自己没有读过研究生，在研究生实验室待了两年，算是有一半的硕士生经历吧。对于学历我一直以来的观点都是绝大部分人将它的作用放大了，总是认为名校成造就了强能力，而恰恰把因果关系给弄反了，是能力强的人都进了名校（本科）。当然，不否认像医学一类的专业是肯定要考研的，一棒子全打死肯定是不对的。
+
+刘大发起的读书活动告一段落了，跟着小伙伴们泛泛的读了一遍《深入理解计算机系统》，只能用“痛并快乐着”来形容这个过程，每周输出一篇读书笔记，没有按时输出就罚钱的规矩很好，人还是需要自己逼自己才行。
+这本书不适合初学者阅读，在豆瓣上的评分接近 10 分，不讲究速成，而是一本内功心法，如果是您是码农的话，读一读绝对会提高一个层级。现在已经开启了另一本书籍的阅读计划，刘大这个活动组织的超好。
+
+春节回家发现了一个巨大的变化，我老家那种贫困县地区的村民们，也在开始讨论保险这一类产品了，我是觉得这个改变太大了，说明农民伯伯的经济水平也有很大的提升了。另外通过朋友圈还发现，我认识的大佬们貌似出身都并不是多好，反倒是大部分普通朋友家里的矿更多。
+我们家族每年会组织祭祖活动，在正月初三一大家 50 人左右一同祭拜曾祖曾母，通过这么一个活动把整个大家族的年轻人联系起来，能搭建这样一个平台很棒，我正也在着手将家族信息数字化。
+
+说到这里，想说一句家族群是个小江湖，亲戚之间也是暗暗较劲的，母亲不会抢群里几个特定的人发的红包，家里都是山路，车技不好的人很容易就寸步难行，一表叔就因为不到 10 米的距离，整个春节都在亲戚朋友面前抬不起头。
+堂弟现在是民航飞行员在读，而另一个表弟今年正值高考，说要去考炮兵学院，将来好把飞机打下来，这一下可好了，这些话全部伯父被截屏保留了，将来某一天要是这俩兄弟闹矛盾了，估计有的好看。保二爷写的家族群不是群，是江湖...看起来更有趣一点。
+在我身上更可悲的事情发生了，所有长辈一致认同应该由我来管理家族群，想想整个群里充斥的都是是那种要露不露、似露非露、就是不露的视频，或者是用粗糙都无法形容的大而泛的鸡汤文，整个头就大了，这可比解决技术问题难多了。
+
+最近愈发觉得“大佬”之间的抄袭严重了，真大佬基本都是原创内容，或者是引用了别人的文字就标注出来，然而总是看到一些“大佬”原封不动发出来，还不表明出处，下面粉丝跟着继续做同样的事，我看到最多的一次是朋友圈连续 10 多条是一样的段子。
+
+最后想无责任乱说一点科技相关的东西，5G 是当下的风口浪尖，各大厂商都希望在 5G 上有一席之地，搞芯片的搞芯片、做基站的做基站、整手机的整手机，5G + IPV6 肯定会带来无法想象的未来，5G 会大幅推动智能硬件的应用，但是手机这个应用场景是不是被夸大了呢？
+现在的 4G 手机在线看一部高清电影不会有多卡顿的现象，广大吃瓜群众和各大媒体，一直都拿着 5G 手机来吹嘘，吃瓜群众跟随媒体引导的大流，我总觉得当拿到 5G 手机的那一刻，心里肯定会从喜悦急转失望的，就像目前的苹果产品一样。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/MqqlYHD78">
+                        Bootstrap-table 合并相同单元格
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-01-26</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/J_3GE6pBm" class="post-tag i-tag
+                            i-tag-success">
+            #TypeScript
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
+                            i-tag-other_2">
+            #前端
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/MqqlYHD78">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/MqqlYHD78.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            Bootstrap-table 官方提供了合并单元格方法 mergeCells，它根据四个参数可以合并任意个单元格，我们要做的只是告诉它怎么合并。
+要合并同一列相同的单元格，无非两种办法，一种是一边遍历一边合并，遍历完了再合并。这里采用第二种办法，这里不需要遍历所有数据，因为用户只能看到当前页的数据，所以只遍历当前页的数据更省时间。
+下面是我实现的获取合并信息算法，最终返回的是一个哈希表，比如下面的这个表格，如果要对「性别」这一列进行合并，很明显前面两个“男”需要合并成一个单元格，再去看下 Bootstrap-table 提供的 API，它需要的是从哪个单元格开始，合并多少个单元格，也就是它需要的是两个数值类型的参数。
+
+
+
+姓名
+性别
+年龄
+
+
+
+
+张三
+男
+23
+
+
+李四
+男
+19
+
+
+王二
+女
+20
+
+
+麻子
+男
+21
+
+
+
+所以我把哈希表设置为，键存的是索引，值存的是从这个索引开始后面连续有多少个和它一样的单元格，那么上述表格性别这一列所得到的合并信息哈希表就为：
+{
+    0: 2,
+    2: 1,
+    3: 1
+}
+
+下面算法很简单，使用两个指针遍历指定的列，如果两个指针所指向的数据相同，那么就将键所对应的值进行加一操作，整个方法只会对该列数据遍历一边，所以时间复杂度为 O(n)。
+let getMergeMap = function (data, index: number) {
+    let preMergeMap = {};
+    // 第 0 项为表头，索引从 2 开始为了防止数组越界
+    for (let i = 2; i &amp;lt; data.length; i++) {
+        let preText = $(data[i-1]).find(&#39;td&#39;)[index].innerText;
+        let curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+        let key = i - 2;
+        preMergeMap[key] = 1;
+        while ((preText == curText) &amp;amp;&amp;amp; (i &amp;lt; data.length-1)) {
+            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
+            i++;
+            preText = $(data[i - 1]).find(&#39;td&#39;)[index].innerText;
+            curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
+        }
+        // while循环跳出后，数组最后一项没有判断
+        if (preText == curText) {
+            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
+        }
+    }
+    return preMergeMap;
+}
+
+上述算法得到了单列数据的合并信息，下一步就是按照这个信息进行相同单元格的合并了，因此封装了下面的方法按照指定哈希表进行合并。
+let mergeCells = function (preMergeMap: Object, target, fieldName: string) {
+    for (let prop in preMergeMap) {
+        let count = preMergeMap[prop];
+        target.bootstrapTable(&#39;mergeCells&#39;, { index: parseInt(prop), field: fieldName, rowspan: count });
+    }
+}
+
+到目前为止，我们实现的都只是对单列数据进行合并，要实现对多列数据进行合并，那么只需要对所有列都进行相同的操作即可。
+export let mergeCellsByFields = function (data: Object[], target, fields) {
+    for (let i = 0; i &amp;lt; fields.length; i++) {
+        let field = fields[i];
+        // 保证 field 与 i 是相对应的
+        let preMergeMap = getMergeMap(data, i);
+        let table = target.bootstrapTable();
+        mergeCells(preMergeMap, table, field);
+    }
+}
+
+因为我在程序中做了一点处理，保证了fields中每个值得索引与对应表头的索引是一样的，因此不需要额外传入索引信息。简单来说就是我所实现的表格会根据fields的顺序，实现列之间的动态排序。你需要注意的是这一点很可能和你不一样。
+到现在已经能够合并所有的列了，查看 Bootstrap-table 的配置信息发现，它有个属性是 onPostBody 它会在 table body 加载完成是触发，所以把这个属性配置成我们的合并单元格方法即可。
+// groups 为要合并的哪些列
+onPostBody: function () {
+    mergeCellsByFields($(&#39;#table&#39; + &#39; tr&#39;), $(&#39;#table&#39;), groups);
+}
+
+再说一点不太相关的，我实现的是让用户可以自己选可以合并多少列，即用了一个可多选的下拉列表框供用户选择，根据用户选择的数量去合并，所以传入了一个groups参数。
+最后推荐一个排序插件 thenBy，你可以用它进行多字段排序，比如用在合并相同单元格的场景，在绘制表格前先对数据进行排序，那么最后合并的结果就是把所有相同的数据聚合到一起了，并且还将它们合并到一起了，起到了一个隐形的过滤查询功能。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/MqqlYHD78">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-23">
+                        刘小绪同学随笔（2019-01-23）
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-01-23</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-23">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/liu-xiao-xu-tong-xue-sui-bi-2019-01-23.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            前段时间的刷屏文章《甘柴劣火》被曝出是洗稿文章，微信官方取消了该文章的原创标识和赞赏；再往前追溯一段时间，公众号「差评」也因为洗稿行为，眼看就要到手的 3000 万投资飞走了。国内渐渐加大了版权保护的力度，但是读者从来不会关心是否原创，所以「兽爷」式文章总是能撩到大众的 G 点。
+被微信平台邀请为洗稿合议小组成员后，参与了一篇存在洗稿争议的评审，体会到了保护原创的困难，不知道把存在洗稿争议的两篇文章发给高考阅卷老师看会是怎样的结果，在保护原创文章方面，微信平台应该是国内做的最好的。
+微信的「看一看」里面都快变成营销圈了，干脆去掉了这个入口，自微信改版之后，我点「好看」都变的异常谨慎了，以前给文章点赞只是认同作者的一个行为，而现在点赞也变成社交行为了，所以我也收起了点赞的食指。
+
+网友推荐了一个小视频，虽然只有简短的几分钟，但是很有意思，讲的是历史的错觉。（此部分知识来源于网络）
+虽然刘邦和秦始皇同为两个朝代的开创者，但秦始皇只比刘邦大 3 岁，而且刘邦是在秦朝建立之前的周朝出生的。
+在历史课本上，乾隆属于古代史部分，华盛顿属于现代史部分，但实际上他俩是同一年出生的，历史课本的编排让我们感觉他俩像隔了很久一样。
+都清楚毛泽东是离我们很近的人物，但是毛泽东比末代皇帝傅仪大了 13 岁。
+不知道你又没有觉得前苏联是离我们很远的、历史上的国家，如果你这样觉得，那告诉你前苏联总统戈尔巴乔夫现在还活着，会不会觉得更加诧异。
+
+最近熬夜看完了《大江大河》第一部，很不错的电视剧，讲述从改革开放开始的中国，通过两个主人公的经历来展现国营企业、集体企业、个体户的发展。剧中的大多数场景我居然都经历过，可能我是一个假的 90 后吧。
+导演很注重细节，没有冗余的啰嗦，有两个小细节记忆深刻。第一个是宋运辉父亲用“吹火筒”（我家那块是这么叫）助燃，小时候我还帮爸爸做过一个“吹火筒”；第二个是杨巡和他母亲给雷东宝写借条时，格式是很标准的，借条的格式是小学六年级时学习常用应用文格式时记下的。
+电视剧中多次提到长毛兔，小时候家里也养过长毛兔，不过我那时候调皮，兔子的耳朵又大又好玩，我就牵着兔子的耳朵对着它大吼，兔子总是会发飙一样快速跑一段距离，但是家里最后两只长毛兔也就被我这么吼到离家出走了，自那以后家里就没有兔子了。
+我喜欢听别人讲述历史，最近参加了几次校友活动，最大的师兄师姐是 80 级的，听他们讲述那个时代的故事很有趣，《大江大河》是不错的了解历史的渠道，唯一的缺点就是电视剧时间太长了。
+
+如果在某件事情上的观点和关系很亲近的人不合，要想说服他不一定非得苦口婆心给他讲，换一条路可能效果更好。比如我师傅在给他娃起名的时候和媳妇发生了分歧，男士肯定是争不过女士的，所以师傅每次见到七大姑八大姨，就给他们说这个名字从姓名学、风水等等方面存在哪些问题，这些七大姑八大姨自然而然就会去说媳妇，最终媳妇主动提出来要给娃改名字。
+要和对象、朋友处好关系，你也不用天天告诉她对她有多好，你观察一下对方周围的朋友就可以了。比如你对象闺蜜的男朋友会陪她到 11 点，那你只需要陪她到 12 点或者 11：30 就可以了，对象的闺蜜会拿你和她自己的男朋友作对比，自然就会在你对象面前念叨你的各种优点，中国好男人这个形象会在你对象心里越来越明显，她也会越来越觉得自己是捡了个宝，也就是你要给对方足够炫耀的资本。
+
+最近好几个知识星球到期了，我也算比较早接触知识付费的人群了，有一些星球早就停更了，挑了几个比较好的续费了，刘大、曹大、冯大、池大，同时新加入了方军老师的星球，方老师送了本书，再让我免费加入了一个价值 998 元的星球。
+除了在得到上买专栏，我还开了喜马拉雅的会员，买了个喜马拉雅的智能音箱，发现真好玩，用它听书很不错，不是机器阅读的，是真人阅读的，体验很棒。
+想说的是，我遇到很多人吃一顿饭花几百，买个课程花几百就心疼的要死，我比大多数人都穷（信用卡都快还不起了，哈哈），但是我敢花大手笔去让自己成长。后来我就不劝朋友花钱买课程了，那种让人觉得我骗他钱的感觉很不好受。
+
+释压能力很重要，最近也遇到好几个被压力给弄崩溃了的人，我承认年轻人压力是挺大，但是没必要再给自己无端增加压力，像我这种活的单纯自在、没心没肺的人就最乐了，换个角度也是没追求的表现。
+一个压崩溃了的同学总是很相信我，但是前前后后快一年了，给他说了很多东西，最近发现我自己都是白说了，还说我说话不中听，他骂我而我没有骂他，而那同学言语间倒是给了我一种感觉，我的教养好，所以我不应该骂人。
+因此我得出的结论是，同样一句话给不同的人讲，效果是不一样的，绝大部分东西是他自己内心的反射，你也不要试图去改变他什么，是没什么办法改变别人的。这里推荐一篇子柳老师的文章天下谁人不焦虑？
+
+之前在这是一篇不正经文章中贴了一张网图，前几天看到很标准的现实版，照片是在我住的地方偷摸拍的。
+
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-23">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13">
+                        刘小绪同学随笔（2019-01-13）
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-01-13</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="post-tag i-tag
+                            i-tag-other_3">
+            #随笔
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
+                            i-tag-success">
+            #个人总结
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
+                            i-tag-other_3">
+            #生活感悟
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/liu-xiao-xu-tong-xue-sui-bi-2019-01-13.jpeg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            前一周在一席上面看了一场演讲叫「不正经历史研究所所长」，整场演讲都伴随着欢声笑语，讲的是民间文化与经典文化，经典文化实际上是统治阶级强行推动的精致文化，绝大部分老百姓是看不懂这些东西的，反正我自己参观博物馆，如果没有讲解，我是完全看不懂那些玩意的。
+能和生活联系在一起的文化最有活力，比如天天发杨超越祈求不挂科，拜拜马云希望有更多的钱等等。有一句老话叫「人活一口气」，民间文化都基于此，我在别人面前要抬得起头，要的是气派、要的是大气，上个世纪的「四大件」应该就是成功的一个标配，老百姓置办这些物件后，在邻居面前也更能昂首挺胸了。
+昨天了解到一个朋友家乡的有一个非常奇怪的习俗，那就是「坟头蹦迪」，我最开始的想法是，这是不是最近兴起来的习俗，但是一问才知道，他小时候就是这样的了。基于我们的体系是无法理解坟头蹦迪的，你能说它们对于亲人的去世就不伤心吗？他们要的还是能抬起头，来参加追悼会的人们看到这么豪华的场面，第一反应是故人后代是很有成就的，在某种程度上这算是对故人的颂扬。
+
+花了几个小时时间把微信清理了一下，只留下了 83 个公众号，这其中还包括一信用卡一类的服务号，也就是说只留下了 70 个左右的公众号。留下的都是小而美的公众号，这些大佬作者的更新频率也很低，比如子柳老师最近才更新了一篇文章，而上一篇文章的更新时间是 7 月 25 日。
+最近在自己身上认识的一个问题是，关注的公众号太多读不过来，虽然在此之前已经筛选掉了很多号，然而自己还是读不过来，所以索性就做了减法。现在像公众号这些，已经变成了获取信息的一个重要渠道，我也确实比周围小伙伴掌握信息更快，大部分时间也自认为比他们更了解真相。
+但是我最近突然有个疑问，我真的比他们更了解真相吗？大部分人是通过垃圾文章获取信息，我虽然没有跟着垃圾文章人云亦云，但是我还是通过网络获取信息的，那么我是不是看到的是另外一种看起来更接近真相的假象呢？
+这些信息其实我就算不知道好像也没有什么大碍，顶多是别人谈什么新闻时，我所了解的也就他们知道的那么点而已，更好的方式是让自己的大脑去思考，以时间的维度去追踪事件的发展。
+顺便推荐一个应用叫「刷屏」，我发现自己通过「刷屏」、「知识星球」、「微信公众号」、「朋友圈」四个地方，已经掌握大部分信息了，经常同事给我说某某新闻，而我在两三天前已经见过了。
+
+我对国际计量大会修改「1 千克」的定义这件事印象很深，但是这件事我只看到在阮一峰老师的文章中有被提到过；人们更喜欢听自己了解的领域，跟自己同好的很容易产生好感，一些明星结婚、出轨竟然能把微博的服务给搞挂了，说明绝大部分人还是更喜欢撩自己 G 点的信息。
+
+另外第二个问题是自己现在比在学校时更喜欢玩手机了，在学校时还能做到不带手机去自习，现在是隔一会儿就看看手机，把本来就碎片化的时间变得更加碎片化了，这种效率导致工作、学习效率低下，所以把微信和 TIM 的通知全部关掉了。
+
+写到这里发现有点点像总结，索性就给自己简单总结总结吧。2018 我从校园走向了社会，完成了从学生到职场的转变。最大的改变是思维的提升，知道去投资自己，在学生时代，愿意花几百块钱去买课程，这对我来说是很大的突破，和现在愿意花几百的概念完全不一样，想想那时候一个月生活费总共也没有多少，而我去看了下自己在毕业前花在这方面的钱居然有一千多，如果加上毕业后的开销，那就是两千多了，真感谢那时候的自己。
+这其中的收获是巨大的，后面我偶尔会向朋友推荐一些好的付费课程，但是他们都和大部分人一样，吃一顿饭花几百块钱，而如果花点钱买一堂课提升一下自己，就好像要他命一样，所以后面就不和他们讲了。
+
+2018 开始用文字记录技术、生活、感悟，这其中的收获也是不小的，认识了此前只能仰望的大佬，结交了志同道合的朋友，而且也让自己更愿意去思考了。收到电子工业出版社的约稿合同，但是现在书都没写完，明年还写不完的话，那就不写了，主要是懒。
+自负的缺点已经在渐渐改变了，更加懂得了谦虚。眼界不再局限于技术，很多东西我都会去了解，也结交了很多有趣的人，初入职场，好好学习与不同的人沟通。以后如果有能力，希望能给山区带去一点点教育资源。
+2019 依旧坚持每周和同事或者校友打一次羽毛球，常去爬爬山，和有趣的朋友一起疯一疯；多读书，用豆瓣等工具去筛选好书，加大阅读量；常输出，输出是更高层次的输入；尝试去了解金融的逻辑；学习新的技术领域。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-01-13">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">
+                        大学生书单推荐
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-12-30</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/shu-ji-tui-jian" class="post-tag i-tag
+                            i-tag-other_4">
+            #书籍推荐
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/da-xue-sheng-shu-dan-tui-jian.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+此篇文章由刘小绪同学首发于知识星球
+
+首先推荐李笑来的《把时间当作朋友》和《财富自由之路》，这两本书写的真不错，虽然李笑来的人设倒下了，但是不影响这两本书的质量，也不要因为一次人设倒下就全盘否定一个人。
+季羡林的书值得一读，读几本季老先生的文集就可以了，从文字里面去感受季老求真务实的态度，什么才是做学术的态度，大家之所以为大家，不仅仅是因为天资聪慧，还有为人处世。
+《小狗钱钱》、《24 堂财富课————与女儿谈创业》、《穷爸爸富爸爸》、《好好赚钱》中可以选一本阅读，大学只交了我们生存的技能，并没有教我们如何理财，而这又是每个人不得不面对的问题，这几本入门书籍，可以帮助您建立财富理念。
+《浪潮之巅》、《数学之美》、《大学之路》等等，吴军博士的书籍都值得一看，晦涩难懂的道理在吴军博士的文字中变的简单了，感受一下心态、格局等的提升会给人生带来多么重要的改变，我个人目前还没有读完。
+《编码：隐藏在计算机软硬件背后的语言》，看下微软大师是如何用故事来给您造出一台计算机的，计算机基础不再是简单的机械背诵，而是在故事中理解记忆。
+《深入理解计算机系统》也应该看一看，现在的技术日新月异，但是纵观这么多年的技术发展，最基本的原理是不变的，在这个瞬息万变的时代，只有掌握了最核心根本的原理，才能从容应对不同的变化，高级程序员必读经典。
+像《长乐路》、《明朝那些事儿》一类的书籍是可以读读的，应该去了解一下历史的细节，你所看到的不一定是真实的，光芒的背后是另一片黑暗，历史是有规律的，我们的生活可以在历史中找到影子。
+《人类简史》、《人性的弱点》、《心灵七游戏》等心理、哲学类书籍选几本读读，哲学是所有学科的抽象，到一个新的高度看看世界，提高自己的情商，让整个世界都为您张开拥抱的双臂。
+读不动名著小说，可以读《偷影子的人》，每个人都有相似的童年，只是大部分人都不敢说出来而已，主人公就好像在经历自己曾经经历过的生活一样，从没有想过普普通通的童年居然能被描写的如此动情。《月亮与六便士》也是不错的选择。
+多阅读高于自己的作品，远离精神毒品，互联网时代的阅读不再限于书籍了，良心大佬的博客也是一个不错的选择，只有阅读高于自己的作品才能获得成长，少刷抖音、微博、知乎一类的产品，里面是有一些有趣的人生，但是一刷就是几个小时，太浪费时间。
+「一席」上的大部分演讲是值得听的，让您对中国社会有一个更好的了解；「TED」、「网易公开课」上国外高校的视频可以多看看，讲的真心不错；国内出观众、大部分二流学校的演讲能不去就不去，还不如把这种时间拿去睡睡觉，补充补充精力。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/5BDtFnlOc">
+                        回忆高中网校生活
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-12-15</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/DytBq-ZFD" class="post-tag i-tag
+                            i-tag-warning">
+            #回忆
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
+                            i-tag-other_4">
+            #生活感悟
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/5BDtFnlOc">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/5BDtFnlOc.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            周三刷星球时看到一条关于成都七中网校的信息，没想到周四就被成都七中网校给刷屏了，看到文章里面的描写，感悟颇多，网校陪伴了自己三年，一个诗意的女孩——西凉忆就是因为网校结识的。
+我是 12 年入学高中，那一年学校也刚和成都七中开通网校，因此我属于学校第一届全程使用网校资源的学生。
+记得刚入学时，对这种教学方式并不适应。不止学生不适应，老师也不适应，政治课老师就不使用直播课程，而是选择自己给我们讲。不过后来年级组出了硬性规定，特优班必须使用直播课程。
+就像教育的水平线中描述的一样，我们被称为远端学生，大家都是第一次使用这样的系统，七中老师估计也很好奇，都在第一节课或者第二节课上抽了远端同学回答问题，后来就很少有抽远端同学回答问题了，估计是因为远程视频效果不好还浪费时间。
+成都七中本部的学生上课很有激情，一到讨论等环节，虽然很吵但是却很有秩序，而我们这边基本是大家都盯着屏幕，等待对方讨论结束。
+对方学生的基础我们是没办法比的，大部分能够完全以纯英文交流，而我们远端学生大部分都只能说出“My name is ..., I&#39;m from ..., I like ...”，英语的差距是最大的。我自己是主动找了英语老师谈话，和她做了一个约定，每周我写一篇作文交给她，她帮我批改，这样坚持了两年。
+
+让我感受到最大差距的是，一个中学有自己的电视台，经常会有像《汉语桥》冠军一类的人物前来演讲，美国第一夫人米歇尔也到七中演讲（那是总统还是奥巴马），作为远端学生有幸蹭了一场名人演讲；七中学生的寒暑假是参加联合国模拟大会、到哈佛做了简短的交流、到华盛顿旅行......
+而大部分远端的学生，要么是参加学校组织的补课，要么是在家干农活，基本连县城都没有走出去过，和七中相比，完全是天壤之别。
+现在我依旧还清晰的记得七中的几个老师，做 PPT 从来没有背景图的数学老师，语速超快但又吐字清晰的化学老师，说着一口标准川普的物理老师，有着一头蓬松金黄卷发的历史老师（男）......去看这些老师的背景，也都是名校出身，武汉大学、华中师大等等。
+
+有一个细节记得很清楚，在一堂数学课中有个题目，题目具体内容忘了，只记得是要求算新华中学的一本录取率，最后的答案是在 74% 左右，这个数字在我眼里很高了，但是那一刻并没有觉得有什么，毕竟这是书上的学校嘛！！
+想不到的是，下一秒那个做 PPT 从来没有背景图的数学老师说了句：“这个就比较低了啊，我们学校考的很差的时候才是百分之七十多的录取率”。一下让我震惊了，因为我在心里算过自己学校的一本录取率，在此之前不到 10%，而且我所在高中在所有远端学校中还是比较靠前的。
+
+让我意外的是，七中的老师原来也会骂人、打人，即使打的很轻；学生没完成作业，也会被罚拿个小凳子到教室外面补作业；在全国禁止补课的规定之下，七中也会给高三的学生补课，当然我们也同步补课了。
+我无法构想如果三年没有使用网校资源会是神马结果，如果仅仅是看数据的话，一本率是按倍数翻的，12 年开始使用网校资源后，学校有了第一个清华，13 年又添了一个清华。我属于 14 届，这届没有清华，最好的是浙大，我进了个普普通通的哈尔滨工程大学。据说 15 届又出了清华。
+我所在的高中也被央视作为典型案例探讨农村高考。无疑能上央视，那这个学校在当地乃至全国同等水平的学校中是很成功的。
+无疑这种生活给每个同学都留下了难忘的记忆，如果哪位同学加了七中本部直播班级某位同学的 QQ（那时没有人用微信），那能吹好几天牛逼，七中人在我们眼里就像明星一样。
+我们当地 14 届县状元高考分数是 635 分，七中本部平均分是 616 分，这差距至今都让我目瞪口呆。前段时间曹大在星球发起了一个作业：十年后的期望目标。我所提交的作业中写了句，如果有能力，希望能给乡村学校带去一点教育资源。
+我并不认为穷是光荣的事情，但在很多农村人眼里穷是一种资本，一种获取国家福利的资本，如果某次补助没有评到自己头上，那得记恨村长一辈子。我认为这才是造成农村孩子和城里孩子有巨大差距的原因，如果孩子没有从这种思维走出来，那一辈子也不可能有什么大的成就。
+没想到自己都大学毕业了，却看到成都七中的网校被刷屏了。毫无疑问，这是一件极为有意义的事情，这种内容就应该被刷屏，愿七中和远端学校都越办越好。
+
+文中照片取自于同学 QQ 空间，不知道这么把几位老师放出来有没有侵权。记得我原来还有英语老师 Spring 的 QQ，高中时向他请教过自己的英语问题，可能后来 Spring 把我删了 =_=，反正是没了。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/5BDtFnlOc">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/aSkANU6p0">
+                        记录在南京大学的半天
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-12-12</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
+                            i-tag-banana">
+            #生活感悟
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/aSkANU6p0">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/aSkANU6p0.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            因为工作需要，到南京出差了半个月，中间利用周末和最好的朋友疯了一天，之后自己又一个人到南京大学鼓楼校区逛了逛。
+
+不会勾搭妹子的我总是能勾搭到老爷爷，到南大就勾搭了一个 86 岁高龄的老教授，他毕业于中山大学，年轻时候是做地质工作的。
+我就像个熊孩子一样要爷爷给我讲有趣的故事，要听他讲我们这一代人或者是大部分人都不知道的历史。
+爷爷虽然已经是快到耄耋之年的人了，但是对年轻时候的事记得很清楚，只是对最近的事记不起来。这篇文章仅仅是记录一下爷爷所讲的趣事。
+爷爷年轻时候接到中科院的任务，前往内蒙古考察。在考察期间他们用汽车压死过一只狼，而且当时吃了狼肉，一行 30 多个人都吃过那匹狼的心，但是没有吃过狗肺。
+据爷爷说，狼是很狡猾的动物，他们用汽车去追狼，狼就在原地不跑，等到你离它只有 10 来米的时候，突然拐弯跑了，这样的情况他们一共遇到了 6 次。这和《狼图腾》一书中的描写基本一致，狼有先进的军事文化。
+
+爷爷告诉我，南大起源于金陵大学，南京大学的标志性建筑「北大楼」是个教堂的样子，金陵大学本来是个教会大学，现在的「北大楼」就是原来的「钟楼」。
+南大的地下有隧道，是当年毛主席提倡「深挖洞、广积粮、不称霸」时挖的，目的是为了防空。后来被南京食品公司用来存放香蕉，就是那种没有熟的香蕉，在隧道里面放熟了，再拿出来卖。不过现在隧道所有的口都没堵上了，完全废弃了。
+在南大，有一些楼中间有 5 层，然后到两遍就只有 3 层了，整体看来像是个三角形。实际上这些楼当年都是要修 8 层的，因为那时候没钱，建着建着发现没资金了，所以就封顶了。
+但是南大计算中心那栋楼只有 3 层却不是因为没钱，而是因为它旁边是消防大队，本来也是要建 8 层的，消防队说建高了挡住了他们视线，不能及时发现火情。爷爷笑着对我说：“但是也没见他们在上面拿个望远镜望啊！”。
+我们都知道「五四运动」，但是却很少有人知道「四五运动」，这个运动的起源就在南大，当时 300 多学生（我回来查资料说是 400）发起了这个运动，后来演变为全国性的运动，直接带动了半年后四人帮被粉碎。
+那是爷爷是个老师，他说他们教职工是很支持这些学生的，但是不敢公开性的支持。学生们很聪明，把标语刷到火车上，但是所有出南京的火车都被四人帮用水把标语给冲刷掉了，学生们就用沥青往火车上面写，才通过火车把这项运动的信息带到了全国各地。
+
+我回来后查了一点资料，「四五运动」的起源是因为周恩来总理的去世，四人帮居然压制人民群众悼念周恩来，诬陷邓小平，而那时的毛主席也已经病到无法行动。
+
+
+人们把花圈都放到人民英雄纪念碑前悼念周总理，却被四人帮给清理了，北京广大人民群众在“还我花圈，还我战友”的口号下行成了天安门广场大规模的群众抗议运动。
+
+
+那也是一个诗意的年代，人们通过写诗来表达自己心中的愤怒，把小瓶子挂在树上，蕴意着期待邓小平的归来。那段时间四人帮应该是很难过的，从姚文元的日记就可以看出来。
+
+爷爷还给我讲了一点他们的研究，他们研究行政规划的很多人认为，中国现在的行政划分有很多缺点的，中国应该划分 50~80 个省级单位。现在中国的行政级别也有问题，宪法规定行政层级只有三级（这一点我没查），而现在很多地方县下面是镇，镇下面还有乡，严格讲这是违宪的。
+快到午饭时间时，爷爷还教我写了一会儿字，有的简体字很难看，比如「龍飛鳳舞」用繁体字写出来很好看，但是用简体字写出来就特难看。要想练好毛笔字，把三个字写好了就行了，然而我现在只记得一个“飛”字了，这可能就是老师们常说的「你又还给我了」。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/aSkANU6p0">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+    <div class="pagination-container">
+        
+            <a href="https://mengxiaoxu.github.io//" class="page-btn btn">上一页</a>
+            
+                
+                    <a href="https://mengxiaoxu.github.io//page/3/" class="page-btn btn">下一页</a>
+                    
+    </div>
+    
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1572746948854)">
+        </div>
+        <h1 class="id_card-title">
+            刘小绪同学的博客
+        </h1>
+        <h2 class="id_card-description">
+            正在学习写代码的码农
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                <a href="https://github.com/mengxiaoxu" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-github"></i></a>
+                
+                    <!-- twitter -->
+                    
+                        <a href="https://twitter.com/SlmpbWm59SPreqb" target="_blank" rel="noopener noreferrer"><i
+                class="fa fa-twitter"></i></a>
+                        
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+                                        <!-- douban -->
+                                            <a href="https://www.douban.com/people/189583084" target="_blank" rel="noopener noreferrer"><i
+                    class="icon-douban"></i></a>
+
+        </div>
+    </div>
+
+    <div class="id_card i-card">
+        <h1 class="id_card-title">
+            最新文章
+        </h1>
+        <div class="new-aticles">
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/vim-chang-yong-ming-ling-kuai-su-cha-xun">Vim 常用命令快速查询</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-10-28">刘小绪同学随笔（2019-10-28）</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/nginx-wen-jian-cao-zuo-you-hua">Nginx 文件操作优化</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao">JavaScript 高级知识技巧</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/jia-li-de-gou">家里的狗</a>
+                </h3>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
+    </div>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://mengxiaoxu.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

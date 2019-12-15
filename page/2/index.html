@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1574084929615">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1576415321751">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1574084929615" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1576415321751" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -120,6 +120,289 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu">
+                        惰性载入函数
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-08-06</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/javascript" class="post-tag i-tag
+                            i-tag-other_2">
+            #JavaScript
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
+                            i-tag-other_1">
+            #前端
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/duo-xing-zai-ru-han-shu.png">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考资料：
+《JavaScript 高级程序设计（第三版）》
+JavaScript专题之惰性函数
+深入理解javascript函数进阶之惰性函数
+
+因为不同厂商的浏览器相互之间存在一些行为上的差异，很多 js 代码包含了大量的if语句，将执行引导到正确的分支代码中去，比如下面的例子。
+function createXHR() {
+    if (typeof XMLHttpRequest != &#39;undefined&#39;) {
+        return new XMLHttpRequest();
+    } else if (typeof ActiveXObject != &#39;undefined&#39;) {
+        if (typeof arguments.callee.activeXString != &#39;string&#39;) {
+            var versions = [&#39;MSXML2.XMLHttp.6.0&#39;, &#39;MSXML2.XMLHttp.3.0&#39;, &#39;MSXML2.XMLHttp&#39;];
+            var i, len;
+            for (i = 0, len = versions.length; i &amp;lt; len; i++) {
+                try {
+                    new ActiveXObject(versions[i]);
+                    arguments.callee.activeXString = versions[i];
+                } catch (e) {
+                    // skip
+                }
+            }
+        }
+        return new ActiveXObject(arguments.callee.activeXString);
+    } else {
+        throw new Error(&#39;No XHR object available.&#39;);
+    }
+}
+
+我们可以发现，在浏览器每次调用createXHR()的时候，它都要对浏览器所支持的能力仔细检查，但是很明显当第一次检查之后，我们就应该知道浏览器是否支持我们所需要的能力，因此除第一次之外的检查都是多余的。即使只有一个if语句也肯定要比没有if语句慢，所以if语句不必每次都执行，那么代码可以运行的更快一些，惰性载入就是用来解决这种问题的技巧。
+函数重写
+要理解惰性载入函数的原理，我们有必要先理解一下函数重写技术，由于一个函数可以返回另一个函数，因此可以在函数内部用新的函数来覆盖旧的函数。
+function sayHi() {
+    console.info(&#39;Hi&#39;);
+    sayHi = function() {
+        console.info(&#39;Hello&#39;);
+    }
+}
+
+我们第一次调用sayHi()函数时，控制台会打印出Hi，全局变量sayHi被重新定义，被赋予了新的函数，从第二次开始之后的调用都会打印出Hello。惰性载入函数的本质就是函数重写，惰性载入的意思就是函数执行的分支只会发生一次。
+惰性载入
+我们来看一个例子（例子来源于冴羽所写的JavaScript专题之惰性函数）。现在需要写一个foo函数，这个函数返回首次调用时的Date对象，注意是首次。
+方案一
+var t;
+function foo() {
+    if (t) return t;
+    t = new Date()
+    return t;
+}
+// 此方案存在两个问题，一是污染了全局变量
+// 二是每次调用都需要进行一次判断
+
+方案二
+var foo = (function() {
+    var t;
+    return function() {
+        if (t) return t;
+        t = new Date();
+        return t;
+    }
+})();
+// 使用闭包来避免污染全局变量，
+// 但是还是没有解决每次调用都需要进行一次判断的问题
+
+方案三
+function foo() {
+    if (foo.t) return foo.t;
+    foo.t = new Date();
+    return foo.t;
+}
+// 函数也是一种对象，利用这个特性也可以解决
+// 和方案二一样，还差一个问题没有解决
+
+方案四
+var foo = function() {
+    var t = new Date();
+    foo = function() {
+        return t;
+    };
+    return foo();
+};
+// 利用惰性载入技巧，即重写函数
+
+惰性载入函数有两种实现方式，第一种是在函数被调用时再处理函数。在第一次调用的过程中，该函数会被覆盖为另外一种按合适方式执行的函数，这样任何对原函数的调用都不用再经过执行分支了。
+第二种实现方式是在声明函数时就指定适当的函数。这样第一次调用时就不会损失性能了，而是在代码首次加载时会损失一点性能，即是利用闭包写一个自执行的函数。
+改进 createXHR
+有了上面的基础，我们就可以将createXHR()改进为下列形式，这样就不用每次调用都进行判断了。
+// 第一种实现方式
+function createXHR() {
+    if (typeof XMLHttpRequest != &#39;undefined&#39;) {
+        createXHR = function() {
+            return new XMLHttpRequest();
+        }
+    } else if (typeof ActiveXObject != &#39;undefined&#39;) {
+        createXHR = function() {
+            if (typeof arguments.callee.activeXString != &#39;string&#39;) {
+                var versions = [&#39;MSXML2.XMLHttp.6.0&#39;, &#39;MSXML2.XMLHttp.3.0&#39;, &#39;MSXML2.XMLHttp&#39;];
+                var i, len;
+                for (i = 0, len = versions.length; i &amp;lt; len; i++) {
+                    try {
+                        new ActiveXObject(versions[i]);
+                        arguments.callee.activeXString = versions[i];
+                    } catch (e) {
+                        // skip
+                    }
+                }
+            }
+            return new ActiveXObject(arguments.callee.activeXString);
+        };
+    } else {
+        createXHR = function() {
+            throw new Error(&#39;No XHR object available.&#39;);
+        }
+    }
+}
+
+// 第二种实现方式
+function createXHR() {
+    if (typeof XMLHttpRequest != &#39;undefined&#39;) {
+        return function() {
+            return new XMLHttpRequest();
+        }
+    } else if (typeof ActiveXObject != &#39;undefined&#39;) {
+        return function() {
+            if (typeof arguments.callee.activeXString != &#39;string&#39;) {
+                var versions = [&#39;MSXML2.XMLHttp.6.0&#39;, &#39;MSXML2.XMLHttp.3.0&#39;, &#39;MSXML2.XMLHttp&#39;];
+                var i, len;
+                for (i = 0, len = versions.length; i &amp;lt; len; i++) {
+                    try {
+                        new ActiveXObject(versions[i]);
+                        arguments.callee.activeXString = versions[i];
+                    } catch (e) {
+                        // skip
+                    }
+                }
+            }
+            return new ActiveXObject(arguments.callee.activeXString);
+        };
+    } else {
+        return function() {
+            throw new Error(&#39;No XHR object available.&#39;);
+        }
+    }
+}
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/duo-xing-zai-ru-han-shu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze">
+                        非设计师需要知道的四个设计原则
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-06-22</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/i4kET55EC" class="post-tag i-tag
+                            i-tag-other_2">
+            #翻译
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/vhSkGeYf1D" class="post-tag i-tag
+                            i-tag-other_1">
+            #设计
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+作者：Anna 4erepawko Mészáros，UI/UX 设计师。
+关注作者： Medium、Twitter
+
+这篇文章是写给无力邀请专业设计师的所有内容创作者的，以及设计师异常忙碌的团队的非设计师们。如果您按照这些简单的步骤进行操作，我保证您的设计会变得更好。
+这些 Tips 来源于我对身边非设计朋友的多年观察，家人与同事在日常生活中也需要设计他们的东西。比如简历、作品集，Facebook 和 Instagram 上帖子要使用的图片，YouTube 视频的缩略图等。
+所有这些人都向我寻求帮助与建议，希望能让他们的东西看起来更好。我坚信「授人以鱼不如授人以渔」，所以我试图提供更有价值的建议，以便他们在未来也能解决类似的问题。
+随着时间的推移，我意识到我一直在给所有人提供相同的建议，虽然每次所使用的措辞不同，但我所有的建议都可以提炼为以下四个原则。
+这些 Tips 会帮您创造出美丽动人的设计吗？答案是不会！它们只会帮您创造出色、清晰且易于理解的设计。是每个人都可以轻松理解和互动吗？那当然，所以不多说废话，下面我就向您逐一展示。
+对比
+确保所有元素之间有足够的对比度。为什么？因为那些略有差异但是又不够不同东西，创造了一种恐怖谷。人类的眼睛会排斥它们，对它们感到厌恶、难以理解。我们不希望它们出现在我们的设计中，难道不是吗？
+
+恐怖谷理论，是一个关于人类对机器人和非人类物体的感觉的假设。如果一个非人类实体不够拟人，那么它身上的人类特征会很容易辨认；而当它足够拟人时，他身上的非人类特征则会变得很容易辨认。因此会在人类观察者眼中产生一种古怪的感觉，想想您看到病患者或者尸体时的感觉。
+
+因此您设计的元素要么完全相同，要么具有显著差异。
+您可以从下面四个方面来突出对比：
+1、颜色：浅色上使用暗色，反之亦然
+示例： 切勿在浅蓝色上使用浅灰色或浅粉红色等灰色组合，它们会造成阅读/互动上的极大困难。
+
+2、大小：相邻元素要么大小完全相同，要么大小区别很大
+示例： 不要将 32pt 和 36pt 的文本放在一起；18pt 和 36pt 放在一起会显得更加协调。
+
+3、粗细：与大小一样，相邻元素的粗细要么完全相同，要么有明显的区别
+示例： 不要将相同字体的粗体与黑体放在一起，因为它们看起来太相似了；将黑体与细体放在一起会显得很协调。
+
+4、风格：不要将一个斜体类型放在另一个斜体类型旁边，或者在一个衬线字体旁边放置另一个衬线字体。应该组合不同的东西。
+示例： 不要将 Times New Roman 与 Georgia 放在一起，它们看起来太相似了，应该组合完全不同的风格。
+
+一致性
+确保相似的元素以相似的方式出现。为什么呢？首先，通过确保确保事物一致性，您可以让用户将注意力集中在设计的重要方面，而不是被随时变化的元素分散注意力。
+其次，一致性也增加了用户对您的信任，使事物看起来实际上是设计的，而不是简单快速拼凑出来的。
+一旦你选择了具体的风格，就要毫不犹豫的坚持下去，这里所说的风格包括字体、颜色、阴影、栅格、对齐、装饰风格等等。
+
+当您处理许多相邻的不同部分时（比如 YouTube 的视频缩略图或是中型文章的封面），您应该为所有部分选择一种整体风格，并坚持使用。
+奥卡姆剃刀 减少视觉噪音
+在您的设计中，使用的元素越少越好。为什么呢？因为人类的大脑很难在输入过载的情况下处理信息并作出决策。您应该使用尽可能少的装饰元素（字体、颜色、阴影、图标等等）。
+将奥卡姆剃刀应用于所有内容。如果只需要两个元素就能满足需求，那么就不要使用 3 个元素；如果 10 个元素实现所需的功能，那么就不要用 20 个元素。
+
+如果您不喜欢古老的英国哲学家风格，更喜欢您在 Netflix（一家美国流媒体提供商）上看到的东西。请将怦然心动的人生整理魔法应用到您的设计中。
+
+《怦然心动的人生整理魔法》是美国流媒体提供商Netflix于2019年1月1日首播的一档真人实境秀节目。节目由日本“整理咨询顾问” 近藤麻理惠主创。她在每集节目中拜访一个家庭，帮助他们整理自己的房间。
+近藤麻理惠认为整理房间时应当将物品分为五类：衣物、书籍、纸张文件、杂物和情感纪念品；在整理时拿起每件物品，如果能使自己“怦然心动”则留下，如果不能则要感谢物品的贡献然后与其告别。
+
+间距
+元素的位置会发送关于其含义的元级别消息。为什么这很重要？因为了解如何放置元素以及在它们周围预留了多少空间有助于降低设计的复杂性，因此会使人更加愉悦，并且更容易交互。
+在您的设计中使用间距来传达下面 3 个方面的信息：
+1、接近度 = 相关性
+与其它元素相比，彼此更接近的事物被认为它们有更强的相关性。这是最重要的，因为我觉得它常常容易被忽视。
+它可以以很多不同的方式应用，比如行与行之间应该有一定的间距，而不是一行中每个单词之间的间距那么小；同样不同段落之间的空间也比段落内的行空间要大。
+
+元素之间的间距应该小于元素与组合边缘之间的间距。
+
+标签和支撑信息应该位于其相关元素附近。
+
+2、留白
+结合奥卡姆剃刀，给您的设计尽可能留白，去整理它们，使它们的意义更加明显。
+如果把太多元素放在有限的空间里，就像同时听三首不同的哥，很难理解别人在说什么。
+
+3、重要性与顺序
+这是一个很普通的常识，但是我还是要在这里提到它。
+最重要的事情放在第一位，使它们占据最大的空间，用一系列的事物来传达秩序。
+结束语
+恭喜您！如果您按照这些 Tips 进行设计，那么按照行业标准，它可能看起来非常好。
+For everything else, there is always a designer.
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-05-12">
                         刘小绪同学随笔（2019-05-12）
                     </a>
@@ -128,7 +411,7 @@
                     <time class="post-time">2019-05-12</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-warning">
             #随笔
         </a>
                         
@@ -187,12 +470,12 @@
                     <time class="post-time">2019-04-26</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/S57Vp3Suu" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
             #计算机网络
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_4">
             #前端
         </a>
                         
@@ -313,7 +596,7 @@ disk cache 与 memory cache
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/QjCHA76i_r" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-info">
             #编程基础
         </a>
                         
@@ -534,12 +817,12 @@ git checkout --track [remote-name]/[branch]
                     <time class="post-time">2019-04-10</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/ce-shi" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-">
             #测试
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/qian-hou-duan-fen-chi" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-info">
             #前后端分离
         </a>
                         
@@ -599,12 +882,12 @@ API 调用者（消费者）对服务提供方（生产者）的更改是通过�
                     <time class="post-time">2019-02-27</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-primary">
             #随笔
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-banana">
             #个人总结
         </a>
                         
@@ -661,7 +944,7 @@ API 调用者（消费者）对服务提供方（生产者）的更改是通过�
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-">
             #前端
         </a>
                         
@@ -841,7 +1124,7 @@ onPostBody: function () {
                     <time class="post-time">2019-01-13</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-primary">
             #随笔
         </a>
                         
@@ -851,7 +1134,7 @@ onPostBody: function () {
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-banana">
             #生活感悟
         </a>
                         
@@ -893,113 +1176,6 @@ onPostBody: function () {
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">
-                        大学生书单推荐
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-12-30</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/shu-ji-tui-jian" class="post-tag i-tag
-                            i-tag-">
-            #书籍推荐
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/da-xue-sheng-shu-dan-tui-jian.jpg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-此篇文章由刘小绪同学首发于知识星球
-
-首先推荐李笑来的《把时间当作朋友》和《财富自由之路》，这两本书写的真不错，虽然李笑来的人设倒下了，但是不影响这两本书的质量，也不要因为一次人设倒下就全盘否定一个人。
-季羡林的书值得一读，读几本季老先生的文集就可以了，从文字里面去感受季老求真务实的态度，什么才是做学术的态度，大家之所以为大家，不仅仅是因为天资聪慧，还有为人处世。
-《小狗钱钱》、《24 堂财富课————与女儿谈创业》、《穷爸爸富爸爸》、《好好赚钱》中可以选一本阅读，大学只交了我们生存的技能，并没有教我们如何理财，而这又是每个人不得不面对的问题，这几本入门书籍，可以帮助您建立财富理念。
-《浪潮之巅》、《数学之美》、《大学之路》等等，吴军博士的书籍都值得一看，晦涩难懂的道理在吴军博士的文字中变的简单了，感受一下心态、格局等的提升会给人生带来多么重要的改变，我个人目前还没有读完。
-《编码：隐藏在计算机软硬件背后的语言》，看下微软大师是如何用故事来给您造出一台计算机的，计算机基础不再是简单的机械背诵，而是在故事中理解记忆。
-《深入理解计算机系统》也应该看一看，现在的技术日新月异，但是纵观这么多年的技术发展，最基本的原理是不变的，在这个瞬息万变的时代，只有掌握了最核心根本的原理，才能从容应对不同的变化，高级程序员必读经典。
-像《长乐路》、《明朝那些事儿》一类的书籍是可以读读的，应该去了解一下历史的细节，你所看到的不一定是真实的，光芒的背后是另一片黑暗，历史是有规律的，我们的生活可以在历史中找到影子。
-《人类简史》、《人性的弱点》、《心灵七游戏》等心理、哲学类书籍选几本读读，哲学是所有学科的抽象，到一个新的高度看看世界，提高自己的情商，让整个世界都为您张开拥抱的双臂。
-读不动名著小说，可以读《偷影子的人》，每个人都有相似的童年，只是大部分人都不敢说出来而已，主人公就好像在经历自己曾经经历过的生活一样，从没有想过普普通通的童年居然能被描写的如此动情。《月亮与六便士》也是不错的选择。
-多阅读高于自己的作品，远离精神毒品，互联网时代的阅读不再限于书籍了，良心大佬的博客也是一个不错的选择，只有阅读高于自己的作品才能获得成长，少刷抖音、微博、知乎一类的产品，里面是有一些有趣的人生，但是一刷就是几个小时，太浪费时间。
-「一席」上的大部分演讲是值得听的，让您对中国社会有一个更好的了解；「TED」、「网易公开课」上国外高校的视频可以多看看，讲的真心不错；国内出观众、大部分二流学校的演讲能不去就不去，还不如把这种时间拿去睡睡觉，补充补充精力。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/da-xue-sheng-shu-dan-tui-jian">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/5BDtFnlOc">
-                        回忆高中网校生活
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-12-15</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/DytBq-ZFD" class="post-tag i-tag
-                            i-tag-other_3">
-            #回忆
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-other_2">
-            #生活感悟
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/5BDtFnlOc">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/5BDtFnlOc.jpg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            周三刷星球时看到一条关于成都七中网校的信息，没想到周四就被成都七中网校给刷屏了，看到文章里面的描写，感悟颇多，网校陪伴了自己三年，一个诗意的女孩——西凉忆就是因为网校结识的。
-我是 12 年入学高中，那一年学校也刚和成都七中开通网校，因此我属于学校第一届全程使用网校资源的学生。
-记得刚入学时，对这种教学方式并不适应。不止学生不适应，老师也不适应，政治课老师就不使用直播课程，而是选择自己给我们讲。不过后来年级组出了硬性规定，特优班必须使用直播课程。
-就像教育的水平线中描述的一样，我们被称为远端学生，大家都是第一次使用这样的系统，七中老师估计也很好奇，都在第一节课或者第二节课上抽了远端同学回答问题，后来就很少有抽远端同学回答问题了，估计是因为远程视频效果不好还浪费时间。
-成都七中本部的学生上课很有激情，一到讨论等环节，虽然很吵但是却很有秩序，而我们这边基本是大家都盯着屏幕，等待对方讨论结束。
-对方学生的基础我们是没办法比的，大部分能够完全以纯英文交流，而我们远端学生大部分都只能说出“My name is ..., I&#39;m from ..., I like ...”，英语的差距是最大的。我自己是主动找了英语老师谈话，和她做了一个约定，每周我写一篇作文交给她，她帮我批改，这样坚持了两年。
-
-让我感受到最大差距的是，一个中学有自己的电视台，经常会有像《汉语桥》冠军一类的人物前来演讲，美国第一夫人米歇尔也到七中演讲（那是总统还是奥巴马），作为远端学生有幸蹭了一场名人演讲；七中学生的寒暑假是参加联合国模拟大会、到哈佛做了简短的交流、到华盛顿旅行......
-而大部分远端的学生，要么是参加学校组织的补课，要么是在家干农活，基本连县城都没有走出去过，和七中相比，完全是天壤之别。
-现在我依旧还清晰的记得七中的几个老师，做 PPT 从来没有背景图的数学老师，语速超快但又吐字清晰的化学老师，说着一口标准川普的物理老师，有着一头蓬松金黄卷发的历史老师（男）......去看这些老师的背景，也都是名校出身，武汉大学、华中师大等等。
-
-有一个细节记得很清楚，在一堂数学课中有个题目，题目具体内容忘了，只记得是要求算新华中学的一本录取率，最后的答案是在 74% 左右，这个数字在我眼里很高了，但是那一刻并没有觉得有什么，毕竟这是书上的学校嘛！！
-想不到的是，下一秒那个做 PPT 从来没有背景图的数学老师说了句：“这个就比较低了啊，我们学校考的很差的时候才是百分之七十多的录取率”。一下让我震惊了，因为我在心里算过自己学校的一本录取率，在此之前不到 10%，而且我所在高中在所有远端学校中还是比较靠前的。
-
-让我意外的是，七中的老师原来也会骂人、打人，即使打的很轻；学生没完成作业，也会被罚拿个小凳子到教室外面补作业；在全国禁止补课的规定之下，七中也会给高三的学生补课，当然我们也同步补课了。
-我无法构想如果三年没有使用网校资源会是神马结果，如果仅仅是看数据的话，一本率是按倍数翻的，12 年开始使用网校资源后，学校有了第一个清华，13 年又添了一个清华。我属于 14 届，这届没有清华，最好的是浙大，我进了个普普通通的哈尔滨工程大学。据说 15 届又出了清华。
-我所在的高中也被央视作为典型案例探讨农村高考。无疑能上央视，那这个学校在当地乃至全国同等水平的学校中是很成功的。
-无疑这种生活给每个同学都留下了难忘的记忆，如果哪位同学加了七中本部直播班级某位同学的 QQ（那时没有人用微信），那能吹好几天牛逼，七中人在我们眼里就像明星一样。
-我们当地 14 届县状元高考分数是 635 分，七中本部平均分是 616 分，这差距至今都让我目瞪口呆。前段时间曹大在星球发起了一个作业：十年后的期望目标。我所提交的作业中写了句，如果有能力，希望能给乡村学校带去一点教育资源。
-我并不认为穷是光荣的事情，但在很多农村人眼里穷是一种资本，一种获取国家福利的资本，如果某次补助没有评到自己头上，那得记恨村长一辈子。我认为这才是造成农村孩子和城里孩子有巨大差距的原因，如果孩子没有从这种思维走出来，那一辈子也不可能有什么大的成就。
-没想到自己都大学毕业了，却看到成都七中的网校被刷屏了。毫无疑问，这是一件极为有意义的事情，这种内容就应该被刷屏，愿七中和远端学校都越办越好。
-
-文中照片取自于同学 QQ 空间，不知道这么把几位老师放出来有没有侵权。记得我原来还有英语老师 Spring 的 QQ，高中时向他请教过自己的英语问题，可能后来 Spring 把我删了 =_=，反正是没了。
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/5BDtFnlOc">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -1020,7 +1196,7 @@ onPostBody: function () {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1574084929615)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1576415321751)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -1059,6 +1235,18 @@ onPostBody: function () {
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io//post/yong-hu-guan-zhu-er-cheng-xu-yuan-bu-guan-zhu-de-shi">用户关注而程序员不关注的事</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi">刘小绪同学随笔</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io//post/linux-zhong-de-ling-kao-bei-ji-zhu">Linux 中的零拷贝技术</a>
                 </h3>
             
@@ -1076,15 +1264,7 @@ onPostBody: function () {
             
             
             
-                <h3>
-                    <a href="https://mengxiaoxu.github.io//post/nginx-wen-jian-cao-zuo-you-hua">Nginx 文件操作优化</a>
-                </h3>
             
-            
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io//post/javascript-gao-ji-zhi-shi-ji-qiao">JavaScript 高级知识技巧</a>
-                </h3>
             
             
             

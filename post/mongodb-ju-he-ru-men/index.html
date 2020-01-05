@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    用 Scrapy 爬取豆瓣250 | 刘小绪同学的博客
+    MongoDB 聚合入门 | 刘小绪同学的博客
 </title>
 <link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578240501212">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -127,119 +127,89 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            用 Scrapy 爬取豆瓣250
+                            MongoDB 聚合入门
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2018-07-27</time>
+                            <time class="post-time">2020-01-04</time>
                             
-                                <a href="https://mengxiaoxu.github.io//tag/pa-chong" class="post-tag i-tag
-                            i-tag-banana">
-                            #爬虫
-                        </a>
-                                
                         </div>
                         
-                            <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/yong-scrapy-pa-qu-dou-ban-250.jpeg')"></div>
-                            
                                 <div class="post-content">
-                                    <p>最好的学习方式就是输入之后再输出，分享一个自己学习scrapy框架的小案例，方便快速的掌握使用scrapy的基本方法。</p>
-<p>本想从零开始写一个用Scrapy爬取教程，但是官方已经有了样例，一想已经有了，还是不写了，尽量分享在网上不太容易找到的东西。自己近期在封闭培训，更文像蜗牛一样，抱歉。</p>
-<h4 id="scrapy简介">Scrapy简介</h4>
-<p>Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。</p>
-<p>其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。</p>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569769294059.png" alt=""></figure>
-<p>如果此前对scrapy没有了解，请先查看下面的官方教程链接。</p>
-<p>架构概览：<code>https://docs.pythontab.com/scrapy/scrapy0.24/topics/architecture.html</code></p>
-<p>Scrapy入门教程：<code>https://docs.pythontab.com/scrapy/scrapy0.24/intro/tutorial.html</code></p>
-<h4 id="爬虫教程">爬虫教程</h4>
-<p>首先，我们看一下豆瓣TOP250页面，发现可以从中提取电影名称、排名、评分、评论人数、导演、年份、地区、类型、电影描述。</p>
-<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569769306143.png" alt=""></figure>
-<p>Item对象是种简单的容器，保存了爬取到得数据。其提供了类似于词典的API以及用于声明可用字段的简单语法。所以可以声明Item为如下形式。</p>
-<pre><code class="language-python">class DoubanItem(scrapy.Item):
-    # 排名
-    ranking = scrapy.Field()
-    # 电影名称
-    title = scrapy.Field()
-    # 评分
-    score = scrapy.Field()
-    # 评论人数
-    pople_num = scrapy.Field()
-    # 导演
-    director = scrapy.Field()
-    # 年份
-    year = scrapy.Field()
-    # 地区
-    area = scrapy.Field()
-    # 类型
-    clazz = scrapy.Field()
-    # 电影描述
-    decsription = scrapy.Field()
+                                    <p><a href="https://docs.mongodb.com/manual/core/aggregation-pipeline">MongoDB 聚合官方文档</a></p>
+<p>聚合管道是一个基于数据处理管道概念建模的数据聚合框架，文档进入一个多阶段的处理管道，该管道最终将其转换为聚合后的结果。</p>
+<p>下面的例子来源于官方文档。第一阶段，<code>$match</code>按<code>status</code>字段来过滤文档，并把<code>status</code>字段值为<code>A</code>的文档传递到下一阶段；第二阶段，<code>$group</code>将文档按<code>cust_id</code>进行分组，并针对每一组数据对<code>amount</code>进行求和。</p>
+<pre><code class="language-js">db.orders.aggregate([
+   { $match: { status: &quot;A&quot; } },
+   { $group: { _id: &quot;$cust_id&quot;, total: { $sum: &quot;$amount&quot; } } }
+])
 </code></pre>
-<p>我们抓取到相应的网页后，需要从网页中提取自己需要的信息，可以使用xpath语法，我使用的是BeautifulSoup网页解析器，经过BeautifulSoup解析的网页，可以直接使用选择器筛选需要的信息。有一些说明写到代码注释里面去了，就不再赘述。</p>
-<p>Chrome 也可以直接复制选择器或者XPath，如下图所示。</p>
-<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569769316497.png" alt=""></figure>
-<pre><code class="language-python">class douban_spider(Spider):
+<h3 id="管道">管道</h3>
+<figure data-type="image" tabindex="1"><img src="https://uploader.shimo.im/f/3DCQfjzI6LQQvbtQ.png" alt=""></figure>
+<p>聚合管道包含很多步骤，每一步都会将输入的文档进行转换，但并不是每个阶段都一定需要对每个输入文档生成一个输出文档，比如某些阶段可能生成新的文档或者过滤掉文档。</p>
+<p>除了<code>$out</code>、<code>$merge</code>、<code>$geoNear</code>外，其它的阶段都可以在管道中多次出现，更加详细的内容可以查看 <a href="https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/#aggregation-pipeline-operator-reference">Aggregation Pipeline Stages</a>。</p>
+<figure data-type="image" tabindex="2"><img src="https://uploader.shimo.im/f/kbeipyqZVvUtruaT.jpeg" alt=""></figure>
+<h3 id="管道表达式">管道表达式</h3>
+<p>一些管道阶段采用表达式作为操作元，管道表达式指定了要应用到输入文档的转换，表达式自己是一个文档结构（JSON），表达式也可以包含其它的表达式。</p>
+<p>表达式仅提供文档在内存中的转换，即管道表达式只能对管道中的当前文档进行操作，不能引用来自其他文档的数据。</p>
+<p>写聚合表达式式建议直接参考<a href="https://docs.mongodb.com/manual/core/aggregation-pipeline">官方文档</a>，下面列出一些我收集的案例，供深入理解使用。</p>
+<h3 id="案例一将对象数组转换为单个文档">案例一：将对象数组转换为单个文档</h3>
+<pre><code class="language-json">// 转换前
+{
+    &quot;_id&quot;: &quot;10217941&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;count&quot;: 2,
+            &quot;score&quot;: &quot;0.5&quot;
+        },
+        {
+            &quot;count&quot;: 6,
+            &quot;score&quot;: &quot;0.3&quot;
+        },
+        {
+            &quot;count&quot;: 5,
+            &quot;score&quot;: &quot;0.8&quot;
+        }
+    ]
+}
 
-    count = 1
-
-    # 爬虫启动命令
-    name = 'douban'
-
-    # 头部信息，伪装自己不是爬虫程序
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36',
+// 转换后
+{
+    &quot;_id&quot;: &quot;10217941&quot;,
+    &quot;0.3&quot;: 6,
+    &quot;0.5&quot;: 2,
+    &quot;0.8&quot;: 5
+}
+</code></pre>
+<p>需要说明的是，如果上面<code>data</code>属性中的数据格式为<code>{&quot;k&quot;: &quot;0.6&quot;, &quot;v&quot;: 5}</code>，那么下面的聚合表达式就不需要<code>$map</code>，这一点可以查看 <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/arrayToObject">$arrayToObject</a>。这个案例的难点在于<code>score</code>中有小数点，这个小数点会让聚合表达式懵逼的。</p>
+<pre><code class="language-js">db.collection.aggregate([
+    {
+        &quot;$addFields&quot;: {
+            &quot;data&quot;: {
+                &quot;$arrayToObject&quot;: {
+                    &quot;$map&quot;: {
+                        &quot;input&quot;: &quot;$data&quot;,
+                        &quot;as&quot;: &quot;item&quot;,
+                        &quot;in&quot;: {
+                            &quot;k&quot;: &quot;$$item.score&quot;,
+                            &quot;v&quot;: &quot;$$item.count&quot;
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        &quot;$addFields&quot;: {
+            &quot;data._id&quot;: &quot;$_id&quot;
+        }
+    },
+    {
+        &quot;$replaceRoot&quot;: {
+            &quot;newRoot&quot;: &quot;$data&quot;
+        }
     }
-
-    # 爬虫启动链接
-    def start_requests(self):
-        url = 'https://movie.douban.com/top250'
-        yield Request(url, headers=self.headers)
-
-    # 处理爬取的数据
-    def parse(self, response):
-
-        print('第', self.count, '页')
-        self.count += 1
-
-        item = DoubanItem()
-        soup = BeautifulSoup(response.text, 'html.parser')
-
-        # 选出电影列表
-        movies = soup.select('#content div div.article ol li')
-
-        for movie in movies:
-            item['title'] = movie.select('.title')[0].text
-            item['ranking'] = movie.select('em')[0].text
-            item['score'] = movie.select('.rating_num')[0].text
-            item['pople_num'] = movie.select('.star span')[3].text
-
-            # 包含导演、年份、地区、类别
-            info = movie.select('.bd p')[0].text
-            director = info.strip().split('\n')[0].split('   ')
-            yac = info.strip().split('\n')[1].strip().split(' / ')
-
-            item['director'] = director[0].split(': ')[1]
-            item['year'] = yac[0]
-            item['area'] = yac[1]
-            item['clazz'] = yac[2]
-
-            # 电影描述有为空的，所以需要判断
-            if len(movie.select('.inq')) is not 0:
-                item['decsription'] = movie.select('.inq')[0].text
-            else:
-                item['decsription'] = 'None'
-            yield item
-
-        # 下一页：
-        # 1，可以在页面中找到下一页的地址
-        # 2，自己根据url规律构造地址，这里使用的是第二种方法
-        next_url = soup.select('.paginator .next a')[0]['href']
-        if next_url:
-            next_url = 'https://movie.douban.com/top250' + next_url
-            yield Request(next_url, headers=self.headers)
+]);
 </code></pre>
-<p>然后在项目文件夹内打开cmd命令，运行<code>scrapy crawl douban -o movies.csv</code>就会发现提取的信息就写入指定文件了，下面是爬取的结果，效果很理想。</p>
-<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569769328594.png" alt=""></figure>
 
                                 </div>
                     </article>
@@ -247,9 +217,9 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://mengxiaoxu.github.io//post/nian-qing-bu-yao-gei-zi-ji-she-xian">
+                            <a href="https://mengxiaoxu.github.io//post/yong-hu-guan-zhu-er-cheng-xu-yuan-bu-guan-zhu-de-shi">
                                 <h3 class="post-title">
-                                    年轻不要给自己设限
+                                    用户关注而程序员不关注的事
                                 </h3>
                             </a>
                         </div>
@@ -272,12 +242,9 @@
 <ul>
 <li>
 <ul>
-<li>
-<ul>
-<li><a href="#scrapy%E7%AE%80%E4%BB%8B">Scrapy简介</a></li>
-<li><a href="#%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B">爬虫教程</a></li>
-</ul>
-</li>
+<li><a href="#%E7%AE%A1%E9%81%93">管道</a></li>
+<li><a href="#%E7%AE%A1%E9%81%93%E8%A1%A8%E8%BE%BE%E5%BC%8F">管道表达式</a></li>
+<li><a href="#%E6%A1%88%E4%BE%8B%E4%B8%80%E5%B0%86%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%95%E4%B8%AA%E6%96%87%E6%A1%A3">案例一：将对象数组转换为单个文档</a></li>
 </ul>
 </li>
 </ul>

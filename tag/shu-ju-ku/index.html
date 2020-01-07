@@ -7,7 +7,7 @@
 <title>
     数据库 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578407258539">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578408560871">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578407258539" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578408560871" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -125,6 +125,113 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/mongodb-ju-he-ru-men">
+                        MongoDB 聚合入门
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-04</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/shu-ju-ku" class="post-tag i-tag
+                            i-tag-">
+            #数据库
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/mongodb-ju-he-ru-men">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/mongodb-ju-he-ru-men.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            MongoDB 聚合官方文档
+聚合管道是一个基于数据处理管道概念建模的数据聚合框架，文档进入一个多阶段的处理管道，该管道最终将其转换为聚合后的结果。
+下面的例子来源于官方文档。第一阶段，$match按status字段来过滤文档，并把status字段值为A的文档传递到下一阶段；第二阶段，$group将文档按cust_id进行分组，并针对每一组数据对amount进行求和。
+db.orders.aggregate([
+   { $match: { status: &amp;quot;A&amp;quot; } },
+   { $group: { _id: &amp;quot;$cust_id&amp;quot;, total: { $sum: &amp;quot;$amount&amp;quot; } } }
+])
+
+管道
+
+聚合管道包含很多步骤，每一步都会将输入的文档进行转换，但并不是每个阶段都一定需要对每个输入文档生成一个输出文档，比如某些阶段可能生成新的文档或者过滤掉文档。
+除了$out、$merge、$geoNear外，其它的阶段都可以在管道中多次出现，更加详细的内容可以查看 Aggregation Pipeline Stages。
+
+管道表达式
+一些管道阶段采用表达式作为操作元，管道表达式指定了要应用到输入文档的转换，表达式自己是一个文档结构（JSON），表达式也可以包含其它的表达式。
+表达式仅提供文档在内存中的转换，即管道表达式只能对管道中的当前文档进行操作，不能引用来自其他文档的数据。
+写聚合表达式式建议直接参考官方文档，下面列出一些我收集的案例，供深入理解使用。
+案例一：将对象数组转换为单个文档
+// 转换前
+{
+    &amp;quot;_id&amp;quot;: &amp;quot;10217941&amp;quot;,
+    &amp;quot;data&amp;quot;: [
+        {
+            &amp;quot;count&amp;quot;: 2,
+            &amp;quot;score&amp;quot;: &amp;quot;0.5&amp;quot;
+        },
+        {
+            &amp;quot;count&amp;quot;: 6,
+            &amp;quot;score&amp;quot;: &amp;quot;0.3&amp;quot;
+        },
+        {
+            &amp;quot;count&amp;quot;: 5,
+            &amp;quot;score&amp;quot;: &amp;quot;0.8&amp;quot;
+        }
+    ]
+}
+
+// 转换后
+{
+    &amp;quot;_id&amp;quot;: &amp;quot;10217941&amp;quot;,
+    &amp;quot;0.3&amp;quot;: 6,
+    &amp;quot;0.5&amp;quot;: 2,
+    &amp;quot;0.8&amp;quot;: 5
+}
+
+需要说明的是，如果上面data属性中的数据格式为{&amp;quot;k&amp;quot;: &amp;quot;0.6&amp;quot;, &amp;quot;v&amp;quot;: 5}，那么下面的聚合表达式就不需要$map，这一点可以查看 $arrayToObject。这个案例的难点在于score中有小数点，这个小数点会让聚合表达式懵逼的。
+db.collection.aggregate([
+    {
+        &amp;quot;$addFields&amp;quot;: {
+            &amp;quot;data&amp;quot;: {
+                &amp;quot;$arrayToObject&amp;quot;: {
+                    &amp;quot;$map&amp;quot;: {
+                        &amp;quot;input&amp;quot;: &amp;quot;$data&amp;quot;,
+                        &amp;quot;as&amp;quot;: &amp;quot;item&amp;quot;,
+                        &amp;quot;in&amp;quot;: {
+                            &amp;quot;k&amp;quot;: &amp;quot;$$item.score&amp;quot;,
+                            &amp;quot;v&amp;quot;: &amp;quot;$$item.count&amp;quot;
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        &amp;quot;$addFields&amp;quot;: {
+            &amp;quot;data._id&amp;quot;: &amp;quot;$_id&amp;quot;
+        }
+    },
+    {
+        &amp;quot;$replaceRoot&amp;quot;: {
+            &amp;quot;newRoot&amp;quot;: &amp;quot;$data&amp;quot;
+        }
+    }
+]);
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/mongodb-ju-he-ru-men">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io//post/jian-dan-li-jie-ci-pan-jie-gou">
                         简单理解磁盘结构
                     </a>
@@ -133,12 +240,12 @@
                     <time class="post-time">2018-04-24</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-success">
             #数据库
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-warning">
             #操作系统
         </a>
                         
@@ -257,7 +364,7 @@ R10
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1578407258539)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1578408560871)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -296,7 +403,7 @@ R10
             
             
                 <h3>
-                    <a href="https://mengxiaoxu.github.io//post/2019-nian-zong-jie">2019 年总结</a>
+                    <a href="https://mengxiaoxu.github.io//post/2019-nian-zong-jie">2019 年个人总结</a>
                 </h3>
             
             

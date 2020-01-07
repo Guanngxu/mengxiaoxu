@@ -7,7 +7,7 @@
 <title>
     MongoDB 聚合入门 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578408712178">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578409241138">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578408712178" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578409241138" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -133,7 +133,7 @@
                             <time class="post-time">2020-01-04</time>
                             
                                 <a href="https://mengxiaoxu.github.io//tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_1">
                             #数据库
                         </a>
                                 
@@ -151,10 +151,10 @@
 ])
 </code></pre>
 <h3 id="管道">管道</h3>
-<figure data-type="image" tabindex="1"><img src="https://uploader.shimo.im/f/3DCQfjzI6LQQvbtQ.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1578409203543.png" alt=""></figure>
 <p>聚合管道包含很多步骤，每一步都会将输入的文档进行转换，但并不是每个阶段都一定需要对每个输入文档生成一个输出文档，比如某些阶段可能生成新的文档或者过滤掉文档。</p>
 <p>除了<code>$out</code>、<code>$merge</code>、<code>$geoNear</code>外，其它的阶段都可以在管道中多次出现，更加详细的内容可以查看 <a href="https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/#aggregation-pipeline-operator-reference">Aggregation Pipeline Stages</a>。</p>
-<figure data-type="image" tabindex="2"><img src="https://uploader.shimo.im/f/kbeipyqZVvUtruaT.jpeg" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1578409237533.jpg" alt=""></figure>
 <h3 id="管道表达式">管道表达式</h3>
 <p>一些管道阶段采用表达式作为操作元，管道表达式指定了要应用到输入文档的转换，表达式自己是一个文档结构（JSON），表达式也可以包含其它的表达式。</p>
 <p>表达式仅提供文档在内存中的转换，即管道表达式只能对管道中的当前文档进行操作，不能引用来自其他文档的数据。</p>

@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    基于依存句法分析的开放式中文实体关系抽取 | 刘小绪同学的博客
+    小工具收集 | 刘小绪同学的博客
 </title>
 <link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578578940257">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -119,119 +119,52 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            基于依存句法分析的开放式中文实体关系抽取
+                            小工具收集
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2018-04-26</time>
+                            <time class="post-time">2020-01-09</time>
                             
-                                <a href="https://mengxiaoxu.github.io/tag/zi-ran-yu-yan-chu-li" class="post-tag i-tag
-                            i-tag-primary">
-                            #自然语言处理
+                                <a href="https://mengxiaoxu.github.io/tag/wang-luo-zi-yuan" class="post-tag i-tag
+                            i-tag-">
+                            #网络资源
+                        </a>
+                                
+                                <a href="https://mengxiaoxu.github.io/tag/gong-ju-ji-qiao" class="post-tag i-tag
+                            i-tag-warning">
+                            #工具技巧
                         </a>
                                 
                         </div>
                         
-                            <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu.jpeg')"></div>
-                            
                                 <div class="post-content">
-                                    <p>这一段时间一直在做知识图谱，卡在实体关系抽取这里几个月了，在 Github 上面看到有人使用卷积神经网络训练模型进行抽取，自己也尝试了一下，但是一直苦于没有像样数据去训练，而标注训练集又太费时间了，我不太愿意干体力活。所以采用了一个低档次的方法，<strong>基于依存句法分析的实体关系抽取</strong>，记录一下心得，方便日后忘记可以再找回来。</p>
-<p>本方法参考了 Github 上面的项目和一篇论文，在文章末尾给出，使用的分词工具是 HanLP，感谢相关作者。</p>
-<p>论文给出了 8 种中文关系的表达方式，并且最后给出了一个采用正则表达式语法指出表达，核心就是谓语动词表示关系，即关系表述中一定得有动词。</p>
-<pre><code>状语*动词+补语?宾语?
-</code></pre>
-<p>我不太赞同把宾语也当作关系表述的一部分，论文指出“p4生于山西”应该抽出（p4，山西，生于山西），我认为关系不应该表述为“生于山西”，所以我把关系表述改为下面的样子了。</p>
-<pre><code>状语*动词+补语?
-</code></pre>
-<p>这篇文章只是作为一个方法介绍，我自己先看了一遍，能够保证我下次看到这篇文章，可以立马回忆起自己的实现方法，希望你看了也能了解方法，看不懂的话，我表示抱歉，浪费您的时间了，我已经尽可能写到简单了。</p>
-<p>先来看几个简单句子吧：</p>
-<pre><code>主谓宾关系：刘小绪 生于 四川
-// 这个三元组很明显：（刘小绪，生于，四川）
-
-
-动补结构：刘小绪 洗 干净 了 衣服
-// 如果套用主谓宾关系就是：（刘小绪，洗，衣服）
-// 但是这里描述的是一个状态，是刘小绪把衣服洗干净了
-// “干净”是动词“洗”的补语，所以还应该提取出一个如下三元组
-// （刘小绪，洗干净了，衣服）
-
-状动结构：父亲 非常 喜欢 跑步
-// 这句和上面很像，主谓宾关系是：父亲喜欢跑步
-// “非常”用于修饰“喜欢”
-// （父亲，非常喜欢，跑步）
-
-介宾关系：刘小绪 就职 于 学校
-// 如果直接把这个三元组抽取为（刘小绪，就职，学校），很别扭
-// “于”和“学校”是介宾关系，它们的关系应该是：就职于
-// （刘小绪，就职于，学校）
-
-宾语前置：海洋 由 水 组成
-// “海洋”是“组成”的前置宾语
-// “由”是“组成”的状语
-// “水”和“由”是介宾关系
-// 所以上面的句子没有明确的主谓关系，需要我们判断
-// 抽出的三元组应该为：（水，组成，海洋）
-</code></pre>
-<p>HanLP 提供了两种依存句法分析的器，默认采用的是基于神经网络的依存句法分析器。<strong>依存句法分析就是将句子分析成一棵依存句法树，描述各个词语之间的依存关系，即指出词语之间在句法上的搭配关系。</strong></p>
-<p>有了上面所说的依存句法树，其实我们只需要进行各种判断就可以了。先做出下面的一点说明，就拿第一个例子来说。</p>
-<pre><code>原文：刘小绪生于四川
-
-# 这是分词结果
-[刘小绪/nr, 生于/v, 四川/ns]
-
-#这是句法分析结果
-刘小绪 --(主谓关系)--&gt; 生于
-生于 --(核心关系)--&gt; ##核心##
-四川 --(动宾关系)--&gt; 生于
-</code></pre>
-<p>为了方便理解，也为了方便程序的编写，我把他们组织成了下面的形式，为每一个词语都建一个依存句法字典。</p>
-<pre><code>刘小绪：{}
-生于：{主谓关系=[刘小绪], 动宾关系=[四川]}
-四川：{}
-</code></pre>
-<p>然后只需要写出类似于下面的程序段就可以抽出关系了。</p>
-<pre><code class="language-java">// 主谓宾关系：刘小绪生于四川
-// dic是这个词语的依存句法字典
-if (dic.containsKey(&quot;主谓关系&quot;) &amp;&amp; dic.containsKey(&quot;动宾关系&quot;)){
-    
-    // 当前的词语，用上面的例子来说，relation=“生于”
-    String relation = curWord.LEMMA;
-
-
-    // 用循环遍历，是因为关系列表里面不一定只有一个词语
-    for (CoNLLWord entity1:
-            dic.get(&quot;主谓关系&quot;)) {
-
-        for (CoNLLWord entity2:
-                dic.get(&quot;动宾关系&quot;)) {
-
-            System.out.println(entity1.LEMMA + &quot;,&quot; + relation + &quot;,&quot; + entity2.LEMMA);
-        }
-
-    }
-}
-</code></pre>
-<p>对于分词后的每个词语都进行上面程序段的操作。“刘小绪”和“四川”，关系字典都为空。而对于“生于”，关系列表里面既有主谓也有动宾，而自己本身就是动词，主谓宾就出来了。直接从主谓关系中拿出来词语作为 entity1，再拿上自己作为关系，最后拿出动宾关系中的词语作为 entity2。很明确的三元组（刘小绪，生于，四川）就出来了。</p>
-<p>最后给出一个程序运行结果图吧。</p>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569767901123.png" alt="" loading="lazy"></figure>
-<p>我个人觉得效果还行，在简单句子上面表现的差强人意，在长句子上面表现的差劲。</p>
-<p>参考：</p>
-<p><a href="https://github.com/hankcs/HanLP">HanLP 自然语言处理</a></p>
-<p><a href="http://www.docin.com/p-1715877509.html">基于依存分析的开放式中文实体关系抽取方法</a></p>
-<p>命名实体三元组抽取参考自<a href="https://github.com/twjiang/fact_triple_extraction">fact_triple_extraction</a></p>
+                                    <p>这里收集自己平时发现的精美小工具，这篇内容会持续更新的。</p>
+<p>### 工具类</p>
+<p>名称 | 类型 | 简介<br>
+:--: | :--: | :--<br>
+<a href="https://pixabay.com/">Pixabay</a>、<a href="https://unsplash.com/">Unsplash</a>、<a href="https://www.pexels.com/">Pexels</a> | 图片库 | 图片非常精美，而且都可以免费使用，不用担心版权问题，其中 <a href="https://pixabay.com/">Pixabay</a> 除了图片还有很多精美的短视频<br>
+<a href="https://www.p2hp.com/screenrecord.html">screenrecord</a> | 在线录屏 | 一个录屏工具，在线录制是它最大的优点，省去了安装录屏软件的麻烦<br>
+<a href="https://chrome.google.com/webstore/detail/fasterchrome/nmgpnfccjfjhdenioncabecepjcmdnjg">FasterChrome</a> | Chrome 插件 | 当用户鼠标悬停在链接上面，就开始预加载网页，使得真正点击的时候，页面瞬间就能加载。<br>
+<a href="https://github.com/getgridea/gridea">Gridea</a> | 写作 | 一个静态博客写作客户端，可以实现博客文章一键部署到 𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌 或 Coding Pages，并且支持 Markdown 语法<br>
+<a href="https://nighteye.app/">Night Eye</a> | Chrome 插件 | 一个可以把任何网站都变成黑夜模式的工具</p>
+<p>### 编程类</p>
+<p>名称 | 类型 | 简介<br>
+:--: | :--: | :--<br>
+<a href="https://cmder.net/">Cmder</a> | 终端工具 | 一个 Windows 下的终端工具，可以像在 linux 下一样敲命令，提供了 mini 版和 full 版，如果遇到问题可以看<a href="https://blog.csdn.net/qq_22186119/article/details/77453227">这篇文章</a><br>
+<a href="https://instant.page/">Instant.page</a> | Js 库 | 当用户鼠标悬停在链接上面，就开始预加载网页，从而使得用户真正点击的时候，页面瞬间就能加载。<br>
+<a href="https://github.com/Teun/thenBy.js">ThenBy</a> | Js库 | 一个可以实现多字段排序的 js 库<br>
+<a href="http://www.man7.org/linux/man-pages/index.html">Linux man-pages</a> | 文档 | Linux man-pages 的 Html 版，在学习 Linux、操作系统等知识的时候可以查阅加深理解<br>
+<a href="https://github.com/xuliangzhan/xe-utils">Xe-utils</a> | Js 库 | 一个包含了常用 JavaScript 函数的库，避免重复造轮子<br>
+<a href="https://tailwindcss.com/">Tailwind CSS</a> | CSS 框架 | 一个实用的CSS框架，用于快速构建自定义设计，它提供了底层的实用工具类，让您可以在不离开HTML的情况下构建完全定制的设计。</p>
+<p>### 未分类</p>
+<p>名称 | 类型 | 简介<br>
+:--: | :--: | :--<br>
+<a href="https://countrymeters.info/cn/World">Countrymeters</a> | 世界人口时钟 | 可以实时查看世界人口的变化，也可以缩小反馈查看具体的国家、地区等等，也提供了世界五大死亡原因<br>
+<a href="https://we.laogongshuo.com/">敏感词防和谐</a> | 敏感词防和谐工具 | 这个工具通过在每个字符之间插入零宽字符来防止敏感词被和谐，每年都会经历的论文查重也可以通过插入这样的零宽字符来避免</p>
 
                                 </div>
                     </article>
                     <!--  -->
                     
-                        <div class="next-post">
-                            <div class="next">下一篇</div>
-                            <a href="https://mengxiaoxu.github.io/post/jian-dan-li-jie-ci-pan-jie-gou">
-                                <h3 class="post-title">
-                                    简单理解磁盘结构
-                                </h3>
-                            </a>
-                        </div>
-                        
                             <div id="disqus_thread"></div>
                             <div id="gitalk-container"></div>
                 </div>

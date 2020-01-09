@@ -7,7 +7,7 @@
 <title>
     Git 进阶及常用命令 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578578573282">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578578940257">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578578573282" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578578940257" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -60,14 +60,6 @@
         <div class="menu-container">
             <ul>
                 
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
                     
                             <li>
                                 <a href="/archives" class="menu">
@@ -132,13 +124,13 @@
                         <div class="post-info">
                             <time class="post-time">2019-04-18</time>
                             
-                                <a href="https://mengxiaoxu.github.io//tag/git" class="post-tag i-tag
-                            i-tag-success">
+                                <a href="https://mengxiaoxu.github.io/tag/git" class="post-tag i-tag
+                            i-tag-other_1">
                             #Git
                         </a>
                                 
-                                <a href="https://mengxiaoxu.github.io//tag/QjCHA76i_r" class="post-tag i-tag
-                            i-tag-error">
+                                <a href="https://mengxiaoxu.github.io/tag/QjCHA76i_r" class="post-tag i-tag
+                            i-tag-success">
                             #编程基础
                         </a>
                                 
@@ -160,10 +152,10 @@ $ git config --global user.email johndoe@example.com
 <h4 id="git-原理">Git 原理</h4>
 <p>Git 和大多数版本控制器有一个重要的区别，就是它<strong>直接记录快照，而非差异比较</strong>，其它大部分系统以文件变更列表的方式存储信息，而 Git 则存储每个文件与初始版本的差异。换句话说，只要你的文件有改动，那么 Git 就会将该文件复制一份，正因为 Git 的这个特性，所以 Git 仓库很容易就变得非常大；为了高效，如果文件没有修改，那么 Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件。Git 对待数据更像是一个<strong>快照流</strong>。</p>
 <p>Git 有三个区，分别为：仓库、工作目录、暂存区。基本的 Git 流程为：1）在工作目录中修改文件；2）暂存文件，将文件的快照放入暂存区域；3）提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。那么相应的 Git 就有三种状态：已提交（committed）、已修改（modified）和已暂存（staged），你的文件可能处于其中之一。</p>
-<figure data-type="image" tabindex="1"><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3YyL2ltYWdlcy9hcmVhcy5wbmc?x-oss-process=image/format,png" alt="image"></figure>
+<figure data-type="image" tabindex="1"><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3YyL2ltYWdlcy9hcmVhcy5wbmc?x-oss-process=image/format,png" alt="image" loading="lazy"></figure>
 <h4 id="git-基础">Git 基础</h4>
 <p>工作目录中的文件不外乎处于两种状态：已跟踪或未跟踪。已跟踪是指那些纳入了版本控制的文件，在上一次快照中有它们的记录；工作目录中除了已跟踪文件以外的所有文件都属于未跟踪文件，们既不存在于上次快照的记录中，也没有放入暂存区。</p>
-<figure data-type="image" tabindex="2"><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3YyL2ltYWdlcy9saWZlY3ljbGUucG5n?x-oss-process=image/format,png" alt="image"></figure>
+<figure data-type="image" tabindex="2"><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3YyL2ltYWdlcy9saWZlY3ljbGUucG5n?x-oss-process=image/format,png" alt="image" loading="lazy"></figure>
 <h6 id="查看文件状态">查看文件状态</h6>
 <p>如果需要查看哪些文件处于什么状态，可以使用<code>git status</code>命令，这个命令显示的信息十分详细，如果你喜欢简洁一点的信息，那么可以在其后添加一个<code>-s</code>，其报告格式类似于下面这样。</p>
 <pre><code class="language-shell">$ git status -s
@@ -205,7 +197,7 @@ Changes to be committed:
 <h4 id="分支管理">分支管理</h4>
 <p>Git 的分支模型是它的必杀技特性，它处理分支的方式是难以置信的轻量，创建分支几乎是在一瞬间完成，而且在不同分支间的切换也非常的便捷，要理解 Git 的分支，我们必须要再次回顾 Git 是如何保存数据的。</p>
 <p>下图是我们的一个工作流，可以看到所谓的分支实际上就是一个可以移动的指针而已，<code>master</code>、<code>v1.0</code>都仅仅是一个指针，而创建分支、切换分支等操作也都只是对指针的操作，因此就不奇怪为什么 Git 这么快了。<br>
-<img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3YyL2ltYWdlcy9icmFuY2gtYW5kLWhpc3RvcnkucG5n?x-oss-process=image/format,png" alt="image"></p>
+<img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3YyL2ltYWdlcy9icmFuY2gtYW5kLWhpc3RvcnkucG5n?x-oss-process=image/format,png" alt="image" loading="lazy"></p>
 <p>那么 Git 又是如何知道当前在哪一个分支上呢？它仅仅是用了一个名为<code>HEAD</code>的特殊指针，你可以将<code>HEAD</code>想象为当前分支的别名，<code>HEAD</code>指向哪个分支，就表示当前处于哪个分支。</p>
 <h6 id="分支创建与切换">分支创建与切换</h6>
 <p>我们可以使用<code>git branch [branch-name]</code>来创建一个新的分支，比如<code>git branch testing</code>；如果使用不带选项的<code>git branch</code>，那么它会列出当前所有的分支，这里需要注意的是<code>master</code>分支也不是特殊分支，它是运行<code>git init</code>时自动创建的默认分支，因为大家都懒得去改它，所以它就好像变得特殊了一样。</p>
@@ -225,7 +217,7 @@ Changes to be committed:
 <p>当合并完分支后，之前的分支一般就不会再要了，这时你可以运行<code>git branch -d [branch-name]</code>来删除指定分支，比如使用<code>git branch -d testing</code>来删除<code>testing</code>分支。</p>
 <h6 id="远程分支">远程分支</h6>
 <p>远程分支以<code>(remote)/(branch)</code>的形式来命名。如下图所示，如果你克隆一个仓库下来，那么这个仓库除了会有一个本地的分支指针，还会有一个远程分支指针。如果你在本地的<code>master</code>分支做了一些工作，但是你并没有与<code>origin</code>服务器连接，那么你的<code>origin/master</code>指针就不会移动。</p>
-<figure data-type="image" tabindex="3"><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3YyL2ltYWdlcy9yZW1vdGUtYnJhbmNoZXMtMS5wbmc?x-oss-process=image/format,png" alt="image"></figure>
+<figure data-type="image" tabindex="3"><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3YyL2ltYWdlcy9yZW1vdGUtYnJhbmNoZXMtMS5wbmc?x-oss-process=image/format,png" alt="image" loading="lazy"></figure>
 <p>在这之前我们已经讲过通过推送分享自己的成果，在运行<code>git push origin master</code>命令时，Git 会自动的将<code>master</code>分支名字展开为<code>refs/heads/master:refs/heads/master</code>，即意味着<strong>推送本地的<code>master</code>分支来更新远程仓库上的<code>master</code>分支</strong>，所以你也可以运行<code>git push origin master:testing</code>来做类似的事，如果远程仓库没有<code>testing</code>分支，那它会自己创建一个新的<code>testing</code>分支。</p>
 <p>我们肯定需要创建一个跟踪远程仓库的其它分支，最简单的就是运行<code>git checkout -b [new-branch] [remote-name]/[branch]</code>，该命令会以远端<code>[branch]</code>分支的内容来创建本地的<code>[new-branch]</code>分支，Git 也对该命令做了一个简化，<code>git checkout --track [remote-name]/[branch]</code>，该命令就会在本地创建一个<code>[branch]</code>分支用于跟踪远端的<code>[branch]</code>分支。</p>
 <p>当然，我们还需要了解一个删除远程分支的命令<code>git push origin --delete [branch]</code>，需要注意的是这个命令基本上只是从服务器上移除这个指针。 Git 服务器通常会保留数据一段时间直到垃圾回收运行，所以如果不小心删除掉了，通常是很容易恢复的。</p>
@@ -343,7 +335,7 @@ Changes to be committed:
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://mengxiaoxu.github.io//post/shi-me-shi-qi-yue-ce-shi">
+                            <a href="https://mengxiaoxu.github.io/post/shi-me-shi-qi-yue-ce-shi">
                                 <h3 class="post-title">
                                     什么是契约测试？
                                 </h3>

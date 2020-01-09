@@ -7,7 +7,7 @@
 <title>
     顺序、条件、循环语句的底层解释 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578578573282">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578578940257">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578578573282" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578578940257" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -60,14 +60,6 @@
         <div class="menu-container">
             <ul>
                 
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
                     
                             <li>
                                 <a href="/archives" class="menu">
@@ -132,8 +124,8 @@
                         <div class="post-info">
                             <time class="post-time">2018-11-11</time>
                             
-                                <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-primary">
+                                <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
+                            i-tag-">
                             #操作系统
                         </a>
                                 
@@ -147,7 +139,7 @@
 <p>我们都清楚，绝大多数编译器都把汇编语言作为中间语言，把汇编语言程序变成可运行的二进制文件早就解决了，所以现在的高级语言基本上只需要把自己翻译成汇编语言就可以了。</p>
 <p>汇编指令总共只有那么多，大多数指令都是对数据进行操作，比如常见的数据传送指令<code>mov</code>。不难理解，被操作数据无非有三种形式，<strong>立即数</strong>，即用来表示常数值；<strong>寄存器</strong>，此时的数据即存放在指定寄存器中的内容；<strong>内存引用</strong>，它会根据计算出来的地址访问某个内存位置。</p>
 <p>需要注意的是，到了汇编层级，就不像高级语言那样随随便便<code>int</code>就能和<code>long</code>类型的数据相加减，他们在底层所占有的字节是不一样的，汇编指令是区分操作数据大小的，比如数据传送指令，就有下面这些品种（x86-64 对数据传送指令加了一条限制：两个操作数不能都指向内存位置）。</p>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569410442560.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569410442560.png" alt="" loading="lazy"></figure>
 <h5 id="压栈与弹栈">压栈与弹栈</h5>
 <p>对于栈，我想不必多讲，IT 行业的同学都清楚，它是一种线性数据结构，其中的数据遵循“先进后出”原则，寄存器<code>%rsp</code>保存着栈顶元素的地址，即栈顶指针。一个程序要运行起来，离不开栈这种数据结构。</p>
 <p>栈使用最多的就是弹栈<code>popq</code>和压栈<code>pushq</code>操作。比如将一个四字值压入栈中，栈顶指针首先要减 8（栈向下增长），然后将值写到新的栈顶地址；而弹栈则需要先将栈顶数据读出，然后再将栈指针加 8。所以<code>pushq</code>和<code>popq</code>指令就可以表示为下面的形式。</p>
@@ -314,7 +306,7 @@ while(test-expr){
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://mengxiaoxu.github.io//post/wei-xin-shi-yong-ji-qiao">
+                            <a href="https://mengxiaoxu.github.io/post/wei-xin-shi-yong-ji-qiao">
                                 <h3 class="post-title">
                                     微信使用技巧
                                 </h3>

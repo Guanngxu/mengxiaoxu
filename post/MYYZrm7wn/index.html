@@ -7,7 +7,7 @@
 <title>
     如何解决跨域请求问题 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578578573282">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578578940257">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578578573282" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578578940257" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -60,14 +60,6 @@
         <div class="menu-container">
             <ul>
                 
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
                     
                             <li>
                                 <a href="/archives" class="menu">
@@ -132,13 +124,13 @@
                         <div class="post-info">
                             <time class="post-time">2018-09-18</time>
                             
-                                <a href="https://mengxiaoxu.github.io//tag/S57Vp3Suu" class="post-tag i-tag
-                            i-tag-info">
+                                <a href="https://mengxiaoxu.github.io/tag/S57Vp3Suu" class="post-tag i-tag
+                            i-tag-">
                             #计算机网络
                         </a>
                                 
-                                <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-other_1">
+                                <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
+                            i-tag-success">
                             #前端
                         </a>
                                 
@@ -147,7 +139,7 @@
                             <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/MYYZrm7wn.jpg')"></div>
                             
                                 <div class="post-content">
-                                    <figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569413513576.JPG" alt=""></figure>
+                                    <figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569413513576.JPG" alt="" loading="lazy"></figure>
 <p>刚毕业入职，大部分时间还在培训，中间有一段时间的空闲时间，就学习了下 Angular，在学校都是编写的单体应用，所有代码都放在同一个工程下面，到公司使用的是前后端分离了，虽然后端程序也是我自己写的，但是有一些数据是从公司现有接口去拿的，然后就遇到让我纠结了两小时的<strong>跨域请求问题</strong>，为了避免出现上图中的尴尬场面，在这里做一个简单的总结输出。</p>
 <h4 id="什么是跨域请求">什么是跨域请求</h4>
 <p>跨域请求问题是浏览器的<strong>同源策略</strong>造成的，该策略不允许执行其它网站的脚本，是浏览器施加的安全限制。什么是同源？最初是指网页  A 设置的 Cookie 不能被网页 B 打开，包括三个相同：<strong>协议、域名、端口</strong>。这个同源是从 URL 判断的，不是从 IP 判断的，如果同一个服务器对应连个域名，这两个域名是不同源的。</p>
@@ -171,7 +163,7 @@ localhost 调用 127.0.0.1 跨域
 <p>所有的现代浏览器都对网络连接进行了安全限制，包括 XMLHttpRequest，如果你的 web 应用程序和其使用的数据在同一个服务器，你不会遇到跨域请求问题。但是当你的 web 应用程序和 web 服务数据不在同一个服务器时，就会被浏览器限制连接了。</p>
 <h4 id="常用解决方案">常用解决方案</h4>
 <p>对于跨域请求有很多的解决方案，最常用的解决方案是在你的 web 服务器上面<strong>设置代理</strong>。在设置代理之前就通过，应用程序直接去请求另一个服务器下的数据；设置代理之后，应用程序从自己的 web 服务器中请求数据，再由代理去请求数据，这样 web 服务器拿到数据之后返回给应用程序即可。从浏览器角度看，就是从同一个服务器拿的数据，并没有进行跨域请求。</p>
-<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569413461355.gif" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569413461355.gif" alt="" loading="lazy"></figure>
 <p>通俗易懂的说，你家的宠物狗不会吃别家的食物，因为它担心别人的食物会把自己给药死，所以你的狗狗只管找你要食物，你是它的主人，它绝对相信你，而你可以鉴别别人给的食物是不是安全的。类比，小狗就是浏览器，你就是代理。</p>
 <h4 id="angular-中的解决办法">Angular 中的解决办法</h4>
 <p>上面所说的解决方案在开发过程中不方便操作，每新发一个接口都到服务器中去配置一下，不仅麻烦而且效率低下。首先说一下在 Angular 中一个人比较常用的解决方法，默认你在使用<code>angular-cli</code>构建你的项目，我们可以创建一个代理配置文件<code>proxy.conf.json</code>（假设你的后端服务的访问地址为<code>10.121.163.10:8080</code>），代理配置文件如下：</p>
@@ -240,7 +232,7 @@ localhost 调用 127.0.0.1 跨域
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://mengxiaoxu.github.io//post/WsHPYySZU">
+                            <a href="https://mengxiaoxu.github.io/post/WsHPYySZU">
                                 <h3 class="post-title">
                                     如何让你的网页看起来更美观
                                 </h3>

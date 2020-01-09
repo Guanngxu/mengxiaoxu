@@ -7,7 +7,7 @@
 <title>
     什么是契约测试？ | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578578573282">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578578940257">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578578573282" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578578940257" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -60,14 +60,6 @@
         <div class="menu-container">
             <ul>
                 
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
                     
                             <li>
                                 <a href="/archives" class="menu">
@@ -132,13 +124,13 @@
                         <div class="post-info">
                             <time class="post-time">2019-04-10</time>
                             
-                                <a href="https://mengxiaoxu.github.io//tag/ce-shi" class="post-tag i-tag
-                            i-tag-">
+                                <a href="https://mengxiaoxu.github.io/tag/ce-shi" class="post-tag i-tag
+                            i-tag-other_2">
                             #测试
                         </a>
                                 
-                                <a href="https://mengxiaoxu.github.io//tag/qian-hou-duan-fen-chi" class="post-tag i-tag
-                            i-tag-other_1">
+                                <a href="https://mengxiaoxu.github.io/tag/qian-hou-duan-fen-chi" class="post-tag i-tag
+                            i-tag-primary">
                             #前后端分离
                         </a>
                                 
@@ -150,14 +142,14 @@
                                     <p>契约测试全称为：消费者驱动契约测试，最早由 Martin Fowler 提出。契约这个词从字面上很容易理解，就是双方（多方）达成的共同协议，那又为什么需要契约测试这个东西呢？</p>
 <p>在当前微服务大行其道的行业背景下，越来越多的团队采用了前后端分离和微服务架构，我们知道微服务是由单一程序构成的小服务，与其它服务使用 HTTP API 进行通讯，服务可以采用不同的编程语言与数据库，微服务解决了单体应用团队协作开发成本高、系统高可用性差等等问题。</p>
 <p>但是微服务也引入了新的问题，假设 A 团队开发某服务并提供对应的 API，B 团队也在开发另一个服务，但是他们需要调用 A 团队的 API，为了产品的尽快发布，两个团队都争分夺秒，已经进入联调阶段了，然而出现了下面这样的尴尬情况。</p>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569678515041.jpg" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569678515041.jpg" alt="" loading="lazy"></figure>
 <p>随着越来越多的微服务加入，它们的调用关系开始变得越来越复杂，如果每次更改都需要和所有调用该 API 的团队协商，那沟通成本也未免太大了，试想下图的沟通成本。</p>
-<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569678554581.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569678554581.png" alt="" loading="lazy"></figure>
 <p>为了保证 API 调用的准确性，我们会对外部系统的 API 进行测试，如果外部系统稳定性很差，或者请求时间很长的时候，就会导致我们的测试效率很低，当调用 API 失败时，你甚至无法确定是因为 API 被更改而导致的失败还是运行环境不稳定导致的失败。</p>
 <p>A 团队提供的 API 不稳定，肯定会导致 B 团队效率低下，为了不影响 B 团队的进度，所以构建了<a href="https://martinfowler.com/bliki/TestDouble.html">测试替身</a>，通过模拟外部 API 的响应行为来增强测试的稳定性和反应速度。</p>
-<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569678587990.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569678587990.png" alt="" loading="lazy"></figure>
 <p>但是这样做真的就解决问题了吗？当所有内部测试都通过时，能拍着胸脯说真正的外部 API 就一定没有变化？很简单的一个解决方案就是：部分测试使用测试替身，另一部分测试定期使用真实的外部 API，这样既保证了测试的运行效率、调用端的准确性，又能确保当真实外部系统API改变时能得到反馈。</p>
-<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569678615430.jpg" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569678615430.jpg" alt="" loading="lazy"></figure>
 <p>感觉剧情到这里就差不多该结束了，实际上真正的高潮部分开刚刚开始。如果外部 API 的反馈周期很长，那增加真实 API 测试间隔时间就又回到了最初的起点。现在我们回顾一下上面的方案。</p>
 <p>在上面的场景中，我们都是已知外部 API 功能来编写相应的功能测试，并且使用直接调用外部 API 的方式来达到测试的目的，如此就不可避免的带来了两个问题：</p>
 <ul>
@@ -182,7 +174,7 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
+                            <a href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
                                 <h3 class="post-title">
                                     刘小绪同学随笔（2019-02-27）
                                 </h3>
@@ -200,7 +192,7 @@
                                 <!-- id-card -->
                                 
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1578578573282)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1578578940257)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -239,32 +231,38 @@
             
             
                 <h3>
-                    <a href="https://mengxiaoxu.github.io//post/vue-typescript-xiang-mu-qi-shou-shi">Vue + TypeScript 项目起手式</a>
+                    <a href="https://mengxiaoxu.github.io/post/xiao-gong-ju-shou-ji">小工具收集</a>
                 </h3>
             
             
             
                 <h3>
-                    <a href="https://mengxiaoxu.github.io//post/2019-nian-zong-jie">2019 年个人总结</a>
+                    <a href="https://mengxiaoxu.github.io/post/vue-typescript-xiang-mu-qi-shou-shi">Vue + TypeScript 项目起手式</a>
                 </h3>
             
             
             
                 <h3>
-                    <a href="https://mengxiaoxu.github.io//post/mongodb-ju-he-ru-men">MongoDB 聚合入门</a>
+                    <a href="https://mengxiaoxu.github.io/post/2019-nian-zong-jie">2019 年个人总结</a>
                 </h3>
             
             
             
                 <h3>
-                    <a href="https://mengxiaoxu.github.io//post/yong-hu-guan-zhu-er-cheng-xu-yuan-bu-guan-zhu-de-shi">用户关注而程序员不关注的事</a>
+                    <a href="https://mengxiaoxu.github.io/post/mongodb-ju-he-ru-men">MongoDB 聚合入门</a>
                 </h3>
             
             
             
                 <h3>
-                    <a href="https://mengxiaoxu.github.io//post/liu-xiao-xu-tong-xue-sui-bi">刘小绪同学随笔（2019-12-15）</a>
+                    <a href="https://mengxiaoxu.github.io/post/yong-hu-guan-zhu-er-cheng-xu-yuan-bu-guan-zhu-de-shi">用户关注而程序员不关注的事</a>
                 </h3>
+            
+            
+            
+            
+            
+            
             
             
             

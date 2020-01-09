@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    TypeScript | 刘小绪同学的博客
+    Vue | 刘小绪同学的博客
 </title>
 <link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578578573282">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -119,7 +119,7 @@
                     
     <div class="i-card">
         <b>标签：#
-        TypeScript</b>
+        Vue</b>
     </div>
     
         
@@ -133,17 +133,17 @@
                     <time class="post-time">2020-01-09</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/vue" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-">
             #Vue
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/J_3GE6pBm" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-">
             #TypeScript
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-error">
             #前端
         </a>
                         
@@ -331,135 +331,6 @@ new Vue({
                                         </div>
                                         
                                             <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/vue-typescript-xiang-mu-qi-shou-shi">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/MqqlYHD78">
-                        Bootstrap-table 合并相同单元格
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-01-26</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/J_3GE6pBm" class="post-tag i-tag
-                            i-tag-other_3">
-            #TypeScript
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-other_2">
-            #前端
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/MqqlYHD78">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/MqqlYHD78.jpg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            Bootstrap-table 官方提供了合并单元格方法 mergeCells，它根据四个参数可以合并任意个单元格，我们要做的只是告诉它怎么合并。
-要合并同一列相同的单元格，无非两种办法，一种是一边遍历一边合并，遍历完了再合并。这里采用第二种办法，这里不需要遍历所有数据，因为用户只能看到当前页的数据，所以只遍历当前页的数据更省时间。
-下面是我实现的获取合并信息算法，最终返回的是一个哈希表，比如下面的这个表格，如果要对「性别」这一列进行合并，很明显前面两个“男”需要合并成一个单元格，再去看下 Bootstrap-table 提供的 API，它需要的是从哪个单元格开始，合并多少个单元格，也就是它需要的是两个数值类型的参数。
-
-
-
-姓名
-性别
-年龄
-
-
-
-
-张三
-男
-23
-
-
-李四
-男
-19
-
-
-王二
-女
-20
-
-
-麻子
-男
-21
-
-
-
-所以我把哈希表设置为，键存的是索引，值存的是从这个索引开始后面连续有多少个和它一样的单元格，那么上述表格性别这一列所得到的合并信息哈希表就为：
-{
-    0: 2,
-    2: 1,
-    3: 1
-}
-
-下面算法很简单，使用两个指针遍历指定的列，如果两个指针所指向的数据相同，那么就将键所对应的值进行加一操作，整个方法只会对该列数据遍历一边，所以时间复杂度为 O(n)。
-let getMergeMap = function (data, index: number) {
-    let preMergeMap = {};
-    // 第 0 项为表头，索引从 2 开始为了防止数组越界
-    for (let i = 2; i &amp;lt; data.length; i++) {
-        let preText = $(data[i-1]).find(&#39;td&#39;)[index].innerText;
-        let curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
-        let key = i - 2;
-        preMergeMap[key] = 1;
-        while ((preText == curText) &amp;amp;&amp;amp; (i &amp;lt; data.length-1)) {
-            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
-            i++;
-            preText = $(data[i - 1]).find(&#39;td&#39;)[index].innerText;
-            curText = $(data[i]).find(&#39;td&#39;)[index].innerText;
-        }
-        // while循环跳出后，数组最后一项没有判断
-        if (preText == curText) {
-            preMergeMap[key] = parseInt(preMergeMap[key]) + 1;
-        }
-    }
-    return preMergeMap;
-}
-
-上述算法得到了单列数据的合并信息，下一步就是按照这个信息进行相同单元格的合并了，因此封装了下面的方法按照指定哈希表进行合并。
-let mergeCells = function (preMergeMap: Object, target, fieldName: string) {
-    for (let prop in preMergeMap) {
-        let count = preMergeMap[prop];
-        target.bootstrapTable(&#39;mergeCells&#39;, { index: parseInt(prop), field: fieldName, rowspan: count });
-    }
-}
-
-到目前为止，我们实现的都只是对单列数据进行合并，要实现对多列数据进行合并，那么只需要对所有列都进行相同的操作即可。
-export let mergeCellsByFields = function (data: Object[], target, fields) {
-    for (let i = 0; i &amp;lt; fields.length; i++) {
-        let field = fields[i];
-        // 保证 field 与 i 是相对应的
-        let preMergeMap = getMergeMap(data, i);
-        let table = target.bootstrapTable();
-        mergeCells(preMergeMap, table, field);
-    }
-}
-
-因为我在程序中做了一点处理，保证了fields中每个值得索引与对应表头的索引是一样的，因此不需要额外传入索引信息。简单来说就是我所实现的表格会根据fields的顺序，实现列之间的动态排序。你需要注意的是这一点很可能和你不一样。
-到现在已经能够合并所有的列了，查看 Bootstrap-table 的配置信息发现，它有个属性是 onPostBody 它会在 table body 加载完成是触发，所以把这个属性配置成我们的合并单元格方法即可。
-// groups 为要合并的哪些列
-onPostBody: function () {
-    mergeCellsByFields($(&#39;#table&#39; + &#39; tr&#39;), $(&#39;#table&#39;), groups);
-}
-
-再说一点不太相关的，我实现的是让用户可以自己选可以合并多少列，即用了一个可多选的下拉列表框供用户选择，根据用户选择的数量去合并，所以传入了一个groups参数。
-最后推荐一个排序插件 thenBy，你可以用它进行多字段排序，比如用在合并相同单元格的场景，在绘制表格前先对数据进行排序，那么最后合并的结果就是把所有相同的数据聚合到一起了，并且还将它们合并到一起了，起到了一个隐形的过滤查询功能。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/MqqlYHD78">Read More ~</a>
                             </div>
                 </div>
             </article>

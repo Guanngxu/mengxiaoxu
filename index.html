@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578409241138">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578578573282">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578409241138" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578578573282" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -120,6 +120,218 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io//post/vue-typescript-xiang-mu-qi-shou-shi">
+                        Vue + TypeScript 项目起手式
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-09</time>
+                    
+                        <a href="https://mengxiaoxu.github.io//tag/vue" class="post-tag i-tag
+                            i-tag-info">
+            #Vue
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/J_3GE6pBm" class="post-tag i-tag
+                            i-tag-other_3">
+            #TypeScript
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
+                            i-tag-banana">
+            #前端
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io//post/vue-typescript-xiang-mu-qi-shou-shi">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/vue-typescript-xiang-mu-qi-shou-shi.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            在此前我使用的前端框架是 Angular，使用过 TypeScript 后你就会讨厌 JS 了，我学习 Vue 时的最新版本是 2.5，相信大部分同学都不会认为 Vue 那样又细又长的代码很美观吧，简单看了一些网络博客后，我毅然决然引入了 TypeScript 进行开发，本文仅整理记录我自己遇到的一些坑。
+### 使用 Cli
+脚手架是一个比较方便的工具，这里需要注意的是@vue/cli和vue-cli是不一样的，推荐使用npm i -g @vue/cli安装。
+安装完成后，可以直接使用vue create your-app创建项目，你可以选择使用默认配置亦或是自己手动选择配置，按提示一步一步向下走即可，它会根据你的选择自己创建比如tsconfig.json等等配置文件。这里推荐使用less开发样式，sass老是在安装的过程中出问题。
+当然你也可以使vue ui命令启动一个本地服务，它是一个 Vue 项目管理器，提供了一个可视化的页面供你管理自己的项目，它的样子如下图所示，还是比较清新的。
+
+### 使用 vue-property-decorator
+Vue 官方维护了 vue-class-component 装饰器，vue-property-decorator 则是在vue-class-component基础上增强了更多结合Vue特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。
+截止本文时间，vue-property-decorator共提供了 11 个装饰器和 1 个Mixins方法，下面用@Prop举个例子，是不是看起来引起极度舒适。
+import { Vue, Component, Prop } from &#39;vue-property-decorator&#39;
+
+@Component
+export default class YourComponent extends Vue {
+
+    @Prop(Number) readonly propA: number | undefined
+    @Prop({ default: &#39;default value&#39; }) readonly propB!: string
+    @Prop([String, Boolean]) readonly propC: string | boolean | undefined
+}
+
+
+// 上面的内容将会被解析成如下格式
+
+export default {
+    props: {
+        propA: {
+            type: Number
+        },
+        propB: {
+            default: &#39;default value&#39;
+        },
+        propC: {
+            type: [String, Boolean]
+        }
+    }
+}
+
+### 使用 Vuex
+关于怎么使用Vuex此处就不再做过多说明了，需要注意的一点是，如果你需要访问$store属性的话，那么你必须得继承Vue类，坑的地方是在某些情况下即使你没有继承Vue，它也能通过编译，只有在程序运行起来的时候才报错。
+class ExampleApi extends Vue {
+
+    public async getExampleData() {
+        if (!this.$store.state.exampleData) {
+            const res = await http.get(&#39;url/exampleData&#39;);
+            if (res.result) {
+                this.$store.commit(&#39;setExampleData&#39;, res.data);
+                return res.data;
+            } else {
+            promptUtil.showMessage(&#39;get exampleData failed&#39;, &#39;warning&#39;);
+            }
+        } else {
+            return this.$store.state.exampleData;
+        }
+    }
+}
+
+### 使用自己的配置（含代理）
+vue.config.js是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被@vue/cli-service自动加载，它的配置项说明可以查看配置参考。
+我们再开发过程中都会使用代理来转发请求，代理的配置也是在这个文件中，它的官方说明在devserver-proxy中，下面是一个简单的vue.config.js文件例子。
+module.exports = {
+    filenameHashing: true,
+    outputDir: &#39;dist&#39;,
+    assetsDir: &#39;asserts&#39;,
+    indexPath: &#39;index.html&#39;,
+    productionSourceMap: false,
+    transpileDependencies: [
+        &#39;vue-echarts&#39;,
+        &#39;resize-detector&#39;
+    ],
+    devServer: {
+        hotOnly: true,
+        https: false,
+        proxy: {
+            &amp;quot;/statistics&amp;quot;: {
+                target: &amp;quot;http://10.7.213.186:3889&amp;quot;,
+                secure: false,
+                pathRewrite: {
+                    &amp;quot;^/statistics&amp;quot;: &amp;quot;&amp;quot;,
+                },
+                changeOrigin: true
+            },
+            &amp;quot;/mail&amp;quot;: {
+                target: &amp;quot;http://10.7.213.186:8888&amp;quot;,
+                secure: false,
+                changeOrigin: true
+            }
+        }
+    }
+}
+
+### 让 Vue 识别全局方法和变量
+我们在项目中都会使用一些第三方 UI 组件，比如我自己就使用了 Element，但是在使用它的$message、$notify等方法时就直接报错了，究其原因就是$message等属性并没有在 Vue 实例中声明。
+官方对此给出了很明确的解决方案，使用的是 TypeScript 的 模块补充特性，可以查看增强类型以配合插件使用。既然知道是因为没有声明导致的错误，那我们就给它声明一下好了，在src/shims-vue.d.ts文件中添加如下代码即可，如果没有该文件请自行创建。
+
+看到网上也有一部分人说的是src/vue-shim.d.ts，反正不管是怎么命名这个文件的，它们的作用是一样的。
+
+declare module &#39;vue/types/vue&#39; {
+    interface Vue {
+        $message: any,
+        $confirm: any,
+        $prompt: any,
+        $notify: any
+    }
+}
+
+这里顺道提一下，src/shims-vue.d.ts文件中的如下代码是为了让你的 IDE 明白以.vue结尾的文件是什么玩意儿。
+declare module &#39;*.vue&#39; {
+    import Vue from &#39;vue&#39;;
+    export default Vue;
+}
+
+
+### 路由懒加载
+Vue Router 官方有关于路由懒加载的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用require.ensure()按需加载组件可以生效。
+// base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中
+const Home = (r: any) =&amp;gt; require.ensure([], () =&amp;gt; r(require(&#39;@/views/home.vue&#39;)), layzImportError, &#39;base-view&#39;);
+
+// 路由加载错误时的提示函数
+function layzImportError() {
+    alert(&#39;路由懒加载错误&#39;);
+}
+
+上面的方式会在编译的时候把文件自动分成多个小文件，编译后的文件会以你自己命名的模块名来命名，如果代码之间有相互依赖，依赖部分代码编译后的文件会以两个模块名相连后进行命名。
+但是需要注意的是，这样拆分小文件之后引入了另外一个新的问题，因为客户端会缓存这些编译后的 js 文件，如果功能 A 同时依赖了a.js和b.js两个文件，但用户在使用其它功能时已经把a.js缓存到本地了，使用功能 A 时需要请求b.js文件，这时程序就很容易报错，因为此时在客户端这两个文件不是同一个版本，所以可能导致a.js调用b.js中的方法已经被删了，进而导致客户端页面异常。
+### 关于引入第三方包
+项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。
+/*
+ 引入 jquery 等库可以尝试下面这种方式
+ 只需要把相应的 js 文件放到指定文件夹即可
+**/
+const $ = require(&#39;@/common/js/jquery.min.js&#39;);
+const md5 = require(&#39;@/common/js/md5.js&#39;);
+
+引入一些第三方样式文件、UI 组件等，如果引入不成功可以尝试建一个 js 文件，将导入语句都写在 js 文件中，然后再在main.ts文件中导入这个 js 文件，这个方法能解决大部分的问题。例如我先建了一个lib.js，然后在main.ts中引入lib.js就没有报错。
+// src/plugins/lib.js
+import Vue from &#39;vue&#39;;
+
+// 树形组件
+import &#39;vue-tree-halower/dist/halower-tree.min.css&#39;;
+import {VTree} from &#39;vue-tree-halower&#39;;
+// 饿了么组件
+import Element from &#39;element-ui&#39;;
+import &#39;element-ui/lib/theme-chalk/index.css&#39;;
+// font-awesome 图标
+import &#39;../../node_modules/font-awesome/css/font-awesome.css&#39;;
+import VueCookies from &#39;vue-cookies&#39;;
+import VueJWT from &#39;vuejs-jwt&#39;;
+
+Vue.use(VueJWT);
+Vue.use(VueCookies);
+Vue.use(VTree);
+Vue.use(Element);
+
+
+// src/main.ts
+import App from &#39;@/app.vue&#39;;
+import Vue from &#39;vue&#39;;
+import router from &#39;./router&#39;;
+import store from &#39;./store&#39;;
+import &#39;./registerServiceWorker&#39;;
+import &#39;./plugins/lib&#39;;
+
+Vue.config.productionTip = false;
+
+new Vue({
+    router,
+    store,
+    render: (h) =&amp;gt; h(App),
+}).$mount(&#39;#app&#39;);
+
+因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个index.d.ts文件，我目前还没有找一个可以解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/vue-typescript-xiang-mu-qi-shou-shi">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io//post/2019-nian-zong-jie">
                         2019 年个人总结
                     </a>
@@ -128,7 +340,7 @@
                     <time class="post-time">2020-01-06</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-warning">
             #个人总结
         </a>
                         
@@ -189,7 +401,7 @@
                     <time class="post-time">2020-01-04</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-success">
             #数据库
         </a>
                         
@@ -296,12 +508,12 @@ db.collection.aggregate([
                     <time class="post-time">2019-12-15</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/vhSkGeYf1D" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-success">
             #设计
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-info">
             #前端
         </a>
                         
@@ -548,7 +760,7 @@ APP 上的通知
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-primary">
             #操作系统
         </a>
                         
@@ -617,12 +829,12 @@ splice()不局限于sendfile()的功能，也就是说sendfile()是splice()的�
                     <time class="post-time">2019-11-01</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/vim" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_2">
             #Vim
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/linux" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_1">
             #Linux
         </a>
                         
@@ -792,7 +1004,7 @@ syntax on &amp;quot;进行语法检验，颜色显示，比如 C 语言等
                     <time class="post-time">2019-10-28</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-info">
             #随笔
         </a>
                         
@@ -848,17 +1060,17 @@ Youtube 上最近有个视频火了：美国加州某地的微波传输站失灵
                     <time class="post-time">2019-10-19</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/nginx" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-error">
             #Nginx
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/linux" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-">
             #Linux
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-warning">
             #操作系统
         </a>
                         
@@ -931,12 +1143,12 @@ location /video/ {
                     <time class="post-time">2019-10-13</time>
                     
                         <a href="https://mengxiaoxu.github.io//tag/javascript" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-success">
             #JavaScript
         </a>
                         
                         <a href="https://mengxiaoxu.github.io//tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_4">
             #前端
         </a>
                         
@@ -1086,62 +1298,6 @@ click
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io//post/jia-li-de-gou">
-                        家里的狗
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-10-12</time>
-                    
-                        <a href="https://mengxiaoxu.github.io//tag/san-wen" class="post-tag i-tag
-                            i-tag-">
-            #散文
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io//tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-success">
-            #随笔
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io//post/jia-li-de-gou">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/jia-li-de-gou.jpg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            为了防止晚上有人来家里偷东西，几乎家家户户都至少会养一只狗。在我的记忆中，我家一开始是没有狗的。
-忘记是哪一年夏天的一个清晨，天还没有大亮，我隐约看见在牛棚后面的空地有个黑影，走近一点仔细一看，原来是一只不知道从哪里来的一只黑狗。
-它惊恐的看着我，眼神中夹杂着恐惧与无助，佝偻的身子比弓还要弯，倒是很像一个活着的牛轭。他的身子还没有草高，露水把全身的毛都打湿了，还沾着一些不知名的植物种子。我和它对视着，恐惧慢慢填满了它的眼球，我害怕吓到它，赶紧走开去告诉妈。
-妈远远看了一眼，让我别管它。随后妈把装着昨晚剩饭的猪食瓢放到牛棚后面的一块石头上，黑狗看见妈带着武器走近早就跑了，我吃早饭时还不时去望望它在不在，有没有吃妈给放在那里的饭。
-妈已经把猪喂完准备下地干活了，仍旧没有再次发现黑狗的踪影，也没见猪食瓢有什么变化，我心里有一点点的失落，黑狗应该是已经逃走了吧。
-晚上吃完饭妈去拿猪食瓢，告诉我里面的饭已经被吃的一粒不剩，我心里开始期待和它的再次见面。第二天早晨果然见到它了，身上已经没有昨天那么湿了，显然没有前一天来这里时钻的草丛多，妈依旧用猪食瓢装着米饭和米汤放在牛棚后的那个石头上。
-就这样过了几日，黑狗走进了我家的屋檐，它的样子实在太丑了。每一根肋骨都清晰的扎眼，看起来爸的手指都比它的小腿粗，感觉下一秒它就会死去。
-我并不喜欢它，甚至还有些讨厌它，我实在找不到更丑的词来形容它，不过是出于心里的怜悯与对生命的敬畏，会在吃饭的时候给它丢几个我不吃的肥肉，被烟熏黑的那一层肉边我也丢给它......
-有一次同村的一个人路过家门口时，看见那只黑狗吓的赶紧往妈身后躲。“有我在，它不敢咬。”，妈说。邻居夸夸妈说：“这个狗儿喂得好肥”。妈自豪的告诉那个人这只狗每天还送林儿（我）上学。
-是的，我也不知道什么时候我已经和大黑狗变得如此亲密了，它每天早上会把我送到山顶的学校，我每天下午回家做完作业会和它一起到田间追逐。在学校也常常会给同学们说大黑狗胸前的那长成了“人”字的一片白毛，我一直相信“人”字是老天爷特地印在它身上，用来告诉我大黑狗是他派来的使者。
-大黑狗来我家时已经很老很老了，是我读三年级的某一天，它像往常一样把我送到学校，但是我下午回家却不见它的踪影，一直等到晚上都没有见它回来。那些天我放学回家第一件事就是朝我和它常去的那些地方大声的唤它。
-不到一个月后的一天早晨，像大黑狗第一次来我家附近时的场景一样，湿漉漉的身子带着些杂草种子，不同的是它身旁还跟着一只背部有些黑毛的小黄狗，小黄狗胸前也有一个很明显的“人”字。我赶紧去用猪食瓢盛满饭放在它面前，它吃了几口就又走了。
-就这样，大黑狗离开了我，给我留下了一只小小的黄奶狗。我不知道它是去找它原来的主人去了，还是觉得自己老了，不愿意让我看见它倒下的样子，反正它就是再也没有回来过。
-小黄狗长成了大黄狗，我对这只大黄狗的印象很浅，只记得爸妈把这只黄狗送给了外婆家附近的亲戚，我们留下了它生的一只小黄狗。外婆知道我们把大黄狗送人，还狠狠的批评了爸妈，说自己来家里的狗不能送人。
-自然小黄狗很快就长成了大黄狗，我像以前一样也偷偷给大黄狗吃肉，逐渐开始懂事的妹妹也会背着爸妈给它肉吃，我和妹都会夹几片我们压根就不吃的肥肉，离开饭桌假装是到外面吃饭，实际上是给大黄狗送肉去了。
-我到离家 30 多公里的镇上读高中，每个月才回家一次。每次离家大黄狗都会送我到集市去赶车，我会在寒暑假的黄昏和它到新修的公路去追逐，带它去它自己一个人不敢去探索的地方。
-上大学后和大黄狗相处的时间更少了，听爸妈说它会经常跑到外婆家，外婆好吃好喝的招待它，招呼都不打一声就又跑回来了。还经常和邻居家的狗到麦子地打闹，要把一大片麦子弄倒才肯回家。
-每学期回家在离家还有四五百米的地方都会听到它的吠叫，因为它把我当陌生人了。但是只要我大喊一声，它就会立刻停止吠叫，飞奔到我这里，兴奋的往我身上爬，把它的前爪往我身上搭；我努力不让它碰到我的衣服，然而每次到家时我都带着一身泥巴做的狗爪印。
-现在大黄狗已经 10 多岁了，它就像大黑狗当年送我一样每天送我妹上学。我也已经走入职场开始工作，待在家里的时间更少了，我不知道它还能活多久，生怕哪次爸妈打电话时会给我说大黄狗死了，只要爸妈没有在电话中提及大黄狗，我都是非常开心的，因为那就代表着它依旧健健康康的活着。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io//post/jia-li-de-gou">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -1160,7 +1316,7 @@ click
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1578409241138)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1578578573282)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -1199,6 +1355,12 @@ click
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io//post/vue-typescript-xiang-mu-qi-shou-shi">Vue + TypeScript 项目起手式</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io//post/2019-nian-zong-jie">2019 年个人总结</a>
                 </h3>
             
@@ -1221,10 +1383,6 @@ click
                 </h3>
             
             
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io//post/linux-zhong-de-ling-kao-bei-ji-zhu">Linux 中的零拷贝技术</a>
-                </h3>
             
             
             

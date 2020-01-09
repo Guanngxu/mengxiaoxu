@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2020-01-07T15:00:52.468Z</updated>
+    <updated>2020-01-09T14:03:07.698Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io//atom.xml"/>
@@ -10,6 +10,184 @@
     <logo>https://mengxiaoxu.github.io//images/avatar.png</logo>
     <icon>https://mengxiaoxu.github.io//favicon.ico</icon>
     <rights>All rights reserved 2020, 刘小绪同学的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Vue + TypeScript 项目起手式]]></title>
+        <id>https://mengxiaoxu.github.io//post/vue-typescript-xiang-mu-qi-shou-shi</id>
+        <link href="https://mengxiaoxu.github.io//post/vue-typescript-xiang-mu-qi-shou-shi">
+        </link>
+        <updated>2020-01-09T13:51:57.000Z</updated>
+        <content type="html"><![CDATA[<p>在此前我使用的前端框架是 <a href="https://angular.io/">Angular</a>，使用过 <a href="https://www.typescriptlang.org/">TypeScript</a> 后你就会讨厌 JS 了，我学习 <a href="https://vuejs.org/">Vue</a> 时的最新版本是 2.5，相信大部分同学都不会认为 Vue 那样又细又长的代码很美观吧，简单看了一些网络博客后，我毅然决然引入了 TypeScript 进行开发，本文仅整理记录我自己遇到的一些坑。</p>
+<p>### 使用 Cli</p>
+<p><a href="https://cli.vuejs.org/zh/guide/">脚手架</a>是一个比较方便的工具，这里需要注意的是<code>@vue/cli</code>和<code>vue-cli</code>是不一样的，推荐使用<code>npm i -g @vue/cli</code>安装。</p>
+<p>安装完成后，可以直接使用<code>vue create your-app</code>创建项目，你可以选择使用默认配置亦或是自己手动选择配置，按提示一步一步向下走即可，它会根据你的选择自己创建比如<code>tsconfig.json</code>等等配置文件。这里推荐使用<code>less</code>开发样式，<code>sass</code>老是在安装的过程中出问题。</p>
+<p>当然你也可以使<code>vue ui</code>命令启动一个本地服务，它是一个 Vue 项目管理器，提供了一个可视化的页面供你管理自己的项目，它的样子如下图所示，还是比较清新的。</p>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1578578071319.png" alt=""></figure>
+<p>### 使用 vue-property-decorator</p>
+<p>Vue 官方维护了 <a href="https://github.com/vuejs/vue-class-component">vue-class-component</a> 装饰器，<a href="https://github.com/kaorun343/vue-property-decorator">vue-property-decorator</a> 则是在<code>vue-class-component</code>基础上增强了更多结合<code>Vue</code>特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。</p>
+<p>截止本文时间，<code>vue-property-decorator</code>共提供了 11 个装饰器和 1 个<code>Mixins</code>方法，下面用<code>@Prop</code>举个例子，是不是看起来引起极度舒适。</p>
+<pre><code class="language-typescript">import { Vue, Component, Prop } from 'vue-property-decorator'
+
+@Component
+export default class YourComponent extends Vue {
+
+    @Prop(Number) readonly propA: number | undefined
+    @Prop({ default: 'default value' }) readonly propB!: string
+    @Prop([String, Boolean]) readonly propC: string | boolean | undefined
+}
+
+
+// 上面的内容将会被解析成如下格式
+
+export default {
+    props: {
+        propA: {
+            type: Number
+        },
+        propB: {
+            default: 'default value'
+        },
+        propC: {
+            type: [String, Boolean]
+        }
+    }
+}
+</code></pre>
+<p>### 使用 Vuex</p>
+<p>关于怎么使用<a href="https://vuex.vuejs.org/">Vuex</a>此处就不再做过多说明了，需要注意的一点是，如果你需要访问<code>$store</code>属性的话，那么你必须得继承<code>Vue</code>类，坑的地方是在某些情况下即使你没有继承<code>Vue</code>，它也能通过编译，只有在程序运行起来的时候才报错。</p>
+<pre><code class="language-typescript">class ExampleApi extends Vue {
+
+    public async getExampleData() {
+        if (!this.$store.state.exampleData) {
+            const res = await http.get('url/exampleData');
+            if (res.result) {
+                this.$store.commit('setExampleData', res.data);
+                return res.data;
+            } else {
+            promptUtil.showMessage('get exampleData failed', 'warning');
+            }
+        } else {
+            return this.$store.state.exampleData;
+        }
+    }
+}
+</code></pre>
+<p>### 使用自己的配置（含代理）</p>
+<p><code>vue.config.js</code>是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被<code>@vue/cli-service</code>自动加载，它的配置项说明可以查看<a href="https://cli.vuejs.org/zh/config/">配置参考</a>。</p>
+<p>我们再开发过程中都会使用代理来转发请求，代理的配置也是在这个文件中，它的官方说明在<a href="https://cli.vuejs.org/zh/config/#devserver-proxy">devserver-proxy</a>中，下面是一个简单的<code>vue.config.js</code>文件例子。</p>
+<pre><code class="language-typescript">module.exports = {
+    filenameHashing: true,
+    outputDir: 'dist',
+    assetsDir: 'asserts',
+    indexPath: 'index.html',
+    productionSourceMap: false,
+    transpileDependencies: [
+        'vue-echarts',
+        'resize-detector'
+    ],
+    devServer: {
+        hotOnly: true,
+        https: false,
+        proxy: {
+            &quot;/statistics&quot;: {
+                target: &quot;http://10.7.213.186:3889&quot;,
+                secure: false,
+                pathRewrite: {
+                    &quot;^/statistics&quot;: &quot;&quot;,
+                },
+                changeOrigin: true
+            },
+            &quot;/mail&quot;: {
+                target: &quot;http://10.7.213.186:8888&quot;,
+                secure: false,
+                changeOrigin: true
+            }
+        }
+    }
+}
+</code></pre>
+<p>### 让 Vue 识别全局方法和变量</p>
+<p>我们在项目中都会使用一些第三方 UI 组件，比如我自己就使用了 <a href="https://element.eleme.io/">Element</a>，但是在使用它的<code>$message</code>、<code>$notify</code>等方法时就直接报错了，究其原因就是<code>$message</code>等属性并没有在 Vue 实例中声明。</p>
+<p>官方对此给出了很明确的解决方案，使用的是 TypeScript 的<a href="https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation"> 模块补充特性</a>，可以查看<a href="https://cn.vuejs.org/v2/guide/typescript.html#%E5%A2%9E%E5%BC%BA%E7%B1%BB%E5%9E%8B%E4%BB%A5%E9%85%8D%E5%90%88%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8">增强类型以配合插件使用</a>。既然知道是因为没有声明导致的错误，那我们就给它声明一下好了，在<code>src/shims-vue.d.ts</code>文件中添加如下代码即可，如果没有该文件请自行创建。</p>
+<blockquote>
+<p>看到网上也有一部分人说的是<code>src/vue-shim.d.ts</code>，反正不管是怎么命名这个文件的，它们的作用是一样的。</p>
+</blockquote>
+<pre><code class="language-typescript">declare module 'vue/types/vue' {
+    interface Vue {
+        $message: any,
+        $confirm: any,
+        $prompt: any,
+        $notify: any
+    }
+}
+</code></pre>
+<p>这里顺道提一下，<code>src/shims-vue.d.ts</code>文件中的如下代码是为了让你的 IDE 明白以<code>.vue</code>结尾的文件是什么玩意儿。</p>
+<pre><code class="language-typescript">declare module '*.vue' {
+    import Vue from 'vue';
+    export default Vue;
+}
+
+</code></pre>
+<p>### 路由懒加载</p>
+<p>Vue Router 官方有关于<a href="https://router.vuejs.org/zh/guide/advanced/lazy-loading.html">路由懒加载</a>的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用<code>require.ensure()</code>按需加载组件可以生效。</p>
+<pre><code class="language-typescript">// base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中
+const Home = (r: any) =&gt; require.ensure([], () =&gt; r(require('@/views/home.vue')), layzImportError, 'base-view');
+
+// 路由加载错误时的提示函数
+function layzImportError() {
+    alert('路由懒加载错误');
+}
+</code></pre>
+<p>上面的方式会在编译的时候把文件自动分成多个小文件，编译后的文件会以你自己命名的模块名来命名，如果代码之间有相互依赖，依赖部分代码编译后的文件会以两个模块名相连后进行命名。</p>
+<p>但是需要注意的是，这样拆分小文件之后引入了另外一个新的问题，因为客户端会缓存这些编译后的 js 文件，如果功能 A 同时依赖了<code>a.js</code>和<code>b.js</code>两个文件，但用户在使用其它功能时已经把<code>a.js</code>缓存到本地了，使用功能 A 时需要请求<code>b.js</code>文件，这时程序就很容易报错，因为此时在客户端这两个文件不是同一个版本，所以可能导致<code>a.js</code>调用<code>b.js</code>中的方法已经被删了，进而导致客户端页面异常。</p>
+<p>### 关于引入第三方包</p>
+<p>项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。</p>
+<pre><code class="language-typescript">/*
+ 引入 jquery 等库可以尝试下面这种方式
+ 只需要把相应的 js 文件放到指定文件夹即可
+**/
+const $ = require('@/common/js/jquery.min.js');
+const md5 = require('@/common/js/md5.js');
+</code></pre>
+<p>引入一些第三方样式文件、UI 组件等，如果引入不成功可以尝试建一个 js 文件，将导入语句都写在 js 文件中，然后再在<code>main.ts</code>文件中导入这个 js 文件，这个方法能解决大部分的问题。例如我先建了一个<code>lib.js</code>，然后在<code>main.ts</code>中引入<code>lib.js</code>就没有报错。</p>
+<pre><code class="language-typescript">// src/plugins/lib.js
+import Vue from 'vue';
+
+// 树形组件
+import 'vue-tree-halower/dist/halower-tree.min.css';
+import {VTree} from 'vue-tree-halower';
+// 饿了么组件
+import Element from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+// font-awesome 图标
+import '../../node_modules/font-awesome/css/font-awesome.css';
+import VueCookies from 'vue-cookies';
+import VueJWT from 'vuejs-jwt';
+
+Vue.use(VueJWT);
+Vue.use(VueCookies);
+Vue.use(VTree);
+Vue.use(Element);
+
+
+// src/main.ts
+import App from '@/app.vue';
+import Vue from 'vue';
+import router from './router';
+import store from './store';
+import './registerServiceWorker';
+import './plugins/lib';
+
+Vue.config.productionTip = false;
+
+new Vue({
+    router,
+    store,
+    render: (h) =&gt; h(App),
+}).$mount('#app');
+</code></pre>
+<p>因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个<code>index.d.ts</code>文件，我目前还没有找一个可以解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2019 年个人总结]]></title>
         <id>https://mengxiaoxu.github.io//post/2019-nian-zong-jie</id>
@@ -735,33 +913,6 @@ timer b
 click
 click
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[家里的狗]]></title>
-        <id>https://mengxiaoxu.github.io//post/jia-li-de-gou</id>
-        <link href="https://mengxiaoxu.github.io//post/jia-li-de-gou">
-        </link>
-        <updated>2019-10-12T14:18:04.000Z</updated>
-        <content type="html"><![CDATA[<p>为了防止晚上有人来家里偷东西，几乎家家户户都至少会养一只狗。在我的记忆中，我家一开始是没有狗的。</p>
-<p>忘记是哪一年夏天的一个清晨，天还没有大亮，我隐约看见在牛棚后面的空地有个黑影，走近一点仔细一看，原来是一只不知道从哪里来的一只黑狗。</p>
-<p>它惊恐的看着我，眼神中夹杂着恐惧与无助，佝偻的身子比弓还要弯，倒是很像一个活着的牛轭。他的身子还没有草高，露水把全身的毛都打湿了，还沾着一些不知名的植物种子。我和它对视着，恐惧慢慢填满了它的眼球，我害怕吓到它，赶紧走开去告诉妈。</p>
-<p>妈远远看了一眼，让我别管它。随后妈把装着昨晚剩饭的猪食瓢放到牛棚后面的一块石头上，黑狗看见妈带着武器走近早就跑了，我吃早饭时还不时去望望它在不在，有没有吃妈给放在那里的饭。</p>
-<p>妈已经把猪喂完准备下地干活了，仍旧没有再次发现黑狗的踪影，也没见猪食瓢有什么变化，我心里有一点点的失落，黑狗应该是已经逃走了吧。</p>
-<p>晚上吃完饭妈去拿猪食瓢，告诉我里面的饭已经被吃的一粒不剩，我心里开始期待和它的再次见面。第二天早晨果然见到它了，身上已经没有昨天那么湿了，显然没有前一天来这里时钻的草丛多，妈依旧用猪食瓢装着米饭和米汤放在牛棚后的那个石头上。</p>
-<p>就这样过了几日，黑狗走进了我家的屋檐，它的样子实在太丑了。每一根肋骨都清晰的扎眼，看起来爸的手指都比它的小腿粗，感觉下一秒它就会死去。</p>
-<p>我并不喜欢它，甚至还有些讨厌它，我实在找不到更丑的词来形容它，不过是出于心里的怜悯与对生命的敬畏，会在吃饭的时候给它丢几个我不吃的肥肉，被烟熏黑的那一层肉边我也丢给它......</p>
-<p>有一次同村的一个人路过家门口时，看见那只黑狗吓的赶紧往妈身后躲。“有我在，它不敢咬。”，妈说。邻居夸夸妈说：“这个狗儿喂得好肥”。妈自豪的告诉那个人这只狗每天还送林儿（我）上学。</p>
-<p>是的，我也不知道什么时候我已经和大黑狗变得如此亲密了，它每天早上会把我送到山顶的学校，我每天下午回家做完作业会和它一起到田间追逐。在学校也常常会给同学们说大黑狗胸前的那长成了“人”字的一片白毛，我一直相信“人”字是老天爷特地印在它身上，用来告诉我大黑狗是他派来的使者。</p>
-<p>大黑狗来我家时已经很老很老了，是我读三年级的某一天，它像往常一样把我送到学校，但是我下午回家却不见它的踪影，一直等到晚上都没有见它回来。那些天我放学回家第一件事就是朝我和它常去的那些地方大声的唤它。</p>
-<p>不到一个月后的一天早晨，像大黑狗第一次来我家附近时的场景一样，湿漉漉的身子带着些杂草种子，不同的是它身旁还跟着一只背部有些黑毛的小黄狗，小黄狗胸前也有一个很明显的“人”字。我赶紧去用猪食瓢盛满饭放在它面前，它吃了几口就又走了。</p>
-<p>就这样，大黑狗离开了我，给我留下了一只小小的黄奶狗。我不知道它是去找它原来的主人去了，还是觉得自己老了，不愿意让我看见它倒下的样子，反正它就是再也没有回来过。</p>
-<p>小黄狗长成了大黄狗，我对这只大黄狗的印象很浅，只记得爸妈把这只黄狗送给了外婆家附近的亲戚，我们留下了它生的一只小黄狗。外婆知道我们把大黄狗送人，还狠狠的批评了爸妈，说自己来家里的狗不能送人。</p>
-<p>自然小黄狗很快就长成了大黄狗，我像以前一样也偷偷给大黄狗吃肉，逐渐开始懂事的妹妹也会背着爸妈给它肉吃，我和妹都会夹几片我们压根就不吃的肥肉，离开饭桌假装是到外面吃饭，实际上是给大黄狗送肉去了。</p>
-<p>我到离家 30 多公里的镇上读高中，每个月才回家一次。每次离家大黄狗都会送我到集市去赶车，我会在寒暑假的黄昏和它到新修的公路去追逐，带它去它自己一个人不敢去探索的地方。</p>
-<p>上大学后和大黄狗相处的时间更少了，听爸妈说它会经常跑到外婆家，外婆好吃好喝的招待它，招呼都不打一声就又跑回来了。还经常和邻居家的狗到麦子地打闹，要把一大片麦子弄倒才肯回家。</p>
-<p>每学期回家在离家还有四五百米的地方都会听到它的吠叫，因为它把我当陌生人了。但是只要我大喊一声，它就会立刻停止吠叫，飞奔到我这里，兴奋的往我身上爬，把它的前爪往我身上搭；我努力不让它碰到我的衣服，然而每次到家时我都带着一身泥巴做的狗爪印。</p>
-<p>现在大黄狗已经 10 多岁了，它就像大黑狗当年送我一样每天送我妹上学。我也已经走入职场开始工作，待在家里的时间更少了，我不知道它还能活多久，生怕哪次爸妈打电话时会给我说大黄狗死了，只要爸妈没有在电话中提及大黄狗，我都是非常开心的，因为那就代表着它依旧健健康康的活着。</p>
 ]]></content>
     </entry>
 </feed>

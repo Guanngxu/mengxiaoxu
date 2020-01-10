@@ -7,7 +7,7 @@
 <title>
     Vue | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578579608767">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578671811564">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578579608767" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578671811564" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -133,12 +133,12 @@
                     <time class="post-time">2020-01-09</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/vue" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-info">
             #Vue
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/J_3GE6pBm" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-info">
             #TypeScript
         </a>
                         
@@ -170,7 +170,6 @@ import { Vue, Component, Prop } from &#39;vue-property-decorator&#39;
 
 @Component
 export default class YourComponent extends Vue {
-
     @Prop(Number) readonly propA: number | undefined
     @Prop({ default: &#39;default value&#39; }) readonly propB!: string
     @Prop([String, Boolean]) readonly propC: string | boolean | undefined
@@ -326,7 +325,7 @@ new Vue({
     render: (h) =&amp;gt; h(App),
 }).$mount(&#39;#app&#39;);
 
-因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个index.d.ts文件，我目前还没有找一个可以解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。
+因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个index.d.ts文件，实在不行的话，那个特殊的组件不使用 TypeScript 来写也能解决，我目前还没有找一个可以完全解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。
 
                                         </div>
                                         
@@ -346,7 +345,7 @@ new Vue({
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1578579608767)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1578671811564)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客

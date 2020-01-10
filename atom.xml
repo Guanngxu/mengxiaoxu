@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2020-01-09T14:20:16.537Z</updated>
+    <updated>2020-01-10T15:57:05.733Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io/atom.xml"/>
@@ -29,7 +29,6 @@
 
 @Component
 export default class YourComponent extends Vue {
-
     @Prop(Number) readonly propA: number | undefined
     @Prop({ default: 'default value' }) readonly propB!: string
     @Prop([String, Boolean]) readonly propC: string | boolean | undefined
@@ -185,7 +184,7 @@ new Vue({
     render: (h) =&gt; h(App),
 }).$mount('#app');
 </code></pre>
-<p>因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个<code>index.d.ts</code>文件，我目前还没有找一个可以解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。</p>
+<p>因为第三方包写的各有特点，在引入不成功的时候基本也只能是见招拆招，当然如果你的功底比较深厚，你也可以自己写一个<code>index.d.ts</code>文件，实在不行的话，那个特殊的组件不使用 TypeScript 来写也能解决，我目前还没有找一个可以完全解决第三方包引入错误的方法，如果您已经有相关的方法了，希望能与你一起探讨交流。</p>
 ]]></content>
     </entry>
     <entry>

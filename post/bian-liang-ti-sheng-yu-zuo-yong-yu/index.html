@@ -7,7 +7,7 @@
 <title>
     变量提升与作用域 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578671811564">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578926402006">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578671811564" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578926402006" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -133,12 +133,12 @@
                             <time class="post-time">2019-08-08</time>
                             
                                 <a href="https://mengxiaoxu.github.io/tag/javascript" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-primary">
                             #JavaScript
                         </a>
                                 
                                 <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-">
                             #前端
                         </a>
                                 
@@ -154,13 +154,13 @@
 《你不知道的 JavaScript（上卷）》</p>
 </blockquote>
 <p>几乎所有的编程语言都能够存储变量当中的值，并且可以在之后对该值进行访问或修改。很明显需要一套良好的规则来存储这些变量，并且之后可以方便的找到这些变量，这套规则我们称之为<strong>作用域</strong>。</p>
-<h3 id="编译原理">编译原理</h3>
+<h2 id="编译原理">编译原理</h2>
 <p>我们一般把 js 归为「动态」或「解释执行」语言，但是它也会经历编译阶段，不过它不像传统语言那样是提前编译的，它的编译发生在代码执行前的几微秒内。</p>
 <p>传统语言在执行之前会经历三个步骤：<strong>分词/词法分析、解析/语法分析、代码生成</strong>，关于这三个步骤的具体工作，可以查看编译原理相关的文献，我们可以把这三个步骤统称为编译。不过 js 引擎要复杂的多，它会在编译的时候对代码进行性能优化，尽管给 js 引擎优化的时间非常少，但是它用尽了各种办法来保证性能最佳。</p>
 <p>我们需要先了解三个名词。<strong>引擎</strong>：从头到尾负责整个 js 程序的编译及执行过程；<strong>编译器</strong>：负责词法分析及代码生成；<strong>作用域</strong>：负责收集并维护由所有声明的标识符（变量）组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限。</p>
 <p><code>var a = 2;</code>，我们以这段程序为例，它首先声明了变量<code>a</code>，然后将<code>2</code>赋值给变量<code>a</code>。前一个阶段在编译器处理，后一个阶段由 js 引擎处理。</p>
 <p>变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量（如果之前没有声明过），然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对它赋值。</p>
-<h3 id="变量提升">变量提升</h3>
+<h2 id="变量提升">变量提升</h2>
 <p>用过 js 的人都知道 js 存在变量提升，那么它到底是如何提升的呢？我们看下面的一段代码</p>
 <pre><code class="language-javascript">console.log(a);
 var a = 2;
@@ -195,7 +195,7 @@ foo = function() {
 };
 </code></pre>
 <p>可以看到，虽然<code>var foo</code>出现在<code>function foo()</code>之前，但是它是重复的声明，因此会被忽略掉，因为函数函数声明会提升到普通变量前。所以在在同一个作用域中进行重复定义是一个很糟糕的做法，经常会导致各种奇怪的问题。</p>
-<h3 id="lhs-和-rhs-查询">LHS 和 RHS 查询</h3>
+<h2 id="lhs-和-rhs-查询">LHS 和 RHS 查询</h2>
 <p>LHS 和 RHS 是数学领域内的概念，意为等式左边和等式右边的意思，在我们现在的场景下就是<strong>赋值操作符的左侧和右侧</strong>。当变量出现在赋值操作符的左边时，就进行 LHS 查询；反之进行 RHS 查询。</p>
 <p>RHS 查询与简单的查找某个变量的值没什么区别，它的意思是取得某某的值。而 LHS 查询则是试图找到变量容器的本身，从而可以对其进行赋值。</p>
 <p><code>console.info(a);</code>我们深入研究一下这句代码。这里对<code>a</code>的引用是 RHS 引用，因为这里<code>a</code>并没有赋予任何值，相应的需要查找并取得<code>a</code>的值，这样才能传递给<code>console.info()</code>。</p>
@@ -207,7 +207,7 @@ foo(2);
 </code></pre>
 <p>为了加深印象，我们再来分析一下上述代码中的 RHS 和 LHS 引用。最后一行<code>foo()</code>函数的调用需要对<code>foo</code>进行 RHS 引用。这里有一个很容易被忽略的细节，2 被当作参数传递给<code>foo()</code>函数时，2 会被分配给参数<code>a</code>，为了给参数<code>a</code>（隐式地）分配值，需要进行一次 LHS 查询，也就是说代码中隐含了<code>a = 2</code>的语句。</p>
 <p>前文已经说过了<code>console.info(a);</code>会对<code>a</code>进行一次 RHS 查询，需要注意的是<code>console.info()</code>本身也需要一个引用才能执行，因此会对<code>console</code>对象进行 RHS 查询，并检查得到的值中是否有一个<code>log</code>方法。</p>
-<h3 id="为什么区分-lhs-和-rhs">为什么区分 LHS 和 RHS</h3>
+<h2 id="为什么区分-lhs-和-rhs">为什么区分 LHS 和 RHS</h2>
 <p>我们考虑下面的一段代码，就可以为什么要区分 LHS 和 RHS 查询了，而且区分它们是分厂有必要的。</p>
 <pre><code class="language-javascript">function foo(a) {
     console.info(a + b);
@@ -221,7 +221,7 @@ foo(2);
 <p>需要注意的是，在严格模式下是禁止自动或隐式地创建全局变量的，因此在严格模式中 LHS 查询失败时，引擎同样会抛出 ReferenceError 异常。</p>
 </blockquote>
 <p>接下来，如果 RHS 查询找到了一个变量，但是你尝试对这个值进行不合理的操作，比如对一个非函数类型的值进行函数调用，那么引擎就会抛出另一种叫做 TypeError 的异常。</p>
-<h3 id="作用域链">作用域链</h3>
+<h2 id="作用域链">作用域链</h2>
 <p>执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中，在 Web 浏览器中，全局执行环境被认为是<code>window</code>对象，因此所有的全局变量和函数都是作为<code>window</code>对象的属性和方法创建的。</p>
 <p>每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，而函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境，这个函数调用的压栈出栈是一样的。</p>
 <p>当代码在环境中执行时，会创建变量对象的一个<strong>作用域链</strong>。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端始终都是当前执行的代码所在环境的变量对象，说的比较抽象，我们可以看下面的示例。</p>
@@ -291,15 +291,11 @@ console.info(getColor()); // &quot;red&quot;
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
-<ul>
 <li><a href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86">编译原理</a></li>
 <li><a href="#%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87">变量提升</a></li>
 <li><a href="#lhs-%E5%92%8C-rhs-%E6%9F%A5%E8%AF%A2">LHS 和 RHS 查询</a></li>
 <li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%86-lhs-%E5%92%8C-rhs">为什么区分 LHS 和 RHS</a></li>
 <li><a href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE">作用域链</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>

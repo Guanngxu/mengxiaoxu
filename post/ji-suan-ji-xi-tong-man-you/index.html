@@ -7,7 +7,7 @@
 <title>
     计算机系统漫游 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578671811564">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578926402006">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578671811564" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578926402006" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -133,7 +133,7 @@
                             <time class="post-time">2018-10-10</time>
                             
                                 <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-warning">
                             #操作系统
                         </a>
                                 
@@ -142,7 +142,7 @@
                             <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/ji-suan-ji-xi-tong-man-you.jpeg')"></div>
                             
                                 <div class="post-content">
-                                    <h4 id="计算机中的信息">计算机中的信息</h4>
+                                    <h2 id="计算机中的信息">计算机中的信息</h2>
 <p>对于程序员来说，HelloWorld 程序再熟悉不过了，下面是 C 语言写的 HelloWorld 程序。</p>
 <pre><code class="language-c">#include&lt;stdio.h&gt;
 
@@ -159,7 +159,7 @@ int main()
 <pre><code>信息 = 位 + 上下文
 </code></pre>
 <p>那么什么是上下文呢？举个例子来讲。在磁盘中有一段二进制数据<code>1010010111010010</code>，如果有一段程序将其当做整数读出来（不考虑补码），那么它的值就是 42450，如果把它当做浮点数读出来将是另一个结果，而JVM 将其当做字节码读出来的话，那又是完全不同的结果。只有把位放在具体的程序、环境中（即上下文）才会有意义，单个位是没有意义的。</p>
-<h4 id="源程序编译">源程序编译</h4>
+<h2 id="源程序编译">源程序编译</h2>
 <p>虽然我们把 C 语言程序编写完成了，但是它并不能运行，因为它目前还仅仅是由 ASCⅡ 字符构成的文本文件，计算机并不能运行文本文件。</p>
 <p>想要得到 HelloWorld 的可执行文件，需要经过预处理、编译、汇编、链接四个阶段。</p>
 <p>预处理阶段，预处理器会根据以字符<code>#</code>开头的命令去修改源程序，预处理器去读取系统头文件<code>stdio.h</code>中的内容，并将其直接插入程序文本中，结果就得到了另一个 C 程序—— hello.i。</p>
@@ -167,19 +167,19 @@ int main()
 <p>汇编阶段，汇编器会将 hello.s 翻译成机器语言指令，保存在 hello.o 文件中，此时得到的就是二进制文件了。</p>
 <p>程序中使用了 printf 函数，这是由编译器提供的标准 C 库中的函数，它存储在 printf.o 文件中，链接器会将这个文件合并到 hello.o 中，结果就得到一个可执行的 hello 文件，存储于磁盘中。</p>
 <figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569342980915.jpg" alt="" loading="lazy"></figure>
-<h4 id="系统组成及程序运行">系统组成及程序运行</h4>
+<h2 id="系统组成及程序运行">系统组成及程序运行</h2>
 <p>在运行可执行文件 hello 文件之前，应该先了解一下系统的硬件组成，一个典型系统的硬件组织如下图所示。</p>
 <figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1569343008278.jpg" alt="" loading="lazy"></figure>
 <p>为了运行 hello 程序，我们需要在 shell 中输入指令<code>./hello</code>，指令通过键盘经 I/O 总线 --&gt; I/O 桥 --&gt; 总线接口 --&gt; 寄存器 --&gt; I/O 桥存于主存中，当敲击回车键时，等于告诉 shell 程序，命令的属于已经结束， shell 将会执行一系列指令来加载 hello 文件。</p>
 <p>利用**直接存取（DMA）**技术，hello 文件不需要通过寄存器就能到达主存，当目标文件 hello 到达主存中，处理器就开始执行 hello 程序的机器指令。其指令即将 &quot;hello, world\n&quot; 字符串的字节从主存复制到寄存器，再从寄存器复制到显示设备中，最终显示在屏幕上面。</p>
 <p>我们发现这个简单的 HelloWorld 程序会让系统花费大量的时间把信息从一个地方挪到另一个地方，而我们都清楚，寄存器、主存、磁盘之间的访问速度是相互差了好几个数量级的，而这种复制的开销会严重减慢程序的运行，为了加快这些复制操作的速度，系统设计者就引入了<strong>高速缓存</strong>。</p>
-<h4 id="抽象的重要性">抽象的重要性</h4>
+<h2 id="抽象的重要性">抽象的重要性</h2>
 <p>计算机科学中最为重要的概念之一就是<strong>抽象</strong>，指令集提供了对硬件处理器的抽象，操作系统同样通过进程、虚拟内存、文件（磁盘、键盘、网络都可以看成文件）这几个抽象概念为应用程序提供简单一致的机制来控制低级硬件设备，同时防止硬件被失控的应用程序滥用。</p>
 <figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1569343504770.jpg" alt="" loading="lazy"></figure>
 <p>进程是对正在运行的程序的抽象，在一个系统上可以同时运行多个进程，但是每个进程看起来都好像在独占的使用硬件，CPU 看上去是在并发的执行多个进程，这就需要操作系统进行上下文切换。</p>
 <p>在我们还没有输入<code>./hello</code>之前，只有 shell 进程在运行，当我们让其运行 hello 程序时，shell 会通过系统调用来执行我们的请求。操作系统首先保存 shell 进程的上下文（PC、寄存器等信息），然后创建一个新的 hello 进程，并将控制权转交给 hello 进程。</p>
 <figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1569343051098.jpg" alt="" loading="lazy"></figure>
-<h4 id="并发和并行">并发和并行</h4>
+<h2 id="并发和并行">并发和并行</h2>
 <p><strong>并发</strong>是一个通用的概念，指同时具有多个活动的系统；<strong>并行</strong>是指用并发来使一个系统运行的更快，人类都是很懒的，不仅想要计算机能做的更多，还想它效率更高，这样的想法一致促进着技术的前进。</p>
 <p>编程的人都知道，为了使程序运行的更快，我们可以编写多线程程序（虽然多线程程序有些难调），在一个进程里面执行多个控制流，线程级的并发可以让计算机运行的更快。</p>
 <p>再向底层看看，在计算机体系结构的课堂上都会做<strong>流水线</strong>实验，通过将一条指令划分成不同的步骤，一条指令的执行时间能够从原来的 3~10 个时钟周期，缩短为接近于 1 个时钟周期，这是<strong>指令级的并行</strong>。条件判断和循环结构又会增加指令执行的时钟周期，如果能对这部分知识作深入了解，你编写的程序应该会高一个档次。</p>
@@ -214,19 +214,11 @@ int main()
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
-<ul>
-<li>
-<ul>
 <li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E4%BF%A1%E6%81%AF">计算机中的信息</a></li>
 <li><a href="#%E6%BA%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91">源程序编译</a></li>
 <li><a href="#%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90%E5%8F%8A%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C">系统组成及程序运行</a></li>
 <li><a href="#%E6%8A%BD%E8%B1%A1%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7">抽象的重要性</a></li>
 <li><a href="#%E5%B9%B6%E5%8F%91%E5%92%8C%E5%B9%B6%E8%A1%8C">并发和并行</a></li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>

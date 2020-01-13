@@ -7,7 +7,7 @@
 <title>
     Vue + TypeScript 项目起手式 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578671811564">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578926402006">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578671811564" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578926402006" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -133,17 +133,17 @@
                             <time class="post-time">2020-01-09</time>
                             
                                 <a href="https://mengxiaoxu.github.io/tag/vue" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_3">
                             #Vue
                         </a>
                                 
                                 <a href="https://mengxiaoxu.github.io/tag/J_3GE6pBm" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_4">
                             #TypeScript
                         </a>
                                 
                                 <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-success">
                             #前端
                         </a>
                                 
@@ -153,12 +153,12 @@
                             
                                 <div class="post-content">
                                     <p>在此前我使用的前端框架是 <a href="https://angular.io/">Angular</a>，使用过 <a href="https://www.typescriptlang.org/">TypeScript</a> 后你就会讨厌 JS 了，我学习 <a href="https://vuejs.org/">Vue</a> 时的最新版本是 2.5，相信大部分同学都不会认为 Vue 那样又细又长的代码很美观吧，简单看了一些网络博客后，我毅然决然引入了 TypeScript 进行开发，本文仅整理记录我自己遇到的一些坑。</p>
-<h3 id="使用-cli">使用 Cli</h3>
+<h2 id="使用-cli">使用 Cli</h2>
 <p><a href="https://cli.vuejs.org/zh/guide/">脚手架</a>是一个比较方便的工具，这里需要注意的是<code>@vue/cli</code>和<code>vue-cli</code>是不一样的，推荐使用<code>npm i -g @vue/cli</code>安装。</p>
 <p>安装完成后，可以直接使用<code>vue create your-app</code>创建项目，你可以选择使用默认配置亦或是自己手动选择配置，按提示一步一步向下走即可，它会根据你的选择自己创建比如<code>tsconfig.json</code>等等配置文件。这里推荐使用<code>less</code>开发样式，<code>sass</code>老是在安装的过程中出问题。</p>
 <p>当然你也可以使<code>vue ui</code>命令启动一个本地服务，它是一个 Vue 项目管理器，提供了一个可视化的页面供你管理自己的项目，它的样子如下图所示，还是比较清新的。</p>
 <figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1578578071319.png" alt="" loading="lazy"></figure>
-<h3 id="使用-vue-property-decorator">使用 vue-property-decorator</h3>
+<h2 id="使用-vue-property-decorator">使用 vue-property-decorator</h2>
 <p>Vue 官方维护了 <a href="https://github.com/vuejs/vue-class-component">vue-class-component</a> 装饰器，<a href="https://github.com/kaorun343/vue-property-decorator">vue-property-decorator</a> 则是在<code>vue-class-component</code>基础上增强了更多结合<code>Vue</code>特性的装饰器，它可以让 Vue 组件语法在结合了 TypeScript 语法后变得更加扁平化。</p>
 <p>截止本文时间，<code>vue-property-decorator</code>共提供了 11 个装饰器和 1 个<code>Mixins</code>方法，下面用<code>@Prop</code>举个例子，是不是看起来引起极度舒适。</p>
 <pre><code class="language-typescript">import { Vue, Component, Prop } from 'vue-property-decorator'
@@ -187,7 +187,7 @@ export default {
     }
 }
 </code></pre>
-<h3 id="使用-vuex">使用 Vuex</h3>
+<h2 id="使用-vuex">使用 Vuex</h2>
 <p>关于怎么使用<a href="https://vuex.vuejs.org/">Vuex</a>此处就不再做过多说明了，需要注意的一点是，如果你需要访问<code>$store</code>属性的话，那么你必须得继承<code>Vue</code>类，坑的地方是在某些情况下即使你没有继承<code>Vue</code>，它也能通过编译，只有在程序运行起来的时候才报错。</p>
 <pre><code class="language-typescript">class ExampleApi extends Vue {
 
@@ -206,7 +206,7 @@ export default {
     }
 }
 </code></pre>
-<h3 id="使用自己的配置含代理">使用自己的配置（含代理）</h3>
+<h2 id="使用自己的配置含代理">使用自己的配置（含代理）</h2>
 <p><code>vue.config.js</code>是一个可选的配置文件，如果项目的根目录中存在这个文件，那么它会被<code>@vue/cli-service</code>自动加载，它的配置项说明可以查看<a href="https://cli.vuejs.org/zh/config/">配置参考</a>。</p>
 <p>我们再开发过程中都会使用代理来转发请求，代理的配置也是在这个文件中，它的官方说明在<a href="https://cli.vuejs.org/zh/config/#devserver-proxy">devserver-proxy</a>中，下面是一个简单的<code>vue.config.js</code>文件例子。</p>
 <pre><code class="language-typescript">module.exports = {
@@ -240,7 +240,7 @@ export default {
     }
 }
 </code></pre>
-<h3 id="让-vue-识别全局方法和变量">让 Vue 识别全局方法和变量</h3>
+<h2 id="让-vue-识别全局方法和变量">让 Vue 识别全局方法和变量</h2>
 <p>我们在项目中都会使用一些第三方 UI 组件，比如我自己就使用了 <a href="https://element.eleme.io/">Element</a>，但是在使用它的<code>$message</code>、<code>$notify</code>等方法时就直接报错了，究其原因就是<code>$message</code>等属性并没有在 Vue 实例中声明。</p>
 <p>官方对此给出了很明确的解决方案，使用的是 TypeScript 的<a href="https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation"> 模块补充特性</a>，可以查看<a href="https://cn.vuejs.org/v2/guide/typescript.html#%E5%A2%9E%E5%BC%BA%E7%B1%BB%E5%9E%8B%E4%BB%A5%E9%85%8D%E5%90%88%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8">增强类型以配合插件使用</a>。既然知道是因为没有声明导致的错误，那我们就给它声明一下好了，在<code>src/shims-vue.d.ts</code>文件中添加如下代码即可，如果没有该文件请自行创建。</p>
 <blockquote>
@@ -262,7 +262,7 @@ export default {
 }
 
 </code></pre>
-<h3 id="路由懒加载">路由懒加载</h3>
+<h2 id="路由懒加载">路由懒加载</h2>
 <p>Vue Router 官方有关于<a href="https://router.vuejs.org/zh/guide/advanced/lazy-loading.html">路由懒加载</a>的说明，但不知道为什么官方给的这个说明在我的项目里面都没有生效，但使用<code>require.ensure()</code>按需加载组件可以生效。</p>
 <pre><code class="language-typescript">// base-view 是模块名，写了相同的模块名则代码会被组织到同一个文件中
 const Home = (r: any) =&gt; require.ensure([], () =&gt; r(require('@/views/home.vue')), layzImportError, 'base-view');
@@ -274,7 +274,7 @@ function layzImportError() {
 </code></pre>
 <p>上面的方式会在编译的时候把文件自动分成多个小文件，编译后的文件会以你自己命名的模块名来命名，如果代码之间有相互依赖，依赖部分代码编译后的文件会以两个模块名相连后进行命名。</p>
 <p>但是需要注意的是，这样拆分小文件之后引入了另外一个新的问题，因为客户端会缓存这些编译后的 js 文件，如果功能 A 同时依赖了<code>a.js</code>和<code>b.js</code>两个文件，但用户在使用其它功能时已经把<code>a.js</code>缓存到本地了，使用功能 A 时需要请求<code>b.js</code>文件，这时程序就很容易报错，因为此时在客户端这两个文件不是同一个版本，所以可能导致<code>a.js</code>调用<code>b.js</code>中的方法已经被删了，进而导致客户端页面异常。</p>
-<h3 id="关于引入第三方包">关于引入第三方包</h3>
+<h2 id="关于引入第三方包">关于引入第三方包</h2>
 <p>项目在引入第三方包的时候经常会报出各种奇奇怪怪的错误，这里仅提供我目前找到的一些解决办法。</p>
 <pre><code class="language-typescript">/*
  引入 jquery 等库可以尝试下面这种方式
@@ -351,8 +351,6 @@ new Vue({
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
-<ul>
 <li><a href="#%E4%BD%BF%E7%94%A8-cli">使用 Cli</a></li>
 <li><a href="#%E4%BD%BF%E7%94%A8-vue-property-decorator">使用 vue-property-decorator</a></li>
 <li><a href="#%E4%BD%BF%E7%94%A8-vuex">使用 Vuex</a></li>
@@ -360,8 +358,6 @@ new Vue({
 <li><a href="#%E8%AE%A9-vue-%E8%AF%86%E5%88%AB%E5%85%A8%E5%B1%80%E6%96%B9%E6%B3%95%E5%92%8C%E5%8F%98%E9%87%8F">让 Vue 识别全局方法和变量</a></li>
 <li><a href="#%E8%B7%AF%E7%94%B1%E6%87%92%E5%8A%A0%E8%BD%BD">路由懒加载</a></li>
 <li><a href="#%E5%85%B3%E4%BA%8E%E5%BC%95%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85">关于引入第三方包</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>

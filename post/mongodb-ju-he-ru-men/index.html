@@ -7,7 +7,7 @@
 <title>
     MongoDB 聚合入门 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578671811564">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578926402006">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578671811564" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578926402006" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -150,16 +150,16 @@
    { $group: { _id: &quot;$cust_id&quot;, total: { $sum: &quot;$amount&quot; } } }
 ])
 </code></pre>
-<h3 id="管道">管道</h3>
+<h2 id="管道">管道</h2>
 <figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1578409203543.png" alt="" loading="lazy"></figure>
 <p>聚合管道包含很多步骤，每一步都会将输入的文档进行转换，但并不是每个阶段都一定需要对每个输入文档生成一个输出文档，比如某些阶段可能生成新的文档或者过滤掉文档。</p>
 <p>除了<code>$out</code>、<code>$merge</code>、<code>$geoNear</code>外，其它的阶段都可以在管道中多次出现，更加详细的内容可以查看 <a href="https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/#aggregation-pipeline-operator-reference">Aggregation Pipeline Stages</a>。</p>
 <figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1578409237533.jpg" alt="" loading="lazy"></figure>
-<h3 id="管道表达式">管道表达式</h3>
+<h2 id="管道表达式">管道表达式</h2>
 <p>一些管道阶段采用表达式作为操作元，管道表达式指定了要应用到输入文档的转换，表达式自己是一个文档结构（JSON），表达式也可以包含其它的表达式。</p>
 <p>表达式仅提供文档在内存中的转换，即管道表达式只能对管道中的当前文档进行操作，不能引用来自其他文档的数据。</p>
 <p>写聚合表达式式建议直接参考<a href="https://docs.mongodb.com/manual/core/aggregation-pipeline">官方文档</a>，下面列出一些我收集的案例，供深入理解使用。</p>
-<h3 id="案例一将对象数组转换为单个文档">案例一：将对象数组转换为单个文档</h3>
+<h2 id="案例一将对象数组转换为单个文档">案例一：将对象数组转换为单个文档</h2>
 <pre><code class="language-json">// 转换前
 {
     &quot;_id&quot;: &quot;10217941&quot;,
@@ -247,13 +247,9 @@
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
-<ul>
 <li><a href="#%E7%AE%A1%E9%81%93">管道</a></li>
 <li><a href="#%E7%AE%A1%E9%81%93%E8%A1%A8%E8%BE%BE%E5%BC%8F">管道表达式</a></li>
 <li><a href="#%E6%A1%88%E4%BE%8B%E4%B8%80%E5%B0%86%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%95%E4%B8%AA%E6%96%87%E6%A1%A3">案例一：将对象数组转换为单个文档</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>

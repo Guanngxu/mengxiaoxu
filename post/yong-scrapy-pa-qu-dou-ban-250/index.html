@@ -7,7 +7,7 @@
 <title>
     用 Scrapy 爬取豆瓣250 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578671811564">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578926402006">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578671811564" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578926402006" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -133,7 +133,7 @@
                             <time class="post-time">2018-07-27</time>
                             
                                 <a href="https://mengxiaoxu.github.io/tag/pa-chong" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_1">
                             #爬虫
                         </a>
                                 
@@ -144,14 +144,14 @@
                                 <div class="post-content">
                                     <p>最好的学习方式就是输入之后再输出，分享一个自己学习scrapy框架的小案例，方便快速的掌握使用scrapy的基本方法。</p>
 <p>本想从零开始写一个用Scrapy爬取教程，但是官方已经有了样例，一想已经有了，还是不写了，尽量分享在网上不太容易找到的东西。自己近期在封闭培训，更文像蜗牛一样，抱歉。</p>
-<h4 id="scrapy简介">Scrapy简介</h4>
+<h2 id="scrapy简介">Scrapy简介</h2>
 <p>Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。</p>
 <p>其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。</p>
 <figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1569769294059.png" alt="" loading="lazy"></figure>
 <p>如果此前对scrapy没有了解，请先查看下面的官方教程链接。</p>
 <p>架构概览：<code>https://docs.pythontab.com/scrapy/scrapy0.24/topics/architecture.html</code></p>
 <p>Scrapy入门教程：<code>https://docs.pythontab.com/scrapy/scrapy0.24/intro/tutorial.html</code></p>
-<h4 id="爬虫教程">爬虫教程</h4>
+<h2 id="爬虫教程">爬虫教程</h2>
 <p>首先，我们看一下豆瓣TOP250页面，发现可以从中提取电影名称、排名、评分、评论人数、导演、年份、地区、类型、电影描述。</p>
 <figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1569769306143.png" alt="" loading="lazy"></figure>
 <p>Item对象是种简单的容器，保存了爬取到得数据。其提供了类似于词典的API以及用于声明可用字段的简单语法。所以可以声明Item为如下形式。</p>
@@ -270,16 +270,8 @@
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
-<ul>
-<li>
-<ul>
 <li><a href="#scrapy%E7%AE%80%E4%BB%8B">Scrapy简介</a></li>
 <li><a href="#%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B">爬虫教程</a></li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>

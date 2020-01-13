@@ -7,7 +7,7 @@
 <title>
     惰性载入函数 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578671811564">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578926402006">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -48,7 +48,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578671811564" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578926402006" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -133,12 +133,12 @@
                             <time class="post-time">2019-08-06</time>
                             
                                 <a href="https://mengxiaoxu.github.io/tag/javascript" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_3">
                             #JavaScript
                         </a>
                                 
                                 <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_3">
                             #前端
                         </a>
                                 
@@ -177,7 +177,7 @@
 }
 </code></pre>
 <p>我们可以发现，在浏览器每次调用<code>createXHR()</code>的时候，它都要对浏览器所支持的能力仔细检查，但是很明显当第一次检查之后，我们就应该知道浏览器是否支持我们所需要的能力，因此除第一次之外的检查都是多余的。即使只有一个<code>if</code>语句也肯定要比没有<code>if</code>语句慢，所以<code>if</code>语句不必每次都执行，那么代码可以运行的更快一些，<strong>惰性载入</strong>就是用来解决这种问题的技巧。</p>
-<h3 id="函数重写">函数重写</h3>
+<h2 id="函数重写">函数重写</h2>
 <p>要理解惰性载入函数的原理，我们有必要先理解一下函数重写技术，由于一个函数可以返回另一个函数，因此可以在函数内部用新的函数来覆盖旧的函数。</p>
 <pre><code class="language-javascript">function sayHi() {
     console.info('Hi');
@@ -187,9 +187,9 @@
 }
 </code></pre>
 <p>我们第一次调用<code>sayHi()</code>函数时，控制台会打印出<code>Hi</code>，全局变量<code>sayHi</code>被重新定义，被赋予了新的函数，从第二次开始之后的调用都会打印出<code>Hello</code>。惰性载入函数的本质就是函数重写，惰性载入的意思就是函数执行的分支只会发生一次。</p>
-<h3 id="惰性载入">惰性载入</h3>
+<h2 id="惰性载入">惰性载入</h2>
 <p>我们来看一个例子（例子来源于<a href="https://github.com/mqyqingfeng">冴羽</a>所写的<a href="https://github.com/mqyqingfeng/Blog/issues/44">JavaScript专题之惰性函数</a>）。现在需要写一个<code>foo</code>函数，这个函数返回首次调用时的<code>Date</code>对象，注意是首次。</p>
-<h5 id="方案一">方案一</h5>
+<h3 id="方案一">方案一</h3>
 <pre><code class="language-javascript">var t;
 function foo() {
     if (t) return t;
@@ -199,7 +199,7 @@ function foo() {
 // 此方案存在两个问题，一是污染了全局变量
 // 二是每次调用都需要进行一次判断
 </code></pre>
-<h5 id="方案二">方案二</h5>
+<h3 id="方案二">方案二</h3>
 <pre><code class="language-javascript">var foo = (function() {
     var t;
     return function() {
@@ -211,7 +211,7 @@ function foo() {
 // 使用闭包来避免污染全局变量，
 // 但是还是没有解决每次调用都需要进行一次判断的问题
 </code></pre>
-<h5 id="方案三">方案三</h5>
+<h3 id="方案三">方案三</h3>
 <pre><code class="language-javascript">function foo() {
     if (foo.t) return foo.t;
     foo.t = new Date();
@@ -220,7 +220,7 @@ function foo() {
 // 函数也是一种对象，利用这个特性也可以解决
 // 和方案二一样，还差一个问题没有解决
 </code></pre>
-<h5 id="方案四">方案四</h5>
+<h3 id="方案四">方案四</h3>
 <pre><code class="language-javascript">var foo = function() {
     var t = new Date();
     foo = function() {
@@ -232,7 +232,7 @@ function foo() {
 </code></pre>
 <p>惰性载入函数有两种实现方式，第一种是在函数被调用时再处理函数。在第一次调用的过程中，该函数会被覆盖为另外一种按合适方式执行的函数，这样任何对原函数的调用都不用再经过执行分支了。</p>
 <p>第二种实现方式是在声明函数时就指定适当的函数。这样第一次调用时就不会损失性能了，而是在代码首次加载时会损失一点性能，即是利用闭包写一个自执行的函数。</p>
-<h3 id="改进-createxhr">改进 createXHR</h3>
+<h2 id="改进-createxhr">改进 createXHR</h2>
 <p>有了上面的基础，我们就可以将<code>createXHR()</code>改进为下列形式，这样就不用每次调用都进行判断了。</p>
 <pre><code class="language-javascript">// 第一种实现方式
 function createXHR() {
@@ -322,11 +322,8 @@ function createXHR() {
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
-<ul>
 <li><a href="#%E5%87%BD%E6%95%B0%E9%87%8D%E5%86%99">函数重写</a></li>
-<li><a href="#%E6%83%B0%E6%80%A7%E8%BD%BD%E5%85%A5">惰性载入</a><br>
-*
+<li><a href="#%E6%83%B0%E6%80%A7%E8%BD%BD%E5%85%A5">惰性载入</a>
 <ul>
 <li><a href="#%E6%96%B9%E6%A1%88%E4%B8%80">方案一</a></li>
 <li><a href="#%E6%96%B9%E6%A1%88%E4%BA%8C">方案二</a></li>
@@ -335,8 +332,6 @@ function createXHR() {
 </ul>
 </li>
 <li><a href="#%E6%94%B9%E8%BF%9B-createxhr">改进 createXHR</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>

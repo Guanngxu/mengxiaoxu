@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1578926402006">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1579101724388">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1578926402006" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1579101724388" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -120,6 +120,171 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io/post/javascript-gao-ji-zhi-shi-ji-qiao">
+                        JavaScript 高级知识技巧
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-10-13</time>
+                    
+                        <a href="https://mengxiaoxu.github.io/tag/javascript" class="post-tag i-tag
+                            i-tag-other_1">
+            #JavaScript
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
+                            i-tag-other_2">
+            #前端
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io/post/javascript-gao-ji-zhi-shi-ji-qiao">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/javascript-gao-ji-zhi-shi-ji-qiao.png">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            对象
+Js 共有number、string、boolean、null、undefined、object六种主要类型，除了object的其它五中类型都属于基本类型，它们本身并不是对象。但是null有时会被当做对象处理，其原因在于不同的对象在底层都表示为二进制，在 js 中二进制前三位都为 0 的话就会被判定为object类型，而null的二进制表示全是 0， 所以使用typeof操作符会返回object，而后续的 Js 版本为了兼容前面埋下的坑，也就没有修复这个 bug。
+&amp;quot;I&#39;m a string&amp;quot;本身是一个字面量，并且是一个不可变的值，如果要在这个字面量上执行一些操作，比如获取长度、访问某个字符等，那就需要将其转换为String类型，在必要的时候 js 会自动帮我们完成这种转换，也就是说我们并不需要用new String(&#39;I&#39;m a string&#39;)来显示的创建一个对象。类似的像使用42.359.toFixed(2)时，引擎也会自动把数字转换为Number对象。
+null和undefined没有对应的构造形式，它们只有文字形式。相反，Date只有构造，没有文字形式。对于Object、Array、Function和RegExp（正则表达式）来说，无论使用文字形式还是构造形式，它们都是对象，不是字面量。
+Array 类型
+数组类型有一套更加结构化的值存储机制，但是要记住的是，数组也是对象，所以有趣的是你也可以给数组添加属性。
+var myArray = [&amp;quot;foo&amp;quot;, 42, &amp;quot;bar&amp;quot;];
+myArray.baz = &amp;quot;baz&amp;quot;;
+myArray.length; // 3
+myArray.baz; // &amp;quot;baz&amp;quot;
+
+数组类型的length属性是比较有特点的，它的特点在于不是只读的，也就是说你可以修改它的值。因此可以通过设置这个属性从数组末尾删除或添加新的项。
+var colors = [&amp;quot;red&amp;quot;, &amp;quot;blue&amp;quot;, &amp;quot;green&amp;quot;];
+colors.length = 2;
+console.info(colors[2]); // undefined
+colors.length = 4;
+console.info(colors[4]); // undefined
+// 向后面追加元素
+colors[colors.length] = &amp;quot;black&amp;quot;;
+
+数组还有一些很方便的迭代方法，比如every()、filter()、forEach()、map()、some()，这些方法都不会修改数组中包含的值，传入这些方法的函数会接收三个参数：数组项的值、该项在数组中的位置、和数组对象本身。
+Function 类型
+在 ECMAScript 中，每个函数都是Function类的实例，而且都与其它引用类型一样具有属性和方法。由于函数时对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
+在函数的内部有两个特殊的对象，this和arguments。arguments对象有callee和caller属性。caller用来指向调用它的function对象，若直接在全局环境下调用，则会返回null；callee用来指向当前执行函数，所以我们可以通过下面的方式来实现阶乘函数。
+function factorial(num) {
+    if (num &amp;lt;= 1) {
+        return 1;
+    } else {
+        return num * arguments.callee(num-1);
+    }
+}
+
+每个函数都包含两个非继承而来的方法，apply()和call()，这两个方法都是在特定作用域中调用函数，实际上等于设置函数体内this对象的值。首先，apply()方法接收两个参数，一个是在其中运行函数的作用域，另一个是参数数组，其中第二个参数可以是Array的实例，也可以是arguments对象。call()方法与apply()方法的作用相同，它们的区别仅仅在于接收参数的方式不同，在使用call()方法时必须逐个列举出来。
+window.color = &amp;quot;red&amp;quot;;
+var o = {color: &amp;quot;blue&amp;quot;};
+function sayColor() {
+    console.info(this.color);
+}
+sayColor(); // red
+sayColor.call(this); // red
+sayColor.call(window); // red
+sayColor.call(o); // blue
+sayColor.apply(o); // blue
+
+需要注意的是，在严格模式下未指定环境对象而调用函数，则this值不会转型为window，除非明确把函数添加到某个对象或者调用apply()或call()。
+安全的类型检查
+Js 内置的类型检查机制并不是完全可靠的，比如在 Safari（第5版前），对正则表达式应用typeof操作符会返回function；像instanceof在存在多个全局作用域（包含 frame）的情况下，也会返回不可靠的结果；前文提到的 Js 一开始埋下的坑也会导致类型检查出错。
+我们可以使用toString()方法来达到安全类型检查的目的，在任何值上调用Object原生的toString()方法都会返回一个[object NativeConstructorName]格式的字符串，下面以检查数组为例。
+Object.prototype.toString.call([]); // &amp;quot;[object Array]&amp;quot;
+function isArray(val) {
+    return Object.prototype.toString.call(val) == &amp;quot;[object Array]&amp;quot;;
+}
+
+
+作用域安全的构造函数
+构造函数其实就是一个使用new操作符调用的函数，当使用new操作符调用时，构造函数内用到的this对象会指向新创建的对象实例，比如我们有下面的构造函数。
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+现在的问题在于，要是我们不使用new操作符呢？会发生什么！
+let person = Person(&#39;name&#39;, 23);
+console.info(window.name); // name
+console.info(window.age); // 23
+
+很明显，这里污染了全局作用域，原因就在于没有使用new操作符调用构造函数，此时它就会被当作一个普通的函数被调用，this就被解析成了window对象。我们需要将构造函数修改为先确认this是否是正确类型的实例，如果不是则创建新的实例并返回。
+function Person(name, age) {
+    if (this instanceof Person) {
+        this.name = name;
+        this.age = age;
+    } else {
+        return new Person(name, age);
+    }
+}
+
+高级定时器
+大部分人都知道使用setTimeout()和setInterval()可以方便的创建定时任务，看起来好像 Js 也是多线程的一样，实际上定时器仅仅是计划代码在未来的某个时间执行，但是执行时机是不能保证的。因为在页面的生命周期中，不同时间可能有其它代码控制着 JavaScript 进程。
+这里需要注意一下setInterval()函数，仅当没有该定时器的任何其他代码实例时，Js 引起才会将定时器代码添加到队列中。这样可以避免定时器代码可能在代码再次被添加到队列之前还没有完成执行，进而导致定时器代码连续运行好几次的问题。但是这也导致了另外的问题：（1）某些间隔会被跳过；（2）多个定时器的代码执行之间的间隔可能会比预期小。
+假设某个click事件处理程序使用setInterval()设置了一个 200ms 间隔的重复定时器。如果这个事件处理程序花了 300ms 多的时间完成，同时定时器代码也花了差不多了的时间，就会同时出现跳过间隔切连续运行定时器代码的情况。
+为了避免setInterval()的重复定时器的这两个缺点，我们可以使用如下模式的链式setTimeout()，代码一看就懂什么意思了。
+setTimeout(function() {
+    // 处理中
+    setTimeout(arguements.callee, interval);
+}, interval)
+
+消息队列与事件循环
+如下图所示，左边的栈存储的是同步任务，就是那些能立即执行、不耗时的任务，如变量和函数的初始化、事件的绑定等等那些不需要回调函数的操作都可归为这一类。
+
+右边的堆用来存储声明的变量、对象。下面的队列就是消息队列，一旦某个异步任务有了响应就会被推入队列中。如用户的点击事件、浏览器收到服务的响应和setTimeout中待执行的事件，每个异步任务都和回调函数相关联。
+JS引擎线程用来执行栈中的同步任务，当所有同步任务执行完毕后，栈被清空，然后读取消息队列中的一个待处理任务，并把相关回调函数压入栈中，单线程开始执行新的同步任务。
+来看个例子：执行下面这段代码，执行后，在 5s 内点击两下，过一段时间（&amp;gt; 5s）后，再点击两下，整个过程的输出结果是什么？
+setTimeout(function(){
+    for(var i = 0; i &amp;lt; 100000000; i++){}
+    console.log(&#39;timer a&#39;);
+}, 0)
+for(var j = 0; j &amp;lt; 5; j++){
+    console.log(j);
+}
+setTimeout(function(){
+    console.log(&#39;timer b&#39;);
+}, 0)
+function waitFiveSeconds(){
+    var now = (new Date()).getTime();
+    while(((new Date()).getTime() - now) &amp;lt; 5000){}
+    console.log(&#39;finished waiting&#39;);
+}
+document.addEventListener(&#39;click&#39;, function(){
+    console.log(&#39;click&#39;);
+})
+console.log(&#39;click begin&#39;);
+waitFiveSeconds();
+
+首先，先执行同步任务。其中waitFiveSeconds是耗时操作，持续执行长达 5s。然后，在 Js 引擎线程执行的时候，&#39;timer a&#39;对应的定时器产生的回调、&#39;timer b&#39;对应的定时器产生的回调和两次 click 对应的回调被先后放入消息队列。由于 Js 引擎线程空闲后，会先查看是否有事件可执行，接着再处理其他异步任务，最后，5s 后的两次 click 事件被放入消息队列，由于此时 Js 引擎线程空闲，便被立即执行了。因此会产生下面的输出顺序。
+0
+1
+2
+3
+4
+click begin
+finished waiting
+click
+click
+timer a
+timer b
+click
+click
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/javascript-gao-ji-zhi-shi-ji-qiao">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io/post/jia-li-de-gou">
                         家里的狗
                     </a>
@@ -128,12 +293,12 @@
                     <time class="post-time">2019-10-12</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/san-wen" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-banana">
             #散文
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-info">
             #随笔
         </a>
                         
@@ -184,12 +349,12 @@
                     <time class="post-time">2019-09-08</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-success">
             #随笔
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_4">
             #生活感悟
         </a>
                         
@@ -247,12 +412,12 @@
                     <time class="post-time">2019-08-08</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/javascript" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-info">
             #JavaScript
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_2">
             #前端
         </a>
                         
@@ -398,12 +563,12 @@ console.info(getColor()); // &amp;quot;red&amp;quot;
                     <time class="post-time">2019-08-06</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/javascript" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_3">
             #JavaScript
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_4">
             #前端
         </a>
                         
@@ -580,12 +745,12 @@ function createXHR() {
                     <time class="post-time">2019-06-22</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/i4kET55EC" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-primary">
             #翻译
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/vhSkGeYf1D" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-other_1">
             #设计
         </a>
                         
@@ -681,7 +846,7 @@ For everything else, there is always a designer.
                     <time class="post-time">2019-05-12</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_2">
             #随笔
         </a>
                         
@@ -740,12 +905,12 @@ For everything else, there is always a designer.
                     <time class="post-time">2019-04-26</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/S57Vp3Suu" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_3">
             #计算机网络
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-error">
             #前端
         </a>
                         
@@ -861,12 +1026,12 @@ disk cache 与 memory cache
                     <time class="post-time">2019-04-18</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/git" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-success">
             #Git
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/QjCHA76i_r" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
             #编程基础
         </a>
                         
@@ -1087,12 +1252,12 @@ git checkout --track [remote-name]/[branch]
                     <time class="post-time">2019-04-10</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/ce-shi" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_4">
             #测试
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/qian-hou-duan-fen-chi" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-banana">
             #前后端分离
         </a>
                         
@@ -1142,63 +1307,6 @@ API 调用者（消费者）对服务提供方（生产者）的更改是通过�
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
-                        刘小绪同学随笔（2019-02-27）
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-02-27</time>
-                    
-                        <a href="https://mengxiaoxu.github.io/tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-error">
-            #随笔
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io/tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-other_3">
-            #个人总结
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/liu-xiao-xu-tong-xue-sui-bi-2019-02-27.jpeg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            建议读者大人们，如果自己经常一上火牙就疼，或者自己感觉牙已经有点问题了，可以提早预约医院的口腔科查一下，如果有问题早点预防，总是没有坏处的。抽烟的半年洗一次牙，不抽烟的一年洗一次牙。
-因为智齿发炎被狠狠的折磨了近两周，我属于比较能忍得疼痛的人，这不周末才进行了一场春季骑行，唯有美景与美食不可辜负，什么病痛都是浮云，但回想起连续几晚上疼到睡不着觉的滋味，昨天毅然决然斩草除根，给拔掉了，今天就感觉好了很多。
-
-前几天考研成绩出来了，估计现在大部分同学都在准备复试，我没有体验过考研的这个过程，毕业这半年有时候还是会想，我也应该体验一下考研的那个过程，已经很久没有体验过把所有时间都投入到一件事情上的快乐了。
-但我还是不太建议读研，我这是无责任建议，毕竟自己没有读过研究生，在研究生实验室待了两年，算是有一半的硕士生经历吧。对于学历我一直以来的观点都是绝大部分人将它的作用放大了，总是认为名校成造就了强能力，而恰恰把因果关系给弄反了，是能力强的人都进了名校（本科）。当然，不否认像医学一类的专业是肯定要考研的，一棒子全打死肯定是不对的。
-
-刘大发起的读书活动告一段落了，跟着小伙伴们泛泛的读了一遍《深入理解计算机系统》，只能用“痛并快乐着”来形容这个过程，每周输出一篇读书笔记，没有按时输出就罚钱的规矩很好，人还是需要自己逼自己才行。
-这本书不适合初学者阅读，在豆瓣上的评分接近 10 分，不讲究速成，而是一本内功心法，如果是您是码农的话，读一读绝对会提高一个层级。现在已经开启了另一本书籍的阅读计划，刘大这个活动组织的超好。
-
-春节回家发现了一个巨大的变化，我老家那种贫困县地区的村民们，也在开始讨论保险这一类产品了，我是觉得这个改变太大了，说明农民伯伯的经济水平也有很大的提升了。另外通过朋友圈还发现，我认识的大佬们貌似出身都并不是多好，反倒是大部分普通朋友家里的矿更多。
-我们家族每年会组织祭祖活动，在正月初三一大家 50 人左右一同祭拜曾祖曾母，通过这么一个活动把整个大家族的年轻人联系起来，能搭建这样一个平台很棒，我正也在着手将家族信息数字化。
-
-说到这里，想说一句家族群是个小江湖，亲戚之间也是暗暗较劲的，母亲不会抢群里几个特定的人发的红包，家里都是山路，车技不好的人很容易就寸步难行，一表叔就因为不到 10 米的距离，整个春节都在亲戚朋友面前抬不起头。
-堂弟现在是民航飞行员在读，而另一个表弟今年正值高考，说要去考炮兵学院，将来好把飞机打下来，这一下可好了，这些话全部伯父被截屏保留了，将来某一天要是这俩兄弟闹矛盾了，估计有的好看。保二爷写的家族群不是群，是江湖...看起来更有趣一点。
-在我身上更可悲的事情发生了，所有长辈一致认同应该由我来管理家族群，想想整个群里充斥的都是是那种要露不露、似露非露、就是不露的视频，或者是用粗糙都无法形容的大而泛的鸡汤文，整个头就大了，这可比解决技术问题难多了。
-
-最近愈发觉得“大佬”之间的抄袭严重了，真大佬基本都是原创内容，或者是引用了别人的文字就标注出来，然而总是看到一些“大佬”原封不动发出来，还不表明出处，下面粉丝跟着继续做同样的事，我看到最多的一次是朋友圈连续 10 多条是一样的段子。
-
-最后想无责任乱说一点科技相关的东西，5G 是当下的风口浪尖，各大厂商都希望在 5G 上有一席之地，搞芯片的搞芯片、做基站的做基站、整手机的整手机，5G + IPV6 肯定会带来无法想象的未来，5G 会大幅推动智能硬件的应用，但是手机这个应用场景是不是被夸大了呢？
-现在的 4G 手机在线看一部高清电影不会有多卡顿的现象，广大吃瓜群众和各大媒体，一直都拿着 5G 手机来吹嘘，吃瓜群众跟随媒体引导的大流，我总觉得当拿到 5G 手机的那一刻，心里肯定会从喜悦急转失望的，就像目前的苹果产品一样。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -1219,7 +1327,7 @@ API 调用者（消费者）对服务提供方（生产者）的更改是通过�
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1578926402006)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1579101724388)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -1258,6 +1366,12 @@ API 调用者（消费者）对服务提供方（生产者）的更改是通过�
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io/post/qian-xi-zheng-ze-biao-da-shi-yuan-li">浅析正则表达式原理</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io/post/xiao-gong-ju-shou-ji">小工具收集</a>
                 </h3>
             
@@ -1280,10 +1394,6 @@ API 调用者（消费者）对服务提供方（生产者）的更改是通过�
                 </h3>
             
             
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io/post/yong-hu-guan-zhu-er-cheng-xu-yuan-bu-guan-zhu-de-shi">用户关注而程序员不关注的事</a>
-                </h3>
             
             
             

@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1579101724388">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1581860172763">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1579101724388" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1581860172763" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -120,6 +120,71 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io/post/shi-me-shi-qi-yue-ce-shi">
+                        什么是契约测试？
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-04-10</time>
+                    
+                        <a href="https://mengxiaoxu.github.io/tag/ce-shi" class="post-tag i-tag
+                            i-tag-other_4">
+            #测试
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io/tag/qian-hou-duan-fen-chi" class="post-tag i-tag
+                            i-tag-other_1">
+            #前后端分离
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io/post/shi-me-shi-qi-yue-ce-shi">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/shi-me-shi-qi-yue-ce-shi.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            契约测试全称为：消费者驱动契约测试，最早由 Martin Fowler 提出。契约这个词从字面上很容易理解，就是双方（多方）达成的共同协议，那又为什么需要契约测试这个东西呢？
+在当前微服务大行其道的行业背景下，越来越多的团队采用了前后端分离和微服务架构，我们知道微服务是由单一程序构成的小服务，与其它服务使用 HTTP API 进行通讯，服务可以采用不同的编程语言与数据库，微服务解决了单体应用团队协作开发成本高、系统高可用性差等等问题。
+但是微服务也引入了新的问题，假设 A 团队开发某服务并提供对应的 API，B 团队也在开发另一个服务，但是他们需要调用 A 团队的 API，为了产品的尽快发布，两个团队都争分夺秒，已经进入联调阶段了，然而出现了下面这样的尴尬情况。
+
+随着越来越多的微服务加入，它们的调用关系开始变得越来越复杂，如果每次更改都需要和所有调用该 API 的团队协商，那沟通成本也未免太大了，试想下图的沟通成本。
+
+为了保证 API 调用的准确性，我们会对外部系统的 API 进行测试，如果外部系统稳定性很差，或者请求时间很长的时候，就会导致我们的测试效率很低，当调用 API 失败时，你甚至无法确定是因为 API 被更改而导致的失败还是运行环境不稳定导致的失败。
+A 团队提供的 API 不稳定，肯定会导致 B 团队效率低下，为了不影响 B 团队的进度，所以构建了测试替身，通过模拟外部 API 的响应行为来增强测试的稳定性和反应速度。
+
+但是这样做真的就解决问题了吗？当所有内部测试都通过时，能拍着胸脯说真正的外部 API 就一定没有变化？很简单的一个解决方案就是：部分测试使用测试替身，另一部分测试定期使用真实的外部 API，这样既保证了测试的运行效率、调用端的准确性，又能确保当真实外部系统API改变时能得到反馈。
+
+感觉剧情到这里就差不多该结束了，实际上真正的高潮部分开刚刚开始。如果外部 API 的反馈周期很长，那增加真实 API 测试间隔时间就又回到了最初的起点。现在我们回顾一下上面的方案。
+在上面的场景中，我们都是已知外部 API 功能来编写相应的功能测试，并且使用直接调用外部 API 的方式来达到测试的目的，如此就不可避免的带来了两个问题：
+
+API 调用者（消费者）对服务提供方（生产者）的更改是通过对 API 的测试来感知的；
+直接依赖于真实 API 的测试效果受限于 API 的稳定性和反映速度。
+
+解决方案首先是依赖关系解耦，去掉直接对外部 API 的依赖，而是内部和外部系统都依赖于一个双方共同认可的约定—“契约”，并且约定内容的变化会被及时感知；其次，将系统之间的集成测试，转换为由契约生成的单元测试，例如通过契约描述的内容，构建测试替身。这样，同时契约替代外部 API 成为信息变更的载体。
+前后照应一下，我们现在再来看一下消费者驱动契约测试。它有两个不可或缺的角色：消费者是服务使用方；生产者（提供者）是服务提供方。采用需求驱动（消费者驱动）的思想。契约文件（比如 json 文件）由双方共同定义规范，一般由消费者生成，生产者根据这份契约去实现。
+契约测试其中一个的典型应用场景是内外部系统之间的测试，另一个典型的例子是前后端分离后的 API 测试。行业内比较成熟的解决方案是 Swagger Specification 和 Pact Specification，这里不做展开讨论。
+我们同样可以把契约测试的思想用到代码的编写中，契约测试通过一个契约文件来解耦依赖，那么对于需要用户定义很多规则的场景，我们同样可以将这些规则像契约文件一样抽取出来，这样就降低了代码之间的耦合度。
+最后敲敲黑板，契约测试不是替代 E2E 测试的终结者，更不是单元测试的升级换代，它更偏向于服务和服务之间的 API 测试，通过解耦服务依赖关系和单元测试来加快测试的运行效率。
+
+参考文章：
+聊一聊契约测试 —— ThoughtWorks洞见
+契约测试 —— 米阳
+前后端分离了，然后呢？ —— 邱俊涛
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/shi-me-shi-qi-yue-ce-shi">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2019-02-27">
                         刘小绪同学随笔（2019-02-27）
                     </a>
@@ -128,12 +193,12 @@
                     <time class="post-time">2019-02-27</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_2">
             #随笔
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-">
             #个人总结
         </a>
                         
@@ -185,12 +250,12 @@
                     <time class="post-time">2019-01-26</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/J_3GE6pBm" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-warning">
             #TypeScript
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-primary">
             #前端
         </a>
                         
@@ -370,12 +435,12 @@ onPostBody: function () {
                     <time class="post-time">2019-01-13</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_1">
             #随笔
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-banana">
             #个人总结
         </a>
                         
@@ -432,7 +497,7 @@ onPostBody: function () {
                     <time class="post-time">2018-12-30</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/shu-ji-tui-jian" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-primary">
             #书籍推荐
         </a>
                         
@@ -478,12 +543,12 @@ onPostBody: function () {
                     <time class="post-time">2018-12-15</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/DytBq-ZFD" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-">
             #回忆
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_3">
             #生活感悟
         </a>
                         
@@ -539,7 +604,7 @@ onPostBody: function () {
                     <time class="post-time">2018-12-12</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-info">
             #生活感悟
         </a>
                         
@@ -596,7 +661,7 @@ onPostBody: function () {
                     <time class="post-time">2018-11-28</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-info">
             #操作系统
         </a>
                         
@@ -686,12 +751,12 @@ public class Main
                     <time class="post-time">2018-11-28</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/git" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_1">
             #Git
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/i4kET55EC" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-error">
             #翻译
         </a>
                         
@@ -746,69 +811,6 @@ public class Main
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io/post/JFfO3d0iF">
-                        刘小绪同学的 2018
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-11-26</time>
-                    
-                        <a href="https://mengxiaoxu.github.io/tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-other_2">
-            #个人总结
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-warning">
-            #生活感悟
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io/post/JFfO3d0iF">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/JFfO3d0iF.jpg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            这个总结写的还算认真，回头看，我真的运气很好，遇到了很多大佬，在我还未毕业时并没有嫌弃我傻，教我的不仅仅是技术，还有理财、为人处世，下面是我这一年的成长经历。
-有一段时间因为华为 34 岁以上员工被裁、中兴程序员跳楼等事件的发生，各种蹭热点讨论“中年危机”的文章漫天飞，那时我正忙于找工作。
-当时一个微信群里面大家各种讨论中年危机，都在给自己制造焦虑，刚好群里有个大神可能看大家过于焦虑，就在群里发了几条消息，教大家如何避免中年危机，并且推荐了两本书。
-还是学生的我下意识的就发了一个添加好友请求，庆幸的是他同意了我的好友请求，当然我们没有什么交流，我的问题过于浅显，我明白自己这个水平问问题，会浪费人家时间，当时的想法是看看大神的朋友圈，他平时都接触什么，自己学习一段时间。
-大神推荐的书是李笑来写的《把时间当做朋友》、《财富自由之路》，两本书在学校图书馆都没有，我就给学校图书馆荐购系统提交了这两本书，图书馆效率也挺高，不到一周就把书给买回来了，我立马就借回来阅读。
-书中的内容刷新了我以前狭隘的认知，自己从来没有像书中那样考虑问题，除了对作者的佩服之外，更多的是思考自己这种学生思维局限性太大了，要慢慢的将它摒弃。
-有个定律是你关心什么就会来什么，后面陆续碰到几位像大神一样的人士，并加了他们的微信，但是都仅仅是通过他们朋友圈的蛛丝马迹去找知识，通过他们朋友圈的分享内容，我知道了“简七理财”、“码农翻身”公众号，然后知道了《富爸爸穷爸爸》、《小狗钱钱》，于是我通过微信读书，读完了这两本书，逐渐培养了理财理念。
-后来没隔多久，简七出书了，我第一时间就买了她写的《好好赚钱》（同期还有刘大也出了《码农翻身》一书，我也第一时间买了），简七写的内容通俗易懂，很容易理解。
-刘大在群里开了几次公开课，作为计算机专业的我，被刘大对技术的理解之深给折服了，正是业界浮躁的时候，成千上万人想着人工智能、大数据、区块链，而刘大一直能沉下心来去了解技术的原理，这给了我一个很好的榜样，我也逐渐沉下心来，开始去补最基础的知识，像《深入理解计算机系统》一类书也能尽下心来慢慢去啃（当时没啃完，最近又在啃），这种不浮躁的特质对我的技术成长是很有帮助的。
-此后有一天，另一个大神在朋友圈分享了曹大写的《从校园到职场系列文章》，喜欢深入挖掘信息的我，以曹大公众号为源头，又找到了冯大、池大、二爷等人的公众号。
-作为自由的大四学生，因为不用担心第二天起不来，我那段时间经常熬夜阅读他们的文章，再阅读的过程中我也开始思考自己此前哪些想法狭隘，哪些品质又是值得继续保持的。
-也是那时开始接受知识付费的，那时候已经有小密圈（现在叫知识星球）了，出于对几位大佬的信任，我第一次大胆的花了几百块钱加入了刘大、曹大、冯大、程序员小灰的小密圈，其中的内容比网上蹭热点的文章好不知多少倍，一贯爱捕捉蛛丝马迹的我，又通过评论信息发现了 angela zhu、子柳老师、陈利人老师等，然后去找他们的文章，他们输出的内容要比水军写的文章好太多。
-自己也是从那时候开始坚持写文章记录自己的心得的，通过写文章，我认识了很多优秀的人，比如吴小龙同学、了不起的杰克、java 小咖秀等公众号的作者，和他们交流的很少，但是却很受用，他们的积极向上也影响着我一直保持着乐观豁达的心态。
-自己写的文章也被几个资深程序员赞同，同时还收到了两个出版社发来的出书邀请，让我体会到了无心插柳柳成荫的收获。
-让我坚持一直写文章的动力不是赚钱，而是我切切实实体会到了它给我个人带来的成长，为了自己日后再看时能立刻就找到清晰的逻辑，我把都尽可能把文章写得有理有据，掌握自己的节奏，尽量提高文章质量。此前写的谈一下写作的重要性一文有说写作可以带来的好处。
-现在已经不把自己当新人了，而且有同龄人甚至比我年龄还大的人向我咨询问题时，我也能给出合理建议，都得到了他们的肯定。最近发现和周围伙伴最明显的一个区别就是，对于同一个新闻，我经常早于他们半天甚至一两天知道，而且掌握的信息比他们还准确，我认为这就是整体认知水平的提升。
-想说的是，执行力与信息素养很重要，执行力强的人会与你拉开越来越大的距离，信息素养也是一个关键品质，现在网络上充斥着大量的虚假信息，如何去分别这些信息的真假，在相同条件下如何获得更多的有效信息，是必备的能力。
-当前年龄 23，刚大学毕业几个月，没读研。按十年为期给自己定了几个小小的目标：
-父母是地地道道的农民，智能手机都不会用，十年之类给自己和父母把重疾险、意外险之类的保险配置齐全，虽然父辈一直反对买保险。
-提高获取信息的能力，虽然现在对信息的掌握都比周边伙伴要早半天至几天，但是都不是自己的分析结果，学习以时间的纬度跟踪事件的发展。
-学习理财知识，现在只对信用卡、基金有一点点的了解，不管炒不炒股，金融知识都还是要学的，这方面通过看书、阅读、小额实操学习。
-提升自己的技术实力，职业是程序员，前后端都做，但是自己对技术的热情不是多么高涨（至少比身边一半人要高涨），以我对自己的了解，我在技术的道路上成长为小公司一个的架构师应该不成问题，再高层级怕是不行。
-慢慢做到不止一份收入来源，这方面不是多清晰，现在每个月平均会有 200 左右的非工资收入（帮助别人时发的红包等），十年后做到其它收入基本和工资持平。不至于因为钱的问题而忍受心中的不快，至少得有能指着老板的鼻子说“老子不干了”的底气。
-世界那么大，应该去看看，国内除了西北地区，中国很多地方已经留下了我的足迹，旅游不仅仅是玩耍，更是提升见识、获得灵感的有效途径，十年至少得把自己的脚印印到 5 个国家的土地上吧。
-十年之后应该已经结婚了，房子是现在最遥不可及的目标，但是心里莫名有一股自信，这个后面会实现的，虽然不知道哪里来的这股自信。
-最后一个，趁年轻，多学习，做一个终身学习的人，时刻保持学习的态度，多做有利于他人的事，现在水平不高，我能帮助到的大部分都是硕士及以下。努力提高自己，帮助更多的人。更大的目标是能给山区学校带去一些更好的教育资源。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/JFfO3d0iF">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -829,7 +831,7 @@ public class Main
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1579101724388)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1581860172763)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -868,6 +870,12 @@ public class Main
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi">MySQL 架构与历史</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io/post/qian-xi-zheng-ze-biao-da-shi-yuan-li">浅析正则表达式原理</a>
                 </h3>
             
@@ -890,10 +898,6 @@ public class Main
                 </h3>
             
             
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io/post/mongodb-ju-he-ru-men">MongoDB 聚合入门</a>
-                </h3>
             
             
             

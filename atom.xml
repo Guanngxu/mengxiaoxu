@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2020-01-15T15:22:39.928Z</updated>
+    <updated>2020-02-16T13:36:29.765Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io/atom.xml"/>
@@ -10,6 +10,64 @@
     <logo>https://mengxiaoxu.github.io/images/avatar.png</logo>
     <icon>https://mengxiaoxu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 刘小绪同学的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[MySQL 架构与历史]]></title>
+        <id>https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi</id>
+        <link href="https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi">
+        </link>
+        <updated>2020-02-16T13:26:48.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>参考内容：<br>
+《高性能 MySQL（第三版））》<br>
+<a href="https://t.zsxq.com/FuJaE23">码农翻身知识星球</a><br>
+<a href="https://mp.weixin.qq.com/s/bM_g6Z0K93DNFycvfJIbwQ">数据库村的旺财和小强</a></p>
+</blockquote>
+<h2 id="存储引擎">存储引擎</h2>
+<p><a href="https://dev.mysql.com/doc/internals/en/custom-engine-overview.html"> Writing a Custom Storage Engine / Overview</a> 中说存储引擎负责管理 MySQL 的数据存储和索引，MySQL 服务器通过已经定义好的 API 与存储引擎进行通信。</p>
+<p>不同的存储引擎都有各自的优势和劣势，存储引擎相互之间不会通信，除了 InnoDB 外其它引擎都不会解析 SQL，API 屏蔽了存储引擎之间的差异，使得这些差异对上层查询过程透明。存储引擎 API 包含了几十个底层函数，下面列举了其中的一小部分函数，如果你要自己实现一个存储引擎，那所做的工作就是把这些接口函数实现。</p>
+<pre><code class="language-c">//创建一个表
+virtual int create(const char *name, TABLE *form, HA_CREATE_INFO *info)=0;
+
+//打开一个表
+int open(const char *name, int mode, int test_if_locked);
+
+//写入一行数据
+int write_row(byte *buf);
+
+//更新一行
+int update_row(const byte *old_data, byte *new_data);
+
+//删除一行
+int delete_row(const byte *buf);
+
+//开始一个事务
+int  start_stmt(THD *thd, thr_lock_type lock_type);
+
+//提交一个事务
+int (*commit)(THD *thd, bool all);
+
+//回滚一个事务
+int (*rollback)(THD *thd, bool all);
+
+// ......
+</code></pre>
+<p>MySQL 内建了很多存储引擎，除此之外还有很多社区版的第三方引擎，对于这么多引擎我们应该怎么选择呢？这里可以归结为一句话「<strong>除非需要用到某些 InnoDB 不具备的特性，并且没有其它办法可以代替，否则都应该选择 InnoDB 引擎</strong>」。例如，如果要用到全文索引，建议优先考虑 InnoDB 加上 <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 组合，而不是使用支持全文索引的 MyISAM。当然，如果不需要用到 InnoDB 的特性，同时其它引擎的特性能够更好的满足需求，也可以考虑一下其它引擎。</p>
+<p>除非万不得已，否则不要混合使用多种存储引擎。如果应用需要不同的存储引擎，你至少应该考虑「事务」、「备份」、「崩溃恢复」、「特有的特性」几个因素。</p>
+<h2 id="并发控制">并发控制</h2>
+<p>数据库需要大量的磁盘读写操作，自然而然就会产生并发控制的问题。我们可以简单的使用读写锁来解决解决并发控制问题。读锁是共享的，多个客户可以在同一时刻读取同一个资源；写锁是排他的，一个写锁会阻塞其它写锁和读锁，只有这样才能在同一时间内只有一个用户能执行写入，并防止其它用户读取正在写入的同一资源。</p>
+<p>上一段内容只说了锁，但是没有讨论锁的粒度，锁定资源时是直接锁定整个数据库还是仅锁定具体的表，亦或是只锁定要操作的那几行记录？首先我们需要明白的是任何时候，在给定的资源上，锁定的数据量越少则系统的并发程度越高，只要相互之间不冲突即可。</p>
+<p>但是我们还忘了另一件事，加锁本身也是需要消耗资源的，获得锁、检查锁的解除、释放锁等等都会增加系统的开销，如果系统花费大量的时间来管理锁，而不是管理数据，那么系统的并发程度同样会受到影响。因此锁策略就是在锁的开销和数据的安全性之间寻求平衡。</p>
+<p>大多数商业数据库在锁策略上并没有提供更多的选择，一般都是在表上施加行级锁。MySQL 则提供了多种选择，每种 MySQL 引擎都可以实现自己的锁策略和锁粒度，比较重要的两种锁策略是「表锁」和「行级锁」。</p>
+<h2 id="多版本并发控制">多版本并发控制</h2>
+<p>刘大在<a href="https://mp.weixin.qq.com/s/bM_g6Z0K93DNFycvfJIbwQ">数据库村的旺财和小强</a>中把「事务的隔离级别」和「多版本并发控制（MVCC）」讲的已经比较透彻了，此处我仅借助文字描述来加深我自己的理解。</p>
+<p>MVCC 是行级锁的一个变种，但是它在很多情况下避免了加锁的操作，因为避免了加锁的这些开销，所以 MVCC 能够提升并发性能。包括 Oracle、PostgreSQL、MySQL 等等数据库都实现了 MVCC，只是各自的实现机制不一样，因为 MVCC 没有一个统一的实现标准，比较典型的实现方式有「乐观并发控制」和「悲观并发控制」。</p>
+<p>MVCC 是通过保存数据在某个时间点的快照来实现的（这难道不是一个版本控制器吗）。以 InnoDB 为例，它是通过在每行记录后面保存两个隐藏的列来实现，一个保存了行的创建时间，另一个则保存了行的过期（删除）时间。当然存储的并不是实际的时间值，而是系统版本号。每开始一个新的事务，系统版本号都会自动递增，事务开始时刻的版本号会作为事务的版本号，用来和查询到的每行记录记录的版本号做比较。</p>
+<p>因此根据事务的开始时间不同，每个事务对同一张表，同一时刻看到的数据可能是不一样的。因为同一条记录在存储器中拥有多个版本，每个事务也有自己的版本号，只要把事务和记录的版本号做对比即可知道需要取哪个版本的记录了。一言以蔽之，MVCC 是一个借助空间来换取时间的策略。</p>
+<h2 id="小知识点">小知识点</h2>
+<p>MySQL 使用文件系统的目录和文件来保存数据库和表的定义，所以大小写敏感就和具体的平台密切相关，在 Windows 中大小写不敏感，而在 Linux 等类 Unix 中则是敏感的。不同的存储引擎保存数据和索引的方式是不同的，但是表的定义则是在 MySQL 服务层统一处理的，<code>my_table</code>表的定义保存会被保存在<code>my_table.frm</code>中。</p>
+<p>如果表在创建并导入数据后，不会再对该表进行修改操作，那么这样的表比较适合 MyISAM 压缩表，而且压缩表也支持索引。可以使用<code>myisampack</code>对 MyISAM 表进行压缩，压缩后的表是不能进行修改的，但是可以极大的减少磁盘的空间占用，因此也可以减少磁盘 I/O，这无疑是一种提升查询性能的方法。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[浅析正则表达式原理]]></title>
         <id>https://mengxiaoxu.github.io/post/qian-xi-zheng-ze-biao-da-shi-yuan-li</id>
@@ -878,55 +936,6 @@ syntax on &quot;进行语法检验，颜色显示，比如 C 语言等
 <p><a href="https://bruno-simon.com/">https://bruno-simon.com</a> 是一个超酷的网站主页，网站的源码在 <a href="https://github.com/brunosimon/folio-2019">Github</a>。页面用到了 3D 导航，你可以像玩游戏一样在里面探索，也可以把这个网页当成一个减压神器。</p>
 <p><a href="https://daquan.tv/collections/funny/this-will-make-you-look-at-history-very-differently?stid=0&amp;utm_campaign=tw_daquan_look_history_us_dt_yo&amp;utm_medium=9949&amp;utm_source=1005&amp;utm_content=tw_daquan_look_history_us_dt_yo_i4">一些可能会颠覆你对世界的认识的照片</a> 文章里面列举了大量可能颠覆你认知的照片，比如世界上第一张自拍花了 30 秒，即保持一个姿势 30 秒不动。</p>
 <p>Youtube 上最近有个视频火了：美国加州某地的微波传输站失灵了，技术人员在微波天线罩里面发现了 300磅（136公斤）的橡子，大家都认为是松鼠干的，根据美国「国家地理」的文章 <a href="https://www.nationalgeographic.com/news/2015/11/151113-antenna-cache-acorn-woodpecker-california/">Meet the Bird that Filled an Antenna With Acorns</a> 介绍，在微波天线罩里藏橡子的很可能不是松鼠，而是橡子啄木鸟。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Nginx 文件操作优化]]></title>
-        <id>https://mengxiaoxu.github.io/post/nginx-wen-jian-cao-zuo-you-hua</id>
-        <link href="https://mengxiaoxu.github.io/post/nginx-wen-jian-cao-zuo-you-hua">
-        </link>
-        <updated>2019-10-19T11:21:48.000Z</updated>
-        <content type="html"><![CDATA[<blockquote>
-<p>参考内容：<br>
-<a href="http://www.178linux.com/54790">Nginx AIO 机制与 sendfile 机制</a><br>
-<a href="https://segmentfault.com/q/1010000003055006/a-1020000003064578">sendfile 适用场景</a><br>
-<a href="http://xiaorui.cc/2015/06/24/%E6%89%AF%E6%B7%A1nginx%E7%9A%84sendfile%E9%9B%B6%E6%8B%B7%E8%B4%9D%E7%9A%84%E6%A6%82%E5%BF%B5/">扯淡 Nginx 的 sendfile 零拷贝的概念</a><br>
-<a href="https://www.jianshu.com/p/fad3339e3448">浅析 Linux 中的零拷贝技术</a><br>
-<a href="http://man7.org/linux/man-pages/man2/sendfile.2.html">Linux man-pages sendfile</a></p>
-</blockquote>
-<p>今天在看 Nginx 配置的时候，看到了一个<code>sendfile</code>配置项，它可以配置在<code>http、server、location</code>三个块中，出于好奇就去查了一下<code>sendfile</code>的作用。</p>
-<p>文件下载是服务器的基本功能，其基本流程就是循环的从磁盘读取文件内容到缓冲区，再将缓冲区内容发送到<code>socket</code>文件，程序员基本都会写出类似下面看起来比较高效的程序。</p>
-<pre><code class="language-c">while((n = read(diskfd, buf, BUF_SIZE)) &gt; 0)
-    write(sockfd, buf , n);
-</code></pre>
-<p>上面程序中我们使用了<code>read</code>和<code>write</code>两个系统调用，看起来也已经没有什么优化空间了。这里的<code>read</code>和<code>write</code>屏蔽了系统内部的操作，我们并不知道操作系统做了什么，现实情况却是由于 Linux 的 I/O 操作默认是缓冲 I/O，上面的程序发生了多次不必要的数据拷贝与上下文切换。</p>
-<p>上述两行代码执行流程大致可以描述如下：</p>
-<ol>
-<li>系统调用<code>read</code>产生一个上下文切换，从用户态切换到内核态；</li>
-<li>DMA 执行拷贝（现在都是 DMA 了吧！），把文件数据拷贝到内核缓冲区；</li>
-<li>文件数据从内核缓冲区拷贝到用户缓冲区；</li>
-<li><code>read</code>调用返回，从内核态切换为用户态；</li>
-<li>系统调用<code>write</code>产生一个上下文切换，从用户态切换到内核态；</li>
-<li>把步骤 3 读到的数据从用户缓冲区拷贝到 Socket 缓冲区；</li>
-<li>系统调用<code>write</code>返回，从内核态切换到用户态；</li>
-<li>DMA 从 Socket 缓冲区把数据拷贝到协议栈。</li>
-</ol>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1571580838587.png" alt="" loading="lazy"></figure>
-<p>可以看到两行程序共发生了 4 次拷贝和 4 次上下文切换，其中 DMA 进行的数据拷贝不需要 CPU 访问数据，所以整个过程需要 CPU 访问两次数据。很明显中间有些拷贝和上下文切换是不需要的，<code>sendfile</code>就是来解决这个问题的，它是从 2.1 版本内核开始引入的，这里放个 2.6 版本的<a href="http://lxr.linux.no/linux+v2.6.36/fs/read_write.c#L809">源码</a>。</p>
-<p>系统调用<code>sendfile</code>是将<code>in_fd</code>的内容发送到<code>out_fd</code>，描述符<code>out_fd</code>在 Linux 2.6.33 之前，必须指向套接字文件，自 2.6.33 开始，<code>out_fd</code>可以是任何文件；<code>in_fd</code>只能是支持<code>mmap</code>的文件（<code>mmap</code>是一种内存映射方法，在被调用进程的虚拟地址空间中创建一个新的指定文件的映射）。</p>
-<p>所以当 Nginx 是一个静态服务器时，开启<code>sendfile</code>配置项是可以大大提高 Nginx 性能的，但是当把 Nginx 作为一个反向代理服务器时，<code>sendfile</code>则没有什么用，因为当 Nginx 时反向代理服务器时，<code>in_fd</code>就是一个套接字，这不符合<code>sendfile</code>的参数要求。</p>
-<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1571580849307.png" alt="" loading="lazy"></figure>
-<p>可以看到现在我们只需要一次拷贝就可以完成功能了，但是能否把这一次拷贝也省略掉呢？我们可以借助硬件来实现，仅仅需要把缓冲区描述符和文件长度传过去，这样 DMA 直接将缓冲区的数据打包发送到网络中就可以了。</p>
-<p>这样就实现了零拷贝技术，需要注意的是这里所说的零拷贝是相对操作系统而言的，即在内核空间不存在冗余数据。数据的实际走向是从硬盘到内存，再从内存到设备。</p>
-<p>Nginx 中还有一个<code>aio</code>配置，它的作用是启用内核级别的异步 I/O 功能，要使<code>aio</code>生效需要将<code>directio</code>开启（<code>directio</code>对大文件的读取速度有优化作用），<code>aio</code>很适合大文件的传送。需要注意的是<code>sendfile</code>和<code>aio</code>是互斥的，不可同时兼得二者，因此我们可以设置一个文件大小限制，超过该阀值使用<code>aio</code>，低于该阀值使用<code>sendfile</code>。</p>
-<pre><code class="language-nginx">location /video/ {
-    sendfile on;
-    sendfile_max_chunk 256k; 
-    aio threads;
-    directio 512k;
-    output_buffers 1 128k;
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>

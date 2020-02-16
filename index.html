@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1579101724388">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1581860172763">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1579101724388" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1581860172763" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -120,6 +120,93 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi">
+                        MySQL 架构与历史
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-02-16</time>
+                    
+                        <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
+                            i-tag-other_3">
+            #MySQL
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
+                            i-tag-other_2">
+            #数据库
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/mysql-jia-gou-yu-li-shi.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《高性能 MySQL（第三版））》
+码农翻身知识星球
+数据库村的旺财和小强
+
+存储引擎
+ Writing a Custom Storage Engine / Overview 中说存储引擎负责管理 MySQL 的数据存储和索引，MySQL 服务器通过已经定义好的 API 与存储引擎进行通信。
+不同的存储引擎都有各自的优势和劣势，存储引擎相互之间不会通信，除了 InnoDB 外其它引擎都不会解析 SQL，API 屏蔽了存储引擎之间的差异，使得这些差异对上层查询过程透明。存储引擎 API 包含了几十个底层函数，下面列举了其中的一小部分函数，如果你要自己实现一个存储引擎，那所做的工作就是把这些接口函数实现。
+//创建一个表
+virtual int create(const char *name, TABLE *form, HA_CREATE_INFO *info)=0;
+
+//打开一个表
+int open(const char *name, int mode, int test_if_locked);
+
+//写入一行数据
+int write_row(byte *buf);
+
+//更新一行
+int update_row(const byte *old_data, byte *new_data);
+
+//删除一行
+int delete_row(const byte *buf);
+
+//开始一个事务
+int  start_stmt(THD *thd, thr_lock_type lock_type);
+
+//提交一个事务
+int (*commit)(THD *thd, bool all);
+
+//回滚一个事务
+int (*rollback)(THD *thd, bool all);
+
+// ......
+
+MySQL 内建了很多存储引擎，除此之外还有很多社区版的第三方引擎，对于这么多引擎我们应该怎么选择呢？这里可以归结为一句话「除非需要用到某些 InnoDB 不具备的特性，并且没有其它办法可以代替，否则都应该选择 InnoDB 引擎」。例如，如果要用到全文索引，建议优先考虑 InnoDB 加上 Sphinx 组合，而不是使用支持全文索引的 MyISAM。当然，如果不需要用到 InnoDB 的特性，同时其它引擎的特性能够更好的满足需求，也可以考虑一下其它引擎。
+除非万不得已，否则不要混合使用多种存储引擎。如果应用需要不同的存储引擎，你至少应该考虑「事务」、「备份」、「崩溃恢复」、「特有的特性」几个因素。
+并发控制
+数据库需要大量的磁盘读写操作，自然而然就会产生并发控制的问题。我们可以简单的使用读写锁来解决解决并发控制问题。读锁是共享的，多个客户可以在同一时刻读取同一个资源；写锁是排他的，一个写锁会阻塞其它写锁和读锁，只有这样才能在同一时间内只有一个用户能执行写入，并防止其它用户读取正在写入的同一资源。
+上一段内容只说了锁，但是没有讨论锁的粒度，锁定资源时是直接锁定整个数据库还是仅锁定具体的表，亦或是只锁定要操作的那几行记录？首先我们需要明白的是任何时候，在给定的资源上，锁定的数据量越少则系统的并发程度越高，只要相互之间不冲突即可。
+但是我们还忘了另一件事，加锁本身也是需要消耗资源的，获得锁、检查锁的解除、释放锁等等都会增加系统的开销，如果系统花费大量的时间来管理锁，而不是管理数据，那么系统的并发程度同样会受到影响。因此锁策略就是在锁的开销和数据的安全性之间寻求平衡。
+大多数商业数据库在锁策略上并没有提供更多的选择，一般都是在表上施加行级锁。MySQL 则提供了多种选择，每种 MySQL 引擎都可以实现自己的锁策略和锁粒度，比较重要的两种锁策略是「表锁」和「行级锁」。
+多版本并发控制
+刘大在数据库村的旺财和小强中把「事务的隔离级别」和「多版本并发控制（MVCC）」讲的已经比较透彻了，此处我仅借助文字描述来加深我自己的理解。
+MVCC 是行级锁的一个变种，但是它在很多情况下避免了加锁的操作，因为避免了加锁的这些开销，所以 MVCC 能够提升并发性能。包括 Oracle、PostgreSQL、MySQL 等等数据库都实现了 MVCC，只是各自的实现机制不一样，因为 MVCC 没有一个统一的实现标准，比较典型的实现方式有「乐观并发控制」和「悲观并发控制」。
+MVCC 是通过保存数据在某个时间点的快照来实现的（这难道不是一个版本控制器吗）。以 InnoDB 为例，它是通过在每行记录后面保存两个隐藏的列来实现，一个保存了行的创建时间，另一个则保存了行的过期（删除）时间。当然存储的并不是实际的时间值，而是系统版本号。每开始一个新的事务，系统版本号都会自动递增，事务开始时刻的版本号会作为事务的版本号，用来和查询到的每行记录记录的版本号做比较。
+因此根据事务的开始时间不同，每个事务对同一张表，同一时刻看到的数据可能是不一样的。因为同一条记录在存储器中拥有多个版本，每个事务也有自己的版本号，只要把事务和记录的版本号做对比即可知道需要取哪个版本的记录了。一言以蔽之，MVCC 是一个借助空间来换取时间的策略。
+小知识点
+MySQL 使用文件系统的目录和文件来保存数据库和表的定义，所以大小写敏感就和具体的平台密切相关，在 Windows 中大小写不敏感，而在 Linux 等类 Unix 中则是敏感的。不同的存储引擎保存数据和索引的方式是不同的，但是表的定义则是在 MySQL 服务层统一处理的，my_table表的定义保存会被保存在my_table.frm中。
+如果表在创建并导入数据后，不会再对该表进行修改操作，那么这样的表比较适合 MyISAM 压缩表，而且压缩表也支持索引。可以使用myisampack对 MyISAM 表进行压缩，压缩后的表是不能进行修改的，但是可以极大的减少磁盘的空间占用，因此也可以减少磁盘 I/O，这无疑是一种提升查询性能的方法。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io/post/qian-xi-zheng-ze-biao-da-shi-yuan-li">
                         浅析正则表达式原理
                     </a>
@@ -128,12 +215,12 @@
                     <time class="post-time">2020-01-15</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/JYJKwJM69" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-success">
             #编译原理
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/QjCHA76i_r" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-banana">
             #编程基础
         </a>
                         
@@ -308,17 +395,17 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
                     <time class="post-time">2020-01-09</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/vue" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-success">
             #Vue
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/J_3GE6pBm" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-banana">
             #TypeScript
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-info">
             #前端
         </a>
                         
@@ -519,7 +606,7 @@ new Vue({
                     <time class="post-time">2020-01-06</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-error">
             #个人总结
         </a>
                         
@@ -580,7 +667,7 @@ new Vue({
                     <time class="post-time">2020-01-04</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-error">
             #数据库
         </a>
                         
@@ -687,12 +774,12 @@ db.collection.aggregate([
                     <time class="post-time">2019-12-15</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/vhSkGeYf1D" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_2">
             #设计
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-">
             #前端
         </a>
                         
@@ -934,12 +1021,12 @@ APP 上的通知
                     <time class="post-time">2019-11-18</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/linux" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-error">
             #Linux
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_2">
             #操作系统
         </a>
                         
@@ -1008,12 +1095,12 @@ splice()不局限于sendfile()的功能，也就是说sendfile()是splice()的�
                     <time class="post-time">2019-11-01</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/vim" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_1">
             #Vim
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/linux" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-banana">
             #Linux
         </a>
                         
@@ -1229,89 +1316,6 @@ Youtube 上最近有个视频火了：美国加州某地的微波传输站失灵
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io/post/nginx-wen-jian-cao-zuo-you-hua">
-                        Nginx 文件操作优化
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-10-19</time>
-                    
-                        <a href="https://mengxiaoxu.github.io/tag/nginx" class="post-tag i-tag
-                            i-tag-success">
-            #Nginx
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io/tag/linux" class="post-tag i-tag
-                            i-tag-error">
-            #Linux
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_4">
-            #操作系统
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io/post/nginx-wen-jian-cao-zuo-you-hua">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/nginx-wen-jian-cao-zuo-you-hua.jpg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-参考内容：
-Nginx AIO 机制与 sendfile 机制
-sendfile 适用场景
-扯淡 Nginx 的 sendfile 零拷贝的概念
-浅析 Linux 中的零拷贝技术
-Linux man-pages sendfile
-
-今天在看 Nginx 配置的时候，看到了一个sendfile配置项，它可以配置在http、server、location三个块中，出于好奇就去查了一下sendfile的作用。
-文件下载是服务器的基本功能，其基本流程就是循环的从磁盘读取文件内容到缓冲区，再将缓冲区内容发送到socket文件，程序员基本都会写出类似下面看起来比较高效的程序。
-while((n = read(diskfd, buf, BUF_SIZE)) &amp;gt; 0)
-    write(sockfd, buf , n);
-
-上面程序中我们使用了read和write两个系统调用，看起来也已经没有什么优化空间了。这里的read和write屏蔽了系统内部的操作，我们并不知道操作系统做了什么，现实情况却是由于 Linux 的 I/O 操作默认是缓冲 I/O，上面的程序发生了多次不必要的数据拷贝与上下文切换。
-上述两行代码执行流程大致可以描述如下：
-
-系统调用read产生一个上下文切换，从用户态切换到内核态；
-DMA 执行拷贝（现在都是 DMA 了吧！），把文件数据拷贝到内核缓冲区；
-文件数据从内核缓冲区拷贝到用户缓冲区；
-read调用返回，从内核态切换为用户态；
-系统调用write产生一个上下文切换，从用户态切换到内核态；
-把步骤 3 读到的数据从用户缓冲区拷贝到 Socket 缓冲区；
-系统调用write返回，从内核态切换到用户态；
-DMA 从 Socket 缓冲区把数据拷贝到协议栈。
-
-
-可以看到两行程序共发生了 4 次拷贝和 4 次上下文切换，其中 DMA 进行的数据拷贝不需要 CPU 访问数据，所以整个过程需要 CPU 访问两次数据。很明显中间有些拷贝和上下文切换是不需要的，sendfile就是来解决这个问题的，它是从 2.1 版本内核开始引入的，这里放个 2.6 版本的源码。
-系统调用sendfile是将in_fd的内容发送到out_fd，描述符out_fd在 Linux 2.6.33 之前，必须指向套接字文件，自 2.6.33 开始，out_fd可以是任何文件；in_fd只能是支持mmap的文件（mmap是一种内存映射方法，在被调用进程的虚拟地址空间中创建一个新的指定文件的映射）。
-所以当 Nginx 是一个静态服务器时，开启sendfile配置项是可以大大提高 Nginx 性能的，但是当把 Nginx 作为一个反向代理服务器时，sendfile则没有什么用，因为当 Nginx 时反向代理服务器时，in_fd就是一个套接字，这不符合sendfile的参数要求。
-
-可以看到现在我们只需要一次拷贝就可以完成功能了，但是能否把这一次拷贝也省略掉呢？我们可以借助硬件来实现，仅仅需要把缓冲区描述符和文件长度传过去，这样 DMA 直接将缓冲区的数据打包发送到网络中就可以了。
-这样就实现了零拷贝技术，需要注意的是这里所说的零拷贝是相对操作系统而言的，即在内核空间不存在冗余数据。数据的实际走向是从硬盘到内存，再从内存到设备。
-Nginx 中还有一个aio配置，它的作用是启用内核级别的异步 I/O 功能，要使aio生效需要将directio开启（directio对大文件的读取速度有优化作用），aio很适合大文件的传送。需要注意的是sendfile和aio是互斥的，不可同时兼得二者，因此我们可以设置一个文件大小限制，超过该阀值使用aio，低于该阀值使用sendfile。
-location /video/ {
-    sendfile on;
-    sendfile_max_chunk 256k; 
-    aio threads;
-    directio 512k;
-    output_buffers 1 128k;
-}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/nginx-wen-jian-cao-zuo-you-hua">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -1330,7 +1334,7 @@ location /video/ {
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1579101724388)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1581860172763)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -1369,6 +1373,12 @@ location /video/ {
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi">MySQL 架构与历史</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io/post/qian-xi-zheng-ze-biao-da-shi-yuan-li">浅析正则表达式原理</a>
                 </h3>
             
@@ -1391,10 +1401,6 @@ location /video/ {
                 </h3>
             
             
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io/post/mongodb-ju-he-ru-men">MongoDB 聚合入门</a>
-                </h3>
             
             
             

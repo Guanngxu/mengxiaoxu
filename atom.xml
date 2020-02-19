@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2020-02-16T13:36:29.765Z</updated>
+    <updated>2020-02-19T13:40:41.918Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io/atom.xml"/>
@@ -10,6 +10,38 @@
     <logo>https://mengxiaoxu.github.io/images/avatar.png</logo>
     <icon>https://mengxiaoxu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 刘小绪同学的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[刘小绪同学随笔（2020-02-18）]]></title>
+        <id>https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2020-02-18</id>
+        <link href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2020-02-18">
+        </link>
+        <updated>2020-02-19T13:35:29.000Z</updated>
+        <content type="html"><![CDATA[<p>以前在朋友圈提到过这样一个现象，重庆人和四川人说的都是四川话，但是大部分重庆人会说他们说的是重庆话，说「川渝是一家」的通常也都是四川人。</p>
+<p>在深圳也有一个很怪的现象，两个客家人谈话会用客家话，两个潮汕人谈话会用潮汕话，两个广东人谈话会用粤语，反正就是尽可能用更小众的语言。</p>
+<p>想了一下，故意用第三方听不懂的语言，实际上是很欠考虑的，如果是刚见面用方言寒暄几句我觉得还行，但是后面谈话就应该使用大家都能听懂的语言了。</p>
+<p>疫情期间大家都没法出去玩，我和老叔倒是出去爬了爬山，村里的荔枝山别人进不去，整座山就我和叔两个人，单从疫情这个角度讲，荔枝山是比大部分地方都要安全的。</p>
+<p>我自己可以在疫情期间爬爬山，结合我自己的感受，加上前段时间的「大奔进故宫」事件。我发现人们并不是痛恨特权，而是痛恨自己没有特权。大部人痛恨的不是腐败，痛恨的是自己没有腐败的机会。</p>
+<p>上面四川和深圳两个例子也差不多是出于这样的优越感，鉴于四川除了成都外，其它地方投资的回报率太低，穷地方的人总会羡慕富有的地方，说川渝一家的人大概率不是成都人。</p>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1582119428667.png" alt="" loading="lazy"></figure>
+<p>春节期间看了一本《断舍离》，它讲究的是内部的自觉自省，虽然整本书挺啰嗦的，完完全全可以用一篇几千字的文章代替，但是它传达的人生整理理念很值得参考，感兴趣的读者大人可以在微信读书中阅读此书。下面是一段摘自书中的内容。</p>
+<blockquote>
+<p>我们习惯于思考「有效性」，却往往忽略了作为「有效性」前提的「必要性」，对物品也常常陷入这样的定式思维，导致家里各种杂物堆积，这些杂物给人的压迫感，以及狭窄空间给人的阻塞感，会让人的思维变得迟钝、行动变得迟缓！</p>
+</blockquote>
+<p>借助「断舍离」的理念，我删了 400 多个微信好友，处理了一些不会再使用的家具和书籍，才发现之前一直舍不得扔的那些东西扔了对我的积极作用更大，以前写过的一篇你如果只是一直囤干货，那永远也不可能进步，核心思想和断舍离基本一致，遗憾的是自己当时写下这篇文章后，竟然不懂得延伸到其它领域。</p>
+<p>可能一部分人有读书摘抄语录的习惯，我个人在阅读技术书籍或是扫除我知识盲点的时候，我也会通过记笔记来加深自己的理解。想想自己强迫症式的记笔记面面俱到其实也是在浪费时间，大部分笔记自己都不会再去看第二遍的，舍弃一些不必要的形式会让自己的阅读更有收获。</p>
+<p>还发现自己另外一个错误观点，我不管是写字还是看书都比大部分人慢，一直都认为是自己看书的方法不对，现在才发现问题的根本原因。是因为我对具体的领域不熟悉，所以看这个领域的书籍才会速度很慢，如果对这个领域熟悉了，那一目十行甚至几十行的速度应该都可以达到。结论就是书读的少了导致读书的速度慢。</p>
+<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1582119428667.png" alt="" loading="lazy"></figure>
+<p>推荐一部美剧——《良医》，全剧的场景基本是在医院，但有深度的内容基本都和医院无关，除了最基本的医疗科普外，更多的是对家庭、爱、职场、心理等的探讨，下面是我摘的两句台词。</p>
+<blockquote>
+<p>Whenever people want you to do someting they think is wrong, they say it’s “reality”.<br>
+当人们想让你做他们认为错误的事时，他们总会说这就是现实。</p>
+</blockquote>
+<blockquote>
+<p>Very few things that are worthwhile in life come without a cost.<br>
+人生中那些有意义的事大多是有代价的。</p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[MySQL 架构与历史]]></title>
         <id>https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi</id>
@@ -904,38 +936,6 @@ syntax on &quot;进行语法检验，颜色显示，比如 C 语言等
 </code></pre>
 <p>最后附上一张命令速查卡，此图来源于<a href="http://jrmiii.com/">Learning Vim The Pragmatic Way</a>，PDF 版下载链接在<a href="http://jrmiii.com/attachments/Vim.pdf">这里</a>。</p>
 <figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1572670913809.png" alt="" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[刘小绪同学随笔（2019-10-28）]]></title>
-        <id>https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2019-10-28</id>
-        <link href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2019-10-28">
-        </link>
-        <updated>2019-10-27T17:13:22.000Z</updated>
-        <content type="html"><![CDATA[<p>分享一个视频：<a href="https://twitter.com/williamwoo7/status/1186498521408647168">施利伦法，利用折射率的不同使肉眼不可见的物质可视化</a>，我把它下下来了，如下：</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bDK1UfMQfqs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1572196424138.gif" alt="" loading="lazy"></figure>
-<p>在一位做酱香酒的朋友那里学了个鉴别真伪飞天茅台的方法，我不会喝酒所以没什么研究，实用性还请读者大人自行判断，反正我喝茅台的感觉与喝二锅头差不多，到嘴里都是一个味。</p>
-<p>方法一：如果「酒」字里面的那一横，是图一的那个样子，那是真酒；而如果是图二的样子则是假酒。</p>
-<figure data-type="image" tabindex="2"><img src="https://mengxiaoxu.github.io//post-images/1572196530821.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="3"><img src="https://mengxiaoxu.github.io//post-images/1572196539935.png" alt="" loading="lazy"></figure>
-<p>方法二：在如图左边仙女标红圈那个位置，如果线条的交汇点是穿出去的，则为真，反之为假。</p>
-<figure data-type="image" tabindex="4"><img src="https://mengxiaoxu.github.io//post-images/1572196549838.jpg" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="5"><img src="https://mengxiaoxu.github.io//post-images/1572196558785.png" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="6"><img src="https://mengxiaoxu.github.io//post-images/1572196424138.gif" alt="" loading="lazy"></figure>
-<p>看了<a href="https://www.bilibili.com/video/av73524393?from=search&amp;seid=12678980801438574288">2019·菠萝科学奖颁奖典礼</a>，一个沙雕、严谨、有趣......的节目，处处都透漏着尴尬又不失礼貌的微笑，永远向好奇心致敬。我个人认为这个节目最大的优点就是把常人眼里那种无趣、严谨的科学以一种有趣的方式呈现出来，这可以让大多数人更喜欢科学，让科学家在科研的道路上坚持的更久。</p>
-<p>在<a href="https://mp.weixin.qq.com/s/-aHGec_9wiIYsT0F4z4LMg">怎样才能开开心心的呢</a>中有提到过降低对事物的期望值，这里再详细谈一下降低期望值对学习的促进作用。以这两年大量冒出来的线上英语阅读打卡为例，只要打卡多少天就有小礼物，全勤甚至可以返还学费，这么一想那公司还怎么赚钱呢？原因就在于绝大部分人都只能坚持短短的几天，和健身卡的套路基本一致。</p>
-<p>我想读者大人肯定都知道复利曲线，其实并不需要给自己定多么多么高远的目标，只需要每天坚持花一点时间一直去做，就能达到复利曲线的效果。之所以坚持不下去无非是因为学习很痛苦，而如果把学习变成像玩游戏一样有趣，那你肯定不会拒绝学习。比如上面说的英语学习，每天去背单词没几个人坚持的下来，那如果是每天看一集美剧呢？</p>
-<p>人是需要被成就感驱动的，给自己一下定的目标太高很容易就气馁了，降低自己的期望值，把目标定小一点点，说不定每天都可以获得满满的成就感，配上一些有趣的方式、方法，学习这件事做起来简直妙不可言，其它事情也是一样的道理。</p>
-<figure data-type="image" tabindex="7"><img src="https://mengxiaoxu.github.io//post-images/1572196424138.gif" alt="" loading="lazy"></figure>
-<p>最近取关了很多公众号，互联网时代不得不承认网上的好文不少，但是大部分人都没有那么多精力去读完，与其走马观花的读一遍，我更愿意精读一篇文章后再从中挖掘信息。之前一直不肯取关一些公众号，总是觉得某天会有个重要信息从那里得到，<a href="http://mindhacks.cn/">刘未鹏</a>老师说这是源于人「不肯关上一扇门」的心理，而实际关上一扇门可能增大我们的收益，注意力不至于被滑不到底的信息流骚扰。读过了却不一定领悟了，愈发赞同人与人学习的差距不在资质上，而在于花在思考上的时间与思考的深度。</p>
-<p>同样为了不让太多事物让自己分心，我周末也花了些时间把很久没用的东西，很久没有穿的衣物等等都扔了，屋子一下显得宽敞了许多，忘记此前在哪里看到一篇文章有讲太多的家具会让自己分心，不过当时是找了一圈没舍得扔，因为每一件物品我好像总能想到它在某个场景下的作用，而现实情况是那些场景可能是我幻想出来的，或者当那个场景出现的时候，对应的物品也因为放的太久而无法使用了，还不如扔了算了。</p>
-<figure data-type="image" tabindex="8"><img src="https://mengxiaoxu.github.io//post-images/1572196424138.gif" alt="" loading="lazy"></figure>
-<p>下面是一些比较有意思的文章。</p>
-<p><a href="https://tylervigen.com/spurious-correlations">tylervigen.com</a> 专门收集那些看起来高度相关但实际上毫不相关的数据，比如美国在科学、太空、技术方面的投入，与采用上吊、勒死、窒息方式自杀的案例，这两组数据之间的相关性高达 99.79% 。</p>
-<p><a href="https://bruno-simon.com/">https://bruno-simon.com</a> 是一个超酷的网站主页，网站的源码在 <a href="https://github.com/brunosimon/folio-2019">Github</a>。页面用到了 3D 导航，你可以像玩游戏一样在里面探索，也可以把这个网页当成一个减压神器。</p>
-<p><a href="https://daquan.tv/collections/funny/this-will-make-you-look-at-history-very-differently?stid=0&amp;utm_campaign=tw_daquan_look_history_us_dt_yo&amp;utm_medium=9949&amp;utm_source=1005&amp;utm_content=tw_daquan_look_history_us_dt_yo_i4">一些可能会颠覆你对世界的认识的照片</a> 文章里面列举了大量可能颠覆你认知的照片，比如世界上第一张自拍花了 30 秒，即保持一个姿势 30 秒不动。</p>
-<p>Youtube 上最近有个视频火了：美国加州某地的微波传输站失灵了，技术人员在微波天线罩里面发现了 300磅（136公斤）的橡子，大家都认为是松鼠干的，根据美国「国家地理」的文章 <a href="https://www.nationalgeographic.com/news/2015/11/151113-antenna-cache-acorn-woodpecker-california/">Meet the Bird that Filled an Antenna With Acorns</a> 介绍，在微波天线罩里藏橡子的很可能不是松鼠，而是橡子啄木鸟。</p>
 ]]></content>
     </entry>
 </feed>

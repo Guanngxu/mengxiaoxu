@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1581860172763">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1582119600627">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1581860172763" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1582119600627" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -120,6 +120,76 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io/post/github-shi-da-zui-jia-shi-jian">
+                        Github 十大最佳实践
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-11-28</time>
+                    
+                        <a href="https://mengxiaoxu.github.io/tag/git" class="post-tag i-tag
+                            i-tag-other_4">
+            #Git
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io/tag/i4kET55EC" class="post-tag i-tag
+                            i-tag-banana">
+            #翻译
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io/post/github-shi-da-zui-jia-shi-jian">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/github-shi-da-zui-jia-shi-jian.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            1、保护主分支不受直接提交的影响
+主分支中的任何一次提交都应该是可以直接部署的，所以永远不要直接提交默认分支，同时也是 Gitflow workflow 成为标准的原因。使用分支保护可以帮你防止直接提交，当然，所有的事情都应该使用pull requests来管理。
+
+2、避免基础信息的混乱
+或许你在一个新的环境工作，或者你并没有注意到自己的 git 配置是不正确的，因此提交代码时伴随着错误的邮箱地址。如果提交没有关联到正确的用户信息，那将导致无法追溯到是谁写的代码。
+保证你的 git 客户端配置是正确的邮箱地址，并且关联到你的 github 账户。评审代码时注意检查你的pull requests是否存在无法识别的提交。
+
+3、为每个仓库定义 CODEOWNERS
+使用 CODEOWNERS 功能可以定义哪些团队和人员被自动选为仓库的审阅者。此功能会自动请求仓库所有者进行审核。如今。组织拥有很多的仓库，而 CODEOWNERS 可以选择定义组织中的维护者。
+
+4、从源代码中分离出秘密凭证
+在构建云原生程序时，我们保护了许多的机密信息，比如账户密码、API 秘钥、私人令牌、SSH 秘钥等。绝对不要将任何机密信息提交到你的代码中，而应该采用从安全存储外部注入的环境变量。
+你可以使用 Vault、AWS Secrets Manager 之类的工具来管理产品中的机密信息。
+有很多超棒的工具可以识别代码中的机密信息，例如 Git-secrets 可以帮助你识别代码中的密码；使用 Git Hooks 可以构建一个预提交钩子，并检查每个pull requests中的机密信息。
+
+5、不要提交项目的依赖
+将项目的依赖提交到仓库中会增加仓库的大小。应该将你项目的所有依赖都从仓库中移除，让你的包管理器负责去下载它们。如果你担心“依赖可用性”，可以考虑使用 Jfrog 或 Nexus Repository 这样的二进制存储库管理器。
+6、从源代码中分离配置文件
+建议不要将本地配置文件提交到版本控制器，通常这些都是你不想推送到远程的私有配置文件，因为它们包含机密信息。个人的偏好，历史信息等应该保存在本地环境中。
+7、为项目创建一个有意义的 .gitignore 文件
+每个仓库都必须使用.gitignore文件来忽略预定义的文件和目录，它可以帮助你保护代码中的机密信息、依赖项和其他可能的差异。你可以从 Gitignore.io 选择相关的模板。
+
+8、将死库归档
+随着时间的推移，由于各种原因，我们发现自已拥有不再维护的仓库。或许你为一个临时用例新建了仓库，或者有一些包含旧的和不相关代码的仓库。它们存在的问题是相同的，这些仓库在达到其目的之后不在被积极的维护开发，因此你不希望再维护它们或不希望其他人依赖/使用它们，最好的方式是将这些仓库归档，这样对每个人都是“只读”的。
+
+9、锁定依赖包的版本
+你的依赖配置文件中包含所有软件包版本的信息，以便在每次安装应用程序时，在不破坏代码的前提下保持一致的结果。最好的方式是使用配置锁定文件来避免差异，并确定每次都获得相同的软件包版本。
+
+10、对齐包的版本
+虽然你使用的是相同的软件包，但是不同的版本会使得在不同项目中重用代码和测试变得困难。
+如果你有一个在多个项目中使用的包，请至少尝试在不同的仓库中使用相同的主要版本。
+
+原文链接：https://datree.io/blog/top-10-github-best-practices/
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/github-shi-da-zui-jia-shi-jian">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io/post/JFfO3d0iF">
                         刘小绪同学的 2018
                     </a>
@@ -128,12 +198,12 @@
                     <time class="post-time">2018-11-26</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-success">
             #个人总结
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_2">
             #生活感悟
         </a>
                         
@@ -191,12 +261,12 @@
                     <time class="post-time">2018-11-20</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-error">
             #随笔
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_2">
             #生活感悟
         </a>
                         
@@ -326,7 +396,7 @@ int main(int argc, char *argv[]){
                     <time class="post-time">2018-11-11</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_1">
             #操作系统
         </a>
                         
@@ -523,7 +593,7 @@ while(test-expr){
                     <time class="post-time">2018-11-07</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/gong-ju-ji-qiao" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_3">
             #工具技巧
         </a>
                         
@@ -585,12 +655,12 @@ while(test-expr){
                     <time class="post-time">2018-10-25</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/DytBq-ZFD" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-error">
             #回忆
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-info">
             #生活感悟
         </a>
                         
@@ -640,7 +710,7 @@ while(test-expr){
                     <time class="post-time">2018-10-19</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-success">
             #操作系统
         </a>
                         
@@ -727,7 +797,7 @@ C 语言中有无符号数与有符号数之分，而在 Java 中只有有符号
                     <time class="post-time">2018-10-10</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-other_2">
             #操作系统
         </a>
                         
@@ -801,7 +871,7 @@ int main()
                     <time class="post-time">2018-10-04</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/pa-chong" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-primary">
             #爬虫
         </a>
                         
@@ -907,56 +977,6 @@ def __get_article_list(self):
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io/post/du-da-xue-de-ji-dian-jian-yi">
-                        读大学的几点建议
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-09-19</time>
-                    
-                        <a href="https://mengxiaoxu.github.io/tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-info">
-            #随笔
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-primary">
-            #生活感悟
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io/post/du-da-xue-de-ji-dian-jian-yi">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/du-da-xue-de-ji-dian-jian-yi.jpeg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            前天在朋友圈看到一句话：“学生就是无知、狂妄、垃圾的代名词”，让我思考了很多东西。毕业出来也有快两月了，圈子里还有很多学弟学妹，很多同级的同学也都读研了，这里谈谈自己的感受，应该怎么把大学过好，期望不要太高，我自己很普通，大学没有什么出彩的经历。
-很多父母都把孩子的成就与大学挂钩，认为好的大学就是成功的代名词，盲目追求高学历，孩子从小也一直受这些思维的影响，应试能力强的惊人。大家都知道清华北大好，但是你问他哪里好，就回答不上来了，尤其家长，在他们眼里 985 一定比 211 好，211 一定比普通一本好。
-现在大学都会给你传达自己乃名门之后的观念，进校首先讲历史，当然都是挑好的讲，然后讲学校的历史成绩单。不得不说，效果非常好，你一和大学生谈论他的学校时，他会给你说出来学校是某某名人所建，学校在哪方面做的非常好，比如导弹是全国第几，造船位居全国前列等等。但是你一问他本人是哪个专业，回答是学数学的、学计算机的......
-每个学校都有恶心的事，我自己的一个经历，学院一拍脑袋，搞个什么本科生导师制，然后就没有然后了，四年总共见了导师一面。期间最可笑的是，也不知道是教育部还是什么部来检查，学生需要交一个导师沟通表上去，导师在哪个办公室都不知道，那大家怎么办，就模仿导师的口吻给自己下评语，第二天全院的导师沟通表都被打回来了，因为大家模仿的口吻不像导师，要求重新造假。
-上面的类似情况在大部分学校应该都存在，只不过看谁更可笑，某个学生出事了，学校第一想法不是怎么帮自己的学生解决问题，而是想如何把事情压下去，封锁消息。你会发现很多效率像蜗牛一样的机构，其公关效率却像火箭一样。
-现在各个大学的就业率都高的惊人，都不会低于 90%，为啥这么高呢？我也不知道学校是如何统计就业率的，唯一清楚的是，你毕业了，没有签工作，那么辅导员会给你打电话让你随便找个公司把三方协议签了交上去；这算轻的，很多学校是你不交三方协议，就不给你学位证、毕业证，我身边就有好几个随便刻个假章，盖在三方上面，只要交了三方协议的都算就业了的。
-我个人认为大学有的课就应该逃，也看到过文章说学生上课不应该带有批判性思维，什么课有用不应该是学生说了算，大学的课程设置都是专家们讨论的结果，现在最不缺的就是专家，什么人生导师一大把，出来之后，你仍然会发现有的课纯属浪费时间。强调一下，逃课不是去打游戏，是为了把时间利用的比在课堂上更有价值，我大学微积分老师也鼓励我们逃课，现在看来那时还是胆子太小，人家鼓励你逃课，还不敢逃，怂。重要的事再说一遍，逃课是去做比上课更有价值的事情。
-养成自学的习惯，提高自学能力，自学能力太重要了，而且这个时代自学是很容易的，网上有很多视频教程，比学校老师教的还好，而且也更接近于实战，大学教不了你太多东西，仅仅提供了一个平台，只是平台大小的区别而已。经常会听到学生说某个知识点老师没教，潜台词就是这个知识点我就不应该会，而且理直气壮，让人无语。
-迷茫的时候就去旅行吧，感受一下不同的文化，见识见识世界的缤纷多彩，你的视野会开阔许多，很多事情必须亲身体验才能感受到它的好处，旅途中你可以结识各种各样的朋友，与他们的思想碰撞，看看其他地方的生活，你可能就不会迷茫了，会找到自己乐趣。
-多结识比自己优秀的人，认识正能量的朋友，大学提供了很多机会，优秀的朋友会在不知不觉中改变你，你也会不知不觉变得更优秀。我在出于兴趣和打发时间，没事写写文章，让我意外的是，对我的改变太大了，通过写作让我认识了一些社会上的优秀人士，通过与他们交谈，我的思维方式有很大的改变，学生思维逐渐摒弃。
-尽量不要透支，学生没有收入来源，基本都是依靠父母每个月给的生活费，很多学生都使用花呗、白条等产品，而且借贷金额还不少，从理财角度来看，每个月的还款额超过自己收入的三分之一，生活就会有压力，何况学生还是没有收入的群体。没必要为了追求时髦而疯狂购买各种新产品，真高品质生活不应该是科技产品堆砌而成，而应该是由惬意、舒心、成长所构建的。
-还是要注重和学院领导、辅导员的关系，这点我是做的最差的，因为我不会拍马屁，看不惯就要说出来，容易得罪人。相信这背后的好处都还是明白一二，什么评奖评优暂且不谈，在保研的时候，这种关系会帮你一个大忙，往大了说就是改变人生的机会。
-写完读了一遍，有的观点还是显得偏激，请自行选择吸收，也欢迎批评指正。总得来说，最重要的就是提升自己的认知水平，思维方式很重要，保持终身学习的态度。有的事要敢想，不要给自己的思维设限制，也不要觉得博士硕士有多么了不起，研究生能做的事，本科生照样能做。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/du-da-xue-de-ji-dian-jian-yi">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -977,7 +997,7 @@ def __get_article_list(self):
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1581860172763)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1582119600627)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -1016,6 +1036,12 @@ def __get_article_list(self):
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2020-02-18">刘小绪同学随笔（2020-02-18）</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi">MySQL 架构与历史</a>
                 </h3>
             
@@ -1038,10 +1064,6 @@ def __get_article_list(self):
                 </h3>
             
             
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io/post/2019-nian-zong-jie">2019 年个人总结</a>
-                </h3>
             
             
             

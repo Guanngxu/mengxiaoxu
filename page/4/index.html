@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1582120743403">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1582469934384">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1582120743403" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1582469934384" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -120,6 +120,96 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io/post/SpXxa8r-v">
+                        为什么处理排序数组比未排序数组快
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-11-28</time>
+                    
+                        <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
+                            i-tag-other_3">
+            #操作系统
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io/post/SpXxa8r-v">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/SpXxa8r-v.jpeg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            今天在群里看到一个有意思的问题——为什么处理排序数组比处理没有排序的数组要快，这个问题来源于 StackoverFlow，虽然我看到代码略微知道原因，但是模模糊糊不够清晰，搜了很多博客也讲的不够明白，所以就自己来总结了。
+首先来看一下问题，下面是很简单的一段代码，随机生成一些数字，对其中大于 128 的元素求和，记录并打印求和所用时间。
+import java.util.Arrays;
+import java.util.Random;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        // Generate data
+        int arraySize = 32768;
+        int data[] = new int[arraySize];
+
+        Random rnd = new Random(0);
+        for (int c = 0; c &amp;lt; arraySize; ++c)
+            data[c] = rnd.nextInt() % 256;
+
+        // !!! With this, the next loop runs faster
+        Arrays.sort(data);
+
+        // Test
+        long start = System.nanoTime();
+        long sum = 0;
+
+        for (int i = 0; i &amp;lt; 100000; ++i)
+        {
+            // Primary loop
+            for (int c = 0; c &amp;lt; arraySize; ++c)
+            {
+                if (data[c] &amp;gt;= 128)
+                    sum += data[c];
+            }
+        }
+
+        System.out.println((System.nanoTime() - start) / 1000000000.0);
+        System.out.println(&amp;quot;sum = &amp;quot; + sum);
+    }
+}
+
+我的运行结果：分别在对数组排序和不排序的前提下测试，在不排序时所用的时间比先排好序所用时间平均要多 10 ms。这不是巧合，而是必然的结果。
+问题就出在那个if判断上面，在旧文顺序、条件、循环语句的底层解释中其实已经提到了造成这种结果的原因，只是旧文中没有拿出具体的例子来说明。
+为了把这个问题搞明白，需要先对流水线有一定的了解。计算机是指令流驱动的，执行的是一个一个的指令，而执行一条指令，又要经过取指、译码、执行、访存、写回、更新六个阶段（不同的划分方式所包含的阶段不一样）。
+六个阶段使用的硬件基本是不一样的，如果一条指令执行完再去执行另一条指令，那么在这段时间里会有很多硬件处于空闲状态，要使计算机的速度变快，那么就不能让硬件停下来，所以有了流水线技术。
+流水线技术通过将指令重叠来实现几条指令并行处理，下图表示的是三阶段指令时序，即把一个指令分为三个阶段。在第一条指令的 B 阶段，A 阶段相关的硬件是空闲的，于是可以将第二条指令的 A 阶段提前操作。
+
+很明显，这种设计大幅提高了指令运行的效率，聪明的你可能发现问题了，要是不知道下一条指令是什么怎么办，那提前的阶段也就白干了，那样流水线不就失效了？没错，这就是导致开篇问题的原因。
+让流水线出问题的情况有三种：1、数据相关，后一条指令需要用到前一条指令的运算结果；2、控制相关，比如无条件跳转，跳转的地址需要在译码阶段才能知道，所以跳转之后已经被取出的指令流水就需要清空；3、结构相关，由于一些指令需要的时钟周期长（比如浮点运算等），长时间占用硬件，导致之后的指令无法进入译码等阶段，即它们在争用同一套硬件。
+代码中的if (data[c] &amp;gt;= 128)翻译成机器语言就是跳转指令，处理器事先并不知道要跳转到哪个分支，那难道就等知道了才开始下一条指令的取指工作吗？处理器选择了假装知道会跳转到哪个分支（不是谦虚，是真的假装知道），如果猜中了是运气好，而没有猜中那就浪费一点时间重新来干。
+没有排序的数组，元素是随机排列的，每次data[c] &amp;gt;= 128的结果也是随机的，前面的经验就不可参考，所以下一次执行到这里理论上还是会有 50% 的可能会猜错，猜错了肯定就需要花时间来修改犯下的错误，自然就会浪费更多的时间。
+对于排好序的数组，开始几次也需要靠猜，但是猜着猜着发现有规律啊，每次都是往同一个分支跳转，所以以后基本上每次都能猜中，当遍历到与 128 分界的地方，才会出现猜不中的情况，但是猜几次之后，发现这又有规律啊，每次都是朝着另外一个相同分支走的。
+虽然都会猜错，但是在排好序的情况下猜错的几率远远小于未排序时的几率，最终呈现的结果就是处理排序数组比未排序数组快，其原因就是流水线发生了大量的控制相关现象，下面通俗一点，加深一下理解。
+
+远在他方心仪多年的姑娘突然告诉你，其实她也喜欢你，激动的你三天三夜睡不着觉，决定开车前往她的城市，要和她待在一起，但是要去的路上有很多很多岔路，你只能使用的某某地图导航，作为老司机并且怀着立马要见到爱人心情的你，开车超快，什么样罚单都不在乎了。
+地图定位已经跟不上你的速度了，为了尽快到达，遇到岔路你都是随机选一条路前进，遗憾的是，自己的选择不一定对（我们假设高速可以回退），走错路了就要重新回到分岔点，这就对应着未排序的情况。
+现在岔路是有规律的，告诉你开始一直朝着一边走，到某个地点后会一直朝着另一边走，你只需要花点时间去探索一下开始朝左边还是右边，到了中间哪个地点会改变方向就可以了，相比之下就能节省不少时间了，尽快见到自己的爱人，这对应着排好序的情况。
+
+最后的故事改编自两个人的现实生活，一位是自己最好的朋友之一，谈恋爱开心的睡不着觉；另一位是微信上的一位好友，为了对方从北京裸辞飞到了深圳。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/SpXxa8r-v">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io/post/github-shi-da-zui-jia-shi-jian">
                         Github 十大最佳实践
                     </a>
@@ -128,7 +218,7 @@
                     <time class="post-time">2018-11-28</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/git" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-banana">
             #Git
         </a>
                         
@@ -203,7 +293,7 @@
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-banana">
             #生活感悟
         </a>
                         
@@ -261,12 +351,12 @@
                     <time class="post-time">2018-11-20</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-">
             #随笔
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_1">
             #生活感悟
         </a>
                         
@@ -317,7 +407,7 @@ Youtube 还给我推荐了罗胖和方舟子相关的视频，从罗胖去堵方
                     <time class="post-time">2018-11-18</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_2">
             #操作系统
         </a>
                         
@@ -396,7 +486,7 @@ int main(int argc, char *argv[]){
                     <time class="post-time">2018-11-11</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-banana">
             #操作系统
         </a>
                         
@@ -593,7 +683,7 @@ while(test-expr){
                     <time class="post-time">2018-11-07</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/gong-ju-ji-qiao" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_2">
             #工具技巧
         </a>
                         
@@ -655,12 +745,12 @@ while(test-expr){
                     <time class="post-time">2018-10-25</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/DytBq-ZFD" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-info">
             #回忆
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-success">
             #生活感悟
         </a>
                         
@@ -710,7 +800,7 @@ while(test-expr){
                     <time class="post-time">2018-10-19</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_1">
             #操作系统
         </a>
                         
@@ -797,7 +887,7 @@ C 语言中有无符号数与有符号数之分，而在 Java 中只有有符号
                     <time class="post-time">2018-10-10</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-">
             #操作系统
         </a>
                         
@@ -861,122 +951,6 @@ int main()
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io/post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">
-                        使用订阅号实现微信公众号历史文章爬虫
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2018-10-04</time>
-                    
-                        <a href="https://mengxiaoxu.github.io/tag/pa-chong" class="post-tag i-tag
-                            i-tag-other_4">
-            #爬虫
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io/post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong.jpeg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            微信公众号已经成为生活的一部分了，虽然里面有很多作者只是为了蹭热点，撩读者的 G 点，自己从中获得一些收益；但是不乏好的订阅号，像刘大的码农翻身、曹大的caoz的梦呓等订阅号非常值得阅读。
-平时有时候看到一些好的公众号，也会不自觉去查看该公众号的历史文章，然而每次都看不完，下一次再从微信里面打开历史文章，又需要从头翻起。而且对于写了很多年的大号，每次还翻不到底。有一些平台提供了相关的服务，但是得收几十块钱的费用，倒不是缺几十块钱，主要是觉得这种没必要花的钱不值得去浪费。
-网上搜如何爬微信公众号历史文章，大致给了三种思路，第一是使用搜狗微信搜索文章，但是好像每次能搜到的不多；第二是使用抓包工具；第三种是使用个人订阅号进行抓取。
-简单来说就是使用程序来模拟人的操作，抓取公众号历史文章。首先登录微信公众号个人平台，期间需要管理员扫码才能登录成功。
-def __open_gzh(self):
-    self.driver.get(BASE_URL)
-    self.driver.maximize_window()
-    username_element = self.driver.find_element_by_name(&amp;quot;account&amp;quot;)
-    password_element = self.driver.find_element_by_name(&amp;quot;password&amp;quot;)
-    login_btn = self.driver.find_element_by_class_name(&amp;quot;btn_login&amp;quot;)
-    username_element.send_keys(USERNAME)
-    password_element.send_keys(PASSWORD)
-    login_btn.click()
-    WebDriverWait(driver=self.driver, timeout=200).until(
-        ec.url_contains(&amp;quot;cgi-bin/home?t=home/index&amp;quot;)
-    )
-    # 一定要设置这一步，不然公众平台菜单栏不会自动展开
-    self.driver.maximize_window()
-
-进入微信公众平台首页后，点击素材管理，然后点击新建图文素材，就会进入到文章写作页面，此时前面打开的微信公众平台首页就不需要了，可以将其关闭。
-
-def __open_write_page(self):
-    management = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-menu_management&amp;quot;)
-    material_manage = management.find_element_by_css_selector(&amp;quot;a[title=&#39;素材管理&#39;]&amp;quot;)
-    material_manage.click()
-    new_material = self.driver.find_element_by_class_name(&amp;quot;weui-desktop-btn_main&amp;quot;)
-    new_material.click()
-    # 关闭公众平台首页
-    handles = self.driver.window_handles
-    self.driver.close()
-    self.driver.switch_to_window(handles[1])
-
-在文章写作页面的工具栏上面有一个超链接按钮，点击超链接即会弹出超链接编辑框，选择查找文章，输入自己喜欢的公众号进行查找，一般第一个就是自己想要的结果，点击对应的公众号，该公众号所有的文章就会通过列表的形式展现出来。
-
-
-
-def __open_official_list(self):
-    # 超链接
-    link_click = self.driver.find_element_by_class_name(&amp;quot;edui-for-link&amp;quot;)
-    link_click.click()
-    time.sleep(3)
-    # 查找文章
-    radio = self.driver.find_element_by_class_name(&amp;quot;frm_vertical_lh&amp;quot;).find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1]
-    radio.click()
-    # 输入查找关键字
-    search_input = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_input&amp;quot;)
-    search_input.send_keys(OFFICIAL_ACCOUNT)
-    search_btn = self.driver.find_element_by_class_name(&amp;quot;js_acc_search_btn&amp;quot;)
-    search_btn.click()
-    # 等待5秒，待公众号列表加载完毕
-    time.sleep(5)
-    result_list = self.driver.find_element_by_class_name(&amp;quot;js_acc_list&amp;quot;).find_elements_by_tag_name(&amp;quot;div&amp;quot;)
-    result_list[0].click()
-
-文章列表已经展现出来了，直接抓取每条文章超链接的信息即可，每抓取完一页就进入下一页，继续抓取文章列表信息，直到所有文章信息都抓取完毕。
-
-def __get_article_list(self):
-    # 等待文章列表加载
-    time.sleep(5)
-    total_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
-        .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;)\
-        .find_element_by_class_name(&amp;quot;page_num&amp;quot;)\
-        .find_elements_by_tag_name(&amp;quot;label&amp;quot;)[1].text
-    total_page = int(total_page)
-    articles = []
-    for i in range(0, total_page-1):
-        time.sleep(5)
-        next_page = self.driver.find_element_by_class_name(&amp;quot;search_article_result&amp;quot;)\
-            .find_element_by_class_name(&amp;quot;js_article_pagebar&amp;quot;).find_element_by_class_name(&amp;quot;pagination&amp;quot;)\
-            .find_element_by_class_name(&amp;quot;page_nav_area&amp;quot;).find_element_by_class_name(&amp;quot;page_next&amp;quot;)
-        article_list = self.driver.find_element_by_class_name(&amp;quot;js_article_list&amp;quot;)\
-            .find_element_by_class_name(&amp;quot; my_link_list&amp;quot;).find_elements_by_tag_name(&amp;quot;li&amp;quot;)
-        for article in article_list:
-            article_info = {
-                &amp;quot;date&amp;quot;: article.find_element_by_class_name(&amp;quot;date&amp;quot;).text,
-                &amp;quot;title&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).text,
-                &amp;quot;link&amp;quot;: article.find_element_by_tag_name(&amp;quot;a&amp;quot;).get_attribute(&amp;quot;href&amp;quot;)
-                }
-            articles.append(article_info)
-        next_page.click()
-    return articles
-
-至此，微信公众号历史文章的爬虫已经实现，其实整个过程只不过是用程序来模拟的了人类的操作。需要注意的是，程序不能设置太快，因为微信做了相关限制，所以设太快会在一段时间内无法使用文章查找功能；另外一点是使用选择器选择页面元素的时候，会有一些坑，而且我发现不同账号登录，有很少部分的页面元素虽然直观上是一样的，但是它的 html 代码有细微的差别。
-这个小程序会用到selenium库，和chromedriver，前者直接pip install即可，后者自行下载；另外你还需要一个订阅号才行，本文只实现了关键的文章信息抓取，并没有进行文章信息的持久化存储，完整代码在这里。
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/shi-yong-ding-yue-hao-shi-xian-wei-xin-gong-zhong-hao-li-shi-wen-zhang-pa-chong">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -997,7 +971,7 @@ def __get_article_list(self):
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1582120743403)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1582469934384)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -1036,6 +1010,12 @@ def __get_article_list(self):
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua">Schema 与数据类型优化</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2020-02-18">刘小绪同学随笔（2020-02-18）</a>
                 </h3>
             
@@ -1058,10 +1038,6 @@ def __get_article_list(self):
                 </h3>
             
             
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io/post/vue-typescript-xiang-mu-qi-shou-shi">Vue + TypeScript 项目起手式</a>
-                </h3>
             
             
             

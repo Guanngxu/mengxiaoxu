@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1582120743403">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1582469934384">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1582120743403" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1582469934384" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -120,6 +120,92 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua">
+                        Schema 与数据类型优化
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-02-23</time>
+                    
+                        <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
+                            i-tag-other_2">
+            #MySQL
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
+                            i-tag-">
+            #数据库
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/schema-yu-shu-ju-lei-xing-you-hua.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《高性能 MySQL（第三版））》
+
+选择优化的数据类型
+世面上常见的数据库大多支持了多种多样的数据类型，选择正确的数据类型对于获得高性能至关重要，一般都需要遵循如下的几个原则：
+1、更小的通常更好：更小的通常更快，因为占用着更少的磁盘、内存和 CPU，并且处理时需要的 CPU 周期也更少；
+2、简单就好：简单数据类型的操作通常需要更少的 CPU 周期；
+3、尽量避免 NULL：如果查询中包含可为 NULL 的列，就会使得索引、索引统计和值比较变得复杂，因此在设计表是最好指定列为 NOT NULL。
+
+整数类型
+在 MYSQL 中可以为整数类型指定宽度，例如INT(11)，但是这对大多数应用是没有意义的，它不会限制值的合法范围，只是规定了 MySQL 的一些交互工具（如 MySQL 命令行客户端）用来显示字符的个数。对于存储和计算来说INT(1)和INT(20)是相同的。
+字符串类型
+需要注意的是当 MySQL 存储 CHAR 值时，它会删掉所有的末尾空格，因为 CHAR 值会根据需要采用空格进行填充以方便比较，这导致的问题就是你使用 CHAR 存储的&#39;string &#39;会变成&#39;string&#39;。CHAR 的好处在于它是定长的，很适合存储像 MD5 值一样的定长值，定长值的 CHAR 类型不易产生碎片，而且对于非常短的列 CHAR 也会比 VERCHAR 好，比如CHAR(1)只需要一个字节，而VERCHAR(1)则需要两个字节，因为它还需要一个字节来存长度。
+VERCHAR 类型在存储可变长字符串时，会比 CHAR 更节省空间，它需要使用 1 或者 2 个额外的字节记录字符串的长度。但由于行是变长的，当一个行占用的空间增长，并且在页内没有更多的可用空间可以存储，就容易产生碎片。
+使用枚举代替字符串
+有时候可以使用枚举列代替常用的字符串类型，枚举列可以把一些不重复的字符串存储成一个预定义的集合，而且 MySQL 在存储枚举时非常紧凑，会根据列的数量压缩到一个或两个字节。比如下面的例子：
+CREATE TABLE enum_test(
+    e ENUM(&#39;fish&#39;, &#39;apple&#39;, &#39;dog&#39;) NOT NULL
+);
+
+INSERT INTO enum_test(e) VALUES(&#39;fish&#39;), (&#39;dog&#39;), (&#39;apple&#39;);
+
+SELECT e+0 FROM enum_test;
+
+# result
++-----+
+| e+0 |
++-----+
+|   1 |
+|   2 |
+|   3 |
++-----+
+
+可以看到使用枚举类型后，上面三行数据实际上存储为了整数，而不是字符串，而且还有一个让人吃惊的地方：枚举字段是按照内部存储的整数而不是定义的字符串进行排序的，这一点需要特别注意，不然在写程序时容易中犯错。当然你也可以在查询时使用FIELD()函数显式地指定排序顺序。
+可以看到上面
+范式和反范式
+关系型数据库有设计范式的概念，这一点在大学的数据库课程中肯定都会提及。因为有比较高的范式，那么就只有很少或者没有重复的数据，因此在 UPDATE 时只需要修改更少的数据；高范式的表通常也更小，因此占用的内存也会更小，操作起来也会更快......
+但是高范式也带来了另一个缺点，比较好的范式通常意味着需要关联，稍微复杂一点的查询就需要使用 JOIN，关联的代价是昂贵的，甚至让一些索引策略失效；而如果不需要关联，即使某个查询需要全表扫描，当数据比内存大时可能会比关联查询快的多。所以一般都会根据实际情况将范式与反范式混用，完全的范式化和完全的反范式化都是实验室才有的东西。
+缓存表和汇总表
+这里的「缓存表」和「汇总表」并没有什么标准的含义。我们用「缓存表」来存储那些可以从其他表获取，但是获取的速度很慢的数据；而「汇总表」则用来保存那些使用 GROUP BY 语句聚合数据的表。毫无疑问，我们存这些冗余数据也是为了性能。
+比如近两年各种应用流行的年终报告，每次网易云音乐的年终报告都会把朋友圈撑满，其它类似于缓存一个用户的朋友数、一个文件的下载次数等等。这些数据实时计算的开销是很大的，而且多数情况下用户也等不起实时计算的时间，一般的解决方案都是通过增加计数器表（缓存表）来解决这个问题。
+计算机科学中总是伴随着双面性，上面的计数器表带来性能提升的同时也带来了并发问题。网站的每一次点击都会导致对计数器的更新，对于任何想要更新这一行的事务来说，这条记录都有一个全局的互斥锁，这会使得这些事务只能串行的进行。每一次点击都会触发下面的语句，但大量的点击伴随着该行数据的互斥锁，想想性能也不会提升到哪里去吧。
+UPDATE hit_counter SET cnt = cnt + 1;
+
+大多数应用都是读查询居多，为了提升读查询的速度，经常会需要增加一些额外的索引，增加冗余列、汇总表、缓存表等等。但是不要忘了这些技巧也会增加写查询的负担，还会增加开发难度，因此应该根据实际应用场景来做权衡。
+加快 ALTER TABLE 表的速度
+MySQL 执行大部分修改表结构的方法都是用新的结构创建一个空表，然后从旧表中查出所有数据插入到新表，然后删除旧表。在内存不足、表很大、索引多的情况下会花费很长的时间。一个很严重的缺点是大部分 ALTER TABLE 操作将导致 MySQL 服务中断。
+对于常见的场景我们有两种技巧避免服务中断。一种是先在一台不提供服务的机器上执行 ALTER TABLE 操作，然后和提供服务的主库进行切换；另一种技巧是「影子拷贝」，即用要求的表结构创建一张和源表无关的新表，然后通过重命名和删除表的操作交换两张表。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2020-02-18">
                         刘小绪同学随笔（2020-02-18）
                     </a>
@@ -128,7 +214,7 @@
                     <time class="post-time">2020-02-19</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/Z_0XCM_Cy" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-primary">
             #随笔
         </a>
                         
@@ -184,12 +270,12 @@ Very few things that are worthwhile in life come without a cost.
                     <time class="post-time">2020-02-16</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-primary">
             #MySQL
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_4">
             #数据库
         </a>
                         
@@ -276,7 +362,7 @@ MySQL 使用文件系统的目录和文件来保存数据库和表的定义，�
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/QjCHA76i_r" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-error">
             #编程基础
         </a>
                         
@@ -451,7 +537,7 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
                     <time class="post-time">2020-01-09</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/vue" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-other_3">
             #Vue
         </a>
                         
@@ -461,7 +547,7 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
             #前端
         </a>
                         
@@ -662,7 +748,7 @@ new Vue({
                     <time class="post-time">2020-01-06</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/EE1uiCHgH" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-info">
             #个人总结
         </a>
                         
@@ -830,7 +916,7 @@ db.collection.aggregate([
                     <time class="post-time">2019-12-15</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/vhSkGeYf1D" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-success">
             #设计
         </a>
                         
@@ -1077,12 +1163,12 @@ APP 上的通知
                     <time class="post-time">2019-11-18</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/linux" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_3">
             #Linux
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_3">
             #操作系统
         </a>
                         
@@ -1141,181 +1227,6 @@ splice()不局限于sendfile()的功能，也就是说sendfile()是splice()的�
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://mengxiaoxu.github.io/post/vim-chang-yong-ming-ling-kuai-su-cha-xun">
-                        Vim 常用命令快速查询
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-11-01</time>
-                    
-                        <a href="https://mengxiaoxu.github.io/tag/vim" class="post-tag i-tag
-                            i-tag-error">
-            #Vim
-        </a>
-                        
-                        <a href="https://mengxiaoxu.github.io/tag/linux" class="post-tag i-tag
-                            i-tag-">
-            #Linux
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://mengxiaoxu.github.io/post/vim-chang-yong-ming-ling-kuai-su-cha-xun">
-                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/vim-chang-yong-ming-ling-kuai-su-cha-xun.jpg">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            
-参考内容
-Learning Vim The Pragmatic Way
-《鸟哥的 Linux 私房菜》
-
-Vim 可以认为是 Vi 的高级版本，Vim 可以用颜色或下划线的方式来显示一些特殊信息，您可以认为 Vi 是一个文本处理工具，而 Vim 是一个程序开发工具，现在大部分 Linux 的发行版都以 Vim 替换 Vi 了。在 Linux 命令行模式下有很多编辑器，但是 Vi 文本编辑器是所有 Unix-like 系统都会内置的，因此学会 Vi/Vim 的使用时非常有必要的，对于 Vi 的三种模式（命令模式、编辑模式、命令行模式）这里就不在做说明了，下面是一些比较常用的命令。
-一般命令模式下
-
-
-
-命令
-说明
-
-
-
-
-h、j、k、l
-与键盘的方向键一一对应，分别为左、下、上、右，在键盘上着几个字母是排在一起的
-
-
-Ctrl+f、Ctrl+b
-分别对应键盘的「Page Down」、「Page Up」，我更习惯于这两个键，而不是前面的组合键
-
-
-0、$
-分别对应键盘的「Home」、「End」，即移动到该行的最前面/后面字符处
-
-
-n&amp;lt;Enter&amp;gt;
-n 为数字，光标向下移动 n 行
-
-
-/word、?word
-向光标之上/下寻找一个字符串名称为 word 的字符串
-
-
-n、N
-如果我们刚刚执行了上面上面的 /word 或 ?word 查找操作，那么 n 则表示重复前一个查找操作，可以简单理解为向下继续查找下一个名称为 word 的字符串，N 则与 n 刚好相反
-
-
-:n1,n2s/word1/word2/g
-在第 n1 行与 n2 行之间寻找 word1 这个字符串，并将这个字符串替换为 word2，如果前面的 n1,n2 使用 1,$ 代替则表示从第一行到最后一行，最后的 g 后面可以加个 c，即 :1,$s/word1/word2/gc，这样就会在替换钱显示提示字符给用户确认（confirm）
-
-
-x、X
-分别对应键盘的「Del」、「Backspace」键
-
-
-dd、yy
-删除/复制光标所在的那一整行
-
-
-p、P
-p 将已复制的数据在光标下一行粘贴，P 粘贴在光标上一行
-
-
-u
-恢复前一个操作，类似于 Windows 下的 Ctrl+Z
-
-
-Ctrl+r
-重做上一个操作
-
-
-.
-小数点，重复上一个操作
-
-
-
-命令行模式下
-
-
-
-命令
-说明
-
-
-
-
-:w
-将编辑的数据写入硬盘中
-
-
-:w!
-若文件属性为只读，强制写入该文件，不过到底能不能写入，还是跟文件权限有关系
-
-
-:q、:q!
-与 w 一样，q 为关闭的意思
-
-
-:r [filename]
-在编辑的数据中读入另一个文件的数据，即将[filename]这个文件的内容追加到光标所在行的后面
-
-
-:w [filename]
-将编辑的数据保存为另一个文件
-
-
-:set nu/nonu
-显示/不显示行号
-
-
-
-编辑模式下
-
-
-
-组合键
-作用
-
-
-
-
-[ctrl]+x -&amp;gt; [ctrl]+n
-通过目前正在编辑的这个文件的内容文字作为关键字，予以自动补全
-
-
-[ctrl]+x -&amp;gt; [ctrl]+f
-以当前目录内的文件名作为关键字补全
-
-
-[ctrl]+x -&amp;gt; [ctrl]+o
-以扩展名作为语法补充，以 Vim 内置的关键字予以补全
-
-
-
-当我们在使用 Vim 编辑器的时候，Vim 会在与被编辑的文件目录下再建立一个名为.filename.swp的文件，我们对文件的操作都会记录到这个 swp 文件中去，如果系统因为某些原因掉线了，就可以利用这个 swp 文件来恢复内容。如果存在对应的 swp 文件，那么 Vim 就会主动判断当前这个文件可能有问题，会给出相应的提示。
-我们也可以给 Vim 环境设置一些个性化的参数，虽然在命令行模式下可以使用:set来设置，但是这样每次设置实在是太麻烦，因此我们可以设置一些全局的参数。Vim 的整体设置值一般放在/etc/vimrc中，我们一般通过修改~/.vimrc这个文件（默认不存在）来设置一些自己的参数，比如：
-&amp;quot; 该文件的双引号是注释
-set nu &amp;quot;在每一行的最前面显示行号
-set autoindent &amp;quot; 自动缩进
-set ruler &amp;quot; 可显示最后一行的状态
-set bg=dark &amp;quot; 显示不同的底色色调
-syntax on &amp;quot;进行语法检验，颜色显示，比如 C 语言等
-
-最后附上一张命令速查卡，此图来源于Learning Vim The Pragmatic Way，PDF 版下载链接在这里。
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/vim-chang-yong-ming-ling-kuai-su-cha-xun">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -1334,7 +1245,7 @@ syntax on &amp;quot;进行语法检验，颜色显示，比如 C 语言等
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1582120743403)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1582469934384)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -1373,6 +1284,12 @@ syntax on &amp;quot;进行语法检验，颜色显示，比如 C 语言等
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua">Schema 与数据类型优化</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2020-02-18">刘小绪同学随笔（2020-02-18）</a>
                 </h3>
             
@@ -1395,10 +1312,6 @@ syntax on &amp;quot;进行语法检验，颜色显示，比如 C 语言等
                 </h3>
             
             
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io/post/vue-typescript-xiang-mu-qi-shou-shi">Vue + TypeScript 项目起手式</a>
-                </h3>
             
             
             

@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    MySQL 架构与历史 | 刘小绪同学的博客
+    MySQL 中的索引 | 刘小绪同学的博客
 </title>
 <link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1583656981045">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -127,76 +127,61 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            MySQL 架构与历史
+                            MySQL 中的索引
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2020-02-16</time>
+                            <time class="post-time">2020-03-08</time>
                             
                                 <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-warning">
                             #MySQL
                         </a>
                                 
                                 <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-">
                             #数据库
                         </a>
                                 
                         </div>
                         
-                            <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/mysql-jia-gou-yu-li-shi.jpg')"></div>
+                            <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/mysql-zhong-de-suo-yin.jpg')"></div>
                             
                                 <div class="post-content">
                                     <blockquote>
 <p>参考内容：<br>
-《高性能 MySQL（第三版））》<br>
-<a href="https://t.zsxq.com/FuJaE23">码农翻身知识星球</a><br>
-<a href="https://mp.weixin.qq.com/s/bM_g6Z0K93DNFycvfJIbwQ">数据库村的旺财和小强</a></p>
+《高性能 MySQL（第三版）》</p>
 </blockquote>
-<h2 id="存储引擎">存储引擎</h2>
-<p><a href="https://dev.mysql.com/doc/internals/en/custom-engine-overview.html"> Writing a Custom Storage Engine / Overview</a> 中说存储引擎负责管理 MySQL 的数据存储和索引，MySQL 服务器通过已经定义好的 API 与存储引擎进行通信。</p>
-<p>不同的存储引擎都有各自的优势和劣势，存储引擎相互之间不会通信，除了 InnoDB 外其它引擎都不会解析 SQL，API 屏蔽了存储引擎之间的差异，使得这些差异对上层查询过程透明。存储引擎 API 包含了几十个底层函数，下面列举了其中的一小部分函数，如果你要自己实现一个存储引擎，那所做的工作就是把这些接口函数实现。</p>
-<pre><code class="language-c">//创建一个表
-virtual int create(const char *name, TABLE *form, HA_CREATE_INFO *info)=0;
-
-//打开一个表
-int open(const char *name, int mode, int test_if_locked);
-
-//写入一行数据
-int write_row(byte *buf);
-
-//更新一行
-int update_row(const byte *old_data, byte *new_data);
-
-//删除一行
-int delete_row(const byte *buf);
-
-//开始一个事务
-int  start_stmt(THD *thd, thr_lock_type lock_type);
-
-//提交一个事务
-int (*commit)(THD *thd, bool all);
-
-//回滚一个事务
-int (*rollback)(THD *thd, bool all);
-
-// ......
+<p>一说到「索引」这个词，不知道数据库的人可能首先联想到的就是一本书的索引，它的作用是方便读者快速查找书中的内容。数据库的索引也是这样的效果，是存储引擎用于快速找到记录的一种数据结构。</p>
+<p>很明显索引会直接影响到查询的速度，从书籍中的索引可以联想到一些可能会存在的问题。不同的索引编排方式会有不同的查询速度，这对应于数据库使用不同数据结构来建立的索引；试想一下一本书的索引部分比内容部分还要厚，那索引就会起到反向的作用。</p>
+<h2 id="索引类型">索引类型</h2>
+<p>就像上面提到的一样，索引有很多种不同的类型，不同的索引类型可以针对不同的场景提供更好的性能。需要注意的是 MySQL 的索引不是在服务层实现的，而是在存储引擎实现的，所以并没有统一的索引标准，甚至有的存储引擎都不支持索引，下面介绍两个常用的索引。</p>
+<h3 id="b-tree-索引">B-Tree 索引</h3>
+<p>我们常说的索引就是 B-Tree 索引，要注意的是我们使用「B-Tree」这个术语是因为 MySQL 在<code>CREATE TABLE</code>和其它语句中使用的也使用该关键字，而且其底层结构使用的并不一定是 B-树。</p>
+<p>以前整理过关于「B-树」和「B+树」的资料，详细的资料可以查看以前写的<a href="https://mp.weixin.qq.com/s/Re6c-LeEIsulpYRvOPZhLw">从二叉树到 B+ 树索引</a>。</p>
+<p>值得注意的是 B-Tree 对索引列是顺序组织存储的，很适合查找范围数据，例如下面数据表的索引会按照图示的方式去存储。</p>
+<pre><code class="language-sql">CREATE TABLE people (
+	last_name varchar(50) not null,
+	first_name varchar(50) not null,
+	dob date not null,
+	gender enum(‘m’, ‘f’) not null,
+	key(last_name, first_name, dob)
+);
 </code></pre>
-<p>MySQL 内建了很多存储引擎，除此之外还有很多社区版的第三方引擎，对于这么多引擎我们应该怎么选择呢？这里可以归结为一句话「<strong>除非需要用到某些 InnoDB 不具备的特性，并且没有其它办法可以代替，否则都应该选择 InnoDB 引擎</strong>」。例如，如果要用到全文索引，建议优先考虑 InnoDB 加上 <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> 组合，而不是使用支持全文索引的 MyISAM。当然，如果不需要用到 InnoDB 的特性，同时其它引擎的特性能够更好的满足需求，也可以考虑一下其它引擎。</p>
-<p>除非万不得已，否则不要混合使用多种存储引擎。如果应用需要不同的存储引擎，你至少应该考虑「事务」、「备份」、「崩溃恢复」、「特有的特性」几个因素。</p>
-<h2 id="并发控制">并发控制</h2>
-<p>数据库需要大量的磁盘读写操作，自然而然就会产生并发控制的问题。我们可以简单的使用读写锁来解决解决并发控制问题。读锁是共享的，多个客户可以在同一时刻读取同一个资源；写锁是排他的，一个写锁会阻塞其它写锁和读锁，只有这样才能在同一时间内只有一个用户能执行写入，并防止其它用户读取正在写入的同一资源。</p>
-<p>上一段内容只说了锁，但是没有讨论锁的粒度，锁定资源时是直接锁定整个数据库还是仅锁定具体的表，亦或是只锁定要操作的那几行记录？首先我们需要明白的是任何时候，在给定的资源上，锁定的数据量越少则系统的并发程度越高，只要相互之间不冲突即可。</p>
-<p>但是我们还忘了另一件事，加锁本身也是需要消耗资源的，获得锁、检查锁的解除、释放锁等等都会增加系统的开销，如果系统花费大量的时间来管理锁，而不是管理数据，那么系统的并发程度同样会受到影响。因此锁策略就是在锁的开销和数据的安全性之间寻求平衡。</p>
-<p>大多数商业数据库在锁策略上并没有提供更多的选择，一般都是在表上施加行级锁。MySQL 则提供了多种选择，每种 MySQL 引擎都可以实现自己的锁策略和锁粒度，比较重要的两种锁策略是「表锁」和「行级锁」。</p>
-<h2 id="多版本并发控制">多版本并发控制</h2>
-<p>刘大在<a href="https://mp.weixin.qq.com/s/bM_g6Z0K93DNFycvfJIbwQ">数据库村的旺财和小强</a>中把「事务的隔离级别」和「多版本并发控制（MVCC）」讲的已经比较透彻了，此处我仅借助文字描述来加深我自己的理解。</p>
-<p>MVCC 是行级锁的一个变种，但是它在很多情况下避免了加锁的操作，因为避免了加锁的这些开销，所以 MVCC 能够提升并发性能。包括 Oracle、PostgreSQL、MySQL 等等数据库都实现了 MVCC，只是各自的实现机制不一样，因为 MVCC 没有一个统一的实现标准，比较典型的实现方式有「乐观并发控制」和「悲观并发控制」。</p>
-<p>MVCC 是通过保存数据在某个时间点的快照来实现的（这难道不是一个版本控制器吗）。以 InnoDB 为例，它是通过在每行记录后面保存两个隐藏的列来实现，一个保存了行的创建时间，另一个则保存了行的过期（删除）时间。当然存储的并不是实际的时间值，而是系统版本号。每开始一个新的事务，系统版本号都会自动递增，事务开始时刻的版本号会作为事务的版本号，用来和查询到的每行记录记录的版本号做比较。</p>
-<p>因此根据事务的开始时间不同，每个事务对同一张表，同一时刻看到的数据可能是不一样的。因为同一条记录在存储器中拥有多个版本，每个事务也有自己的版本号，只要把事务和记录的版本号做对比即可知道需要取哪个版本的记录了。一言以蔽之，MVCC 是一个借助空间来换取时间的策略。</p>
-<h2 id="小知识点">小知识点</h2>
-<p>MySQL 使用文件系统的目录和文件来保存数据库和表的定义，所以大小写敏感就和具体的平台密切相关，在 Windows 中大小写不敏感，而在 Linux 等类 Unix 中则是敏感的。不同的存储引擎保存数据和索引的方式是不同的，但是表的定义则是在 MySQL 服务层统一处理的，<code>my_table</code>表的定义保存会被保存在<code>my_table.frm</code>中。</p>
-<p>如果表在创建并导入数据后，不会再对该表进行修改操作，那么这样的表比较适合 MyISAM 压缩表，而且压缩表也支持索引。可以使用<code>myisampack</code>对 MyISAM 表进行压缩，压缩后的表是不能进行修改的，但是可以极大的减少磁盘的空间占用，因此也可以减少磁盘 I/O，这无疑是一种提升查询性能的方法。</p>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1583656907264.jpg" alt="" loading="lazy"></figure>
+<p>因此这样的索引也就会有它自己的限制。1、如果不是按照索引的最左侧列开始查找，则无法使用索引；2、不能跳过索引中的列，也就是说上述索引无法用于查找 last_name 为 Smith 并且生日在某个特定日期的人；3、如果查询中有某个列的范围查询，则其右边所有列都无法使用索引优化查询。例如<code>WHERE last_name=‘Smith’ AND first_name LIKE ‘%J’ AND dob = ‘1976-12-23’</code>，这个查询就只能使用索引的前两列，因为这里的 LIKE 是一个范围条件。</p>
+<h3 id="哈希索引">哈希索引</h3>
+<p>如果你的数据结构没有忘的话，那么我想「哈希索引」对你来说应该是见名知意的，它只有精确匹配索引所有列的查询才有效。对每一行数据存储引擎都会对所有的索引列计算出一个哈希码。</p>
+<p>既然是基于哈希表实现，那么就不可避免需要考虑哈希冲突的情况。一般避免哈希冲突的方式都是将槽变成一个链表，只要哈希函数选的好，能够让数据均匀的分到各个桶里面就不会出现很要命的性能问题。</p>
+<p>因为哈希索引需要计算哈希值，所以不宜选择 MD5、SHA1 等较复杂的哈希函数；当然哈希值也不宜过长或者过短，过长索引值会占用较大的存储空间，过短太容易造成哈希冲突。哈希索引的存储非常的紧凑，所以查询速度会很快，但它也有自己的局限性：</p>
+<p>1、哈希索引只包含哈希索值和行指针，而不存储字段值，所以不能使用哈希索引中的值来避免读取行；2、哈希索引数据并不是按照索引值顺序存储的，所以也不能用于排序；3、哈希索引也不支持部分索引列匹配查找，因为哈希索引始终是使用索引列的全部内容来计算哈希值；4、哈希索引只支持等值比较查询，不支持任何范围查询；5、如果哈希冲突很多的话，一些索引维护操作的代价会很高。</p>
+<p>以<code>SELECT id FROM url WHERE url_crc=CRC32(&quot;http://www.mysql.com&quot;)</code>为例，一旦出现了哈希冲突，即另一个字符串的哈希值和<code>http://www.mysql.com</code>是一样的，那么这个语句就无法正常的工作，需要在 WHERE 子句中包含常量值才能正常工作，比如加入<code>AND url=&quot;http://www.mysql.com&quot;</code>。</p>
+<h2 id="索引的优点">索引的优点</h2>
+<p>「索引」这个主题深入讲完完全全值得写一本书了，要深入理解这部分知识可以查阅相关资料。需要注意的是，即便我们使用了对象关系映射（ORM）工具，仍然需要关心索引，即便是查询优化技术专家也很难兼顾到各种情况，更别说各种 ORM 了。总结下来索引有如下三个优点：</p>
+<ol>
+<li>索引大大减少了服务器需要扫描的数据量；</li>
+<li>索引可以帮助服务器避免排序和临时表；</li>
+<li>索引可以将随机 I/O 变为顺序 I/O。</li>
+</ol>
 
                                 </div>
                     </article>
@@ -204,9 +189,9 @@ int (*rollback)(THD *thd, bool all);
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://mengxiaoxu.github.io/post/qian-xi-zheng-ze-biao-da-shi-yuan-li">
+                            <a href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua">
                                 <h3 class="post-title">
-                                    浅析正则表达式原理
+                                    Schema 与数据类型优化
                                 </h3>
                             </a>
                         </div>
@@ -227,10 +212,13 @@ int (*rollback)(THD *thd, bool all);
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E">存储引擎</a></li>
-<li><a href="#%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6">并发控制</a></li>
-<li><a href="#%E5%A4%9A%E7%89%88%E6%9C%AC%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6">多版本并发控制</a></li>
-<li><a href="#%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9">小知识点</a></li>
+<li><a href="#%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B">索引类型</a>
+<ul>
+<li><a href="#b-tree-%E7%B4%A2%E5%BC%95">B-Tree 索引</a></li>
+<li><a href="#%E5%93%88%E5%B8%8C%E7%B4%A2%E5%BC%95">哈希索引</a></li>
+</ul>
+</li>
+<li><a href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BC%98%E7%82%B9">索引的优点</a></li>
 </ul>
 </li>
 </ul>

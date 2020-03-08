@@ -7,7 +7,7 @@
 <title>
     数据库 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1582469934384">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1583656981045">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1582469934384" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1583656981045" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -125,6 +125,78 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin">
+                        MySQL 中的索引
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-08</time>
+                    
+                        <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
+                            i-tag-error">
+            #MySQL
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
+                            i-tag-">
+            #数据库
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/mysql-zhong-de-suo-yin.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《高性能 MySQL（第三版）》
+
+一说到「索引」这个词，不知道数据库的人可能首先联想到的就是一本书的索引，它的作用是方便读者快速查找书中的内容。数据库的索引也是这样的效果，是存储引擎用于快速找到记录的一种数据结构。
+很明显索引会直接影响到查询的速度，从书籍中的索引可以联想到一些可能会存在的问题。不同的索引编排方式会有不同的查询速度，这对应于数据库使用不同数据结构来建立的索引；试想一下一本书的索引部分比内容部分还要厚，那索引就会起到反向的作用。
+索引类型
+就像上面提到的一样，索引有很多种不同的类型，不同的索引类型可以针对不同的场景提供更好的性能。需要注意的是 MySQL 的索引不是在服务层实现的，而是在存储引擎实现的，所以并没有统一的索引标准，甚至有的存储引擎都不支持索引，下面介绍两个常用的索引。
+B-Tree 索引
+我们常说的索引就是 B-Tree 索引，要注意的是我们使用「B-Tree」这个术语是因为 MySQL 在CREATE TABLE和其它语句中使用的也使用该关键字，而且其底层结构使用的并不一定是 B-树。
+以前整理过关于「B-树」和「B+树」的资料，详细的资料可以查看以前写的从二叉树到 B+ 树索引。
+值得注意的是 B-Tree 对索引列是顺序组织存储的，很适合查找范围数据，例如下面数据表的索引会按照图示的方式去存储。
+CREATE TABLE people (
+	last_name varchar(50) not null,
+	first_name varchar(50) not null,
+	dob date not null,
+	gender enum(‘m’, ‘f’) not null,
+	key(last_name, first_name, dob)
+);
+
+
+因此这样的索引也就会有它自己的限制。1、如果不是按照索引的最左侧列开始查找，则无法使用索引；2、不能跳过索引中的列，也就是说上述索引无法用于查找 last_name 为 Smith 并且生日在某个特定日期的人；3、如果查询中有某个列的范围查询，则其右边所有列都无法使用索引优化查询。例如WHERE last_name=‘Smith’ AND first_name LIKE ‘%J’ AND dob = ‘1976-12-23’，这个查询就只能使用索引的前两列，因为这里的 LIKE 是一个范围条件。
+哈希索引
+如果你的数据结构没有忘的话，那么我想「哈希索引」对你来说应该是见名知意的，它只有精确匹配索引所有列的查询才有效。对每一行数据存储引擎都会对所有的索引列计算出一个哈希码。
+既然是基于哈希表实现，那么就不可避免需要考虑哈希冲突的情况。一般避免哈希冲突的方式都是将槽变成一个链表，只要哈希函数选的好，能够让数据均匀的分到各个桶里面就不会出现很要命的性能问题。
+因为哈希索引需要计算哈希值，所以不宜选择 MD5、SHA1 等较复杂的哈希函数；当然哈希值也不宜过长或者过短，过长索引值会占用较大的存储空间，过短太容易造成哈希冲突。哈希索引的存储非常的紧凑，所以查询速度会很快，但它也有自己的局限性：
+1、哈希索引只包含哈希索值和行指针，而不存储字段值，所以不能使用哈希索引中的值来避免读取行；2、哈希索引数据并不是按照索引值顺序存储的，所以也不能用于排序；3、哈希索引也不支持部分索引列匹配查找，因为哈希索引始终是使用索引列的全部内容来计算哈希值；4、哈希索引只支持等值比较查询，不支持任何范围查询；5、如果哈希冲突很多的话，一些索引维护操作的代价会很高。
+以SELECT id FROM url WHERE url_crc=CRC32(&amp;quot;http://www.mysql.com&amp;quot;)为例，一旦出现了哈希冲突，即另一个字符串的哈希值和http://www.mysql.com是一样的，那么这个语句就无法正常的工作，需要在 WHERE 子句中包含常量值才能正常工作，比如加入AND url=&amp;quot;http://www.mysql.com&amp;quot;。
+索引的优点
+「索引」这个主题深入讲完完全全值得写一本书了，要深入理解这部分知识可以查阅相关资料。需要注意的是，即便我们使用了对象关系映射（ORM）工具，仍然需要关心索引，即便是查询优化技术专家也很难兼顾到各种情况，更别说各种 ORM 了。总结下来索引有如下三个优点：
+
+索引大大减少了服务器需要扫描的数据量；
+索引可以帮助服务器避免排序和临时表；
+索引可以将随机 I/O 变为顺序 I/O。
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua">
                         Schema 与数据类型优化
                     </a>
@@ -133,12 +205,12 @@
                     <time class="post-time">2020-02-23</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-success">
             #MySQL
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-success">
             #数据库
         </a>
                         
@@ -219,7 +291,7 @@ MySQL 执行大部分修改表结构的方法都是用新的结构创建一个�
                     <time class="post-time">2020-02-16</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_4">
             #MySQL
         </a>
                         
@@ -413,12 +485,12 @@ db.collection.aggregate([
                     <time class="post-time">2018-04-24</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-warning">
             #数据库
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-success">
             #操作系统
         </a>
                         
@@ -537,7 +609,7 @@ R10
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1582469934384)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1583656981045)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -576,6 +648,12 @@ R10
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin">MySQL 中的索引</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua">Schema 与数据类型优化</a>
                 </h3>
             
@@ -598,10 +676,6 @@ R10
                 </h3>
             
             
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io/post/xiao-gong-ju-shou-ji">小工具收集</a>
-                </h3>
             
             
             

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2020-02-23T14:59:04.753Z</updated>
+    <updated>2020-03-08T08:43:12.838Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io/atom.xml"/>
@@ -10,6 +10,49 @@
     <logo>https://mengxiaoxu.github.io/images/avatar.png</logo>
     <icon>https://mengxiaoxu.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 刘小绪同学的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[MySQL 中的索引]]></title>
+        <id>https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin</id>
+        <link href="https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin">
+        </link>
+        <updated>2020-03-08T08:37:18.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>参考内容：<br>
+《高性能 MySQL（第三版）》</p>
+</blockquote>
+<p>一说到「索引」这个词，不知道数据库的人可能首先联想到的就是一本书的索引，它的作用是方便读者快速查找书中的内容。数据库的索引也是这样的效果，是存储引擎用于快速找到记录的一种数据结构。</p>
+<p>很明显索引会直接影响到查询的速度，从书籍中的索引可以联想到一些可能会存在的问题。不同的索引编排方式会有不同的查询速度，这对应于数据库使用不同数据结构来建立的索引；试想一下一本书的索引部分比内容部分还要厚，那索引就会起到反向的作用。</p>
+<h2 id="索引类型">索引类型</h2>
+<p>就像上面提到的一样，索引有很多种不同的类型，不同的索引类型可以针对不同的场景提供更好的性能。需要注意的是 MySQL 的索引不是在服务层实现的，而是在存储引擎实现的，所以并没有统一的索引标准，甚至有的存储引擎都不支持索引，下面介绍两个常用的索引。</p>
+<h3 id="b-tree-索引">B-Tree 索引</h3>
+<p>我们常说的索引就是 B-Tree 索引，要注意的是我们使用「B-Tree」这个术语是因为 MySQL 在<code>CREATE TABLE</code>和其它语句中使用的也使用该关键字，而且其底层结构使用的并不一定是 B-树。</p>
+<p>以前整理过关于「B-树」和「B+树」的资料，详细的资料可以查看以前写的<a href="https://mp.weixin.qq.com/s/Re6c-LeEIsulpYRvOPZhLw">从二叉树到 B+ 树索引</a>。</p>
+<p>值得注意的是 B-Tree 对索引列是顺序组织存储的，很适合查找范围数据，例如下面数据表的索引会按照图示的方式去存储。</p>
+<pre><code class="language-sql">CREATE TABLE people (
+	last_name varchar(50) not null,
+	first_name varchar(50) not null,
+	dob date not null,
+	gender enum(‘m’, ‘f’) not null,
+	key(last_name, first_name, dob)
+);
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://mengxiaoxu.github.io//post-images/1583656907264.jpg" alt="" loading="lazy"></figure>
+<p>因此这样的索引也就会有它自己的限制。1、如果不是按照索引的最左侧列开始查找，则无法使用索引；2、不能跳过索引中的列，也就是说上述索引无法用于查找 last_name 为 Smith 并且生日在某个特定日期的人；3、如果查询中有某个列的范围查询，则其右边所有列都无法使用索引优化查询。例如<code>WHERE last_name=‘Smith’ AND first_name LIKE ‘%J’ AND dob = ‘1976-12-23’</code>，这个查询就只能使用索引的前两列，因为这里的 LIKE 是一个范围条件。</p>
+<h3 id="哈希索引">哈希索引</h3>
+<p>如果你的数据结构没有忘的话，那么我想「哈希索引」对你来说应该是见名知意的，它只有精确匹配索引所有列的查询才有效。对每一行数据存储引擎都会对所有的索引列计算出一个哈希码。</p>
+<p>既然是基于哈希表实现，那么就不可避免需要考虑哈希冲突的情况。一般避免哈希冲突的方式都是将槽变成一个链表，只要哈希函数选的好，能够让数据均匀的分到各个桶里面就不会出现很要命的性能问题。</p>
+<p>因为哈希索引需要计算哈希值，所以不宜选择 MD5、SHA1 等较复杂的哈希函数；当然哈希值也不宜过长或者过短，过长索引值会占用较大的存储空间，过短太容易造成哈希冲突。哈希索引的存储非常的紧凑，所以查询速度会很快，但它也有自己的局限性：</p>
+<p>1、哈希索引只包含哈希索值和行指针，而不存储字段值，所以不能使用哈希索引中的值来避免读取行；2、哈希索引数据并不是按照索引值顺序存储的，所以也不能用于排序；3、哈希索引也不支持部分索引列匹配查找，因为哈希索引始终是使用索引列的全部内容来计算哈希值；4、哈希索引只支持等值比较查询，不支持任何范围查询；5、如果哈希冲突很多的话，一些索引维护操作的代价会很高。</p>
+<p>以<code>SELECT id FROM url WHERE url_crc=CRC32(&quot;http://www.mysql.com&quot;)</code>为例，一旦出现了哈希冲突，即另一个字符串的哈希值和<code>http://www.mysql.com</code>是一样的，那么这个语句就无法正常的工作，需要在 WHERE 子句中包含常量值才能正常工作，比如加入<code>AND url=&quot;http://www.mysql.com&quot;</code>。</p>
+<h2 id="索引的优点">索引的优点</h2>
+<p>「索引」这个主题深入讲完完全全值得写一本书了，要深入理解这部分知识可以查阅相关资料。需要注意的是，即便我们使用了对象关系映射（ORM）工具，仍然需要关心索引，即便是查询优化技术专家也很难兼顾到各种情况，更别说各种 ORM 了。总结下来索引有如下三个优点：</p>
+<ol>
+<li>索引大大减少了服务器需要扫描的数据量；</li>
+<li>索引可以帮助服务器避免排序和临时表；</li>
+<li>索引可以将随机 I/O 变为顺序 I/O。</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Schema 与数据类型优化]]></title>
         <id>https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua</id>
@@ -802,51 +845,6 @@ new Vue({
 <p>上面两个片段已经写完一个多月了，这一个多月没有找到什么片段可以凑到这里来，那就水一把说自己经历的一个小事吧。学长是做体育赛事直播的，他们公司举办了一个 2-4 岁儿童的骑跑比赛，我被学长抓壮丁去帮他在现场奖品和完赛纪念品，有一个家长给我的印象非常深刻。</p>
 <p>一位妈妈在我这里领完纪念品后，一下扔到地上气冲冲的走了，孩子的表情我形容不出来，自己去把纪念品捡起来，但也没有去追妈妈。我本以为是我们哪里做的不对致使她那么大火气，结果一了解才知道是因为孩子比赛成绩太差了，自己家孩子赶不上别家孩子给气的。</p>
 <p>上面那件事情不作评论，毕竟这一个片段是用来凑字数的，那就得有凑字数的样子。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux 中的零拷贝技术]]></title>
-        <id>https://mengxiaoxu.github.io/post/linux-zhong-de-ling-kao-bei-ji-zhu</id>
-        <link href="https://mengxiaoxu.github.io/post/linux-zhong-de-ling-kao-bei-ji-zhu">
-        </link>
-        <updated>2019-11-18T13:43:34.000Z</updated>
-        <content type="html"><![CDATA[<blockquote>
-<p>参考内容：<br>
-<a href="https://lwn.net/Articles/178199/">Two new system calls: splice() and sync_file_range()</a><br>
-<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-zerocopy1/index.html">Linux 中的零拷贝技术1</a><br>
-<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-zerocopy2/index.html">Linux 中的零拷贝技术2</a><br>
-<a href="https://www.linuxjournal.com/article/6345">Zero Copy I: User-Mode Perspective</a><br>
-<a href="http://man7.org/linux/man-pages/man2/splice.2.html">Linux man-pages splice()</a></p>
-</blockquote>
-<p>此前在<a href="https://mengxiaoxu.github.io/post/nginx-wen-jian-cao-zuo-you-hua/">Nginx 文件操作优化</a>中有提到零拷贝技术，它可以有效的改善数据传输的性能，但是由于存储体系结构非常复杂，而且网络协议栈有时需要对数据进行必要的处理，所以零拷贝技术有可能会产生很多负面影响，甚至会导致零拷贝技术自身的优点完全丧失。</p>
-<p>零拷贝就是一种避免 CPU 将一块存储拷贝到另一块存储的技术。它可以减少数据拷贝和共享总线操作的次数，消除传输数据在存储器之间不必要的中间拷贝次数，从而有效的提高数据传输效率，而且零拷贝技术也减少了内核态与用户态之间切换所带来的开销。进行大量的数据拷贝操作是一件简单的任务，从操作系统的角度来看，如果 CPU 一直被占用着去执行这项简单的任务，是极其浪费资源的。如果是高速网络环境下，很可能就出现这样的场景。</p>
-<h2 id="零拷贝技术分类">零拷贝技术分类</h2>
-<p>现在的零拷贝技术种类很多，也并没有一个适合于所有场景的零拷贝零拷贝技术，概括起来总共有下面几种：</p>
-<ul>
-<li>
-<p><strong>直接 I/O</strong>：对于这种数据传输方式来说，应用程序可以直接访问硬件存储，操作系统只是辅助数据传输，这类零拷贝技术可以让数据在应用程序空间和磁盘之间直接传输，不需要操作系统提供的页缓存支持。关于直接 I/O 可以参看<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-directio/index.html">Linux 中直接 I/O 机制的介绍</a>。</p>
-</li>
-<li>
-<p><strong>避免数据在内核态与用户态之间传输</strong>：在一些场景中，应用程序在数据进行传输的过程中不需要对数据进行访问，那么将数据从页缓存拷贝到用户进程的缓冲区是完全没有必要的，Linux 中提供的类似系统调用主要有<code>mmap()</code>、<code>sendfile()</code>和<code>splice()</code>。</p>
-</li>
-<li>
-<p><strong>对数据在页缓存和用户进程之间的传输进行优化</strong>：这类零拷贝技术侧重于灵活地处理数据在用户进程的缓冲区和操作系统页缓存之间的拷贝操作，此类方法延续了传统的通信方式，但是更加灵活。在 Linux 中主要利用了「写时复制」技术。</p>
-</li>
-</ul>
-<p>前两类方法的目的主要是为了避免在用户态和内核态的缓冲区间拷贝数据，第三类方法则是对数据传输本身进行优化。我们知道硬件和软件之间可以通过 DMA 来解放 CPU，但是在用户空间和内核空间并没有这种工具，所以此类方法主要是改善数据在用户地址空间和操作系统内核地址空间之间传递的效率。</p>
-<h2 id="避免在内核与用户空间拷贝">避免在内核与用户空间拷贝</h2>
-<p>Linux 主要提供了<code>mmap()</code>、<code>sendfile()</code>、<code>splice()</code>三个系统调用来避免数据在内核空间与用户空间进行不必要的拷贝，在<a href="https://mengxiaoxu.github.io/post/nginx-wen-jian-cao-zuo-you-hua/">Nginx 文件操作优化</a>对<code>sendfile()</code>已经做了比较详细的介绍了，这里就不再赘述了，下面主要介绍<code>mmap()</code>和<code>splice()</code>。</p>
-<h3 id="mmap">mmap()</h3>
-<p>当调用<code>mmap()</code>之后，数据会先通过 DMA 拷贝到操作系统的缓冲区，然后应用程序和操作系统共享这个缓冲区，这样用户空间与内核空间就不需要任何数据拷贝了，当大量数据需要传输的时候，这样做就会有一个比较好的效率。</p>
-<p>但是这种改进是需要代价的，当对文件进行了内存映射，然后调用<code>write()</code>系统调用，如果此时其它进程截断了这个文件，那么<code>write()</code>系统调用将会被总线错误信号<code>SIGBUG</code>中断，因为此时正在存储的是一个错误的存储访问，这个信号将会导致进程被杀死。</p>
-<p>一般可以通过文件租借锁来解决这个问题，我们可以通过内核给文件加读或者写的租借锁，当另外一个进程尝试对用户正在进行传输的文件进行截断时，内核会给用户发一个实时<code>RT_SIGNAL_LEASE</code>信号，这个信号会告诉用户内核破坏了用户加在那个文件上的写或者读租借锁，<code>write()</code>系统调用就会被中断，并且进程会被<code>SIGBUS</code>信号杀死。需要注意的是文件租借锁需要在对文件进行内存映射之前设置。</p>
-<h3 id="splice">splice()</h3>
-<p>和<code>sendfile()</code>类似，<code>splice()</code>也需要两个已经打开的文件描述符，并且其中的一个描述符必须是表示管道设备的描述符，它可以在操作系统地址空间中整块地移动数据，从而减少大多数数据拷贝操作。适用于可以确定数据传输路径的用户应用程序，不需要利用用户地址空间的缓冲区进行显示的数据传输操作。</p>
-<p><code>splice()</code>不局限于<code>sendfile()</code>的功能，也就是说<code>sendfile()</code>是<code>splice()</code>的一个子集，在 Linux 2.6.23 中，<code>sendfile()</code>这种机制的实现已经没有了，但是这个 API 以及相应的功能还存在，只不过内部已经使用了<code>splice()</code>这种机制来实现了。</p>
-<h2 id="写时复制">写时复制</h2>
-<p>在某些情况下，Linux 操作系统内核中的页缓存可能会被多个应用程序所共享，操作系统有可能会将用户应用程序地址空间缓冲区中的页面映射到操作系统内核地址空间中去。如果某个应用程序想要对这共享的数据调用<code>write()</code>系统调用，那么它就可能破坏内核缓冲区中的共享数据，传统的<code>write()</code>系统调用并没有提供任何显示的加锁操作，Linux 中引入了写时复制这样一种技术用来保护数据。</p>
-<p>写时复制的基本思想是如果有多个应用程序需要同时访问同一块数据，那么可以为这些应用程序分配指向这块数据的指针，在每一个应用程序看来，它们都拥有这块数据的一份数据拷贝，当其中一个应用程序需要对自己的这份数据拷贝进行修改的时候，就需要将数据真正地拷贝到该应用程序的地址空间中去，也就是说，该应用程序拥有了一份真正的私有数据拷贝，这样做是为了避免该应用程序对这块数据做的更改被其他应用程序看到。这个过程对于应用程序来说是透明的，如果应用程序永远不会对所访问的这块数据进行任何更改，那么就永远不需要将数据拷贝到应用程序自己的地址空间中去。这也是写时复制的最主要的优点。</p>
-<p>写时复制的实现需要 MMU 的支持，MMU 需要知晓进程地址空间中哪些特殊的页面是只读的，当需要往这些页面中写数据的时候，MMU 就会发出一个异常给操作系统内核，操作系统内核就会分配新的物理存储空间，即将被写入数据的页面需要与新的物理存储位置相对应。它最大好处就是可以节约内存，不过对于操作系统内核来说，写时复制增加了其处理过程的复杂性。</p>
 ]]></content>
     </entry>
 </feed>

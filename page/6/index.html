@@ -7,7 +7,7 @@
 <title>
     刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1582469934384">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1583656981045">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1582469934384" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1583656981045" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -120,6 +120,122 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io/post/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu">
+                        基于依存句法分析的开放式中文实体关系抽取
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-04-26</time>
+                    
+                        <a href="https://mengxiaoxu.github.io/tag/zi-ran-yu-yan-chu-li" class="post-tag i-tag
+                            i-tag-success">
+            #自然语言处理
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io/post/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu.jpeg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            这一段时间一直在做知识图谱，卡在实体关系抽取这里几个月了，在 Github 上面看到有人使用卷积神经网络训练模型进行抽取，自己也尝试了一下，但是一直苦于没有像样数据去训练，而标注训练集又太费时间了，我不太愿意干体力活。所以采用了一个低档次的方法，基于依存句法分析的实体关系抽取，记录一下心得，方便日后忘记可以再找回来。
+本方法参考了 Github 上面的项目和一篇论文，在文章末尾给出，使用的分词工具是 HanLP，感谢相关作者。
+论文给出了 8 种中文关系的表达方式，并且最后给出了一个采用正则表达式语法指出表达，核心就是谓语动词表示关系，即关系表述中一定得有动词。
+状语*动词+补语?宾语?
+
+我不太赞同把宾语也当作关系表述的一部分，论文指出“p4生于山西”应该抽出（p4，山西，生于山西），我认为关系不应该表述为“生于山西”，所以我把关系表述改为下面的样子了。
+状语*动词+补语?
+
+这篇文章只是作为一个方法介绍，我自己先看了一遍，能够保证我下次看到这篇文章，可以立马回忆起自己的实现方法，希望你看了也能了解方法，看不懂的话，我表示抱歉，浪费您的时间了，我已经尽可能写到简单了。
+先来看几个简单句子吧：
+主谓宾关系：刘小绪 生于 四川
+// 这个三元组很明显：（刘小绪，生于，四川）
+
+
+动补结构：刘小绪 洗 干净 了 衣服
+// 如果套用主谓宾关系就是：（刘小绪，洗，衣服）
+// 但是这里描述的是一个状态，是刘小绪把衣服洗干净了
+// “干净”是动词“洗”的补语，所以还应该提取出一个如下三元组
+// （刘小绪，洗干净了，衣服）
+
+状动结构：父亲 非常 喜欢 跑步
+// 这句和上面很像，主谓宾关系是：父亲喜欢跑步
+// “非常”用于修饰“喜欢”
+// （父亲，非常喜欢，跑步）
+
+介宾关系：刘小绪 就职 于 学校
+// 如果直接把这个三元组抽取为（刘小绪，就职，学校），很别扭
+// “于”和“学校”是介宾关系，它们的关系应该是：就职于
+// （刘小绪，就职于，学校）
+
+宾语前置：海洋 由 水 组成
+// “海洋”是“组成”的前置宾语
+// “由”是“组成”的状语
+// “水”和“由”是介宾关系
+// 所以上面的句子没有明确的主谓关系，需要我们判断
+// 抽出的三元组应该为：（水，组成，海洋）
+
+HanLP 提供了两种依存句法分析的器，默认采用的是基于神经网络的依存句法分析器。依存句法分析就是将句子分析成一棵依存句法树，描述各个词语之间的依存关系，即指出词语之间在句法上的搭配关系。
+有了上面所说的依存句法树，其实我们只需要进行各种判断就可以了。先做出下面的一点说明，就拿第一个例子来说。
+原文：刘小绪生于四川
+
+# 这是分词结果
+[刘小绪/nr, 生于/v, 四川/ns]
+
+#这是句法分析结果
+刘小绪 --(主谓关系)--&amp;gt; 生于
+生于 --(核心关系)--&amp;gt; ##核心##
+四川 --(动宾关系)--&amp;gt; 生于
+
+为了方便理解，也为了方便程序的编写，我把他们组织成了下面的形式，为每一个词语都建一个依存句法字典。
+刘小绪：{}
+生于：{主谓关系=[刘小绪], 动宾关系=[四川]}
+四川：{}
+
+然后只需要写出类似于下面的程序段就可以抽出关系了。
+// 主谓宾关系：刘小绪生于四川
+// dic是这个词语的依存句法字典
+if (dic.containsKey(&amp;quot;主谓关系&amp;quot;) &amp;amp;&amp;amp; dic.containsKey(&amp;quot;动宾关系&amp;quot;)){
+    
+    // 当前的词语，用上面的例子来说，relation=“生于”
+    String relation = curWord.LEMMA;
+
+
+    // 用循环遍历，是因为关系列表里面不一定只有一个词语
+    for (CoNLLWord entity1:
+            dic.get(&amp;quot;主谓关系&amp;quot;)) {
+
+        for (CoNLLWord entity2:
+                dic.get(&amp;quot;动宾关系&amp;quot;)) {
+
+            System.out.println(entity1.LEMMA + &amp;quot;,&amp;quot; + relation + &amp;quot;,&amp;quot; + entity2.LEMMA);
+        }
+
+    }
+}
+
+对于分词后的每个词语都进行上面程序段的操作。“刘小绪”和“四川”，关系字典都为空。而对于“生于”，关系列表里面既有主谓也有动宾，而自己本身就是动词，主谓宾就出来了。直接从主谓关系中拿出来词语作为 entity1，再拿上自己作为关系，最后拿出动宾关系中的词语作为 entity2。很明确的三元组（刘小绪，生于，四川）就出来了。
+最后给出一个程序运行结果图吧。
+
+我个人觉得效果还行，在简单句子上面表现的差强人意，在长句子上面表现的差劲。
+参考：
+HanLP 自然语言处理
+基于依存分析的开放式中文实体关系抽取方法
+命名实体三元组抽取参考自fact_triple_extraction
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/ji-yu-yi-cun-ju-fa-fen-xi-de-kai-fang-shi-zhong-wen-shi-ti-guan-xi-chou-qu">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io/post/jian-dan-li-jie-ci-pan-jie-gou">
                         简单理解磁盘结构
                     </a>
@@ -128,12 +244,12 @@
                     <time class="post-time">2018-04-24</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-warning">
             #数据库
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-success">
             #操作系统
         </a>
                         
@@ -251,7 +367,7 @@ R10
                     <time class="post-time">2018-04-19</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-banana">
             #生活感悟
         </a>
                         
@@ -296,7 +412,7 @@ R10
                     <time class="post-time">2018-04-15</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/94PzxqinO" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_4">
             #生活感悟
         </a>
                         
@@ -339,12 +455,12 @@ R10
                     <time class="post-time">2018-03-29</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/JYJKwJM69" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-info">
             #编译原理
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/QjCHA76i_r" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-banana">
             #编程基础
         </a>
                         
@@ -609,7 +725,7 @@ null
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1582469934384)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1583656981045)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -648,6 +764,12 @@ null
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin">MySQL 中的索引</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua">Schema 与数据类型优化</a>
                 </h3>
             
@@ -670,10 +792,6 @@ null
                 </h3>
             
             
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io/post/xiao-gong-ju-shou-ji">小工具收集</a>
-                </h3>
             
             
             

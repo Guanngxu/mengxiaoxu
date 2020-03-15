@@ -7,7 +7,7 @@
 <title>
     数据库 | 刘小绪同学的博客
 </title>
-<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1583656981045">
+<link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1584271207253">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://lexrus.com/fontdiao/fontdiao/css/fontdiao.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://mengxiaoxu.github.io/">
-                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1583656981045" alt="">
+                <img class="avatar" src="https://mengxiaoxu.github.io//images/avatar.png?v=1584271207253" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -125,6 +125,152 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io/post/cha-xun-xing-neng-you-hua">
+                        查询性能优化
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-15</time>
+                    
+                        <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
+                            i-tag-banana">
+            #MySQL
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
+                            i-tag-">
+            #数据库
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io/post/cha-xun-xing-neng-you-hua">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/cha-xun-xing-neng-you-hua.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《高性能 MySQL（第三版））》
+
+在 Schema 与数据类型优化、MySQL 中的索引和高性能索引策略中已经介绍了如何设计最优的库表结构、如何建立最好的索引，这些对于高性能来说还是必不可少的，但这些依旧还不够，如果查询写的糟糕，那么再好的库表结构、索引再合适，也无法实现高性能。
+本文将从查询设计的一些基本原则开始介绍一些查询优化技巧，尽可能的去发挥 MySQL 真正的优势，并且避开它的弱点。
+为什么查询速度会慢
+如果把一次查询看做一个任务，那么它则是由一系列更小的子任务构成，每个子任务都会消耗一定的时间，速度慢无非是其中一些子任务拖累了整个任务的进度，或者是执行了一些不必要的子任务。
+MySQL 在执行查询时有哪些子任务？哪些子任务运行的时间很慢？这里很难给出完整的列表。完成这些子任务的时候，查询需要在不同的地方花费时间，比如网络、CPU 计算、生成执行计划、锁（互斥）等待等等操作。而这些操作又需要调用多少又会需要内存、CPU 操作、内存不足时导致的 I/O 操作、上下文切换和系统调用等等。
+上面只列了一个查询生命周期的部分，我们要做的就是了解查询的生命周期，清楚查询的时间消耗情况，知道了这些才能帮助我们大大优化查询速度。
+优化数据访问
+查询性能低下最基本的原因是访问的数据太多，除了一些不可避免的需要筛选大量数据的查询外，大部分性能低下的查询都可以通过减少访问的数据量进行优化。一般可以考虑下面两个因素：
+
+应用程序是否存在检索大量的超过需要的数据？一般意味着访问了太多的行或者太多的列；
+MySQL 服务器层是否存在分析大量超过需要的数据行。
+
+有一些查询会请求超过实际需要的数据，然后这些多余的数据又会被应用程序丢弃，这样会给 MySQL 服务器带来额外的负担，同时增加网络、内存、CPU 的开销。典型案例比如：查询不需要的记录；多表关联时返回全部的列；总是取出全部列；重复查询相同的数据。
+我们以SELECT * FROM film_actor WHERE film_id = 1这个查询来简要说明「MySQL 为了返回结果是否需要扫描额外的记录」。在有film_id列有索引的时候，通过EXPLAIN会看到使用的访问类型是ref，并且只需要扫描 10 行数据。而如果将索引去掉，则访问类型变成了ALL，需要扫描全表数据。
+如果发现需要扫描大量数据但只返回少数的行，我们一般可以通过三个技巧来优化。第一是使用索引覆盖扫描，把所有需要用的列都放到索引中，这样存储引擎无须回表取对应行就可以返回结果了；第二是改变库表结构，比如使用单独的汇总表，这一点在 Schema 与数据类型优化中相关介绍；第三是重写这个复杂的查询，让 MySQL 优化器能够以更优化的方式执行这个查询。
+重构查询的方式
+上文已经提到了通过重写查询来提高性能，那么我们可以用哪些技巧来重构查询呢？这里我们需要明白的是，查询的目标找到一个更优的方法获得实际需要的结果，而不一定总是需要从 MySQL 中获得一模一样的结果集。
+在设计查询的时候需要考虑的一个重要问题是：是否需要将一个复杂的查询分成多个简单的查询。因为网络通信、查询解析和优化是代价高昂的事情，所以在传统实现中总是强调让数据库完成尽可能多的工作。但是这个法则不适用于 MySQL，因为 MySQL 从设计上就让连接和断开连接很轻量级，而且现在的网络基础设施也更完善，带宽、时延等等都已经变得不再那么重要。
+有时候将一个大的查询分解为多个小查询是很有必要的，当然如果一个查询能够胜任时写成多个独立的查询还是不明智的，是否需要拆分需要自己衡量各方面的因素。下面举一个切分查询的例子。
+在一些应用中需要定期的删除旧数据，如果一次使用一个大的语句一次性完成的话，则可能需要一次锁住很多数据、沾满整个事务日志、耗尽系统资源、阻塞许多很小但重要的查询。比如DELETE FROM messages WHERE created &amp;lt; DATE_SUB(NOW(), INTERVAL 3 MONTH)，这个查询会消耗很多的资源，而如果我们将它拆分为很多个小的查询，这样就能将服务器上原本一次性的压力分散到一个很长的时间段中，这样就可以大大降低对服务器的影响，也可以大大减少删除时锁的持有时间。如下所示：
+rows_affected = 0
+do {
+rows_affected = do_query(
+    &amp;quot;DELETE FROM messages WHERE created &amp;lt; DATE_SUB(NOW(), INTERVAL 3 MONTH) LIMIT 10000&amp;quot;)
+} while rows_affected &amp;gt; 0
+
+当然我们还可以通过分解关联查询的方法来重构查询，比如下文代码块中的例子乍一看好像没什么好处，实际上它的优势可不少。
+
+让缓存的效率更高。因为许多应用程序可以方便的缓存单表查询对应的结果对象；
+将查询分解后，执行单个查询可以减少锁的竞争；
+在应用层做关联，可以更容易对数据库进行拆分，更容易做到高性能和可扩展；
+可以减少冗余记录的查询。在应用程序做关联意味着对应某条记录应用只需要查询一次，而在数据库访问则可能需要重复访问；
+查询本身效率也可能会提升。比如例子中使用 IN() 代替关联查询，可以让 MySQL 按照 ID 顺序进行查询；
+更进一步，这样做相当于在应用中实现了哈希关联，而不是 MySQL 的嵌套循环关联。
+
+SELECT * FROM tag 
+    JOIN tag_post ON tag_post.tag_id = tag.id
+    JOIN post ON tag_post.post_id = post.id
+WHERE tag.tag = &#39;mysql&#39;
+
+
+# 可以将上面的查询分解为下面的小查询
+
+SELECT * FROM tag WHERE tag = &#39;mysql&#39;;
+SELECT * FROM tag_post WHERE tag_id = 1234;
+SELECT * FROM post WHERE id in (123, 456, 567, 9098, 8904)
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/cha-xun-xing-neng-you-hua">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://mengxiaoxu.github.io/post/gao-xing-neng-suo-yin-ce-lue">
+                        高性能索引策略
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-03-15</time>
+                    
+                        <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
+                            i-tag-">
+            #MySQL
+        </a>
+                        
+                        <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
+                            i-tag-other_1">
+            #数据库
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://mengxiaoxu.github.io/post/gao-xing-neng-suo-yin-ce-lue">
+                            <img class="post-feature-image" src="https://mengxiaoxu.github.io//post-images/gao-xing-neng-suo-yin-ce-lue.jpg">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+参考内容：
+《高性能 MySQL（第三版））》
+
+在 MySQL 中的索引中已经介绍了常见的两种索引类型和索引的优缺点。高效的选择和使用索引有很多种方式，下面介绍几种常见的方法。
+独立的列
+如果查询中的列不是独立的，则 MySQL 就不会使用索引，这里「独立的列」是指索引列不能是表达式的一部分，也不能是函数的参数。比如SELECT actor_id FROM actor WHERE actor_id + 1 = 5，凭肉眼都能看出来 WHERE 中的表达式其实等价于actor_id = 4，但是 MySQL 却无法自动解析这个表达式。因此我们应该养成简化 WHERE 条件的习惯，始终将索引列单独放在比较符号的一侧。
+多列索引
+一些所谓的专家建议把 WHERE 条件里面的列都建上索引，实际上这个建议是非常错误的，因为这样一来最好的情况下也只能是「一星」索引，其性能比起真正的最优的索引可能差几个数量级。
+
+索引将相关的记录放到一起则获得「一星」；如果索引中的数据顺序和查找中的排列顺序一致则获得「二星」；如果索引中的列包含了查询中需要的全部列则获得「三星」。
+
+MySQL5.0 之前只能使用某一个单列索引，在这种情况下没有哪一个独立的单列索引是有效的。比如表film_actor在字段film_id和actor_id上各有一个单列索引，但是对于下面这个查询的 WHERE 条件单列索引却不会生效，MySQL 对这个查询会使用全表扫描。因此在 5.0 之后的版本引进了「索引合并」的策略。
+SELECT film_id, actor_id FROM film_actor WHERE actor_id = 1 OR film_id = 1
+
+索引合并算法由三个变种：OR 条件的联合；AND 条件的相交；组合前两种情况的联合及相交，它的作用是同事使用单列索引进行扫描，并将结果进行合并。需要注意的是 MySQL 会使用这类技术优化复杂查询，更多的时候是说明了表上的索引建的很糟糕。比如当服务器对多个索引做相交操作时（通常有多个 AND 条件），通常意味着需要一个包含所有相关列的多列索引，而不是多个单列索引。
+选择合适的索引列顺序
+索引列的顺序是容易引起困惑的问题，这一点可以参考 MySQL 中的索引中关于 B-Tree 的介绍，列顺序也决定了一个索引是否能够成为一个真正的三星索引。需要注意的是，本小节内容适用于 B-Tree 索引。
+选择索引列的顺序有一个经验法则：将选择性最高的列放到索引最前列。但是这个法则在一些情况下没有避免随机 I/O 那么重要，这里想要说明的是这个法则不是放之四海皆准。
+聚簇索引
+聚簇索引并不是一种单独的索引类型，而是一种数据存储方式。当表有聚簇索引时，它的数据行实际上存放在索引的叶子页中，「聚簇」表示数据行和相邻的键值紧凑地存储在一起。当然因为无法把数据行放在两个不同的地方，所以一个表只能有一个聚簇索引。因为是存储引擎负责实现索引，因此并不是所有的存储引擎都支持聚簇索引，而且它的具体细节也和实现方式有关。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://mengxiaoxu.github.io/post/gao-xing-neng-suo-yin-ce-lue">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin">
                         MySQL 中的索引
                     </a>
@@ -133,12 +279,12 @@
                     <time class="post-time">2020-03-08</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_2">
             #MySQL
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-success">
             #数据库
         </a>
                         
@@ -210,7 +356,7 @@ CREATE TABLE people (
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-primary">
             #数据库
         </a>
                         
@@ -291,12 +437,12 @@ MySQL 执行大部分修改表结构的方法都是用新的结构创建一个�
                     <time class="post-time">2020-02-16</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-error">
             #MySQL
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_4">
             #数据库
         </a>
                         
@@ -378,7 +524,7 @@ MySQL 使用文件系统的目录和文件来保存数据库和表的定义，�
                     <time class="post-time">2020-01-04</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-">
             #数据库
         </a>
                         
@@ -485,12 +631,12 @@ db.collection.aggregate([
                     <time class="post-time">2018-04-24</time>
                     
                         <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_1">
             #数据库
         </a>
                         
                         <a href="https://mengxiaoxu.github.io/tag/kvSwja8aw" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_1">
             #操作系统
         </a>
                         
@@ -609,7 +755,7 @@ R10
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1583656981045)">
+        <div class="id_card-avatar" style="background-image: url(https://mengxiaoxu.github.io//images/avatar.png?v=1584271207253)">
         </div>
         <h1 class="id_card-title">
             刘小绪同学的博客
@@ -648,6 +794,18 @@ R10
             
             
                 <h3>
+                    <a href="https://mengxiaoxu.github.io/post/cha-xun-xing-neng-you-hua">查询性能优化</a>
+                </h3>
+            
+            
+            
+                <h3>
+                    <a href="https://mengxiaoxu.github.io/post/gao-xing-neng-suo-yin-ce-lue">高性能索引策略</a>
+                </h3>
+            
+            
+            
+                <h3>
                     <a href="https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin">MySQL 中的索引</a>
                 </h3>
             
@@ -665,15 +823,7 @@ R10
             
             
             
-                <h3>
-                    <a href="https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi">MySQL 架构与历史</a>
-                </h3>
             
-            
-            
-                <h3>
-                    <a href="https://mengxiaoxu.github.io/post/qian-xi-zheng-ze-biao-da-shi-yuan-li">浅析正则表达式原理</a>
-                </h3>
             
             
             

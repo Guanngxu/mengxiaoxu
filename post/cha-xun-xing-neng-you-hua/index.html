@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    惰性载入函数 | 刘小绪同学的博客
+    查询性能优化 | 刘小绪同学的博客
 </title>
 <link rel="shortcut icon" href="https://mengxiaoxu.github.io//favicon.ico?v=1584271207253">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -127,170 +127,76 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            惰性载入函数
+                            查询性能优化
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-08-06</time>
+                            <time class="post-time">2020-03-15</time>
                             
-                                <a href="https://mengxiaoxu.github.io/tag/javascript" class="post-tag i-tag
-                            i-tag-primary">
-                            #JavaScript
+                                <a href="https://mengxiaoxu.github.io/tag/mysql" class="post-tag i-tag
+                            i-tag-error">
+                            #MySQL
                         </a>
                                 
-                                <a href="https://mengxiaoxu.github.io/tag/Cp4eHBEcz" class="post-tag i-tag
-                            i-tag-other_4">
-                            #前端
+                                <a href="https://mengxiaoxu.github.io/tag/shu-ju-ku" class="post-tag i-tag
+                            i-tag-other_1">
+                            #数据库
                         </a>
                                 
                         </div>
                         
-                            <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/duo-xing-zai-ru-han-shu.png')"></div>
+                            <div class="post-feature-image" style="background-image: url('https://mengxiaoxu.github.io//post-images/cha-xun-xing-neng-you-hua.jpg')"></div>
                             
                                 <div class="post-content">
                                     <blockquote>
-<p>参考资料：<br>
-《JavaScript 高级程序设计（第三版）》<br>
-<a href="https://github.com/mqyqingfeng/Blog/issues/44">JavaScript专题之惰性函数</a><br>
-<a href="https://xiaohuochai.site/JS/ECMA/types/LazyFunction.html">深入理解javascript函数进阶之惰性函数</a></p>
+<p>参考内容：<br>
+《高性能 MySQL（第三版））》</p>
 </blockquote>
-<p>因为不同厂商的浏览器相互之间存在一些行为上的差异，很多 js 代码包含了大量的<code>if</code>语句，将执行引导到正确的分支代码中去，比如下面的例子。</p>
-<pre><code class="language-javascript">function createXHR() {
-    if (typeof XMLHttpRequest != 'undefined') {
-        return new XMLHttpRequest();
-    } else if (typeof ActiveXObject != 'undefined') {
-        if (typeof arguments.callee.activeXString != 'string') {
-            var versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0', 'MSXML2.XMLHttp'];
-            var i, len;
-            for (i = 0, len = versions.length; i &lt; len; i++) {
-                try {
-                    new ActiveXObject(versions[i]);
-                    arguments.callee.activeXString = versions[i];
-                } catch (e) {
-                    // skip
-                }
-            }
-        }
-        return new ActiveXObject(arguments.callee.activeXString);
-    } else {
-        throw new Error('No XHR object available.');
-    }
-}
+<p>在 <a href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua/">Schema 与数据类型优化</a>、<a href="https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin">MySQL 中的索引</a>和<a href="https://mengxiaoxu.github.io/post/gao-xing-neng-suo-yin-ce-lue">高性能索引策略</a>中已经介绍了如何设计最优的库表结构、如何建立最好的索引，这些对于高性能来说还是必不可少的，但这些依旧还不够，如果查询写的糟糕，那么再好的库表结构、索引再合适，也无法实现高性能。</p>
+<p>本文将从查询设计的一些基本原则开始介绍一些查询优化技巧，尽可能的去发挥 MySQL 真正的优势，并且避开它的弱点。</p>
+<h2 id="为什么查询速度会慢">为什么查询速度会慢</h2>
+<p>如果把一次查询看做一个任务，那么它则是由一系列更小的子任务构成，每个子任务都会消耗一定的时间，速度慢无非是其中一些子任务拖累了整个任务的进度，或者是执行了一些不必要的子任务。</p>
+<p>MySQL 在执行查询时有哪些子任务？哪些子任务运行的时间很慢？这里很难给出完整的列表。完成这些子任务的时候，查询需要在不同的地方花费时间，比如网络、CPU 计算、生成执行计划、锁（互斥）等待等等操作。而这些操作又需要调用多少又会需要内存、CPU 操作、内存不足时导致的 I/O 操作、上下文切换和系统调用等等。</p>
+<p>上面只列了一个查询生命周期的部分，我们要做的就是了解查询的生命周期，清楚查询的时间消耗情况，知道了这些才能帮助我们大大优化查询速度。</p>
+<h2 id="优化数据访问">优化数据访问</h2>
+<p>查询性能低下最基本的原因是访问的数据太多，除了一些不可避免的需要筛选大量数据的查询外，大部分性能低下的查询都可以通过减少访问的数据量进行优化。一般可以考虑下面两个因素：</p>
+<ol>
+<li>应用程序是否存在检索大量的超过需要的数据？一般意味着访问了太多的行或者太多的列；</li>
+<li>MySQL 服务器层是否存在分析大量超过需要的数据行。</li>
+</ol>
+<p>有一些查询会请求超过实际需要的数据，然后这些多余的数据又会被应用程序丢弃，这样会给 MySQL 服务器带来额外的负担，同时增加网络、内存、CPU 的开销。典型案例比如：查询不需要的记录；多表关联时返回全部的列；总是取出全部列；重复查询相同的数据。</p>
+<p>我们以<code>SELECT * FROM film_actor WHERE film_id = 1</code>这个查询来简要说明「MySQL 为了返回结果是否需要扫描额外的记录」。在有<code>film_id</code>列有索引的时候，通过<code>EXPLAIN</code>会看到使用的访问类型是<code>ref</code>，并且只需要扫描 10 行数据。而如果将索引去掉，则访问类型变成了<code>ALL</code>，需要扫描全表数据。</p>
+<p>如果发现需要扫描大量数据但只返回少数的行，我们一般可以通过三个技巧来优化。第一是使用索引覆盖扫描，把所有需要用的列都放到索引中，这样存储引擎无须回表取对应行就可以返回结果了；第二是改变库表结构，比如使用单独的汇总表，这一点在 <a href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua/">Schema 与数据类型优化</a>中相关介绍；第三是重写这个复杂的查询，让 MySQL 优化器能够以更优化的方式执行这个查询。</p>
+<h2 id="重构查询的方式">重构查询的方式</h2>
+<p>上文已经提到了通过重写查询来提高性能，那么我们可以用哪些技巧来重构查询呢？这里我们需要明白的是，查询的目标找到一个更优的方法获得实际需要的结果，而不一定总是需要从 MySQL 中获得一模一样的结果集。</p>
+<p>在设计查询的时候需要考虑的一个重要问题是：是否需要将一个复杂的查询分成多个简单的查询。因为网络通信、查询解析和优化是代价高昂的事情，所以在传统实现中总是强调让数据库完成尽可能多的工作。但是这个法则不适用于 MySQL，因为 MySQL 从设计上就让连接和断开连接很轻量级，而且现在的网络基础设施也更完善，带宽、时延等等都已经变得不再那么重要。</p>
+<p>有时候将一个大的查询分解为多个小查询是很有必要的，当然如果一个查询能够胜任时写成多个独立的查询还是不明智的，是否需要拆分需要自己衡量各方面的因素。下面举一个切分查询的例子。</p>
+<p>在一些应用中需要定期的删除旧数据，如果一次使用一个大的语句一次性完成的话，则可能需要一次锁住很多数据、沾满整个事务日志、耗尽系统资源、阻塞许多很小但重要的查询。比如<code>DELETE FROM messages WHERE created &lt; DATE_SUB(NOW(), INTERVAL 3 MONTH)</code>，这个查询会消耗很多的资源，而如果我们将它拆分为很多个小的查询，这样就能将服务器上原本一次性的压力分散到一个很长的时间段中，这样就可以大大降低对服务器的影响，也可以大大减少删除时锁的持有时间。如下所示：</p>
+<pre><code class="language-sql">rows_affected = 0
+do {
+rows_affected = do_query(
+    &quot;DELETE FROM messages WHERE created &lt; DATE_SUB(NOW(), INTERVAL 3 MONTH) LIMIT 10000&quot;)
+} while rows_affected &gt; 0
 </code></pre>
-<p>我们可以发现，在浏览器每次调用<code>createXHR()</code>的时候，它都要对浏览器所支持的能力仔细检查，但是很明显当第一次检查之后，我们就应该知道浏览器是否支持我们所需要的能力，因此除第一次之外的检查都是多余的。即使只有一个<code>if</code>语句也肯定要比没有<code>if</code>语句慢，所以<code>if</code>语句不必每次都执行，那么代码可以运行的更快一些，<strong>惰性载入</strong>就是用来解决这种问题的技巧。</p>
-<h2 id="函数重写">函数重写</h2>
-<p>要理解惰性载入函数的原理，我们有必要先理解一下函数重写技术，由于一个函数可以返回另一个函数，因此可以在函数内部用新的函数来覆盖旧的函数。</p>
-<pre><code class="language-javascript">function sayHi() {
-    console.info('Hi');
-    sayHi = function() {
-        console.info('Hello');
-    }
-}
-</code></pre>
-<p>我们第一次调用<code>sayHi()</code>函数时，控制台会打印出<code>Hi</code>，全局变量<code>sayHi</code>被重新定义，被赋予了新的函数，从第二次开始之后的调用都会打印出<code>Hello</code>。惰性载入函数的本质就是函数重写，惰性载入的意思就是函数执行的分支只会发生一次。</p>
-<h2 id="惰性载入">惰性载入</h2>
-<p>我们来看一个例子（例子来源于<a href="https://github.com/mqyqingfeng">冴羽</a>所写的<a href="https://github.com/mqyqingfeng/Blog/issues/44">JavaScript专题之惰性函数</a>）。现在需要写一个<code>foo</code>函数，这个函数返回首次调用时的<code>Date</code>对象，注意是首次。</p>
-<h3 id="方案一">方案一</h3>
-<pre><code class="language-javascript">var t;
-function foo() {
-    if (t) return t;
-    t = new Date()
-    return t;
-}
-// 此方案存在两个问题，一是污染了全局变量
-// 二是每次调用都需要进行一次判断
-</code></pre>
-<h3 id="方案二">方案二</h3>
-<pre><code class="language-javascript">var foo = (function() {
-    var t;
-    return function() {
-        if (t) return t;
-        t = new Date();
-        return t;
-    }
-})();
-// 使用闭包来避免污染全局变量，
-// 但是还是没有解决每次调用都需要进行一次判断的问题
-</code></pre>
-<h3 id="方案三">方案三</h3>
-<pre><code class="language-javascript">function foo() {
-    if (foo.t) return foo.t;
-    foo.t = new Date();
-    return foo.t;
-}
-// 函数也是一种对象，利用这个特性也可以解决
-// 和方案二一样，还差一个问题没有解决
-</code></pre>
-<h3 id="方案四">方案四</h3>
-<pre><code class="language-javascript">var foo = function() {
-    var t = new Date();
-    foo = function() {
-        return t;
-    };
-    return foo();
-};
-// 利用惰性载入技巧，即重写函数
-</code></pre>
-<p>惰性载入函数有两种实现方式，第一种是在函数被调用时再处理函数。在第一次调用的过程中，该函数会被覆盖为另外一种按合适方式执行的函数，这样任何对原函数的调用都不用再经过执行分支了。</p>
-<p>第二种实现方式是在声明函数时就指定适当的函数。这样第一次调用时就不会损失性能了，而是在代码首次加载时会损失一点性能，即是利用闭包写一个自执行的函数。</p>
-<h2 id="改进-createxhr">改进 createXHR</h2>
-<p>有了上面的基础，我们就可以将<code>createXHR()</code>改进为下列形式，这样就不用每次调用都进行判断了。</p>
-<pre><code class="language-javascript">// 第一种实现方式
-function createXHR() {
-    if (typeof XMLHttpRequest != 'undefined') {
-        createXHR = function() {
-            return new XMLHttpRequest();
-        }
-    } else if (typeof ActiveXObject != 'undefined') {
-        createXHR = function() {
-            if (typeof arguments.callee.activeXString != 'string') {
-                var versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0', 'MSXML2.XMLHttp'];
-                var i, len;
-                for (i = 0, len = versions.length; i &lt; len; i++) {
-                    try {
-                        new ActiveXObject(versions[i]);
-                        arguments.callee.activeXString = versions[i];
-                    } catch (e) {
-                        // skip
-                    }
-                }
-            }
-            return new ActiveXObject(arguments.callee.activeXString);
-        };
-    } else {
-        createXHR = function() {
-            throw new Error('No XHR object available.');
-        }
-    }
-}
+<p>当然我们还可以通过分解关联查询的方法来重构查询，比如下文代码块中的例子乍一看好像没什么好处，实际上它的优势可不少。</p>
+<ol>
+<li>让缓存的效率更高。因为许多应用程序可以方便的缓存单表查询对应的结果对象；</li>
+<li>将查询分解后，执行单个查询可以减少锁的竞争；</li>
+<li>在应用层做关联，可以更容易对数据库进行拆分，更容易做到高性能和可扩展；</li>
+<li>可以减少冗余记录的查询。在应用程序做关联意味着对应某条记录应用只需要查询一次，而在数据库访问则可能需要重复访问；</li>
+<li>查询本身效率也可能会提升。比如例子中使用 IN() 代替关联查询，可以让 MySQL 按照 ID 顺序进行查询；</li>
+<li>更进一步，这样做相当于在应用中实现了哈希关联，而不是 MySQL 的嵌套循环关联。</li>
+</ol>
+<pre><code class="language-sql">SELECT * FROM tag 
+    JOIN tag_post ON tag_post.tag_id = tag.id
+    JOIN post ON tag_post.post_id = post.id
+WHERE tag.tag = 'mysql'
 
-// 第二种实现方式
-function createXHR() {
-    if (typeof XMLHttpRequest != 'undefined') {
-        return function() {
-            return new XMLHttpRequest();
-        }
-    } else if (typeof ActiveXObject != 'undefined') {
-        return function() {
-            if (typeof arguments.callee.activeXString != 'string') {
-                var versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0', 'MSXML2.XMLHttp'];
-                var i, len;
-                for (i = 0, len = versions.length; i &lt; len; i++) {
-                    try {
-                        new ActiveXObject(versions[i]);
-                        arguments.callee.activeXString = versions[i];
-                    } catch (e) {
-                        // skip
-                    }
-                }
-            }
-            return new ActiveXObject(arguments.callee.activeXString);
-        };
-    } else {
-        return function() {
-            throw new Error('No XHR object available.');
-        }
-    }
-}
+
+# 可以将上面的查询分解为下面的小查询
+
+SELECT * FROM tag WHERE tag = 'mysql';
+SELECT * FROM tag_post WHERE tag_id = 1234;
+SELECT * FROM post WHERE id in (123, 456, 567, 9098, 8904)
 </code></pre>
 
                                 </div>
@@ -299,9 +205,9 @@ function createXHR() {
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://mengxiaoxu.github.io/post/fei-she-ji-shi-xu-yao-zhi-dao-de-si-ge-she-ji-yuan-ze">
+                            <a href="https://mengxiaoxu.github.io/post/gao-xing-neng-suo-yin-ce-lue">
                                 <h3 class="post-title">
-                                    非设计师需要知道的四个设计原则
+                                    高性能索引策略
                                 </h3>
                             </a>
                         </div>
@@ -322,16 +228,9 @@ function createXHR() {
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%87%BD%E6%95%B0%E9%87%8D%E5%86%99">函数重写</a></li>
-<li><a href="#%E6%83%B0%E6%80%A7%E8%BD%BD%E5%85%A5">惰性载入</a>
-<ul>
-<li><a href="#%E6%96%B9%E6%A1%88%E4%B8%80">方案一</a></li>
-<li><a href="#%E6%96%B9%E6%A1%88%E4%BA%8C">方案二</a></li>
-<li><a href="#%E6%96%B9%E6%A1%88%E4%B8%89">方案三</a></li>
-<li><a href="#%E6%96%B9%E6%A1%88%E5%9B%9B">方案四</a></li>
-</ul>
-</li>
-<li><a href="#%E6%94%B9%E8%BF%9B-createxhr">改进 createXHR</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9F%A5%E8%AF%A2%E9%80%9F%E5%BA%A6%E4%BC%9A%E6%85%A2">为什么查询速度会慢</a></li>
+<li><a href="#%E4%BC%98%E5%8C%96%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE">优化数据访问</a></li>
+<li><a href="#%E9%87%8D%E6%9E%84%E6%9F%A5%E8%AF%A2%E7%9A%84%E6%96%B9%E5%BC%8F">重构查询的方式</a></li>
 </ul>
 </li>
 </ul>

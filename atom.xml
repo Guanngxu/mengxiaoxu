@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mengxiaoxu.github.io/</id>
     <title>刘小绪同学的博客</title>
-    <updated>2020-03-15T11:20:18.805Z</updated>
+    <updated>2020-08-06T13:43:52.915Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mengxiaoxu.github.io/"/>
     <link rel="self" href="https://mengxiaoxu.github.io/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, 刘小绪同学的博客</rights>
     <entry>
         <title type="html"><![CDATA[查询性能优化]]></title>
-        <id>https://mengxiaoxu.github.io/post/cha-xun-xing-neng-you-hua</id>
-        <link href="https://mengxiaoxu.github.io/post/cha-xun-xing-neng-you-hua">
+        <id>https://mengxiaoxu.github.io/post/cha-xun-xing-neng-you-hua/</id>
+        <link href="https://mengxiaoxu.github.io/post/cha-xun-xing-neng-you-hua/">
         </link>
         <updated>2020-03-15T11:19:34.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -71,8 +71,8 @@ SELECT * FROM post WHERE id in (123, 456, 567, 9098, 8904)
     </entry>
     <entry>
         <title type="html"><![CDATA[高性能索引策略]]></title>
-        <id>https://mengxiaoxu.github.io/post/gao-xing-neng-suo-yin-ce-lue</id>
-        <link href="https://mengxiaoxu.github.io/post/gao-xing-neng-suo-yin-ce-lue">
+        <id>https://mengxiaoxu.github.io/post/gao-xing-neng-suo-yin-ce-lue/</id>
+        <link href="https://mengxiaoxu.github.io/post/gao-xing-neng-suo-yin-ce-lue/">
         </link>
         <updated>2020-03-15T11:17:10.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -100,8 +100,8 @@ SELECT * FROM post WHERE id in (123, 456, 567, 9098, 8904)
     </entry>
     <entry>
         <title type="html"><![CDATA[MySQL 中的索引]]></title>
-        <id>https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin</id>
-        <link href="https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin">
+        <id>https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin/</id>
+        <link href="https://mengxiaoxu.github.io/post/mysql-zhong-de-suo-yin/">
         </link>
         <updated>2020-03-08T08:37:18.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -143,8 +143,8 @@ SELECT * FROM post WHERE id in (123, 456, 567, 9098, 8904)
     </entry>
     <entry>
         <title type="html"><![CDATA[Schema 与数据类型优化]]></title>
-        <id>https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua</id>
-        <link href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua">
+        <id>https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua/</id>
+        <link href="https://mengxiaoxu.github.io/post/schema-yu-shu-ju-lei-xing-you-hua/">
         </link>
         <updated>2020-02-23T14:57:49.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -200,8 +200,8 @@ SELECT e+0 FROM enum_test;
     </entry>
     <entry>
         <title type="html"><![CDATA[刘小绪同学随笔（2020-02-18）]]></title>
-        <id>https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2020-02-18</id>
-        <link href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2020-02-18">
+        <id>https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2020-02-18/</id>
+        <link href="https://mengxiaoxu.github.io/post/liu-xiao-xu-tong-xue-sui-bi-2020-02-18/">
         </link>
         <updated>2020-02-19T13:35:29.000Z</updated>
         <content type="html"><![CDATA[<p>以前在朋友圈提到过这样一个现象，重庆人和四川人说的都是四川话，但是大部分重庆人会说他们说的是重庆话，说「川渝是一家」的通常也都是四川人。</p>
@@ -232,8 +232,8 @@ SELECT e+0 FROM enum_test;
     </entry>
     <entry>
         <title type="html"><![CDATA[MySQL 架构与历史]]></title>
-        <id>https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi</id>
-        <link href="https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi">
+        <id>https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi/</id>
+        <link href="https://mengxiaoxu.github.io/post/mysql-jia-gou-yu-li-shi/">
         </link>
         <updated>2020-02-16T13:26:48.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -290,8 +290,8 @@ int (*rollback)(THD *thd, bool all);
     </entry>
     <entry>
         <title type="html"><![CDATA[浅析正则表达式原理]]></title>
-        <id>https://mengxiaoxu.github.io/post/qian-xi-zheng-ze-biao-da-shi-yuan-li</id>
-        <link href="https://mengxiaoxu.github.io/post/qian-xi-zheng-ze-biao-da-shi-yuan-li">
+        <id>https://mengxiaoxu.github.io/post/qian-xi-zheng-ze-biao-da-shi-yuan-li/</id>
+        <link href="https://mengxiaoxu.github.io/post/qian-xi-zheng-ze-biao-da-shi-yuan-li/">
         </link>
         <updated>2020-01-15T15:18:27.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -441,8 +441,8 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
     </entry>
     <entry>
         <title type="html"><![CDATA[Vue + TypeScript 项目起手式]]></title>
-        <id>https://mengxiaoxu.github.io/post/vue-typescript-xiang-mu-qi-shou-shi</id>
-        <link href="https://mengxiaoxu.github.io/post/vue-typescript-xiang-mu-qi-shou-shi">
+        <id>https://mengxiaoxu.github.io/post/vue-typescript-xiang-mu-qi-shou-shi/</id>
+        <link href="https://mengxiaoxu.github.io/post/vue-typescript-xiang-mu-qi-shou-shi/">
         </link>
         <updated>2020-01-09T13:51:57.000Z</updated>
         <content type="html"><![CDATA[<p>在此前我使用的前端框架是 <a href="https://angular.io/">Angular</a>，使用过 <a href="https://www.typescriptlang.org/">TypeScript</a> 后你就会讨厌 JS 了，我学习 <a href="https://vuejs.org/">Vue</a> 时的最新版本是 2.5，相信大部分同学都不会认为 Vue 那样又细又长的代码很美观吧，简单看了一些网络博客后，我毅然决然引入了 TypeScript 进行开发，本文仅整理记录我自己遇到的一些坑。</p>
@@ -618,8 +618,8 @@ new Vue({
     </entry>
     <entry>
         <title type="html"><![CDATA[2019 年个人总结]]></title>
-        <id>https://mengxiaoxu.github.io/post/2019-nian-zong-jie</id>
-        <link href="https://mengxiaoxu.github.io/post/2019-nian-zong-jie">
+        <id>https://mengxiaoxu.github.io/post/2019-nian-zong-jie/</id>
+        <link href="https://mengxiaoxu.github.io/post/2019-nian-zong-jie/">
         </link>
         <updated>2020-01-05T16:00:47.000Z</updated>
         <content type="html"><![CDATA[<p>写总结的习惯是从 2015 年开始的，我的大学学费是县政协资助的，叔叔阿姨们唯一的要求就是每年给他们写个总结汇报一下学习情况，毕业后敦促我写总结的人则从外力转为内心。</p>
@@ -655,8 +655,8 @@ new Vue({
     </entry>
     <entry>
         <title type="html"><![CDATA[MongoDB 聚合入门]]></title>
-        <id>https://mengxiaoxu.github.io/post/mongodb-ju-he-ru-men</id>
-        <link href="https://mengxiaoxu.github.io/post/mongodb-ju-he-ru-men">
+        <id>https://mengxiaoxu.github.io/post/mongodb-ju-he-ru-men/</id>
+        <link href="https://mengxiaoxu.github.io/post/mongodb-ju-he-ru-men/">
         </link>
         <updated>2020-01-04T11:16:29.000Z</updated>
         <content type="html"><![CDATA[<p><a href="https://docs.mongodb.com/manual/core/aggregation-pipeline">MongoDB 聚合官方文档</a></p>
